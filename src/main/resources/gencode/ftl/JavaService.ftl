@@ -5,7 +5,7 @@ import java.util.List;
 import com.team.common.pojo.EUDataGridModel;
 import com.team.common.pojo.EUDataGridResult;
 <#elseif model.gentype == "TreeGrid">
-import com.team.platform.vo.${model.domainObjectName}Vo;
+import com.team.${model.businessName}.vo.${model.domainObjectName}Vo;
 </#if>
 import com.team.common.pojo.ResponseResult;
 import ${model.pojoTargetPackage}.${model.domainObjectName};

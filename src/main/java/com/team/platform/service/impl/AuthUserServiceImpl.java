@@ -28,7 +28,6 @@ import com.team.platform.mapper.CommonMapper;
 import com.team.platform.pojo.AuthUser;
 import com.team.platform.pojo.AuthUserExample;
 import com.team.platform.pojo.AuthUserExample.Criteria;
-import com.team.platform.pojo.AuthUserRole;
 import com.team.platform.service.AuthUserService;
 
 /**
@@ -46,6 +45,10 @@ public class AuthUserServiceImpl implements AuthUserService {
 	@Autowired
 	private JedisClient jedisClient;
 	
+	public static final String LOGIN_USER = "LOGIN_USER";
+	
+	@Value("${USE_REDIS}")
+	private Boolean USE_REDIS;
 	@Value("${REDIS_USER_SESSION_KEY}")
 	private String REDIS_USER_SESSION_KEY;
 	@Value("${SSO_SESSION_EXPIRE}")
@@ -149,10 +152,14 @@ public class AuthUserServiceImpl implements AuthUserService {
 		String token = UUID.randomUUID().toString();
 		//保存用户之前，把用户对象中的密码清空。
 		user.setPassword(null);
-		//把用户信息写入redis
-		jedisClient.set(REDIS_USER_SESSION_KEY + ":" + token, JsonUtils.objectToJson(user));
-		//设置session的过期时间
-		jedisClient.expire(REDIS_USER_SESSION_KEY + ":" + token, SSO_SESSION_EXPIRE);
+		if(USE_REDIS){
+			//把用户信息写入redis
+			jedisClient.set(REDIS_USER_SESSION_KEY + ":" + token, JsonUtils.objectToJson(user));
+			//设置session的过期时间
+			jedisClient.expire(REDIS_USER_SESSION_KEY + ":" + token, SSO_SESSION_EXPIRE);
+		} else {
+			request.getSession().setAttribute(LOGIN_USER, user);
+		}
 		
 		//写入cookie
 		CookieUtils.setCookie(request, response, "TT_TOKEN", token);
@@ -164,13 +171,17 @@ public class AuthUserServiceImpl implements AuthUserService {
 	@Override
 	public AuthUser getUserByToken(String token) {
 		//根据token从redis中查询用户信息
-		String json = jedisClient.get(REDIS_USER_SESSION_KEY + ":" + token);
-		//判断是否为空
-		if (StringUtils.isBlank(json)) {
-			return null;
+		String json = "";
+		if(USE_REDIS){
+			json = jedisClient.get(REDIS_USER_SESSION_KEY + ":" + token);
+			//判断是否为空
+			if (StringUtils.isBlank(json)) {
+				return null;
+			}
+			//更新过期时间
+			jedisClient.expire(REDIS_USER_SESSION_KEY + ":" + token, SSO_SESSION_EXPIRE);
 		}
-		//更新过期时间
-		jedisClient.expire(REDIS_USER_SESSION_KEY + ":" + token, SSO_SESSION_EXPIRE);
+		
 		//返回用户信息
 		return JsonUtils.jsonToPojo(json, AuthUser.class);
 	}

@@ -4,7 +4,7 @@ public class SysColumns extends SysColumnsKey {
     /**
      * 字段序号
      */
-    private Short colno;
+    private Long colno;
 
     /**
      * 备注
@@ -19,7 +19,7 @@ public class SysColumns extends SysColumnsKey {
     /**
      * 字段长度
      */
-    private Short propertyLength;
+    private Long propertyLength;
 
     /**
      * 是否为空
@@ -105,7 +105,7 @@ public class SysColumns extends SysColumnsKey {
      * 字段序号
      * @return COLNO 字段序号
      */
-    public Short getColno() {
+    public Long getColno() {
         return colno;
     }
 
@@ -113,7 +113,7 @@ public class SysColumns extends SysColumnsKey {
      * 字段序号
      * @param colno 字段序号
      */
-    public void setColno(Short colno) {
+    public void setColno(Long colno) {
         this.colno = colno;
     }
 
@@ -153,7 +153,7 @@ public class SysColumns extends SysColumnsKey {
      * 字段长度
      * @return PROPERTY_LENGTH 字段长度
      */
-    public Short getPropertyLength() {
+    public Long getPropertyLength() {
         return propertyLength;
     }
 
@@ -161,7 +161,7 @@ public class SysColumns extends SysColumnsKey {
      * 字段长度
      * @param propertyLength 字段长度
      */
-    public void setPropertyLength(Short propertyLength) {
+    public void setPropertyLength(Long propertyLength) {
         this.propertyLength = propertyLength;
     }
 

@@ -104,7 +104,7 @@ public class SysColumnsServiceImpl implements SysColumnsService {
 		record.setTbcreator(db2SysColumn.getTableSchema());
 		record.setColtype(db2SysColumn.getDataType());
 		record.setNulls(db2SysColumn.getIsNullable());
-		record.setPropertyLength(db2SysColumn.getLength());
+		record.setPropertyLength(db2SysColumn.getLength()==null?64:db2SysColumn.getLength());
 		record.setColno(db2SysColumn.getColno());
 		return sysColumnsMapper.updateByPrimaryKeySelective(record);
 	}
@@ -118,7 +118,7 @@ public class SysColumnsServiceImpl implements SysColumnsService {
 		record.setTbcreator(db2SysColumn.getTableSchema());
 		record.setColtype(db2SysColumn.getDataType());
 		record.setNulls(db2SysColumn.getIsNullable());
-		record.setPropertyLength(db2SysColumn.getLength());
+		record.setPropertyLength(db2SysColumn.getLength()==null?64:db2SysColumn.getLength());
 		record.setIsprimary("F");
 		record.setIsselect("F");
 		record.setIslike("F");

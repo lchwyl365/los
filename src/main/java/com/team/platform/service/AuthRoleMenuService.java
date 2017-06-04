@@ -25,5 +25,7 @@ public interface AuthRoleMenuService {
 	public List<AuthRoleMenu> selectList();
 
 	public int insertRoleMenu(AuthRoleMenu roleMenu);
+
+	public int deleteByMenuid(String menuid);
 	
 }

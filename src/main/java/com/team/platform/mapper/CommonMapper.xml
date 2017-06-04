@@ -3,7 +3,7 @@
 <mapper namespace="com.team.platform.mapper.CommonMapper">
   
   <select id="findManyData" parameterType="String" resultType="com.team.common.pojo.EUTreeNode" >
-    ${value}
+    ${sql}
   </select>
   
   <select id="selectUserByRole" parameterType="String" resultType="com.team.platform.pojo.AuthUser" >

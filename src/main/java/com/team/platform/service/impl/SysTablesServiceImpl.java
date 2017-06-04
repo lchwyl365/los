@@ -36,6 +36,7 @@ import com.team.platform.pojo.SysTablesKey;
 import com.team.platform.service.AuthMenuService;
 import com.team.platform.service.SysColumnsService;
 import com.team.platform.service.SysTablesService;
+import com.team.platform.vo.AuthMenuVo;
 
 /**
  * Created by liuchao on 2017/02/21 0021.
@@ -133,6 +134,16 @@ public class SysTablesServiceImpl implements SysTablesService {
 	}
 	public ResponseResult update(SysTables sysTables) {
 		try {
+			//POJO_TARGET_PACKAGE
+			if(StringUtils.isNotEmpty(sysTables.getBusinessName())){
+				sysTables.setPojoTargetPackage("com.team."+sysTables.getBusinessName()+".pojo");
+				//MAPPER_TARGET_PACKAGE
+				sysTables.setMapperTargetPackage("com.team."+sysTables.getBusinessName()+".mapper");
+				//SERVICE_TARGET_PACKAGE
+				sysTables.setServiceTargetPackage("com.team."+sysTables.getBusinessName()+".service");
+				//CONTROLLER_TARGET_PACKAGE
+				sysTables.setControllerTargetPackage("com.team."+sysTables.getBusinessName()+".controller");
+			}
 			sysTablesMapper.updateByPrimaryKeySelective(sysTables);
 			return ResponseResult.ok();
 		} catch (Exception e) {
@@ -236,8 +247,9 @@ public class SysTablesServiceImpl implements SysTablesService {
 			menu.setDisplay("on");
 			menu.setIconCls("icon-sys");
 			menu.setOrderNum("1");
-			menu.setPid("4929836951411131");
-			menu.setHref("/platform/"+sysTables.getPath()+"/list");
+			menu.setPid("4900346948510727");//系统管理菜单下
+			menu.setHref("/"+sysTables.getBusinessName()+"/"+sysTables.getPath()+"/list");
+			menu.setLevelType(AuthMenuVo.LEVEL_TYPE_APPLICATION);
 			authMenuService.insert(menu);
 			//生成代码
 			ResponseResult result = this.generateMapper(sysTables, sysColumnsList);

@@ -23,11 +23,15 @@ import com.team.common.pojo.EUDataGridResult;
 import com.team.common.pojo.ResponseResult;
 import com.team.platform.pojo.Columns;
 import com.team.platform.pojo.SysColumns;
+import com.team.platform.pojo.SysDictEntry;
 import com.team.platform.pojo.SysTables;
 import com.team.platform.service.DB2SysColumnService;
 import com.team.platform.service.DB2TabConstService;
+import com.team.platform.service.MysqlColumnsService;
+import com.team.platform.service.MysqlKeyColumnService;
 import com.team.platform.service.SysColumnsService;
 import com.team.platform.service.SysComboBoxService;
+import com.team.platform.service.SysDictEntryService;
 import com.team.platform.service.SysTablesService;
 
 @Controller
@@ -46,8 +50,18 @@ public class SysTablesController {
 	private DB2SysColumnService db2SysColumnService;
 	@Autowired
 	private DB2TabConstService db2TabConstService;
+	@Autowired
+	private MysqlColumnsService mysqlColumnsService;
+	@Autowired
+	private MysqlKeyColumnService mysqlKeyColumnService;
+	@Autowired
+	private SysDictEntryService sysDictEntryService;
+	
 	@Value("${SCHEMA}")
 	private String SCHEMA;
+	
+	@Value("${DIALECT}")
+	private String DIALECT;
 	
 	
 	@RequestMapping(value = "/list",method = RequestMethod.GET)
@@ -87,6 +101,9 @@ public class SysTablesController {
 		sysColumns.setTbname(tableName);
 		List<SysColumns> columns = sysColumnsService.selectByExample(sysColumns);
 		model.addAttribute("columns", columns);
+		
+		List<SysDictEntry> dictitems = sysDictEntryService.selectByType("55145041125118");//代码业务包字典
+		model.addAttribute("dictitems", dictitems);
 		
     	return "table/generate_all";
     }
@@ -222,8 +239,11 @@ public class SysTablesController {
 		SysTables sysTables = sysTablesService.selectByPrimaryKey(tableName,schemaName,type);
 		model.addAttribute("sysTables",sysTables);
 		
-		String comboid_json = sysComboBoxService.selectComboid("4894876433811319");
+		String comboid_json = sysComboBoxService.selectComboid("4894876433811319"); //自定义commbox
 		model.addAttribute("comboid_json", comboid_json);
+		
+		String dict_json = sysComboBoxService.selectComboid("55127452312111");
+		model.addAttribute("dict_json", dict_json);
 		
 		return "table/property_add";
 	}
@@ -234,8 +254,11 @@ public class SysTablesController {
 		SysTables sysTables = sysTablesService.selectByPrimaryKey(tableName,schemaName,type);
 		model.addAttribute("sysTables",sysTables);
 		
-		String comboid_json = sysComboBoxService.selectComboid("4894876433811319");
+		String comboid_json = sysComboBoxService.selectComboid("4894876433811319"); //自定义commbox
 		model.addAttribute("comboid_json", comboid_json);
+		
+		String dict_json = sysComboBoxService.selectComboid("55127452312111");
+		model.addAttribute("dict_json", dict_json);
 		
 		return "table/property_update";
 	}
@@ -260,7 +283,8 @@ public class SysTablesController {
 		if("easyui-validatebox".equals(sysColumns.getComponent())){
 			String dataOptions = sysColumns.getDataOptions();
 			if(dataOptions.indexOf("validType:") == -1){
-				sysColumns.setDataOptions("required:true,validType:['length[0,"+sysColumns.getPropertyLength()+"]']");
+				long length = sysColumns.getPropertyLength() == null ? 254: sysColumns.getPropertyLength();
+				sysColumns.setDataOptions("required:true,validType:['length[0,"+length+"]']");
 			}
 		}
 		
@@ -310,12 +334,20 @@ public class SysTablesController {
 				sysColumnsService.delete(column);
 			}
 			//添加表的字段信息
-			List<Columns> columnList = db2SysColumnService.selectByCondition(sysTables.getSchemaName(),sysTables.getTableName());
-			sysColumnsService.update(columnList);
-			
-			//更新表的索引信息
-			db2TabConstService.updateTabConst(SCHEMA,sysTables.getTableName());
-			
+			List<Columns> columnList = null;
+			switch (DIALECT.toLowerCase()){
+	    		case "db2":
+	    			columnList = db2SysColumnService.selectByCondition(sysTables.getSchemaName(),sysTables.getTableName());
+	    			sysColumnsService.update(columnList);
+	    			//更新表的索引信息
+	    			db2TabConstService.updateTabConst(SCHEMA,sysTables.getTableName());
+	    			break;
+	    		case "mysql":
+	    			columnList = mysqlColumnsService.selectByCondition(sysTables.getSchemaName(),sysTables.getTableName());
+	    			sysColumnsService.update(columnList);
+	    			mysqlKeyColumnService.updateTabConst(SCHEMA,sysTables.getTableName());
+	    			break;
+	    	}
 		} catch (Exception e) {
 			ResponseResult.build(500, e.getMessage());
 		}

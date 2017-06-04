@@ -37,7 +37,7 @@ public class Db2DataServiceImpl {
 	@Autowired
 	private DB2TabConstService db2TabConstService;
 	
-	private static final Logger logger = Logger.getLogger(InitData.class);
+	private static final Logger logger = Logger.getLogger(Db2DataServiceImpl.class);
 	
 	public void initDatabase() {
 		//查询系统表

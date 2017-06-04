@@ -5,17 +5,17 @@ import java.util.List;
 
 public class SysColumnsExample {
     /**
-     * HDMS.SYS_COLUMNS
+     * sys_columns
      */
     protected String orderByClause;
 
     /**
-     * HDMS.SYS_COLUMNS
+     * sys_columns
      */
     protected boolean distinct;
 
     /**
-     * HDMS.SYS_COLUMNS
+     * sys_columns
      */
     protected List<Criteria> oredCriteria;
 
@@ -117,7 +117,7 @@ public class SysColumnsExample {
     }
 
     /**
-     * HDMS.SYS_COLUMNS null
+     * sys_columns null
      */
     protected abstract static class GeneratedCriteria {
         protected List<Criterion> criteria;
@@ -380,52 +380,52 @@ public class SysColumnsExample {
             return (Criteria) this;
         }
 
-        public Criteria andColnoEqualTo(Short value) {
+        public Criteria andColnoEqualTo(Long value) {
             addCriterion("COLNO =", value, "colno");
             return (Criteria) this;
         }
 
-        public Criteria andColnoNotEqualTo(Short value) {
+        public Criteria andColnoNotEqualTo(Long value) {
             addCriterion("COLNO <>", value, "colno");
             return (Criteria) this;
         }
 
-        public Criteria andColnoGreaterThan(Short value) {
+        public Criteria andColnoGreaterThan(Long value) {
             addCriterion("COLNO >", value, "colno");
             return (Criteria) this;
         }
 
-        public Criteria andColnoGreaterThanOrEqualTo(Short value) {
+        public Criteria andColnoGreaterThanOrEqualTo(Long value) {
             addCriterion("COLNO >=", value, "colno");
             return (Criteria) this;
         }
 
-        public Criteria andColnoLessThan(Short value) {
+        public Criteria andColnoLessThan(Long value) {
             addCriterion("COLNO <", value, "colno");
             return (Criteria) this;
         }
 
-        public Criteria andColnoLessThanOrEqualTo(Short value) {
+        public Criteria andColnoLessThanOrEqualTo(Long value) {
             addCriterion("COLNO <=", value, "colno");
             return (Criteria) this;
         }
 
-        public Criteria andColnoIn(List<Short> values) {
+        public Criteria andColnoIn(List<Long> values) {
             addCriterion("COLNO in", values, "colno");
             return (Criteria) this;
         }
 
-        public Criteria andColnoNotIn(List<Short> values) {
+        public Criteria andColnoNotIn(List<Long> values) {
             addCriterion("COLNO not in", values, "colno");
             return (Criteria) this;
         }
 
-        public Criteria andColnoBetween(Short value1, Short value2) {
+        public Criteria andColnoBetween(Long value1, Long value2) {
             addCriterion("COLNO between", value1, value2, "colno");
             return (Criteria) this;
         }
 
-        public Criteria andColnoNotBetween(Short value1, Short value2) {
+        public Criteria andColnoNotBetween(Long value1, Long value2) {
             addCriterion("COLNO not between", value1, value2, "colno");
             return (Criteria) this;
         }
@@ -580,52 +580,52 @@ public class SysColumnsExample {
             return (Criteria) this;
         }
 
-        public Criteria andPropertyLengthEqualTo(Short value) {
+        public Criteria andPropertyLengthEqualTo(Long value) {
             addCriterion("PROPERTY_LENGTH =", value, "propertyLength");
             return (Criteria) this;
         }
 
-        public Criteria andPropertyLengthNotEqualTo(Short value) {
+        public Criteria andPropertyLengthNotEqualTo(Long value) {
             addCriterion("PROPERTY_LENGTH <>", value, "propertyLength");
             return (Criteria) this;
         }
 
-        public Criteria andPropertyLengthGreaterThan(Short value) {
+        public Criteria andPropertyLengthGreaterThan(Long value) {
             addCriterion("PROPERTY_LENGTH >", value, "propertyLength");
             return (Criteria) this;
         }
 
-        public Criteria andPropertyLengthGreaterThanOrEqualTo(Short value) {
+        public Criteria andPropertyLengthGreaterThanOrEqualTo(Long value) {
             addCriterion("PROPERTY_LENGTH >=", value, "propertyLength");
             return (Criteria) this;
         }
 
-        public Criteria andPropertyLengthLessThan(Short value) {
+        public Criteria andPropertyLengthLessThan(Long value) {
             addCriterion("PROPERTY_LENGTH <", value, "propertyLength");
             return (Criteria) this;
         }
 
-        public Criteria andPropertyLengthLessThanOrEqualTo(Short value) {
+        public Criteria andPropertyLengthLessThanOrEqualTo(Long value) {
             addCriterion("PROPERTY_LENGTH <=", value, "propertyLength");
             return (Criteria) this;
         }
 
-        public Criteria andPropertyLengthIn(List<Short> values) {
+        public Criteria andPropertyLengthIn(List<Long> values) {
             addCriterion("PROPERTY_LENGTH in", values, "propertyLength");
             return (Criteria) this;
         }
 
-        public Criteria andPropertyLengthNotIn(List<Short> values) {
+        public Criteria andPropertyLengthNotIn(List<Long> values) {
             addCriterion("PROPERTY_LENGTH not in", values, "propertyLength");
             return (Criteria) this;
         }
 
-        public Criteria andPropertyLengthBetween(Short value1, Short value2) {
+        public Criteria andPropertyLengthBetween(Long value1, Long value2) {
             addCriterion("PROPERTY_LENGTH between", value1, value2, "propertyLength");
             return (Criteria) this;
         }
 
-        public Criteria andPropertyLengthNotBetween(Short value1, Short value2) {
+        public Criteria andPropertyLengthNotBetween(Long value1, Long value2) {
             addCriterion("PROPERTY_LENGTH not between", value1, value2, "propertyLength");
             return (Criteria) this;
         }
@@ -1742,7 +1742,7 @@ public class SysColumnsExample {
     }
 
     /**
-     * HDMS.SYS_COLUMNS
+     * sys_columns
      */
     public static class Criteria extends GeneratedCriteria {
 
@@ -1752,7 +1752,7 @@ public class SysColumnsExample {
     }
 
     /**
-     * HDMS.SYS_COLUMNS null
+     * sys_columns null
      */
     public static class Criterion {
         private String condition;

@@ -13,7 +13,7 @@ public class GeneratorProperty {
     private String isadd;
     private String isupdate;
     private String isdisplay;
-	private Short propertyLength; //PROPERTY_LENGTH
+	private Long propertyLength; //PROPERTY_LENGTH
     private Short width;
     private String component;
     private String sortable;
@@ -63,10 +63,10 @@ public class GeneratorProperty {
 	public void setNulls(String nulls) {
 		this.nulls = nulls;
 	}
-	public Short getPropertyLength() {
+	public Long getPropertyLength() {
 		return propertyLength;
 	}
-	public void setPropertyLength(Short propertyLength) {
+	public void setPropertyLength(Long propertyLength) {
 		this.propertyLength = propertyLength;
 	}
 	public String getColumnName() {

@@ -114,4 +114,13 @@ public class AuthRoleMenuServiceImpl implements AuthRoleMenuService {
 	public int insertRoleMenu(AuthRoleMenu roleMenu) {
 		return authRoleMenuMapper.insert(roleMenu);
 	}
+
+	@Override
+	public int deleteByMenuid(String menuid) {
+		AuthRoleMenuExample example = new AuthRoleMenuExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andMenuIdEqualTo(menuid);
+		return authRoleMenuMapper.deleteByExample(example);
+	}
+	
 }

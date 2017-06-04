@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
@@ -12,10 +14,10 @@ import com.github.pagehelper.PageInfo;
 import com.team.common.pojo.EUDataGridModel;
 import com.team.common.pojo.EUDataGridResult;
 import com.team.common.pojo.EUTreeNode;
+import com.team.common.pojo.EUTreeNodeRowMapper;
 import com.team.common.pojo.ResponseResult;
 import com.team.common.util.JsonUtils;
 import com.team.common.util.PrimaryKeyFactory;
-import com.team.platform.mapper.CommonMapper;
 import com.team.platform.mapper.SysComboBoxMapper;
 import com.team.platform.pojo.SysComboBox;
 import com.team.platform.pojo.SysComboBoxExample;
@@ -33,7 +35,10 @@ public class SysComboBoxServiceImpl implements SysComboBoxService {
 	private SysComboBoxMapper sysComboBoxMapper;
 	
 	@Autowired
-	private CommonMapper commonMapper;
+	private JdbcTemplate jdbcTemplate;
+	
+	@Value("${DIALECT}")
+	private String DIALECT;
 	
 	@Autowired
 	private SysDictEntryService sysDictEntryService;
@@ -140,7 +145,7 @@ public class SysComboBoxServiceImpl implements SysComboBoxService {
 			_sql2 = _sql2 + parentId;
 			load_child = true;
 		}
-		List<EUTreeNode> list = commonMapper.findManyData(_sql2);
+		List<EUTreeNode> list = jdbcTemplate.query(_sql2, new EUTreeNodeRowMapper());
 		if(load_child){
 			for (EUTreeNode treeNode : list) {
 				List<EUTreeNode> children = getComboTree(sql,treeNode.getId());
@@ -168,8 +173,7 @@ public class SysComboBoxServiceImpl implements SysComboBoxService {
 			sql = sql.replace("VALUE_FIELD", comboBox.getValueField());
 			sql = sql.replace("TEXT_FIELD", comboBox.getTextField());
 			sql = sql.replace("TABLE_NAME", comboBox.getTableName());
-			
-			List<EUTreeNode> list = commonMapper.findManyData(sql);
+			List<EUTreeNode> list = jdbcTemplate.query(sql, new EUTreeNodeRowMapper());
 			return JsonUtils.objectToJson(list);
 		}else{
 			//2:系统字典信息
@@ -191,4 +195,5 @@ public class SysComboBoxServiceImpl implements SysComboBoxService {
 	public int insertSysComboBox(SysComboBox sysComboBox) {
 		return sysComboBoxMapper.insert(sysComboBox);
 	}
+	
 }

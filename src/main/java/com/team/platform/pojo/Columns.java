@@ -2,170 +2,191 @@ package com.team.platform.pojo;
 
 public class Columns {
     /**
-     * null
-     */
-    private String columnName;
-
-    /**
-     * null
-     */
-    private String tableName;
-
-    /**
-     * null
+     * 
      */
     private String tableSchema;
 
     /**
-     * null
+     * 
      */
-    private String columnComment;
+    private String tableName;
 
     /**
-     * null
+     * 
      */
-    private String dataType;
+    private String columnName;
 
     /**
-     * null
+     * 
+     */
+    private Long colno;
+
+    /**
+     * 
      */
     private String isNullable;
 
     /**
-     * null
+     * 
      */
-    private Short length;
+    private String dataType;
 
     /**
-     * null
+     * 
      */
-    private Short colno;
+    private Long length;
 
     /**
-     * null
-     * @return NAME null
+     * 
      */
-    public String getColumnName() {
-        return columnName;
-    }
+    private String columnComment;
 
     /**
-     * null
-     * @param columnName null
+     * 
      */
-    public void setColumnName(String columnName) {
-        this.columnName = columnName == null ? null : columnName.trim();
-    }
+    private String columnType;
 
     /**
-     * null
-     * @return TBNAME null
-     */
-    public String getTableName() {
-        return tableName;
-    }
-
-    /**
-     * null
-     * @param tableName null
-     */
-    public void setTableName(String tableName) {
-        this.tableName = tableName == null ? null : tableName.trim();
-    }
-
-    /**
-     * null
-     * @return TBCREATOR null
+     * 
+     * @return TABLE_SCHEMA 
      */
     public String getTableSchema() {
         return tableSchema;
     }
 
     /**
-     * null
-     * @param tableSchema null
+     * 
+     * @param tableSchema 
      */
     public void setTableSchema(String tableSchema) {
         this.tableSchema = tableSchema == null ? null : tableSchema.trim();
     }
 
     /**
-     * null
-     * @return REMARKS null
+     * 
+     * @return TABLE_NAME 
      */
-    public String getColumnComment() {
-        return columnComment;
+    public String getTableName() {
+        return tableName;
     }
 
     /**
-     * null
-     * @param columnComment null
+     * 
+     * @param tableName 
      */
-    public void setColumnComment(String columnComment) {
-        this.columnComment = columnComment == null ? null : columnComment.trim();
+    public void setTableName(String tableName) {
+        this.tableName = tableName == null ? null : tableName.trim();
     }
 
     /**
-     * null
-     * @return COLTYPE null
+     * 
+     * @return COLUMN_NAME 
      */
-    public String getDataType() {
-        return dataType;
+    public String getColumnName() {
+        return columnName;
     }
 
     /**
-     * null
-     * @param dataType null
+     * 
+     * @param columnName 
      */
-    public void setDataType(String dataType) {
-        this.dataType = dataType == null ? null : dataType.trim();
+    public void setColumnName(String columnName) {
+        this.columnName = columnName == null ? null : columnName.trim();
     }
 
     /**
-     * null
-     * @return NULLS null
+     * 
+     * @return ORDINAL_POSITION 
+     */
+    public Long getColno() {
+        return colno;
+    }
+
+    /**
+     * 
+     * @param colno 
+     */
+    public void setColno(Long colno) {
+        this.colno = colno;
+    }
+
+    /**
+     * 
+     * @return IS_NULLABLE 
      */
     public String getIsNullable() {
         return isNullable;
     }
 
     /**
-     * null
-     * @param isNullable null
+     * 
+     * @param isNullable 
      */
     public void setIsNullable(String isNullable) {
         this.isNullable = isNullable == null ? null : isNullable.trim();
     }
 
     /**
-     * null
-     * @return LENGTH null
+     * 
+     * @return DATA_TYPE 
      */
-    public Short getLength() {
+    public String getDataType() {
+        return dataType;
+    }
+
+    /**
+     * 
+     * @param dataType 
+     */
+    public void setDataType(String dataType) {
+        this.dataType = dataType == null ? null : dataType.trim();
+    }
+
+    /**
+     * 
+     * @return CHARACTER_MAXIMUM_LENGTH 
+     */
+    public Long getLength() {
         return length;
     }
 
     /**
-     * null
-     * @param length null
+     * 
+     * @param length 
      */
-    public void setLength(Short length) {
+    public void setLength(Long length) {
         this.length = length;
     }
 
     /**
-     * null
-     * @return COLNO null
+     * 
+     * @return COLUMN_COMMENT 
      */
-    public Short getColno() {
-        return colno;
+    public String getColumnComment() {
+        return columnComment;
     }
 
     /**
-     * null
-     * @param colno null
+     * 
+     * @param columnComment 
      */
-    public void setColno(Short colno) {
-        this.colno = colno;
+    public void setColumnComment(String columnComment) {
+        this.columnComment = columnComment == null ? null : columnComment.trim();
+    }
+
+    /**
+     * 
+     * @return COLUMN_TYPE 
+     */
+    public String getColumnType() {
+        return columnType;
+    }
+
+    /**
+     * 
+     * @param columnType 
+     */
+    public void setColumnType(String columnType) {
+        this.columnType = columnType == null ? null : columnType.trim();
     }
 }

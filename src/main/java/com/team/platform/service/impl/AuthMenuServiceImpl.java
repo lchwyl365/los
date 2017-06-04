@@ -7,13 +7,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-
-
-
-
-
-
 import com.team.common.pojo.EUTreeNode;
 import com.team.common.pojo.ResponseResult;
 import com.team.common.util.PrimaryKeyFactory;
@@ -21,9 +14,10 @@ import com.team.platform.mapper.AuthMenuMapper;
 import com.team.platform.mapper.CommonMapper;
 import com.team.platform.pojo.AuthMenu;
 import com.team.platform.pojo.AuthMenuExample;
-import com.team.platform.pojo.AuthRoleMenu;
 import com.team.platform.pojo.AuthMenuExample.Criteria;
+import com.team.platform.pojo.AuthRoleMenu;
 import com.team.platform.service.AuthMenuService;
+import com.team.platform.service.AuthRoleMenuService;
 import com.team.platform.vo.AuthMenuVo;
 /**
  * Created by liuchao on 2017/02/21
@@ -35,6 +29,8 @@ public class AuthMenuServiceImpl implements AuthMenuService {
 	private AuthMenuMapper authMenuMapper;
 	@Autowired
 	private CommonMapper commonMapper;
+	@Autowired
+	private AuthRoleMenuService authRoleMenuService;
 	
 	public List<AuthMenuVo> selectList(String pid,String level) {
 		
@@ -94,6 +90,7 @@ public class AuthMenuServiceImpl implements AuthMenuService {
 			for (int i = 0; i < menuids.size(); i++) {
 				String menuid = menuids.get(i);
 			    authMenuMapper.deleteByPrimaryKey(menuid);
+			    authRoleMenuService.deleteByMenuid(menuid);
 			}
 			return ResponseResult.ok();
 		} catch (Exception e) {
@@ -156,6 +153,7 @@ public class AuthMenuServiceImpl implements AuthMenuService {
 	 */
 	@Override
 	public List<EUTreeNode> selectTreeList(String pid,List<AuthRoleMenu> menus, String level) {
+		
 		//查询列表
 		AuthMenuExample example = new AuthMenuExample();
 		Criteria criteria = example.createCriteria();
@@ -173,6 +171,11 @@ public class AuthMenuServiceImpl implements AuthMenuService {
 			node.setId(authMenu.getMenuid());
 			node.setText(authMenu.getName());
 			node.setIconCls(authMenu.getIconCls());
+			System.out.println(node.getText() + " ischecked:"+ischecked);
+			List<EUTreeNode> children = selectTreeList(node.getId(),menus,level);
+			if(children != null && children.size() > 0){
+				node.setChildren(children);
+			}
 			ischecked = false;
 			if(menus != null){
 				for (AuthRoleMenu roleMenu : menus) {
@@ -181,10 +184,8 @@ public class AuthMenuServiceImpl implements AuthMenuService {
 					}
 				}
 			}
-			node.setChecked(ischecked);
-			List<EUTreeNode> children = selectTreeList(node.getId(),menus,level);
-			if(children != null && children.size() > 0){
-				node.setChildren(children);
+			if(node.getChildren() == null){
+				node.setChecked(ischecked);
 			}
 			nodeList.add(node);
 		}

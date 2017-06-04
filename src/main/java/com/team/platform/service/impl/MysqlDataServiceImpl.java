@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import com.team.platform.pojo.SysColumns;
 import com.team.platform.pojo.SysTables;
 import com.team.platform.pojo.Tables;
 import com.team.platform.service.MysqlColumnsService;
+import com.team.platform.service.MysqlKeyColumnService;
 import com.team.platform.service.MysqlTablesService;
 import com.team.platform.service.SysColumnsService;
 import com.team.platform.service.SysTablesService;
@@ -31,10 +33,15 @@ public class MysqlDataServiceImpl  {
 	private MysqlColumnsService mysqlColumnsService;
 	
 	@Autowired
+	private MysqlKeyColumnService mysqlKeyColumnService;
+	
+	@Autowired
 	private SysTablesService sysTablesService;
 	
 	@Autowired
 	private SysColumnsService sysColumnsService;
+	
+	private static final Logger logger = Logger.getLogger(MysqlDataServiceImpl.class);
 	
 	public void initDatabase() {
 		
@@ -59,7 +66,7 @@ public class MysqlDataServiceImpl  {
 				sysTables.setRemarks(t.getTableComment());
 				sysTables.setType("T");
 				sysTables.setCtime(t.getCreateTime());
-				sysTables.setKeycolumns(Short.valueOf(columns.size()+""));
+				sysTables.setKeycolumns(t.getKeycolumns());
 				sysTables.setGenerate("F");
 				sysTables.setBusinessName("platform");
 				sysTablesService.insert(sysTables,columns);
@@ -67,6 +74,8 @@ public class MysqlDataServiceImpl  {
 				sysColumnsService.update(columns);
 			}
 		}
+    	mysqlKeyColumnService.updateTabConst(SCHEMA,null);
+    	logger.info("End of DB2SysTable data");
     	
 	}
 	/****

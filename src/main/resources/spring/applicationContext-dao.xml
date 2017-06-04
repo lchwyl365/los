@@ -59,5 +59,10 @@
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.team.**.mapper"></property>
 	</bean>
+	
+	<!-- 动态sql spring jdbc -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
     
 </beans>

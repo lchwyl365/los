@@ -39,6 +39,7 @@ var components = [
 $(function(){
 	
 	var comboid_json = eval('${comboid_json}');
+	var dict_json = eval('${dict_json}');
 	
 	$("#isAddBtn").click(function(){
 		var isAdd = $('#isAddBtn').is(':checked');
@@ -111,6 +112,11 @@ $(function(){
 					for(var i=0;i<comboid_json.length;i++){  
 			    		if(row.comboid == comboid_json[i].id){
 			    			text = comboid_json[i].text;
+			    		}
+			    	}
+					for(var i=0;i<dict_json.length;i++){  
+			    		if(row.comboid == dict_json[i].id){
+			    			text = dict_json[i].text;
 			    		}
 			    	}
 					return text;

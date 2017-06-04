@@ -84,7 +84,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from KEY_COLUMN_USAGE
+    from information_schema.KEY_COLUMN_USAGE
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -93,13 +93,13 @@
     </if>
   </select>
   <delete id="deleteByExample" parameterType="com.team.platform.pojo.KeyColumnUsageExample">
-    delete from KEY_COLUMN_USAGE
+    delete from information_schema.KEY_COLUMN_USAGE
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.team.platform.pojo.KeyColumnUsage">
-    insert into KEY_COLUMN_USAGE (CONSTRAINT_CATALOG, CONSTRAINT_SCHEMA, 
+    insert into information_schema.KEY_COLUMN_USAGE (CONSTRAINT_CATALOG, CONSTRAINT_SCHEMA, 
       CONSTRAINT_NAME, TABLE_CATALOG, TABLE_SCHEMA, 
       TABLE_NAME, COLUMN_NAME, ORDINAL_POSITION, 
       POSITION_IN_UNIQUE_CONSTRAINT, REFERENCED_TABLE_SCHEMA, 
@@ -113,7 +113,7 @@
       )
   </insert>
   <insert id="insertSelective" parameterType="com.team.platform.pojo.KeyColumnUsage">
-    insert into KEY_COLUMN_USAGE
+    insert into information_schema.KEY_COLUMN_USAGE
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="constraintCatalog != null">
         CONSTRAINT_CATALOG,
@@ -192,13 +192,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.team.platform.pojo.KeyColumnUsageExample" resultType="java.lang.Long">
-    select count(*) from KEY_COLUMN_USAGE
+    select count(*) from information_schema.KEY_COLUMN_USAGE
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update KEY_COLUMN_USAGE
+    update information_schema.KEY_COLUMN_USAGE
     <set>
       <if test="record.constraintCatalog != null">
         CONSTRAINT_CATALOG = #{record.constraintCatalog,jdbcType=VARCHAR},
@@ -242,7 +242,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update KEY_COLUMN_USAGE
+    update information_schema.KEY_COLUMN_USAGE
     set CONSTRAINT_CATALOG = #{record.constraintCatalog,jdbcType=VARCHAR},
       CONSTRAINT_SCHEMA = #{record.constraintSchema,jdbcType=VARCHAR},
       CONSTRAINT_NAME = #{record.constraintName,jdbcType=VARCHAR},

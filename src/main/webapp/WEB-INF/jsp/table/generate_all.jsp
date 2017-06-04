@@ -48,7 +48,12 @@
 							<label for="status">业务包名:</label>
 						</td>
 						<td class="search-table-four-td-right">
-							<input class="easyui-textbox" type="text" name="businessName" data-options="required:true" style="width:128px;"></input>
+							
+							<select id="businessName" class="easyui-combobox" name="businessName" data-options="panelHeight:'auto',editable:false" style="width:100%;">
+				                <c:forEach items="${dictitems}" var="item">
+				                	<option value="${item.dictid}">${item.dictname}</option>
+				                </c:forEach>
+			                </select>
 						</td>
 						<td class="search-table-four-td-left">
 							<label for="status">主界面模型:</label>

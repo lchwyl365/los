@@ -22,6 +22,7 @@ import com.team.platform.pojo.AuthMenu;
 import com.team.platform.pojo.AuthUser;
 import com.team.platform.service.AuthMenuService;
 import com.team.platform.service.AuthUserService;
+import com.team.platform.service.impl.AuthUserServiceImpl;
 
 @Controller
 @RequestMapping("/")
@@ -36,6 +37,9 @@ public class WebController {
 	@Autowired
 	private JedisClient jedisClient;
 	
+	@Value("${USE_REDIS}")
+	private Boolean USE_REDIS;
+	
 	@Value("${REDIS_USER_SESSION_KEY}")
 	private String REDIS_USER_SESSION_KEY;
 
@@ -44,7 +48,12 @@ public class WebController {
 		//从cookie中取token
 		String token = CookieUtils.getCookieValue(request, "TT_TOKEN");
 		//根据token换取用户信息，调用sso系统的接口。
-		AuthUser user = authUserService.getUserByToken(token);
+		AuthUser user = null;
+		if(USE_REDIS){
+			user = authUserService.getUserByToken(token);
+		}else{
+			user = (AuthUser) request.getSession().getAttribute(AuthUserServiceImpl.LOGIN_USER);
+		}
 		List<AuthMenu> topMenus = authMenuService.selectListByAuth(user.getUserid(),"4758592868910319","top");
 		model.addAttribute("topMenus", topMenus);
     	return "index";

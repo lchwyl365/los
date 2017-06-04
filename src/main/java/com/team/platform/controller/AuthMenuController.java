@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +28,7 @@ import com.team.platform.service.AuthRoleMenuService;
 import com.team.platform.service.AuthRoleService;
 import com.team.platform.service.AuthUserService;
 import com.team.platform.service.SysComboBoxService;
+import com.team.platform.service.impl.AuthUserServiceImpl;
 import com.team.platform.vo.AuthMenuVo;
 
 @Controller
@@ -49,6 +51,9 @@ public class AuthMenuController {
 	
 	@Autowired
 	private AuthUserService authUserService;
+	
+	@Value("${USE_REDIS}")
+	private Boolean USE_REDIS;
 	
 	@RequestMapping(value = "/list",method = RequestMethod.GET)
     public String list(HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
@@ -102,7 +107,12 @@ public class AuthMenuController {
 		//从cookie中取token
 		String token = CookieUtils.getCookieValue(request, "TT_TOKEN");
 		//根据token换取用户信息，调用sso系统的接口。
-		AuthUser user = authUserService.getUserByToken(token);
+		AuthUser user = null;
+		if(USE_REDIS){
+			user = authUserService.getUserByToken(token);
+		}else{
+			user = (AuthUser) request.getSession().getAttribute(AuthUserServiceImpl.LOGIN_USER);
+		}
 		String pos = "left";
 		List<AuthMenuVo> list = authMenuService.selectListByAuth2(user.getUserid(), pid, pos);
     	return list;
@@ -122,7 +132,12 @@ public class AuthMenuController {
 		//从cookie中取token
 		String token = CookieUtils.getCookieValue(request, "TT_TOKEN");
 		//根据token换取用户信息，调用sso系统的接口。
-		AuthUser user = authUserService.getUserByToken(token);
+		AuthUser user = null;
+		if(USE_REDIS){
+			user = authUserService.getUserByToken(token);
+		}else{
+			user = (AuthUser) request.getSession().getAttribute(AuthUserServiceImpl.LOGIN_USER);
+		}
 		if(user == null) return null;
 		
 		List<AuthMenuVo> list = authMenuService.selectTreeList(pid);

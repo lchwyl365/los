@@ -4,17 +4,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.team.common.util.CookieUtils;
 import com.team.platform.pojo.AuthUser;
 import com.team.platform.service.AuthUserService;
+import com.team.platform.service.impl.AuthUserServiceImpl;
 
 public class LoginInterceptor implements HandlerInterceptor {
 	
 	@Autowired
 	private AuthUserService authUserService;
+	
+	@Value("${USE_REDIS}")
+	private Boolean USE_REDIS;
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -24,7 +29,12 @@ public class LoginInterceptor implements HandlerInterceptor {
 		//从cookie中取token
 		String token = CookieUtils.getCookieValue(request, "TT_TOKEN");
 		//根据token换取用户信息，调用sso系统的接口。
-		AuthUser user = authUserService.getUserByToken(token);
+		AuthUser user = null;
+		if(USE_REDIS){
+			user = authUserService.getUserByToken(token);
+		}else{
+			user = (AuthUser) request.getSession().getAttribute(AuthUserServiceImpl.LOGIN_USER);
+		}
 		//取不到用户信息
 		if (null == user) {
 			//跳转到登录页面，把用户请求的url作为参数传递给登录页面。

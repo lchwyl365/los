@@ -2,6 +2,7 @@ package ${model.serviceTargetPackage}.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +18,14 @@ import com.team.common.util.ExceptionUtil;
 
 import com.team.common.pojo.ResponseResult;
 import com.team.common.util.PrimaryKeyFactory;
-import com.team.platform.mapper.${model.domainObjectName}Mapper;
+import ${model.mapperTargetPackage}.${model.domainObjectName}Mapper;
 import ${model.pojoTargetPackage}.${model.domainObjectName};
 import ${model.pojoTargetPackage}.${model.domainObjectName}Example;
 import ${model.pojoTargetPackage}.${model.domainObjectName}Example.Criteria;
 import ${model.serviceTargetPackage}.${model.domainObjectName}Service;
 
 <#if model.gentype == "TreeGrid">
-import com.team.platform.vo.${model.domainObjectName}Vo;
+import com.team.${model.businessName}.vo.${model.domainObjectName}Vo;
 </#if>
 
 <#if model.keycolumns gt 1 >

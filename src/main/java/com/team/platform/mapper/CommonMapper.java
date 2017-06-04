@@ -16,7 +16,7 @@ public interface CommonMapper {
      * @param sql sql语句 
      * @return 
      */  
-    public List<EUTreeNode> findManyData(String sql);
+    public List<EUTreeNode> findManyData(@Param(value="sql")String sql);
 
 	public List<AuthUser> selectUserByRole(@Param(value="roleid")String roleid);
 	

@@ -5,11 +5,11 @@
     <id column="COLUMN_NAME" jdbcType="VARCHAR" property="columnName" />
     <id column="TBNAME" jdbcType="VARCHAR" property="tbname" />
     <id column="TBCREATOR" jdbcType="VARCHAR" property="tbcreator" />
-    <result column="COLNO" jdbcType="SMALLINT" property="colno" />
+    <result column="COLNO" jdbcType="BIGINT" property="colno" />
     <result column="REMARKS" jdbcType="VARCHAR" property="remarks" />
     <result column="COLTYPE" jdbcType="VARCHAR" property="coltype" />
-    <result column="PROPERTY_LENGTH" jdbcType="SMALLINT" property="propertyLength" />
-    <result column="NULLS" jdbcType="CHAR" property="nulls" />
+    <result column="PROPERTY_LENGTH" jdbcType="BIGINT" property="propertyLength" />
+    <result column="NULLS" jdbcType="VARCHAR" property="nulls" />
     <result column="PROPERTY_NAME" jdbcType="VARCHAR" property="propertyName" />
     <result column="PROPERTY_TYPE" jdbcType="VARCHAR" property="propertyType" />
     <result column="PROPERTY_TITLE" jdbcType="VARCHAR" property="propertyTitle" />
@@ -95,7 +95,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from HDMS.SYS_COLUMNS
+    from sys_columns
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -106,25 +106,25 @@
   <select id="selectByPrimaryKey" parameterType="com.team.platform.pojo.SysColumnsKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from HDMS.SYS_COLUMNS
+    from sys_columns
     where COLUMN_NAME = #{columnName,jdbcType=VARCHAR}
       and TBNAME = #{tbname,jdbcType=VARCHAR}
       and TBCREATOR = #{tbcreator,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="com.team.platform.pojo.SysColumnsKey">
-    delete from HDMS.SYS_COLUMNS
+    delete from sys_columns
     where COLUMN_NAME = #{columnName,jdbcType=VARCHAR}
       and TBNAME = #{tbname,jdbcType=VARCHAR}
       and TBCREATOR = #{tbcreator,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.team.platform.pojo.SysColumnsExample">
-    delete from HDMS.SYS_COLUMNS
+    delete from sys_columns
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.team.platform.pojo.SysColumns">
-    insert into HDMS.SYS_COLUMNS (COLUMN_NAME, TBNAME, TBCREATOR, 
+    insert into sys_columns (COLUMN_NAME, TBNAME, TBCREATOR, 
       COLNO, REMARKS, COLTYPE, 
       PROPERTY_LENGTH, NULLS, PROPERTY_NAME, 
       PROPERTY_TYPE, PROPERTY_TITLE, ISPRIMARY, 
@@ -133,8 +133,8 @@
       SORTABLE, COMPONENT, DATA_OPTIONS, 
       FORMATTER, COMBOID)
     values (#{columnName,jdbcType=VARCHAR}, #{tbname,jdbcType=VARCHAR}, #{tbcreator,jdbcType=VARCHAR}, 
-      #{colno,jdbcType=SMALLINT}, #{remarks,jdbcType=VARCHAR}, #{coltype,jdbcType=VARCHAR}, 
-      #{propertyLength,jdbcType=SMALLINT}, #{nulls,jdbcType=CHAR}, #{propertyName,jdbcType=VARCHAR}, 
+      #{colno,jdbcType=BIGINT}, #{remarks,jdbcType=VARCHAR}, #{coltype,jdbcType=VARCHAR}, 
+      #{propertyLength,jdbcType=BIGINT}, #{nulls,jdbcType=VARCHAR}, #{propertyName,jdbcType=VARCHAR}, 
       #{propertyType,jdbcType=VARCHAR}, #{propertyTitle,jdbcType=VARCHAR}, #{isprimary,jdbcType=CHAR}, 
       #{isselect,jdbcType=CHAR}, #{islike,jdbcType=CHAR}, #{isdisplay,jdbcType=CHAR}, 
       #{isadd,jdbcType=CHAR}, #{isupdate,jdbcType=CHAR}, #{width,jdbcType=SMALLINT}, 
@@ -142,7 +142,7 @@
       #{formatter,jdbcType=VARCHAR}, #{comboid,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.team.platform.pojo.SysColumns">
-    insert into HDMS.SYS_COLUMNS
+    insert into sys_columns
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="columnName != null">
         COLUMN_NAME,
@@ -225,7 +225,7 @@
         #{tbcreator,jdbcType=VARCHAR},
       </if>
       <if test="colno != null">
-        #{colno,jdbcType=SMALLINT},
+        #{colno,jdbcType=BIGINT},
       </if>
       <if test="remarks != null">
         #{remarks,jdbcType=VARCHAR},
@@ -234,10 +234,10 @@
         #{coltype,jdbcType=VARCHAR},
       </if>
       <if test="propertyLength != null">
-        #{propertyLength,jdbcType=SMALLINT},
+        #{propertyLength,jdbcType=BIGINT},
       </if>
       <if test="nulls != null">
-        #{nulls,jdbcType=CHAR},
+        #{nulls,jdbcType=VARCHAR},
       </if>
       <if test="propertyName != null">
         #{propertyName,jdbcType=VARCHAR},
@@ -287,13 +287,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.team.platform.pojo.SysColumnsExample" resultType="java.lang.Long">
-    select count(*) from HDMS.SYS_COLUMNS
+    select count(*) from sys_columns
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update HDMS.SYS_COLUMNS
+    update sys_columns
     <set>
       <if test="record.columnName != null">
         COLUMN_NAME = #{record.columnName,jdbcType=VARCHAR},
@@ -305,7 +305,7 @@
         TBCREATOR = #{record.tbcreator,jdbcType=VARCHAR},
       </if>
       <if test="record.colno != null">
-        COLNO = #{record.colno,jdbcType=SMALLINT},
+        COLNO = #{record.colno,jdbcType=BIGINT},
       </if>
       <if test="record.remarks != null">
         REMARKS = #{record.remarks,jdbcType=VARCHAR},
@@ -314,10 +314,10 @@
         COLTYPE = #{record.coltype,jdbcType=VARCHAR},
       </if>
       <if test="record.propertyLength != null">
-        PROPERTY_LENGTH = #{record.propertyLength,jdbcType=SMALLINT},
+        PROPERTY_LENGTH = #{record.propertyLength,jdbcType=BIGINT},
       </if>
       <if test="record.nulls != null">
-        NULLS = #{record.nulls,jdbcType=CHAR},
+        NULLS = #{record.nulls,jdbcType=VARCHAR},
       </if>
       <if test="record.propertyName != null">
         PROPERTY_NAME = #{record.propertyName,jdbcType=VARCHAR},
@@ -370,15 +370,15 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update HDMS.SYS_COLUMNS
+    update sys_columns
     set COLUMN_NAME = #{record.columnName,jdbcType=VARCHAR},
       TBNAME = #{record.tbname,jdbcType=VARCHAR},
       TBCREATOR = #{record.tbcreator,jdbcType=VARCHAR},
-      COLNO = #{record.colno,jdbcType=SMALLINT},
+      COLNO = #{record.colno,jdbcType=BIGINT},
       REMARKS = #{record.remarks,jdbcType=VARCHAR},
       COLTYPE = #{record.coltype,jdbcType=VARCHAR},
-      PROPERTY_LENGTH = #{record.propertyLength,jdbcType=SMALLINT},
-      NULLS = #{record.nulls,jdbcType=CHAR},
+      PROPERTY_LENGTH = #{record.propertyLength,jdbcType=BIGINT},
+      NULLS = #{record.nulls,jdbcType=VARCHAR},
       PROPERTY_NAME = #{record.propertyName,jdbcType=VARCHAR},
       PROPERTY_TYPE = #{record.propertyType,jdbcType=VARCHAR},
       PROPERTY_TITLE = #{record.propertyTitle,jdbcType=VARCHAR},
@@ -399,10 +399,10 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.team.platform.pojo.SysColumns">
-    update HDMS.SYS_COLUMNS
+    update sys_columns
     <set>
       <if test="colno != null">
-        COLNO = #{colno,jdbcType=SMALLINT},
+        COLNO = #{colno,jdbcType=BIGINT},
       </if>
       <if test="remarks != null">
         REMARKS = #{remarks,jdbcType=VARCHAR},
@@ -411,10 +411,10 @@
         COLTYPE = #{coltype,jdbcType=VARCHAR},
       </if>
       <if test="propertyLength != null">
-        PROPERTY_LENGTH = #{propertyLength,jdbcType=SMALLINT},
+        PROPERTY_LENGTH = #{propertyLength,jdbcType=BIGINT},
       </if>
       <if test="nulls != null">
-        NULLS = #{nulls,jdbcType=CHAR},
+        NULLS = #{nulls,jdbcType=VARCHAR},
       </if>
       <if test="propertyName != null">
         PROPERTY_NAME = #{propertyName,jdbcType=VARCHAR},
@@ -467,12 +467,12 @@
       and TBCREATOR = #{tbcreator,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.team.platform.pojo.SysColumns">
-    update HDMS.SYS_COLUMNS
-    set COLNO = #{colno,jdbcType=SMALLINT},
+    update sys_columns
+    set COLNO = #{colno,jdbcType=BIGINT},
       REMARKS = #{remarks,jdbcType=VARCHAR},
       COLTYPE = #{coltype,jdbcType=VARCHAR},
-      PROPERTY_LENGTH = #{propertyLength,jdbcType=SMALLINT},
-      NULLS = #{nulls,jdbcType=CHAR},
+      PROPERTY_LENGTH = #{propertyLength,jdbcType=BIGINT},
+      NULLS = #{nulls,jdbcType=VARCHAR},
       PROPERTY_NAME = #{propertyName,jdbcType=VARCHAR},
       PROPERTY_TYPE = #{propertyType,jdbcType=VARCHAR},
       PROPERTY_TITLE = #{propertyTitle,jdbcType=VARCHAR},
