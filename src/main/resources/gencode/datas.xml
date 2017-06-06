@@ -67,14 +67,14 @@
   </users>
   <roles>
     <role>
-      <roleid>50675519372117</roleid>
-      <name>测试人员</name>
-      <type>application</type>
-    </role>
-    <role>
       <roleid>50642806128136</roleid>
       <name>系统管理员</name>
       <type>system</type>
+    </role>
+    <role>
+      <roleid>50675519372117</roleid>
+      <name>测试人员</name>
+      <type>application</type>
     </role>
   </roles>
   <menus>
@@ -239,7 +239,7 @@
       <levelType>application</levelType>
       <menuid>4937787503210655</menuid>
       <menuPos>top</menuPos>
-      <name>客户信息管理</name>
+      <name>网站信息管理</name>
       <orderNum>3</orderNum>
       <pid>4758592868910319</pid>
     </role_menu>
@@ -272,7 +272,7 @@
       <levelType>application</levelType>
       <menuid>4937805643610681</menuid>
       <menuPos>left</menuPos>
-      <name>客户信息统计</name>
+      <name>网站信息</name>
       <orderNum>3</orderNum>
       <pid>4937787503210655</pid>
     </role_menu>
@@ -298,6 +298,105 @@
       <orderNum>1</orderNum>
       <pid>4929836951411131</pid>
     </role_menu>
+    <role_menu>
+      <display>on</display>
+      <href>/cms/channel/list</href>
+      <iconCls>icon-nav</iconCls>
+      <levelType>application</levelType>
+      <menuid>54914376635111</menuid>
+      <menuPos>left</menuPos>
+      <name>栏目管理</name>
+      <orderNum>1</orderNum>
+      <pid>4937805643610681</pid>
+    </role_menu>
+    <role_menu>
+      <display>on</display>
+      <href>/platform/channel/list</href>
+      <iconCls>icon-sys</iconCls>
+      <levelType>application</levelType>
+      <menuid>55101819602111</menuid>
+      <menuPos>left</menuPos>
+      <name>cms_channel</name>
+      <orderNum>1</orderNum>
+      <pid>4900346948510727</pid>
+    </role_menu>
+    <role_menu>
+      <display>on</display>
+      <href>/platform/channel/list</href>
+      <iconCls>icon-sys</iconCls>
+      <levelType>application</levelType>
+      <menuid>55144756476110</menuid>
+      <menuPos>left</menuPos>
+      <name>cms_channel2</name>
+      <orderNum>1</orderNum>
+      <pid>4900346948510727</pid>
+    </role_menu>
+    <role_menu>
+      <display>on</display>
+      <href>/cms/channel/list</href>
+      <iconCls>icon-sys</iconCls>
+      <levelType>application</levelType>
+      <menuid>55146147478117</menuid>
+      <menuPos>left</menuPos>
+      <name>cms_channel2</name>
+      <orderNum>1</orderNum>
+      <pid>4900346948510727</pid>
+    </role_menu>
+    <role_menu>
+      <display>on</display>
+      <href>/cms/channel/list</href>
+      <iconCls>icon-sys</iconCls>
+      <levelType>application</levelType>
+      <menuid>55146688513110</menuid>
+      <menuPos>left</menuPos>
+      <name>cms_channel2</name>
+      <orderNum>1</orderNum>
+      <pid>4900346948510727</pid>
+    </role_menu>
+    <role_menu>
+      <display>on</display>
+      <href>/cms/channel/list</href>
+      <iconCls>icon-sys</iconCls>
+      <levelType>application</levelType>
+      <menuid>55226556091116</menuid>
+      <menuPos>left</menuPos>
+      <name>cms_channel2</name>
+      <orderNum>1</orderNum>
+      <pid>4900346948510727</pid>
+    </role_menu>
+    <role_menu>
+      <display>on</display>
+      <href>/cms/channel/list</href>
+      <iconCls>icon-sys</iconCls>
+      <levelType>application</levelType>
+      <menuid>55229316660120</menuid>
+      <menuPos>left</menuPos>
+      <name>cms_channel2</name>
+      <orderNum>1</orderNum>
+      <pid>4900346948510727</pid>
+    </role_menu>
+    <role_menu>
+      <display>on</display>
+      <href>/cms/channel/list</href>
+      <iconCls>icon-sys</iconCls>
+      <levelType>application</levelType>
+      <menuid>55242268882114</menuid>
+      <menuPos>left</menuPos>
+      <name>cms_channel2</name>
+      <orderNum>1</orderNum>
+      <pid>4900346948510727</pid>
+    </role_menu>
+    <role_menu>
+      <display>on</display>
+      <href>/cms/channel/list</href>
+      <iconCls>icon-sys</iconCls>
+      <levelType>application</levelType>
+      <menuid>55242707375113</menuid>
+      <menuPos>left</menuPos>
+      <name>cms_channel2</name>
+      <orderNum>1</orderNum>
+      <pid>4900346948510727</pid>
+    </role_menu>
   </menus>
   <user_roles>
     <user_role>
@@ -312,16 +411,6 @@
     </user_role>
   </user_roles>
   <role_menus>
-    <role_menu>
-      <roleid>50642806128136</roleid>
-      <menuid>4900335617310710</menuid>
-      <role_menu_id>51637451417120</role_menu_id>
-    </role_menu>
-    <role_menu>
-      <roleid>50642806128136</roleid>
-      <menuid>4900346948510727</menuid>
-      <role_menu_id>51637451419138</role_menu_id>
-    </role_menu>
     <role_menu>
       <roleid>50675519372117</roleid>
       <menuid>4900335617310710</menuid>
@@ -358,91 +447,6 @@
       <role_menu_id>51637448086174</role_menu_id>
     </role_menu>
     <role_menu>
-      <roleid>50642806128136</roleid>
-      <menuid>4929825908611119</menuid>
-      <role_menu_id>51637451420142</role_menu_id>
-    </role_menu>
-    <role_menu>
-      <roleid>50642806128136</roleid>
-      <menuid>4929831830711125</menuid>
-      <role_menu_id>51637451421155</role_menu_id>
-    </role_menu>
-    <role_menu>
-      <roleid>50642806128136</roleid>
-      <menuid>4929836951411131</menuid>
-      <role_menu_id>51637451422165</role_menu_id>
-    </role_menu>
-    <role_menu>
-      <roleid>50642806128136</roleid>
-      <menuid>4929960509311144</menuid>
-      <role_menu_id>51637451423172</role_menu_id>
-    </role_menu>
-    <role_menu>
-      <roleid>50642806128136</roleid>
-      <menuid>4929974605311158</menuid>
-      <role_menu_id>51637451424184</role_menu_id>
-    </role_menu>
-    <role_menu>
-      <roleid>50642806128136</roleid>
-      <menuid>4930013831011165</menuid>
-      <role_menu_id>51637451426197</role_menu_id>
-    </role_menu>
-    <role_menu>
-      <roleid>50642806128136</roleid>
-      <menuid>4930017459411175</menuid>
-      <role_menu_id>51637451428128</role_menu_id>
-    </role_menu>
-    <role_menu>
-      <roleid>50642806128136</roleid>
-      <menuid>50150286365114</menuid>
-      <role_menu_id>51637451430139</role_menu_id>
-    </role_menu>
-    <role_menu>
-      <roleid>50642806128136</roleid>
-      <menuid>4937759643010612</menuid>
-      <role_menu_id>51637451431141</role_menu_id>
-    </role_menu>
-    <role_menu>
-      <roleid>50642806128136</roleid>
-      <menuid>4937764214310622</menuid>
-      <role_menu_id>51637451432151</role_menu_id>
-    </role_menu>
-    <role_menu>
-      <roleid>50642806128136</roleid>
-      <menuid>4937771630310636</menuid>
-      <role_menu_id>51637451433162</role_menu_id>
-    </role_menu>
-    <role_menu>
-      <roleid>50642806128136</roleid>
-      <menuid>4937775511610643</menuid>
-      <role_menu_id>51637451434170</role_menu_id>
-    </role_menu>
-    <role_menu>
-      <roleid>50642806128136</roleid>
-      <menuid>4937795396310665</menuid>
-      <role_menu_id>51637451435184</role_menu_id>
-    </role_menu>
-    <role_menu>
-      <roleid>50642806128136</roleid>
-      <menuid>4937800330210676</menuid>
-      <role_menu_id>51637451436197</role_menu_id>
-    </role_menu>
-    <role_menu>
-      <roleid>50642806128136</roleid>
-      <menuid>4937787503210655</menuid>
-      <role_menu_id>51637451437129</role_menu_id>
-    </role_menu>
-    <role_menu>
-      <roleid>50642806128136</roleid>
-      <menuid>4937805643610681</menuid>
-      <role_menu_id>51637451438131</role_menu_id>
-    </role_menu>
-    <role_menu>
-      <roleid>50642806128136</roleid>
-      <menuid>4937813894610697</menuid>
-      <role_menu_id>51637451439146</role_menu_id>
-    </role_menu>
-    <role_menu>
       <roleid>50675519372117</roleid>
       <menuid>4937795396310665</menuid>
       <role_menu_id>51637448087181</role_menu_id>
@@ -452,8 +456,143 @@
       <menuid>4937800330210676</menuid>
       <role_menu_id>51637448088193</role_menu_id>
     </role_menu>
+    <role_menu>
+      <roleid>50642806128136</roleid>
+      <menuid>4900335617310710</menuid>
+      <role_menu_id>55056886017119</role_menu_id>
+    </role_menu>
+    <role_menu>
+      <roleid>50642806128136</roleid>
+      <menuid>4900346948510727</menuid>
+      <role_menu_id>55056886030126</role_menu_id>
+    </role_menu>
+    <role_menu>
+      <roleid>50642806128136</roleid>
+      <menuid>4929825908611119</menuid>
+      <role_menu_id>55056886043138</role_menu_id>
+    </role_menu>
+    <role_menu>
+      <roleid>50642806128136</roleid>
+      <menuid>4929831830711125</menuid>
+      <role_menu_id>55056886047140</role_menu_id>
+    </role_menu>
+    <role_menu>
+      <roleid>50642806128136</roleid>
+      <menuid>54991953042110</menuid>
+      <role_menu_id>55056886052152</role_menu_id>
+    </role_menu>
+    <role_menu>
+      <roleid>50642806128136</roleid>
+      <menuid>4929836951411131</menuid>
+      <role_menu_id>55056886056164</role_menu_id>
+    </role_menu>
+    <role_menu>
+      <roleid>50642806128136</roleid>
+      <menuid>4929960509311144</menuid>
+      <role_menu_id>55056886058176</role_menu_id>
+    </role_menu>
+    <role_menu>
+      <roleid>50642806128136</roleid>
+      <menuid>4929974605311158</menuid>
+      <role_menu_id>55056886061189</role_menu_id>
+    </role_menu>
+    <role_menu>
+      <roleid>50642806128136</roleid>
+      <menuid>4930013831011165</menuid>
+      <role_menu_id>55056886065198</role_menu_id>
+    </role_menu>
+    <role_menu>
+      <roleid>50642806128136</roleid>
+      <menuid>4930017459411175</menuid>
+      <role_menu_id>55056886069128</role_menu_id>
+    </role_menu>
+    <role_menu>
+      <roleid>50642806128136</roleid>
+      <menuid>50150286365114</menuid>
+      <role_menu_id>55056886076133</role_menu_id>
+    </role_menu>
+    <role_menu>
+      <roleid>50642806128136</roleid>
+      <menuid>4937759643010612</menuid>
+      <role_menu_id>55056886089143</role_menu_id>
+    </role_menu>
+    <role_menu>
+      <roleid>50642806128136</roleid>
+      <menuid>4937764214310622</menuid>
+      <role_menu_id>55056886096157</role_menu_id>
+    </role_menu>
+    <role_menu>
+      <roleid>50642806128136</roleid>
+      <menuid>4937771630310636</menuid>
+      <role_menu_id>55056886111169</role_menu_id>
+    </role_menu>
+    <role_menu>
+      <roleid>50642806128136</roleid>
+      <menuid>4937775511610643</menuid>
+      <role_menu_id>55056886117173</role_menu_id>
+    </role_menu>
+    <role_menu>
+      <roleid>50642806128136</roleid>
+      <menuid>4937795396310665</menuid>
+      <role_menu_id>55056886123189</role_menu_id>
+    </role_menu>
+    <role_menu>
+      <roleid>50642806128136</roleid>
+      <menuid>4937800330210676</menuid>
+      <role_menu_id>55056886128199</role_menu_id>
+    </role_menu>
+    <role_menu>
+      <roleid>50642806128136</roleid>
+      <menuid>4937787503210655</menuid>
+      <role_menu_id>55056886130127</role_menu_id>
+    </role_menu>
+    <role_menu>
+      <roleid>50642806128136</roleid>
+      <menuid>4937805643610681</menuid>
+      <role_menu_id>55056886133131</role_menu_id>
+    </role_menu>
+    <role_menu>
+      <roleid>50642806128136</roleid>
+      <menuid>4937813894610697</menuid>
+      <role_menu_id>55056886135146</role_menu_id>
+    </role_menu>
+    <role_menu>
+      <roleid>50642806128136</roleid>
+      <menuid>54914376635111</menuid>
+      <role_menu_id>55056886138152</role_menu_id>
+    </role_menu>
   </role_menus>
   <comboboxs>
+    <combobox>
+      <comboid>55127452312111</comboid>
+      <whereCondition />
+      <name>字典列表</name>
+      <parentField />
+      <rootValue />
+      <tableName>SYS_DICT_TYPE</tableName>
+      <textField>dicttypename</textField>
+      <valueField>dicttypeid</valueField>
+    </combobox>
+    <combobox>
+      <comboid>55059701325166</comboid>
+      <whereCondition />
+      <name>栏目表</name>
+      <parentField>pid</parentField>
+      <rootValue>0</rootValue>
+      <tableName>CMS_CHANNEL</tableName>
+      <textField>channel_name</textField>
+      <valueField>channel_id</valueField>
+    </combobox>
+    <combobox>
+      <comboid>4894876433811319</comboid>
+      <whereCondition />
+      <name>自定义ComboBox列表</name>
+      <parentField />
+      <rootValue />
+      <tableName>SYS_COMBO_BOX</tableName>
+      <textField>name</textField>
+      <valueField>comboid</valueField>
+    </combobox>
     <combobox>
       <comboid>4885635448210517</comboid>
       <whereCondition />
@@ -463,16 +602,6 @@
       <tableName>AUTH_MENU</tableName>
       <textField>name</textField>
       <valueField>menuid</valueField>
-    </combobox>
-    <combobox>
-      <comboid>4894876433811319</comboid>
-      <whereCondition />
-      <name>字典列表</name>
-      <parentField />
-      <rootValue />
-      <tableName>SYS_COMBO_BOX</tableName>
-      <textField>name</textField>
-      <valueField>comboid</valueField>
     </combobox>
   </comboboxs>
   <dict_entrys>
@@ -494,6 +623,51 @@
       <status>on</status>
       <sortno>2</sortno>
     </dict_entry>
+    <dict_entry>
+      <dictid>cover</dictid>
+      <dictname>频道封面</dictname>
+      <dicttypeid>55072199221118</dicttypeid>
+      <parentid />
+      <rank />
+      <status>on</status>
+      <sortno>2</sortno>
+    </dict_entry>
+    <dict_entry>
+      <dictid>link</dictid>
+      <dictname>外部链接</dictname>
+      <dicttypeid>55072199221118</dicttypeid>
+      <parentid />
+      <rank />
+      <status>on</status>
+      <sortno>3</sortno>
+    </dict_entry>
+    <dict_entry>
+      <dictid>list</dictid>
+      <dictname>列表栏目</dictname>
+      <dicttypeid>55072199221118</dicttypeid>
+      <parentid />
+      <rank />
+      <status>on</status>
+      <sortno>1</sortno>
+    </dict_entry>
+    <dict_entry>
+      <dictid>cms</dictid>
+      <dictname>cms</dictname>
+      <dicttypeid>55145041125118</dicttypeid>
+      <parentid />
+      <rank />
+      <status>on</status>
+      <sortno>2</sortno>
+    </dict_entry>
+    <dict_entry>
+      <dictid>platform</dictid>
+      <dictname>platform</dictname>
+      <dicttypeid>55145041125118</dicttypeid>
+      <parentid />
+      <rank />
+      <status>on</status>
+      <sortno>1</sortno>
+    </dict_entry>
   </dict_entrys>
   <dict_types>
     <dict_type>
@@ -503,8 +677,14 @@
       <rank />
     </dict_type>
     <dict_type>
-      <dicttypeid>50762501817113</dicttypeid>
-      <dicttypename />
+      <dicttypeid>55072199221118</dicttypeid>
+      <dicttypename>栏目等级</dicttypename>
+      <parentid />
+      <rank />
+    </dict_type>
+    <dict_type>
+      <dicttypeid>55145041125118</dicttypeid>
+      <dicttypename>代码业务包</dicttypename>
       <parentid />
       <rank />
     </dict_type>

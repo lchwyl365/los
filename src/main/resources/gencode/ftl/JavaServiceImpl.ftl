@@ -202,7 +202,7 @@ public class ${model.domainObjectName}ServiceImpl implements ${model.domainObjec
 			temp.set${property.propertyName?cap_first}(${model.variableName}.get${property.propertyName?cap_first}());
 			  </#if>
 			</#list>
-			${model.variableName}Mapper.updateByPrimaryKey(temp);
+			${model.variableName}Mapper.updateByPrimaryKeySelective(temp);
 		 </#if>
 			return ResponseResult.ok();
 		} catch (Exception e) {

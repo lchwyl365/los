@@ -34,6 +34,7 @@
 	
 	<!-- 资源映射 -->
 	<mvc:resources location="/resources/" mapping="/resources/**"/>
+	<mvc:resources location="/upload/" mapping="/upload/**"/>
 	
 	<!-- 定义文件上传解析器 -->
 	<bean id="multipartResolver"
