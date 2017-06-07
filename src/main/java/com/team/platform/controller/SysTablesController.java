@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -274,10 +275,16 @@ public class SysTablesController {
 	@ResponseBody
     public ResponseResult update_column(SysColumns sysColumns) throws Exception{
 		
-		if("easyui-switchbutton".equals(sysColumns.getComponent())){
+		/*if("easyui-switchbutton".equals(sysColumns.getComponent())){
 			String dataOptions = sysColumns.getDataOptions();
 			if(dataOptions.indexOf("onText:") == -1){
 				sysColumns.setDataOptions("onText:'开启',offText:'冻结',checked:true");
+			}
+		}*/
+		if("radio".equals(sysColumns.getComponent())){
+			String dataOptions = sysColumns.getDataOptions();
+			if(StringUtils.isEmpty(dataOptions)){
+				sysColumns.setDataOptions("on:显示,off:隐藏");
 			}
 		}
 		if("easyui-validatebox".equals(sysColumns.getComponent())){

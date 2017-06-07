@@ -35,6 +35,8 @@ public class GeneratorModel {
 	
 	private String idField; //第一个主键列
 	
+	private String sortField;//排序列
+	
 	private Short keycolumns;//主键列
 	
     private String isadd;
@@ -50,6 +52,10 @@ public class GeneratorModel {
     private String treeField;
     
     private Boolean useCombo;
+    
+    private String operateType;
+    
+    private String haveKindeditor;
     
 	public String getMenuName() {
 		return menuName;
@@ -413,5 +419,47 @@ public class GeneratorModel {
 	public void setUseCombo(Boolean useCombo) {
 		this.useCombo = useCombo;
 	}
+
+	public String getOperateType() {
+		return operateType;
+	}
+
+	public void setOperateType(String operateType) {
+		this.operateType = operateType;
+	}
+
+	public String getHaveKindeditor() {
+		haveKindeditor = "0";
+		for (GeneratorProperty property : propertys) {
+			if("kindeditor".equals(property.getComponent())){
+				haveKindeditor = "1";
+			}
+		}
+		return haveKindeditor;
+	}
+
+	public void setHaveKindeditor(String haveKindeditor) {
+		this.haveKindeditor = haveKindeditor;
+	}
+
+	public String getSortField() {
+		for (GeneratorProperty property : propertys) {
+			if("T".equals(property.getSortable())){
+				return property.getColumnName();
+			}
+		}
+		//没有的话去主键列
+		for (GeneratorProperty property : propertys) {
+			if("T".equals(property.getIsprimary())){
+				return property.getColumnName();
+			}
+		}
+		return sortField;
+	}
+
+	public void setSortField(String sortField) {
+		this.sortField = sortField;
+	}
+	
 	
 }

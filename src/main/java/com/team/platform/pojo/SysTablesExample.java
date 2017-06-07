@@ -6,17 +6,17 @@ import java.util.List;
 
 public class SysTablesExample {
     /**
-     * HDMS.SYS_TABLES
+     * sys_tables
      */
     protected String orderByClause;
 
     /**
-     * HDMS.SYS_TABLES
+     * sys_tables
      */
     protected boolean distinct;
 
     /**
-     * HDMS.SYS_TABLES
+     * sys_tables
      */
     protected List<Criteria> oredCriteria;
 
@@ -118,7 +118,7 @@ public class SysTablesExample {
     }
 
     /**
-     * HDMS.SYS_TABLES null
+     * sys_tables null
      */
     protected abstract static class GeneratedCriteria {
         protected List<Criterion> criteria;
@@ -1870,10 +1870,80 @@ public class SysTablesExample {
             addCriterion("TREE_FIELD not between", value1, value2, "treeField");
             return (Criteria) this;
         }
+
+        public Criteria andOperateTypeIsNull() {
+            addCriterion("OPERATE_TYPE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperateTypeIsNotNull() {
+            addCriterion("OPERATE_TYPE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperateTypeEqualTo(String value) {
+            addCriterion("OPERATE_TYPE =", value, "operateType");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperateTypeNotEqualTo(String value) {
+            addCriterion("OPERATE_TYPE <>", value, "operateType");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperateTypeGreaterThan(String value) {
+            addCriterion("OPERATE_TYPE >", value, "operateType");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperateTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("OPERATE_TYPE >=", value, "operateType");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperateTypeLessThan(String value) {
+            addCriterion("OPERATE_TYPE <", value, "operateType");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperateTypeLessThanOrEqualTo(String value) {
+            addCriterion("OPERATE_TYPE <=", value, "operateType");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperateTypeLike(String value) {
+            addCriterion("OPERATE_TYPE like", value, "operateType");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperateTypeNotLike(String value) {
+            addCriterion("OPERATE_TYPE not like", value, "operateType");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperateTypeIn(List<String> values) {
+            addCriterion("OPERATE_TYPE in", values, "operateType");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperateTypeNotIn(List<String> values) {
+            addCriterion("OPERATE_TYPE not in", values, "operateType");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperateTypeBetween(String value1, String value2) {
+            addCriterion("OPERATE_TYPE between", value1, value2, "operateType");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperateTypeNotBetween(String value1, String value2) {
+            addCriterion("OPERATE_TYPE not between", value1, value2, "operateType");
+            return (Criteria) this;
+        }
     }
 
     /**
-     * HDMS.SYS_TABLES
+     * sys_tables
      */
     public static class Criteria extends GeneratedCriteria {
 
@@ -1883,7 +1953,7 @@ public class SysTablesExample {
     }
 
     /**
-     * HDMS.SYS_TABLES null
+     * sys_tables null
      */
     public static class Criterion {
         private String condition;

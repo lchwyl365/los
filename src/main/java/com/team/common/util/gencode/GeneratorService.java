@@ -54,7 +54,14 @@ public class GeneratorService {
 		String dirpath = path+"/"+generatorModel.getPath()+"/";
 		
         FileUtils.forceMkdir(new File(dirpath));
-        FreemarkerUtil.getInstance().fprint("jsp_"+filetype+".ftl", data, dirpath+filetype+".jsp");
+        String filename = filetype;
+        if("add_window".equals(filename) || "add_page".equals(filename)){
+        	filename = "add";
+        }
+        if("update_window".equals(filename) || "update_page".equals(filename)){
+        	filename = "update";
+        }
+        FreemarkerUtil.getInstance().fprint("jsp_"+filetype+".ftl", data, dirpath+filename+".jsp");
     }
 
 	public void generateWeb(GeneratorModel generatorModel) throws Exception {
@@ -65,7 +72,13 @@ public class GeneratorService {
 			generateJava(generatorModel,"Vo");
 		}
 		generateJsp(generatorModel,"list");
-		generateJsp(generatorModel,"add");
-		generateJsp(generatorModel,"update");
+		if("window".equals(generatorModel.getOperateType())){
+			generateJsp(generatorModel,"add_window");
+			generateJsp(generatorModel,"update_window");
+		}else{
+			generateJsp(generatorModel,"add_page");
+			generateJsp(generatorModel,"update_page");
+		}
+		
 	}
 }

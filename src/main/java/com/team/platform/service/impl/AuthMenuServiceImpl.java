@@ -138,7 +138,7 @@ public class AuthMenuServiceImpl implements AuthMenuService {
 		AuthMenuExample example = new AuthMenuExample();
 		Criteria criteria = example.createCriteria();
 		if(StringUtils.isNotEmpty(authMenu.getName())){
-			criteria.andNameLike("%"+authMenu.getName()+"%");
+			criteria.andNameEqualTo(authMenu.getName());
 		}
 		List<AuthMenu> list = authMenuMapper.selectByExample(example);
 		return list;

@@ -20,8 +20,19 @@
 						<td class="form-table-td-right">
 							<#if property.component == 'easyui-validatebox'>
 								<input class="easyui-validatebox" type="text" name="${property.propertyName}" data-options="${property.dataOptions}" />
-							<#elseif property.component == 'easyui-switchbutton'>
-								<input class="easyui-switchbutton" name="${property.propertyName}" data-options="${property.dataOptions}">
+							<#elseif property.component == 'radio'>
+								<#list property.options as optionMap>
+									<#list optionMap?keys as key>
+										<#if optionMap_index == 0>
+							<input type="radio" id="radio_${key}" name="${property.propertyName}" checked="checked" value="${key}"/>
+							<label for="radio_${key}">${optionMap[key]}</label>		
+										</#if>
+										<#if optionMap_index != 0>
+							<input type="radio" id="radio_${key}" name="${property.propertyName}" value="${key}"/>
+							<label for="radio_${key}">${optionMap[key]}</label>			
+										</#if>
+									</#list>
+								</#list>
 							<#elseif property.component == 'easyui-combotree'>
 								<input class="easyui-combotree" name="${property.propertyName}"
 								   data-options="url:'${r"${contextPath}"}/platform/box/combotree?id=${property.comboid}',method:'get'" style="width:100%">
@@ -34,8 +45,19 @@
 						<td class="form-table-td-right">
 							<#if property.component == 'easyui-validatebox'>
 								<input class="easyui-validatebox" type="text" name="${property.propertyName}" data-options="${property.dataOptions}" />
-							<#elseif property.component == 'easyui-switchbutton'>
-								<input class="easyui-switchbutton" name="${property.propertyName}" data-options="${property.dataOptions}">
+							<#elseif property.component == 'radio'>
+								<#list property.options as optionMap>
+									<#list optionMap?keys as key>
+										<#if optionMap_index == 0>
+							<input type="radio" id="radio_${key}" name="${property.propertyName}" checked="checked" value="${key}"/>
+							<label for="radio_${key}">${optionMap[key]}</label>		
+										</#if>
+										<#if optionMap_index != 0>
+							<input type="radio" id="radio_${key}" name="${property.propertyName}" value="${key}"/>
+							<label for="radio_${key}">${optionMap[key]}</label>			
+										</#if>
+									</#list>
+								</#list>
 							<#elseif property.component == 'easyui-combotree'>
 								<input class="easyui-combotree" name="${property.propertyName}"
 								   data-options="url:'${r"${contextPath}"}/platform/box/combotree?id=${property.comboid}',method:'get'" style="width:100%">

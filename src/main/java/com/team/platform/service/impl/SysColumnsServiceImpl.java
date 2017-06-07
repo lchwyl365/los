@@ -160,7 +160,15 @@ System.out.println("propertyType:"+propertyType+ " db2SysColumn.getDataType():"+
 		record.setWidth(Short.valueOf("100"));
 		record.setComponent("easyui-validatebox");
 		record.setSortable("F");
-		record.setFormatter("function(value,row,index){return row."+record.getPropertyName()+";}");
+		
+		if("Date".equals(propertyType)){
+			String formatter = "function(value,row,index){if (row."+record.getPropertyName()+
+					" != null) {var date = new Date(row."+record.getPropertyName()
+					+");return date.format('yyyy-MM-dd hh:mm:ss');}return '';}";
+			record.setFormatter(formatter);
+		}else{
+			record.setFormatter("function(value,row,index){return row."+record.getPropertyName()+";}");
+		}
 		record.setDataOptions("required:true,validType:['length[0,"+record.getPropertyLength()+"]']");
 		
 		//TODO add cloumn

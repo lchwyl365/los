@@ -1,5 +1,12 @@
 package com.team.common.util.gencode;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.lang3.StringUtils;
+
 public class GeneratorProperty {
 
 	private String columnName;
@@ -20,7 +27,41 @@ public class GeneratorProperty {
     private String formatter;
     private String dataOptions;
     private String comboid;
-	
+    private List<Map<String,String>> options;
+    
+    /*public static void main(String[] args){
+    	GeneratorProperty p = new GeneratorProperty();
+    	p.setDataOptions("on:显示,off:隐藏");
+    	List<Map<String, String>> list = p.getOptions();
+    	for (int i = 0; i < list.size(); i++) {
+			Map<String,String> map = list.get(i);
+			for (Map.Entry<String,String> entry : map.entrySet()) {  
+			    System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());  
+			} 
+		}
+    }*/
+    
+	public List<Map<String, String>> getOptions() {
+		if(StringUtils.isNotEmpty(dataOptions)){
+			options = new ArrayList<Map<String,String>>();
+			String[] items = dataOptions.split(",");
+			for (int i = 0; i < items.length; i++) {
+				String item = items[i];
+				if(StringUtils.isNotEmpty(item) && item.indexOf(":") != -1){
+					String[] option = item.split(":");
+					if(option.length > 1){
+						Map<String,String> m = new HashMap<String,String>();
+						m.put(option[0], option[1]);
+						options.add(m);
+					}
+				}
+			}
+		}
+		return options;
+	}
+	public void setOptions(List<Map<String, String>> options) {
+		this.options = options;
+	}
 	public String getPropertyName() {
 		return propertyName;
 	}

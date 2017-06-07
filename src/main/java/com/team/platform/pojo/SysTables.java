@@ -114,6 +114,11 @@ public class SysTables extends SysTablesKey {
     private String treeField;
 
     /**
+     * 操作页面展示类型
+     */
+    private String operateType;
+
+    /**
      * 表序号
      * @return FID 表序号
      */
@@ -463,5 +468,21 @@ public class SysTables extends SysTablesKey {
      */
     public void setTreeField(String treeField) {
         this.treeField = treeField == null ? null : treeField.trim();
+    }
+
+    /**
+     * 操作页面展示类型
+     * @return OPERATE_TYPE 操作页面展示类型
+     */
+    public String getOperateType() {
+        return operateType;
+    }
+
+    /**
+     * 操作页面展示类型
+     * @param operateType 操作页面展示类型
+     */
+    public void setOperateType(String operateType) {
+        this.operateType = operateType == null ? null : operateType.trim();
     }
 }

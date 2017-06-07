@@ -33,8 +33,9 @@ var PROPERTY = {
 };
 var components = [
     {componentid:'easyui-validatebox',name:'easyui-validatebox'},
-	{componentid:'easyui-switchbutton',name:'easyui-switchbutton'},
-	{componentid:'easyui-combotree',name:'easyui-combotree'}
+	{componentid:'easyui-combotree',name:'easyui-combotree'},
+	{componentid:'radio',name:'radio'},
+	{componentid:'kindeditor',name:'kindeditor'}
 ];
 $(function(){
 	

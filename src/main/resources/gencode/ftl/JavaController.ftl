@@ -48,8 +48,8 @@ public class ${model.domainObjectName}Controller {
 		
 	<#list model.propertys as property>
 	  <#if property.component == 'easyui-combotree' && property.comboid?? >
-	  	String combo${property_index}_json = sysComboBoxService.selectComboid("${property.comboid}");
-		model.addAttribute("combo${property_index}_json", combo${property_index}_json);
+	  	String combo${property.comboid}_json = sysComboBoxService.selectComboid("${property.comboid}");
+		model.addAttribute("combo${property.comboid}_json", combo${property.comboid}_json);
       </#if>
 	</#list>	
     	return "${model.path}/list";

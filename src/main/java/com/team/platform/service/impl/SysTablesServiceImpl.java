@@ -3,6 +3,7 @@ package com.team.platform.service.impl;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -239,18 +240,28 @@ public class SysTablesServiceImpl implements SysTablesService {
 		
 		try {
 			//添加菜单
+			boolean isExist = false;
 			AuthMenu menu = new AuthMenu();
 			menu.setName(sysTables.getMenuName());
+			menu.setHref("/"+sysTables.getBusinessName()+"/"+sysTables.getPath()+"/list");
 			List<AuthMenu> list = authMenuService.selectList(menu);
-			if(list.size() > 0){ menu.setName(sysTables.getMenuName()+"2");}
+			if(list.size() > 0){ 
+				menu.setName(sysTables.getMenuName()+"2");
+				for (AuthMenu temp : list) {
+					if(menu.getHref().equals(temp.getHref())){
+						isExist = true;
+					}
+				}
+			}
 			menu.setMenuPos("left");
 			menu.setDisplay("on");
 			menu.setIconCls("icon-sys");
 			menu.setOrderNum("1");
 			menu.setPid("4900346948510727");//系统管理菜单下
-			menu.setHref("/"+sysTables.getBusinessName()+"/"+sysTables.getPath()+"/list");
 			menu.setLevelType(AuthMenuVo.LEVEL_TYPE_APPLICATION);
-			authMenuService.insert(menu);
+			if(!isExist){
+				authMenuService.insert(menu);
+			}
 			//生成代码
 			ResponseResult result = this.generateMapper(sysTables, sysColumnsList);
 			if(ResponseResult.SUCCESS.equals(result.getStatus())){
@@ -326,6 +337,7 @@ public class SysTablesServiceImpl implements SysTablesService {
 			generatorModel.setParentField(sysTables.getParentField());
 			generatorModel.setBusinessName(sysTables.getBusinessName());
 			generatorModel.setTreeField(sysTables.getTreeField());
+			generatorModel.setOperateType(sysTables.getOperateType());
 			Boolean useCombo = false;
 			
 			List<GeneratorProperty> propertys = new ArrayList<GeneratorProperty>();

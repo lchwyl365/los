@@ -26,6 +26,16 @@
     	<c:if test="${sysTables.isdelete != 'T'}">
     		<label style="line-height:19px;"><input id="isDeleteBtn" type="checkbox" />显示删除按钮</label>
     	</c:if>
+    	<span class="datagrid-btn-separator" style="float:none;margin-left:20px;margin-right:20px;"></span>
+    	<label for="status">操作页面展示方式:</label>
+    	<c:if test="${sysTables.operateType == 'page'}">
+    		<input type="radio" id="radio3" name="operateType" value="page" checked="checked"/><label for="radio3">页面</label>
+    		<input type="radio" id="radio2" name="operateType" value="window"/> <label for="radio2">窗口</label>
+    	</c:if>
+    	<c:if test="${sysTables.operateType == 'window'}">
+    		<input type="radio" id="radio3" name="operateType" value="page" /><label for="radio3">页面</label>
+    		<input type="radio" id="radio2" name="operateType" value="window" checked="checked"/> <label for="radio2">窗口</label>
+    	</c:if>
     </div>
     <div data-options="region:'center',border:false">
 		<table id="sysColumnsTable" style="width:100%"></table>
@@ -63,6 +73,10 @@ $(function(){
 		var isDelete = $('#isDeleteBtn').is(':checked');
 		var deleteValue = isDelete ? "T" : "F";
 		PROPERTY.update("isdelete="+deleteValue);
+	});
+	$("input[name='operateType']").change(function(){
+		var type = $(this).val();
+		PROPERTY.update("operateType="+type);
 	});
 	$('#sysColumnsTable').datagrid({
 		title:'字段信息列表', //标题
@@ -207,7 +221,9 @@ function saverow(target){
 			width:row.width,
 			isselect:row.isselect,
 			islike:row.islike,
-			isdisplay:row.isdisplay
+			isdisplay:row.isdisplay,
+			sortable:row.sortable,
+			formatter:row.formatter
 		}, function(data){
 			if(data.status == 200){
 				$('#sysColumnsTable').datagrid("reload");

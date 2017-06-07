@@ -10,7 +10,7 @@
     	
     <#list model.propertys as property>
 	  <#if property.component == "easyui-combotree" && property.comboid?? >
-		var combo${property_index}_json = eval('${r"$"}{combo${property_index}_json}');
+		var combo${property.comboid}_json = eval('${r"$"}{combo${property.comboid}_json}');
       </#if>
 	</#list>
     	
@@ -26,7 +26,7 @@
 			striped: true, //奇偶行颜色不同
 			collapsible:false,//可折叠
 			url:"${r"${contextPath}"}/${model.businessName}/${model.path}/queryList", //数据来源
-			sortName: '${model.idField}', //排序的列
+			sortName: '${model.sortField}', //排序的列
 			sortOrder: 'desc', //倒序
 			remoteSort: true, //服务器端排序
 			idField:'${model.idField}', //主键字段
@@ -40,9 +40,9 @@
 					<#if property.component == "easyui-combotree" && property.comboid?? >
 						formatter:function(value,row,index){
 							var text = '';
-							for(var i=0;i<combo${property_index}_json.length;i++){  
-					    		if(row.${property.propertyName} == combo${property_index}_json[i].id){
-					    			text = combo${property_index}_json[i].text;
+							for(var i=0;i<combo${property.comboid}_json.length;i++){  
+					    		if(row.${property.propertyName} == combo${property.comboid}_json[i].id){
+					    			text = combo${property.comboid}_json[i].text;
 					    		}
 					    	}
 							return text;
@@ -88,12 +88,17 @@
 	});
     var ${model.domainObjectName} = {
     		addRow:function(){//新增
-  		        TT.createWindow({
+		    <#if model.operateType == "window" >
+				TT.createWindow({
   		    	  title:'添加${model.menuName}',
   		    	  width:'700px',
   		    	  height:'260px',
   				  url : "${r"${contextPath}"}/${model.businessName}/${model.path}/add"
   			    });
+		    </#if>
+		    <#if model.operateType == "page" >
+  				window.self.location = "${r"${contextPath}"}/${model.businessName}/${model.path}/add";
+		    </#if>
     		},
     		updateRow:function(){//更新
     			var rows = $('#${model.path}Table').datagrid('getSelections');
@@ -111,12 +116,17 @@
 			  	ps += "/" + rows[0].${property.propertyName};
 	          </#if>
 			</#list>
-    			TT.createWindow({
+	  		<#if model.operateType == "window" >
+				TT.createWindow({
     	  			title:'更新信息',
     	  			url:'${r"${contextPath}"}/${model.businessName}/${model.path}/update'+ps,
     	  			width:'700px',
     	  			height:'260px'
     	  		});
+		    </#if>
+		    <#if model.operateType == "page" >
+  				window.self.location = '${r"${contextPath}"}/${model.businessName}/${model.path}/update'+ps;
+		    </#if>
     		},
     		deleteRow:function(){//删除
     			var rows = $('#${model.path}Table').datagrid('getSelections');

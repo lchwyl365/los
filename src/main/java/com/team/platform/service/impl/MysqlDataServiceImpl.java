@@ -69,6 +69,7 @@ public class MysqlDataServiceImpl  {
 				sysTables.setKeycolumns(t.getKeycolumns());
 				sysTables.setGenerate("F");
 				sysTables.setBusinessName("platform");
+				sysTables.setOperateType("page");
 				sysTablesService.insert(sysTables,columns);
 			}else{//2.表存在，更新字段
 				sysColumnsService.update(columns);
