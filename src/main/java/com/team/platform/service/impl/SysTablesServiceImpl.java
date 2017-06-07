@@ -361,6 +361,7 @@ public class SysTablesServiceImpl implements SysTablesService {
 				property.setDataOptions(sysColumns.getDataOptions());
 				property.setComponent(sysColumns.getComponent());
 				property.setComboid(sysColumns.getComboid());
+				property.setDefaultValue(sysColumns.getDefaultValue());
 				//TODO add cloumn
 				propertys.add(property);
 				

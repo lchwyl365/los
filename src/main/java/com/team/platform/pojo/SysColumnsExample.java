@@ -1739,6 +1739,76 @@ public class SysColumnsExample {
             addCriterion("COMBOID not between", value1, value2, "comboid");
             return (Criteria) this;
         }
+
+        public Criteria andDefaultValueIsNull() {
+            addCriterion("DEFAULT_VALUE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefaultValueIsNotNull() {
+            addCriterion("DEFAULT_VALUE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefaultValueEqualTo(String value) {
+            addCriterion("DEFAULT_VALUE =", value, "defaultValue");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefaultValueNotEqualTo(String value) {
+            addCriterion("DEFAULT_VALUE <>", value, "defaultValue");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefaultValueGreaterThan(String value) {
+            addCriterion("DEFAULT_VALUE >", value, "defaultValue");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefaultValueGreaterThanOrEqualTo(String value) {
+            addCriterion("DEFAULT_VALUE >=", value, "defaultValue");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefaultValueLessThan(String value) {
+            addCriterion("DEFAULT_VALUE <", value, "defaultValue");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefaultValueLessThanOrEqualTo(String value) {
+            addCriterion("DEFAULT_VALUE <=", value, "defaultValue");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefaultValueLike(String value) {
+            addCriterion("DEFAULT_VALUE like", value, "defaultValue");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefaultValueNotLike(String value) {
+            addCriterion("DEFAULT_VALUE not like", value, "defaultValue");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefaultValueIn(List<String> values) {
+            addCriterion("DEFAULT_VALUE in", values, "defaultValue");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefaultValueNotIn(List<String> values) {
+            addCriterion("DEFAULT_VALUE not in", values, "defaultValue");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefaultValueBetween(String value1, String value2) {
+            addCriterion("DEFAULT_VALUE between", value1, value2, "defaultValue");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefaultValueNotBetween(String value1, String value2) {
+            addCriterion("DEFAULT_VALUE not between", value1, value2, "defaultValue");
+            return (Criteria) this;
+        }
     }
 
     /**

@@ -102,6 +102,11 @@ public class SysColumns extends SysColumnsKey {
     private String comboid;
 
     /**
+     * 默认值
+     */
+    private String defaultValue;
+
+    /**
      * 字段序号
      * @return COLNO 字段序号
      */
@@ -419,5 +424,21 @@ public class SysColumns extends SysColumnsKey {
      */
     public void setComboid(String comboid) {
         this.comboid = comboid == null ? null : comboid.trim();
+    }
+
+    /**
+     * 默认值
+     * @return DEFAULT_VALUE 默认值
+     */
+    public String getDefaultValue() {
+        return defaultValue;
+    }
+
+    /**
+     * 默认值
+     * @param defaultValue 默认值
+     */
+    public void setDefaultValue(String defaultValue) {
+        this.defaultValue = defaultValue == null ? null : defaultValue.trim();
     }
 }

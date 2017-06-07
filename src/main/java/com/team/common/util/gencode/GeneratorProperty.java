@@ -28,6 +28,7 @@ public class GeneratorProperty {
     private String dataOptions;
     private String comboid;
     private List<Map<String,String>> options;
+    private String defaultValue;
     
     /*public static void main(String[] args){
     	GeneratorProperty p = new GeneratorProperty();
@@ -170,5 +171,10 @@ public class GeneratorProperty {
 	public void setComboid(String comboid) {
 		this.comboid = comboid;
 	}
-	
+	public String getDefaultValue() {
+		return defaultValue;
+	}
+	public void setDefaultValue(String defaultValue) {
+		this.defaultValue = defaultValue;
+	}
 }

@@ -121,8 +121,8 @@ public class ${model.domainObjectName}ServiceImpl implements ${model.domainObjec
 				${model.variableName}.set${property.propertyName?cap_first}(PrimaryKeyFactory.generatePK(""));
 			}
 		  </#if>
-		  <#if property.propertyType == "Date">
-			${model.variableName}.set${property.propertyName?cap_first}(new Date());
+		  <#if property.defaultValue??>
+			${model.variableName}.set${property.propertyName?cap_first}(${property.defaultValue});
 		  </#if>
 		</#list>
 			${model.variableName}Mapper.insert(${model.variableName});

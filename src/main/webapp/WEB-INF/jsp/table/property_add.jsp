@@ -132,6 +132,9 @@ $(function(){
 					}
 				}
 			},
+			{field:'defaultValue',title:'默认值',width:35,editor:'textbox',
+				formatter:function(value,row,index){return row.defaultValue;}
+			},
 			{field:'action',title:'操作',width:22,align:'center',
 				formatter:function(value,row,index){
 					if (row.editing){
@@ -201,7 +204,8 @@ function saverow(target){
 			component:row.component,
 			isadd:row.isadd,
 			dataOptions:row.dataOptions,
-			comboid:row.comboid
+			comboid:row.comboid,
+			defaultValue:row.defaultValue
 		}, function(data){
 			if(data.status == 200){
 				$('#sysColumnsTable').datagrid("reload");
