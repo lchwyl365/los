@@ -333,25 +333,50 @@ public class SysTablesController {
 	@ResponseBody
 	public ResponseResult updateColumn(@ModelAttribute SysTables sysTables) {
 		try {
-			//删除表的字段信息
-			if(!"SYS_TABLES".equals(sysTables.getTableName()) && !"SYS_COLUMNS".equals(sysTables.getTableName())){
-				SysColumns column = new SysColumns();
-				column.setTbcreator(sysTables.getSchemaName());
-				column.setTbname(sysTables.getTableName());
-				sysColumnsService.delete(column);
-			}
 			//添加表的字段信息
-			List<Columns> columnList = null;
 			switch (DIALECT.toLowerCase()){
 	    		case "db2":
-	    			columnList = db2SysColumnService.selectByCondition(sysTables.getSchemaName(),sysTables.getTableName());
+	    			List<Columns> columnList = db2SysColumnService.selectByCondition(sysTables.getSchemaName(),sysTables.getTableName());
+	    			
+	    			//删除表的字段信息
+	    			if(!"SYS_TABLES".equals(sysTables.getTableName()) && !"SYS_COLUMNS".equals(sysTables.getTableName())){
+	    				SysColumns column = new SysColumns();
+	    				column.setTbcreator(sysTables.getSchemaName());
+	    				column.setTbname(sysTables.getTableName());
+	    				List<SysColumns> list = sysColumnsService.selectByExample(column);//已存在的列
+	    				
+	    				sysColumnsService.delete(column);
+	    			}
+	    			
 	    			sysColumnsService.update(columnList);
 	    			//更新表的索引信息
 	    			db2TabConstService.updateTabConst(SCHEMA,sysTables.getTableName());
 	    			break;
 	    		case "mysql":
-	    			columnList = mysqlColumnsService.selectByCondition(sysTables.getSchemaName(),sysTables.getTableName());
-	    			sysColumnsService.update(columnList);
+	    			//数据库当前列的情况
+	    			List<Columns> mysqlColumnList = mysqlColumnsService.selectByCondition(sysTables.getSchemaName(),sysTables.getTableName());
+	    			
+	    			//删除表的字段信息
+	    			if(!"SYS_TABLES".equals(sysTables.getTableName()) && !"SYS_COLUMNS".equals(sysTables.getTableName())){
+	    				SysColumns temp = new SysColumns();
+	    				temp.setTbcreator(sysTables.getSchemaName());
+	    				temp.setTbname(sysTables.getTableName());
+	    				List<SysColumns> list = sysColumnsService.selectByExample(temp);//已存在的列
+	    				for (int i = 0; i < list.size(); i++) {
+	    					SysColumns column = list.get(i);
+	    					boolean isExist = false;
+	    					for (Columns mysqlColumn : mysqlColumnList) {
+								if(mysqlColumn.getColumnName().equals(column.getColumnName())){
+									isExist = true;
+									sysColumnsService.update(mysqlColumn);
+								}
+							}
+	    					if(!isExist){
+	    						sysColumnsService.delete(column);
+	    					}
+						}
+	    			}
+	    			//sysColumnsService.update(columnList);
 	    			mysqlKeyColumnService.updateTabConst(SCHEMA,sysTables.getTableName());
 	    			break;
 	    	}

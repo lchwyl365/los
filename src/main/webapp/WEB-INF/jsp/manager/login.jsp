@@ -84,9 +84,9 @@ $(function() {
 			alert("请输入密码!");
 		}
 		var pwd = Encrypt(password);//进行加密
-		$.post("${contextPath}/login",{username:username,password:pwd}, function(data){
+		$.post("${contextPath}/manager/login",{username:username,password:pwd}, function(data){
 			if(data.status == 200){
-				window.self.location = "${contextPath}/index";
+				window.self.location = "${contextPath}/manager/index";
 			} else {
 				alert('登录错误:'+data.msg);
 			}

@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"></c:set>
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/default.css" />
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/js/jquery-easyui/themes/gray/easyui.css" />

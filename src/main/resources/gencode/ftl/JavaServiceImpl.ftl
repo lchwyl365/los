@@ -121,7 +121,7 @@ public class ${model.domainObjectName}ServiceImpl implements ${model.domainObjec
 				${model.variableName}.set${property.propertyName?cap_first}(PrimaryKeyFactory.generatePK(""));
 			}
 		  </#if>
-		  <#if property.defaultValue??>
+		  <#if property.defaultValue?? && property.defaultValue != "" >
 			${model.variableName}.set${property.propertyName?cap_first}(${property.defaultValue});
 		  </#if>
 		</#list>

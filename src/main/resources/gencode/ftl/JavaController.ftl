@@ -28,6 +28,15 @@ import ${model.serviceTargetPackage}.${model.domainObjectName}Service;
 <#if model.useCombo == true>
 import com.team.platform.service.SysComboBoxService;
 </#if>
+<#if model.enctype == 'multipart/form-data' >
+import javax.servlet.ServletContext;
+import java.io.File;
+import com.team.common.util.FileUtil;
+import org.springframework.web.multipart.MultipartFile;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
+</#if>
 
 @Controller
 @RequestMapping("/${model.businessName}/${model.path}")
@@ -59,13 +68,56 @@ public class ${model.domainObjectName}Controller {
     public String add() throws Exception{
     	return "${model.path}/add";
     }
-	
+<#if model.enctype == 'multipart/form-data' >
+	@RequestMapping(value = "/add",method = RequestMethod.POST)
+	public String add(
+	<#list model.addPropertys as property>
+		<#if property.component == 'file'>	
+		@RequestParam(value = "${property.propertyName}", required = false) MultipartFile ${property.propertyName},
+		</#if>
+	</#list>
+		HttpServletRequest request) throws Exception{
+		
+		ServletContext application = request.getSession().getServletContext();
+		
+		${model.domainObjectName} ${model.variableName} = new ${model.domainObjectName}();
+	<#list model.addPropertys as property>	
+		<#if property.component != 'file' && property.isadd == 'T' && property.propertyType != 'Date' >
+        ${model.variableName}.set${property.propertyName?cap_first}(${property.propertyType}.valueOf(request.getParameter("${property.propertyName}")));
+        </#if>
+	</#list>	
+		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
+	<#list model.addPropertys as property>
+		<#if property.component == 'file'>
+		// 文件保存目录URL
+        String ${property.propertyName}Path = application.getRealPath("/") + "upload/";
+        String ${property.propertyName}Url = request.getContextPath() + "/upload/";
+        String ${property.propertyName}DirName = FileUtil.checkFileDir(${property.propertyName}Path,${property.propertyName}Url,request);
+        ${property.propertyName}Path = ${property.propertyName}Path + ${property.propertyName}DirName;
+        ${property.propertyName}Url = ${property.propertyName}Url + ${property.propertyName}DirName;
+        // 文件名
+        String ${property.propertyName}FileExt = ${property.propertyName}.getOriginalFilename().substring(${property.propertyName}.getOriginalFilename().lastIndexOf(".") + 1).toLowerCase();
+        String ${property.propertyName}NewFileName = df.format(new Date()) + "_" + new Random().nextInt(1000) + "." + ${property.propertyName}FileExt;
+        // 保存文件
+        File ${property.propertyName}NewFile=new File(${property.propertyName}Path + ${property.propertyName}NewFileName);
+        //通过CommonsMultipartFile的方法直接写文件（注意这个时候）
+        ${property.propertyName}.transferTo(${property.propertyName}NewFile);
+        ${model.variableName}.set${property.propertyName?cap_first}(${property.propertyName}Url+${property.propertyName}NewFileName);
+        
+		</#if>
+	</#list>
+        
+        ${model.variableName}Service.insert(${model.variableName});
+		return "${model.path}/list";
+	}
+<#else>
 	@RequestMapping(value = "/add",method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseResult add(${model.domainObjectName} ${model.variableName}) throws Exception{
 		ResponseResult result = ${model.variableName}Service.insert(${model.variableName});
 		return result;
 	}
+</#if>
 	
 	@RequestMapping(value="/delete",method=RequestMethod.POST)
 	@ResponseBody

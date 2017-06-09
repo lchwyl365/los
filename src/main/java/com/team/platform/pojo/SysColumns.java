@@ -107,6 +107,11 @@ public class SysColumns extends SysColumnsKey {
     private String defaultValue;
 
     /**
+     * 序号
+     */
+    private String orderNum;
+
+    /**
      * 字段序号
      * @return COLNO 字段序号
      */
@@ -440,5 +445,21 @@ public class SysColumns extends SysColumnsKey {
      */
     public void setDefaultValue(String defaultValue) {
         this.defaultValue = defaultValue == null ? null : defaultValue.trim();
+    }
+
+    /**
+     * 序号
+     * @return ORDER_NUM 序号
+     */
+    public String getOrderNum() {
+        return orderNum;
+    }
+
+    /**
+     * 序号
+     * @param orderNum 序号
+     */
+    public void setOrderNum(String orderNum) {
+        this.orderNum = orderNum == null ? null : orderNum.trim();
     }
 }

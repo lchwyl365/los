@@ -73,13 +73,13 @@ public class CmsChannelServiceImpl implements CmsChannelService {
 		  	if(StringUtils.isEmpty(cmsChannel.getChannelId())){
 				cmsChannel.setChannelId(PrimaryKeyFactory.generatePK(""));
 			}
-			cmsChannel.setCreatetime(new Date());
 			cmsChannelMapper.insert(cmsChannel);
 			return ResponseResult.ok();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ResponseResult.build(ResponseResult.ERROR, e.getMessage());
 		}
+		
 	}
 
 	@Override
@@ -87,16 +87,7 @@ public class CmsChannelServiceImpl implements CmsChannelService {
 		try {
 			for (int i = 0; i < channelIds.size(); i++) {
 				String channelId = channelIds.get(i);
-				CmsChannel cmsChannel = cmsChannelMapper.selectByPrimaryKey(channelId);
-				if(cmsChannel != null){
-					cmsChannelMapper.deleteByPrimaryKey(channelId);
-					if("0".equals(cmsChannel.getPid())){ //顶级节点
-						CmsChannelExample example = new CmsChannelExample();
-						Criteria criteria = example.createCriteria();
-						criteria.andPidEqualTo(cmsChannel.getChannelId());
-						cmsChannelMapper.deleteByExample(example);
-					}
-				}
+			    cmsChannelMapper.deleteByPrimaryKey(channelId);
 			}
 			return ResponseResult.ok();
 		} catch (Exception e) {
@@ -120,7 +111,7 @@ public class CmsChannelServiceImpl implements CmsChannelService {
 			temp.setIstop(cmsChannel.getIstop());
 			temp.setChannelType(cmsChannel.getChannelType());
 			temp.setPid(cmsChannel.getPid());
-			temp.setCreatetime(new Date());
+			temp.setCreatetime(cmsChannel.getCreatetime());
 			temp.setUrl(cmsChannel.getUrl());
 			temp.setStatus(cmsChannel.getStatus());
 			temp.setContent(cmsChannel.getContent());

@@ -87,7 +87,7 @@ $(function(){
 		fit:false, //高度
 		fitColumns: true, //自动调整各列，用了这个属性，下面各列的宽度值就只是一个比例。
 		url:"${contextPath}/platform/tables/queryColumnsList?tbname=${tableName}&tbcreator=${schemaName}", //数据来源
-		sortName: 'COLNO', //排序的列
+		sortName: 'ORDER_NUM', //排序的列
 		sortOrder: 'asc', //倒序
 		remoteSort: true, //服务器端排序
 		rownumbers:true, //显示行号
@@ -97,6 +97,9 @@ $(function(){
 		rownumbers:true, //显示行号
 		pageSize:50,
 		columns:[[
+			{field:'orderNum',title:'展示序号',width:15,editor:'textbox',
+				formatter:function(value,row,index){return row.orderNum;}
+			},
 			{field:'columnName',title:'数据库列',width:20,sortable:true,
 				formatter:function(value,row,index){return row.columnName;}
 			},
@@ -150,7 +153,9 @@ $(function(){
 				}
 			},
 			{field:'formatter',title:'格式化',width:30,editor:'textbox',
-				formatter:function(value,row,index){return row.formatter;}
+				formatter:function(value,row,index){
+					return row.formatter;
+				}
 			},
 			{field:'action',title:'操作',width:22,align:'center',
 				formatter:function(value,row,index){
@@ -223,7 +228,8 @@ function saverow(target){
 			islike:row.islike,
 			isdisplay:row.isdisplay,
 			sortable:row.sortable,
-			formatter:row.formatter
+			formatter:row.formatter,
+			orderNum:row.orderNum
 		}, function(data){
 			if(data.status == 200){
 				$('#sysColumnsTable').datagrid("reload");

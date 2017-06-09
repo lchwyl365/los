@@ -64,7 +64,7 @@ public class SysColumnsServiceImpl implements SysColumnsService {
 		if(StringUtils.isNotEmpty(sysColumns.getIsupdate())){
 			criteria.andIsupdateEqualTo(sysColumns.getIsupdate());
 		}
-		example.setOrderByClause("COLNO asc");
+		example.setOrderByClause("ORDER_NUM asc");
 		return sysColumnsMapper.selectByExample(example);
 	}
 	
@@ -106,11 +106,34 @@ public class SysColumnsServiceImpl implements SysColumnsService {
 		record.setNulls(db2SysColumn.getIsNullable());
 		record.setPropertyLength(db2SysColumn.getLength()==null?64:db2SysColumn.getLength());
 		record.setColno(db2SysColumn.getColno());
+		record.setIsprimary("F");
+		
+		//PROPERTY_TYPE
+		String propertyType = "";
+		switch (db2SysColumn.getDataType().toUpperCase()) {
+		case "VARCHAR": propertyType = "String"; break;
+		case "CHAR": propertyType = "String"; break;
+		case "CHARACTER": propertyType = "String"; break;
+		case "TEXT": propertyType = "String"; break;
+		case "LONGTEXT": propertyType = "String"; break;
+		case "TIMESTMP": propertyType = "Date"; break;
+		case "TIMESTAMP": propertyType = "Date"; break;
+		case "SMALLINT": propertyType = "Short"; break;
+		case "BIGINT": propertyType = "Long"; break;
+		case "INTEGER": propertyType = "Integer"; break;
+		case "INT": propertyType = "Integer"; break;
+		case "DOUBLE": propertyType = "Double"; break;
+		}
+		if(StringUtil.isEmpty(propertyType)){
+System.out.println("propertyType:"+propertyType+ " db2SysColumn.getDataType():"+db2SysColumn.getDataType().toUpperCase());
+		}
+		record.setPropertyType(propertyType);
+				
 		return sysColumnsMapper.updateByPrimaryKeySelective(record);
 	}
 
 	@Override
-	public int insert(Columns db2SysColumn) {
+	public int insert(Columns db2SysColumn,int orderNum) {
 		SysColumns record = new SysColumns();
 		record.setColno(db2SysColumn.getColno());
 		record.setColumnName(db2SysColumn.getColumnName());
@@ -119,6 +142,7 @@ public class SysColumnsServiceImpl implements SysColumnsService {
 		record.setColtype(db2SysColumn.getDataType());
 		record.setNulls(db2SysColumn.getIsNullable());
 		record.setPropertyLength(db2SysColumn.getLength()==null?64:db2SysColumn.getLength());
+		record.setOrderNum(String.valueOf(++orderNum));
 		record.setIsprimary("F");
 		record.setIsselect("F");
 		record.setIslike("F");
@@ -145,6 +169,8 @@ public class SysColumnsServiceImpl implements SysColumnsService {
 		case "VARCHAR": propertyType = "String"; break;
 		case "CHAR": propertyType = "String"; break;
 		case "CHARACTER": propertyType = "String"; break;
+		case "TEXT": propertyType = "String"; break;
+		case "LONGTEXT": propertyType = "String"; break;
 		case "TIMESTMP": propertyType = "Date"; break;
 		case "TIMESTAMP": propertyType = "Date"; break;
 		case "SMALLINT": propertyType = "Short"; break;
@@ -194,7 +220,7 @@ System.out.println("propertyType:"+propertyType+ " db2SysColumn.getDataType():"+
 			if(flag){ //已存在更新
 				update(db2SysColumn);
 			}else{//不存在添加
-				insert(db2SysColumn);
+				insert(db2SysColumn,list.size());
 			}
 		}
 	}

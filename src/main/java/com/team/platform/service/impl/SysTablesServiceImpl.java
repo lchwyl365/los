@@ -77,23 +77,24 @@ public class SysTablesServiceImpl implements SysTablesService {
 	public int insert(SysTables sysTables, List<Columns> columns) {
 		SysColumns temp = new SysColumns();
 		boolean flag = false;
-		for (Columns db2SysColumn : columns) {
+		for (int i = 0; i < columns.size(); i++) {
+			Columns dbSysColumn = columns.get(i);
 			//1.查看是否已存在该字段
-			temp.setTbname(db2SysColumn.getTableName());
-			temp.setTbcreator(db2SysColumn.getTableSchema());
+			temp.setTbname(dbSysColumn.getTableName());
+			temp.setTbcreator(dbSysColumn.getTableSchema());
 			List<SysColumns> list = sysColumnsService.selectByExample(temp);
 			flag = false;
 			for (SysColumns sysColumns : list) {
-				if (db2SysColumn.getColumnName().equals(sysColumns.getColumnName())
-						&& db2SysColumn.getTableName().equals(sysColumns.getTbname())
-						&& db2SysColumn.getTableSchema().equals(sysColumns.getTbcreator())) {
+				if (dbSysColumn.getColumnName().equals(sysColumns.getColumnName())
+						&& dbSysColumn.getTableName().equals(sysColumns.getTbname())
+						&& dbSysColumn.getTableSchema().equals(sysColumns.getTbcreator())) {
 					flag = true;
 				}
 			}
 			if(flag){ //2.1 已存在更新
-				sysColumnsService.update(db2SysColumn);
+				sysColumnsService.update(dbSysColumn);
 			}else{//2.2 不存在添加
-				sysColumnsService.insert(db2SysColumn);
+				sysColumnsService.insert(dbSysColumn,list.size());
 			}
 		}
 		//path

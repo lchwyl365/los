@@ -8,8 +8,8 @@
     <script type="text/javascript">
     $(function(){
     	
-		var combo4_json = eval('${combo4_json}');
-		var combo5_json = eval('${combo5_json}');
+		var combo55072199221118_json = eval('${combo55072199221118_json}');
+		var combo55059701325166_json = eval('${combo55059701325166_json}');
     	
 		$('#channelTable').treegrid({
 			title:'cms_channel',
@@ -27,13 +27,7 @@
 				{field:'channelName',title:'栏目名称',width:100},
 				{field:'channelSort',title:'排列顺序',width:100},
 				{field:'channelType',title:'栏目类型',width:100},
-				{field:'status',title:'状态',width:100},
-				{field:'action',title:'操作',width:80,align:'center',
-					formatter:function(value,row,index){
-						var s = '<a href="javascript:void(0)" onclick="addrow('+row.channelId+')">增加子栏目</a> ';
-						return s;
-					}
-				}
+				{field:'status',title:'状态',width:100}
 			]]
 		});
 		
@@ -46,7 +40,7 @@
 	});
     var CmsChannel = {
     		addRow:function(){//新增
-  			    window.self.location = "${contextPath}/cms/channel/add?pid=0&istop=on";
+  				window.self.location = "${contextPath}/cms/channel/add";
     		},
     		updateRow:function(){//更新
     			var rows = $('#channelTable').datagrid('getSelections');
@@ -60,13 +54,7 @@
     			}
     			var ps = "";
 			  	ps += "/" + rows[0].channelId;
-    			/* TT.createWindow({
-    	  			title:'更新信息',
-    	  			url:'${contextPath}/cms/channel/update'+ps,
-    	  			width:'700px',
-    	  			height:'260px'
-    	  		}); */
-    			window.self.location = '${contextPath}/cms/channel/update'+ps;
+  				window.self.location = '${contextPath}/cms/channel/update'+ps;
     		},
     		deleteRow:function(){//删除
     			var rows = $('#channelTable').datagrid('getSelections');
@@ -101,10 +89,6 @@
     			CmsChannel.search();
     		}
 	};
-    
-    function addrow(channelId){
-    	window.self.location = "${contextPath}/cms/channel/add?pid="+channelId+"&istop=off";
-    }
     </script>
 </head>
 <body class="easyui-layout" style="overflow-y: hidden" scroll="no">
@@ -112,7 +96,7 @@
     	<table id="channelTable"></table>
     	<div id="tb" style="padding:10px;height:auto">
 			<form id="cmsChannelForm" style="margin-bottom: 0px;">
-				<a id="add-btn" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true">增加顶级栏目</a>
+				<a id="add-btn" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a>
 				<a id="edit-btn" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a>
 				<a id="del-btn" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
 			</form>

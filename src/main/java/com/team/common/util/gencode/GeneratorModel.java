@@ -57,6 +57,8 @@ public class GeneratorModel {
     
     private String haveKindeditor;
     
+    private String enctype;
+    
 	public String getMenuName() {
 		return menuName;
 	}
@@ -460,6 +462,18 @@ public class GeneratorModel {
 	public void setSortField(String sortField) {
 		this.sortField = sortField;
 	}
-	
+
+	public String getEnctype() {
+		for (GeneratorProperty property : propertys) {
+			if("file".equals(property.getComponent())){
+				return "multipart/form-data";
+			}
+		}
+		return "application/x-www-form-urlencoded";
+	}
+
+	public void setEnctype(String enctype) {
+		this.enctype = enctype;
+	}
 	
 }

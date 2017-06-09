@@ -19,7 +19,7 @@ public interface SysColumnsService {
 
 	EUDataGridResult selectList(EUDataGridModel dgm, SysColumns sysColumns);
 	
-	int insert(Columns db2SysColumn);
+	int insert(Columns db2SysColumn,int orderNum);
 
 	int update(Columns db2SysColumn);
 

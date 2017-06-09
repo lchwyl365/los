@@ -35,6 +35,7 @@ var components = [
     {componentid:'easyui-validatebox',name:'easyui-validatebox'},
 	{componentid:'easyui-combotree',name:'easyui-combotree'},
 	{componentid:'radio',name:'radio'},
+	{componentid:'file',name:'file'},
 	{componentid:'kindeditor',name:'kindeditor'}
 ];
 $(function(){
