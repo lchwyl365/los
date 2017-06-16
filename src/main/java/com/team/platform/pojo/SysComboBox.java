@@ -2,17 +2,17 @@ package com.team.platform.pojo;
 
 public class SysComboBox {
     /**
-     * ×Öµä±àºÅ
+     * å­—å…¸ç¼–å·
      */
     private String comboid;
 
     /**
-     * ×ÖµäÃû³Æ
+     * å­—å…¸åç§°
      */
     private String name;
 
     /**
-     * ²éÑ¯±í
+     * æŸ¥è¯¢è¡¨
      */
     private String tableName;
 
@@ -27,7 +27,7 @@ public class SysComboBox {
     private String textField;
 
     /**
-     * ²éÑ¯Ìõ¼ş(key:value)
+     * æŸ¥è¯¢æ¡ä»¶(key:value)
      */
     private String whereCondition;
 
@@ -37,53 +37,53 @@ public class SysComboBox {
     private String parentField;
 
     /**
-     * ¸ù½ÚµãÖµ
+     * æ ¹èŠ‚ç‚¹å€¼
      */
     private String rootValue;
 
     /**
-     * ×Öµä±àºÅ
-     * @return COMBOID ×Öµä±àºÅ
+     * å­—å…¸ç¼–å·
+     * @return COMBOID å­—å…¸ç¼–å·
      */
     public String getComboid() {
         return comboid;
     }
 
     /**
-     * ×Öµä±àºÅ
-     * @param comboid ×Öµä±àºÅ
+     * å­—å…¸ç¼–å·
+     * @param comboid å­—å…¸ç¼–å·
      */
     public void setComboid(String comboid) {
         this.comboid = comboid == null ? null : comboid.trim();
     }
 
     /**
-     * ×ÖµäÃû³Æ
-     * @return NAME ×ÖµäÃû³Æ
+     * å­—å…¸åç§°
+     * @return NAME å­—å…¸åç§°
      */
     public String getName() {
         return name;
     }
 
     /**
-     * ×ÖµäÃû³Æ
-     * @param name ×ÖµäÃû³Æ
+     * å­—å…¸åç§°
+     * @param name å­—å…¸åç§°
      */
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
     }
 
     /**
-     * ²éÑ¯±í
-     * @return TABLE_NAME ²éÑ¯±í
+     * æŸ¥è¯¢è¡¨
+     * @return TABLE_NAME æŸ¥è¯¢è¡¨
      */
     public String getTableName() {
         return tableName;
     }
 
     /**
-     * ²éÑ¯±í
-     * @param tableName ²éÑ¯±í
+     * æŸ¥è¯¢è¡¨
+     * @param tableName æŸ¥è¯¢è¡¨
      */
     public void setTableName(String tableName) {
         this.tableName = tableName == null ? null : tableName.trim();
@@ -122,16 +122,16 @@ public class SysComboBox {
     }
 
     /**
-     * ²éÑ¯Ìõ¼ş(key:value)
-     * @return WHERE_CONDITION ²éÑ¯Ìõ¼ş(key:value)
+     * æŸ¥è¯¢æ¡ä»¶(key:value)
+     * @return WHERE_CONDITION æŸ¥è¯¢æ¡ä»¶(key:value)
      */
     public String getWhereCondition() {
         return whereCondition;
     }
 
     /**
-     * ²éÑ¯Ìõ¼ş(key:value)
-     * @param whereCondition ²éÑ¯Ìõ¼ş(key:value)
+     * æŸ¥è¯¢æ¡ä»¶(key:value)
+     * @param whereCondition æŸ¥è¯¢æ¡ä»¶(key:value)
      */
     public void setWhereCondition(String whereCondition) {
         this.whereCondition = whereCondition == null ? null : whereCondition.trim();
@@ -154,16 +154,16 @@ public class SysComboBox {
     }
 
     /**
-     * ¸ù½ÚµãÖµ
-     * @return ROOT_VALUE ¸ù½ÚµãÖµ
+     * æ ¹èŠ‚ç‚¹å€¼
+     * @return ROOT_VALUE æ ¹èŠ‚ç‚¹å€¼
      */
     public String getRootValue() {
         return rootValue;
     }
 
     /**
-     * ¸ù½ÚµãÖµ
-     * @param rootValue ¸ù½ÚµãÖµ
+     * æ ¹èŠ‚ç‚¹å€¼
+     * @param rootValue æ ¹èŠ‚ç‚¹å€¼
      */
     public void setRootValue(String rootValue) {
         this.rootValue = rootValue == null ? null : rootValue.trim();

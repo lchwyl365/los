@@ -29,6 +29,14 @@
 				<table class="easyui-panel form-table">
 				   <tr>
 						<td class="form-table-td-left">
+							<label for="content">栏目内容:</label>
+						</td>
+						<td class="form-table-td-right">
+								<input class="easyui-validatebox" type="text" name="content" data-options="required:true,validType:['length[0,16777215]']" style="width:320px;height:28px;"/>
+						</td>
+				    </tr>
+				   <tr>
+						<td class="form-table-td-left">
 							<label for="channelName">栏目名称:</label>
 						</td>
 						<td class="form-table-td-right">
@@ -48,6 +56,7 @@
 							<label for="istop">顶级栏目:</label>
 						</td>
 						<td class="form-table-td-right">
+								<input class="easyui-switchbutton" name="istop" data-options="onText:'开启',offText:'冻结',checked:true">
 						</td>
 				    </tr>
 				   <tr>
@@ -89,14 +98,7 @@
 							<label for="status">状态:</label>
 						</td>
 						<td class="form-table-td-right">
-						</td>
-				    </tr>
-				   <tr>
-						<td class="form-table-td-left">
-							<label for="content">栏目内容:</label>
-						</td>
-						<td class="form-table-td-right">
-								<input class="easyui-validatebox" type="text" name="content" data-options="required:true,validType:['length[0,16777215]']" style="width:320px;height:28px;"/>
+								<input class="easyui-switchbutton" name="status" data-options="onText:'开启',offText:'冻结',checked:true">
 						</td>
 				    </tr>
 				</table>

@@ -19,7 +19,7 @@ public class CmsBanner {
     private String type;
 
     /**
-     * 图片地址
+     * 图片
      */
     private String img;
 
@@ -82,16 +82,16 @@ public class CmsBanner {
     }
 
     /**
-     * 图片地址
-     * @return img 图片地址
+     * 图片
+     * @return img 图片
      */
     public String getImg() {
         return img;
     }
 
     /**
-     * 图片地址
-     * @param img 图片地址
+     * 图片
+     * @param img 图片
      */
     public void setImg(String img) {
         this.img = img == null ? null : img.trim();

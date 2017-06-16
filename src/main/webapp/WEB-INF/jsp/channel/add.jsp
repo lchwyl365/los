@@ -24,8 +24,16 @@
 		  </div>
 		</div>
 		<div data-options="region:'center',border:false" style="padding:10px">
-			<form id="contentAddForm" method="post">
+			<form id="contentAddForm" method="post" action="${contextPath}/cms/channel/add" >
 				<table class="easyui-panel form-table">
+				   <tr>
+						<td class="form-table-td-left">
+							<label for="content">栏目内容:</label>
+						</td>
+						<td class="form-table-td-right">
+								<input class="easyui-validatebox" type="text" name="content" data-options="required:true,validType:['length[0,16777215]']" style="width:320px;height:28px;"/>
+						</td>
+				    </tr>
 				   <tr>
 						<td class="form-table-td-left">
 							<label for="channelName">栏目名称:</label>
@@ -47,6 +55,7 @@
 							<label for="istop">顶级栏目:</label>
 						</td>
 						<td class="form-table-td-right">
+								<input class="easyui-switchbutton" name="istop" data-options="onText:'开启',offText:'冻结',checked:true">
 						</td>
 				    </tr>
 				   <tr>
@@ -80,14 +89,7 @@
 							<label for="status">状态:</label>
 						</td>
 						<td class="form-table-td-right">
-						</td>
-				    </tr>
-				   <tr>
-						<td class="form-table-td-left">
-							<label for="content">栏目内容:</label>
-						</td>
-						<td class="form-table-td-right">
-								<input class="easyui-validatebox" type="text" name="content" data-options="required:true,validType:['length[0,16777215]']" style="width:320px;height:28px;"/>
+								<input class="easyui-switchbutton" name="status" data-options="onText:'开启',offText:'冻结',checked:true">
 						</td>
 				    </tr>
 				</table>
@@ -104,7 +106,6 @@ var contentAddPage  = {
 			$.messager.alert('提示','表单还未填写完成!');
 			return ;
 		}
-		
 		$.post("${contextPath}/cms/channel/add",$("#contentAddForm").serialize(), function(data){
 			if(data.status == 200){
 				$.messager.alert('提示','新增成功!');
@@ -113,6 +114,7 @@ var contentAddPage  = {
 				$.messager.alert('添加错误',data.msg,'error');
 			}
 		});
+		
 	},
 	clearForm : function(){
 		window.self.location = "${contextPath}/cms/channel/list";

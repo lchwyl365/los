@@ -5,6 +5,8 @@
     <id column="TESTID" jdbcType="VARCHAR" property="testid" />
     <id column="GROUP_ID" jdbcType="VARCHAR" property="groupId" />
     <result column="TESTNAME" jdbcType="VARCHAR" property="testname" />
+    <result column="TESTGROUP" jdbcType="VARCHAR" property="testgroup" />
+    <result column="DEPT_ID" jdbcType="VARCHAR" property="deptId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -65,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    TESTID, GROUP_ID, TESTNAME
+    TESTID, GROUP_ID, TESTNAME, TESTGROUP, DEPT_ID
   </sql>
   <select id="selectByExample" parameterType="com.team.platform.pojo.AuthTestExample" resultMap="BaseResultMap">
     select
@@ -100,10 +102,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.team.platform.pojo.AuthTest">
-    insert into HDMS.AUTH_TEST (TESTID, GROUP_ID, TESTNAME
-      )
-    values (#{testid,jdbcType=VARCHAR}, #{groupId,jdbcType=VARCHAR}, #{testname,jdbcType=VARCHAR}
-      )
+    insert into HDMS.AUTH_TEST (TESTID, GROUP_ID, TESTNAME, 
+      TESTGROUP, DEPT_ID)
+    values (#{testid,jdbcType=VARCHAR}, #{groupId,jdbcType=VARCHAR}, #{testname,jdbcType=VARCHAR}, 
+      #{testgroup,jdbcType=VARCHAR}, #{deptId,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.team.platform.pojo.AuthTest">
     insert into HDMS.AUTH_TEST
@@ -117,6 +119,12 @@
       <if test="testname != null">
         TESTNAME,
       </if>
+      <if test="testgroup != null">
+        TESTGROUP,
+      </if>
+      <if test="deptId != null">
+        DEPT_ID,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="testid != null">
@@ -127,6 +135,12 @@
       </if>
       <if test="testname != null">
         #{testname,jdbcType=VARCHAR},
+      </if>
+      <if test="testgroup != null">
+        #{testgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null">
+        #{deptId,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -148,6 +162,12 @@
       <if test="record.testname != null">
         TESTNAME = #{record.testname,jdbcType=VARCHAR},
       </if>
+      <if test="record.testgroup != null">
+        TESTGROUP = #{record.testgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptId != null">
+        DEPT_ID = #{record.deptId,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -157,7 +177,9 @@
     update HDMS.AUTH_TEST
     set TESTID = #{record.testid,jdbcType=VARCHAR},
       GROUP_ID = #{record.groupId,jdbcType=VARCHAR},
-      TESTNAME = #{record.testname,jdbcType=VARCHAR}
+      TESTNAME = #{record.testname,jdbcType=VARCHAR},
+      TESTGROUP = #{record.testgroup,jdbcType=VARCHAR},
+      DEPT_ID = #{record.deptId,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -168,13 +190,21 @@
       <if test="testname != null">
         TESTNAME = #{testname,jdbcType=VARCHAR},
       </if>
+      <if test="testgroup != null">
+        TESTGROUP = #{testgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null">
+        DEPT_ID = #{deptId,jdbcType=VARCHAR},
+      </if>
     </set>
     where TESTID = #{testid,jdbcType=VARCHAR}
       and GROUP_ID = #{groupId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.team.platform.pojo.AuthTest">
     update HDMS.AUTH_TEST
-    set TESTNAME = #{testname,jdbcType=VARCHAR}
+    set TESTNAME = #{testname,jdbcType=VARCHAR},
+      TESTGROUP = #{testgroup,jdbcType=VARCHAR},
+      DEPT_ID = #{deptId,jdbcType=VARCHAR}
     where TESTID = #{testid,jdbcType=VARCHAR}
       and GROUP_ID = #{groupId,jdbcType=VARCHAR}
   </update>

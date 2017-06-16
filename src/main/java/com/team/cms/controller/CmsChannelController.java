@@ -48,7 +48,6 @@ public class CmsChannelController {
     public String add() throws Exception{
     	return "channel/add";
     }
-	
 	@RequestMapping(value = "/add",method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseResult add(CmsChannel cmsChannel) throws Exception{

@@ -32,6 +32,8 @@
 							<label for="radio_${key}">${optionMap[key]}</label>
 									</#list>
 								</#list>
+							<#elseif property.component == 'easyui-switchbutton'>
+								<input class="easyui-switchbutton" name="${property.propertyName}" data-options="${property.dataOptions}">
 							<#elseif property.component == 'easyui-combotree'>
 								<input class="easyui-combotree" name="${property.propertyName}"
 								   data-options="url:'${r"${contextPath}"}/box/combotree?id=${property.comboid}',method:'get'" style="width:100%">
@@ -51,6 +53,8 @@
 							<label for="radio_${key}">${optionMap[key]}</label>
 									</#list>
 								</#list>
+							<#elseif property.component == 'easyui-switchbutton'>
+								<input class="easyui-switchbutton" name="${property.propertyName}" data-options="${property.dataOptions}">
 							<#elseif property.component == 'easyui-combotree'>
 								<input class="easyui-combotree" name="${property.propertyName}"
 								   data-options="url:'${r"${contextPath}"}/platform/box/combotree?id=${property.comboid}',method:'get'" style="width:100%">

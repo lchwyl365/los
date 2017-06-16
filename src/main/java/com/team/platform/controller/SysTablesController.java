@@ -275,12 +275,12 @@ public class SysTablesController {
 	@ResponseBody
     public ResponseResult update_column(SysColumns sysColumns) throws Exception{
 		
-		/*if("easyui-switchbutton".equals(sysColumns.getComponent())){
+		if("easyui-switchbutton".equals(sysColumns.getComponent())){
 			String dataOptions = sysColumns.getDataOptions();
 			if(dataOptions.indexOf("onText:") == -1){
 				sysColumns.setDataOptions("onText:'开启',offText:'冻结',checked:true");
 			}
-		}*/
+		}
 		if("radio".equals(sysColumns.getComponent())){
 			String dataOptions = sysColumns.getDataOptions();
 			if(StringUtils.isEmpty(dataOptions)){

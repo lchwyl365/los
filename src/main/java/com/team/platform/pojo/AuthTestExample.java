@@ -369,6 +369,146 @@ public class AuthTestExample {
             addCriterion("TESTNAME not between", value1, value2, "testname");
             return (Criteria) this;
         }
+
+        public Criteria andTestgroupIsNull() {
+            addCriterion("TESTGROUP is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTestgroupIsNotNull() {
+            addCriterion("TESTGROUP is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTestgroupEqualTo(String value) {
+            addCriterion("TESTGROUP =", value, "testgroup");
+            return (Criteria) this;
+        }
+
+        public Criteria andTestgroupNotEqualTo(String value) {
+            addCriterion("TESTGROUP <>", value, "testgroup");
+            return (Criteria) this;
+        }
+
+        public Criteria andTestgroupGreaterThan(String value) {
+            addCriterion("TESTGROUP >", value, "testgroup");
+            return (Criteria) this;
+        }
+
+        public Criteria andTestgroupGreaterThanOrEqualTo(String value) {
+            addCriterion("TESTGROUP >=", value, "testgroup");
+            return (Criteria) this;
+        }
+
+        public Criteria andTestgroupLessThan(String value) {
+            addCriterion("TESTGROUP <", value, "testgroup");
+            return (Criteria) this;
+        }
+
+        public Criteria andTestgroupLessThanOrEqualTo(String value) {
+            addCriterion("TESTGROUP <=", value, "testgroup");
+            return (Criteria) this;
+        }
+
+        public Criteria andTestgroupLike(String value) {
+            addCriterion("TESTGROUP like", value, "testgroup");
+            return (Criteria) this;
+        }
+
+        public Criteria andTestgroupNotLike(String value) {
+            addCriterion("TESTGROUP not like", value, "testgroup");
+            return (Criteria) this;
+        }
+
+        public Criteria andTestgroupIn(List<String> values) {
+            addCriterion("TESTGROUP in", values, "testgroup");
+            return (Criteria) this;
+        }
+
+        public Criteria andTestgroupNotIn(List<String> values) {
+            addCriterion("TESTGROUP not in", values, "testgroup");
+            return (Criteria) this;
+        }
+
+        public Criteria andTestgroupBetween(String value1, String value2) {
+            addCriterion("TESTGROUP between", value1, value2, "testgroup");
+            return (Criteria) this;
+        }
+
+        public Criteria andTestgroupNotBetween(String value1, String value2) {
+            addCriterion("TESTGROUP not between", value1, value2, "testgroup");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeptIdIsNull() {
+            addCriterion("DEPT_ID is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeptIdIsNotNull() {
+            addCriterion("DEPT_ID is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeptIdEqualTo(String value) {
+            addCriterion("DEPT_ID =", value, "deptId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeptIdNotEqualTo(String value) {
+            addCriterion("DEPT_ID <>", value, "deptId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeptIdGreaterThan(String value) {
+            addCriterion("DEPT_ID >", value, "deptId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeptIdGreaterThanOrEqualTo(String value) {
+            addCriterion("DEPT_ID >=", value, "deptId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeptIdLessThan(String value) {
+            addCriterion("DEPT_ID <", value, "deptId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeptIdLessThanOrEqualTo(String value) {
+            addCriterion("DEPT_ID <=", value, "deptId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeptIdLike(String value) {
+            addCriterion("DEPT_ID like", value, "deptId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeptIdNotLike(String value) {
+            addCriterion("DEPT_ID not like", value, "deptId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeptIdIn(List<String> values) {
+            addCriterion("DEPT_ID in", values, "deptId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeptIdNotIn(List<String> values) {
+            addCriterion("DEPT_ID not in", values, "deptId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeptIdBetween(String value1, String value2) {
+            addCriterion("DEPT_ID between", value1, value2, "deptId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeptIdNotBetween(String value1, String value2) {
+            addCriterion("DEPT_ID not between", value1, value2, "deptId");
+            return (Criteria) this;
+        }
     }
 
     /**

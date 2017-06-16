@@ -21,7 +21,6 @@ import com.team.common.pojo.EUDataGridResult;
 import com.team.common.pojo.ResponseResult;
 import com.team.platform.pojo.AuthTest;
 import com.team.platform.service.AuthTestService;
-import com.team.platform.service.SysComboBoxService;
 
 @Controller
 @RequestMapping("/platform/test")
@@ -32,14 +31,10 @@ public class AuthTestController {
 	@Autowired
 	private AuthTestService authTestService;
 	
-	@Autowired
-	private SysComboBoxService sysComboBoxService;
 	
 	@RequestMapping(value = "/list",method = RequestMethod.GET)
     public String list(HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
 		
-	  	String combo1_json = sysComboBoxService.selectComboid("4885635448210517");
-		model.addAttribute("combo1_json", combo1_json);
     	return "test/list";
     }
 	
@@ -47,7 +42,6 @@ public class AuthTestController {
     public String add() throws Exception{
     	return "test/add";
     }
-	
 	@RequestMapping(value = "/add",method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseResult add(AuthTest authTest) throws Exception{

@@ -34,6 +34,7 @@ var PROPERTY = {
 var components = [
     {componentid:'easyui-validatebox',name:'easyui-validatebox'},
 	{componentid:'easyui-combotree',name:'easyui-combotree'},
+	{componentid:'easyui-switchbutton',name:'easyui-switchbutton'},
 	{componentid:'radio',name:'radio'},
 	{componentid:'file',name:'file'},
 	{componentid:'kindeditor',name:'kindeditor'}

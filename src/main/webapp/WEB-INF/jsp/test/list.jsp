@@ -8,7 +8,6 @@
     <script type="text/javascript">
     $(function(){
     	
-		var combo1_json = eval('${combo1_json}');
     	
 		$('#testTable').datagrid({
 			title:'测试表', //标题
@@ -21,7 +20,7 @@
 			striped: true, //奇偶行颜色不同
 			collapsible:false,//可折叠
 			url:"${contextPath}/platform/test/queryList", //数据来源
-			sortName: 'testid', //排序的列
+			sortName: 'TESTID', //排序的列
 			sortOrder: 'desc', //倒序
 			remoteSort: true, //服务器端排序
 			idField:'testid', //主键字段
@@ -33,16 +32,14 @@
 				{field:'TESTID',title:'测试编号',width:100,sortable:'F',
 						formatter:function(value,row,index){return row.testid;}
 				},
+				{field:'DEPT_ID',title:'DEPT_ID',width:100,sortable:'F',
+						formatter:function(value,row,index){return row.deptId;}
+				},
+				{field:'TESTGROUP',title:'组名称',width:100,sortable:'F',
+						formatter:function(value,row,index){return row.testgroup;}
+				},
 				{field:'GROUP_ID',title:'组编号',width:100,sortable:'F',
-						formatter:function(value,row,index){
-							var text = '';
-							for(var i=0;i<combo1_json.length;i++){  
-					    		if(row.groupId == combo1_json[i].id){
-					    			text = combo1_json[i].text;
-					    		}
-					    	}
-							return text;
-						}
+						formatter:function(value,row,index){return row.groupId;}
 				},
 				{field:'TESTNAME',title:'测试名称',width:100,sortable:'F',
 						formatter:function(value,row,index){return row.testname;}
@@ -63,12 +60,7 @@
 	});
     var AuthTest = {
     		addRow:function(){//新增
-  		        TT.createWindow({
-  		    	  title:'添加测试表',
-  		    	  width:'700px',
-  		    	  height:'260px',
-  				  url : "${contextPath}/platform/test/add"
-  			    });
+  				window.self.location = "${contextPath}/platform/test/add";
     		},
     		updateRow:function(){//更新
     			var rows = $('#testTable').datagrid('getSelections');
@@ -83,12 +75,7 @@
     			var ps = "";
 			  	ps += "/" + rows[0].testid;
 			  	ps += "/" + rows[0].groupId;
-    			TT.createWindow({
-    	  			title:'更新操作员信息',
-    	  			url:'${contextPath}/platform/test/update'+ps,
-    	  			width:'700px',
-    	  			height:'260px'
-    	  		});
+  				window.self.location = '${contextPath}/platform/test/update'+ps;
     		},
     		deleteRow:function(){//删除
     			var rows = $('#testTable').datagrid('getSelections');

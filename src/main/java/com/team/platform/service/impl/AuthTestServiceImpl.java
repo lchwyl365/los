@@ -2,6 +2,7 @@ package com.team.platform.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -111,6 +112,8 @@ public class AuthTestServiceImpl implements AuthTestService {
 			key.setTestid(authTest.getTestid());
 			key.setGroupId(authTest.getGroupId());
 			AuthTest temp = authTestMapper.selectByPrimaryKey(key);
+			temp.setDeptId(authTest.getDeptId());
+			temp.setTestgroup(authTest.getTestgroup());
 			temp.setTestname(authTest.getTestname());
 			authTestMapper.updateByPrimaryKeySelective(authTest);
 			return ResponseResult.ok();
