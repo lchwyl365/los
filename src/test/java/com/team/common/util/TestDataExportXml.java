@@ -3,7 +3,6 @@ package com.team.common.util;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import org.jdom2.JDOMException;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

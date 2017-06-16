@@ -278,17 +278,6 @@
     </role_menu>
     <role_menu>
       <display>on</display>
-      <href>/</href>
-      <iconCls>icon-count</iconCls>
-      <levelType>application</levelType>
-      <menuid>4937813894610697</menuid>
-      <menuPos>left</menuPos>
-      <name>机构客户信息统计</name>
-      <orderNum>2</orderNum>
-      <pid>4937805643610681</pid>
-    </role_menu>
-    <role_menu>
-      <display>on</display>
       <href>/platform/dict/list</href>
       <iconCls>icon-nav</iconCls>
       <levelType>system</levelType>
@@ -311,91 +300,25 @@
     </role_menu>
     <role_menu>
       <display>on</display>
-      <href>/platform/channel/list</href>
-      <iconCls>icon-sys</iconCls>
+      <href>/cms/article/list</href>
+      <iconCls>icon-nav</iconCls>
       <levelType>application</levelType>
-      <menuid>55101819602111</menuid>
+      <menuid>55417005246110</menuid>
       <menuPos>left</menuPos>
-      <name>cms_channel</name>
+      <name>文章管理</name>
       <orderNum>1</orderNum>
-      <pid>4900346948510727</pid>
+      <pid>4937805643610681</pid>
     </role_menu>
     <role_menu>
       <display>on</display>
-      <href>/platform/channel/list</href>
-      <iconCls>icon-sys</iconCls>
+      <href>/cms/banner/list</href>
+      <iconCls>icon-nav</iconCls>
       <levelType>application</levelType>
-      <menuid>55144756476110</menuid>
+      <menuid>55503481069117</menuid>
       <menuPos>left</menuPos>
-      <name>cms_channel2</name>
+      <name>轮播图管理</name>
       <orderNum>1</orderNum>
-      <pid>4900346948510727</pid>
-    </role_menu>
-    <role_menu>
-      <display>on</display>
-      <href>/cms/channel/list</href>
-      <iconCls>icon-sys</iconCls>
-      <levelType>application</levelType>
-      <menuid>55146147478117</menuid>
-      <menuPos>left</menuPos>
-      <name>cms_channel2</name>
-      <orderNum>1</orderNum>
-      <pid>4900346948510727</pid>
-    </role_menu>
-    <role_menu>
-      <display>on</display>
-      <href>/cms/channel/list</href>
-      <iconCls>icon-sys</iconCls>
-      <levelType>application</levelType>
-      <menuid>55146688513110</menuid>
-      <menuPos>left</menuPos>
-      <name>cms_channel2</name>
-      <orderNum>1</orderNum>
-      <pid>4900346948510727</pid>
-    </role_menu>
-    <role_menu>
-      <display>on</display>
-      <href>/cms/channel/list</href>
-      <iconCls>icon-sys</iconCls>
-      <levelType>application</levelType>
-      <menuid>55226556091116</menuid>
-      <menuPos>left</menuPos>
-      <name>cms_channel2</name>
-      <orderNum>1</orderNum>
-      <pid>4900346948510727</pid>
-    </role_menu>
-    <role_menu>
-      <display>on</display>
-      <href>/cms/channel/list</href>
-      <iconCls>icon-sys</iconCls>
-      <levelType>application</levelType>
-      <menuid>55229316660120</menuid>
-      <menuPos>left</menuPos>
-      <name>cms_channel2</name>
-      <orderNum>1</orderNum>
-      <pid>4900346948510727</pid>
-    </role_menu>
-    <role_menu>
-      <display>on</display>
-      <href>/cms/channel/list</href>
-      <iconCls>icon-sys</iconCls>
-      <levelType>application</levelType>
-      <menuid>55242268882114</menuid>
-      <menuPos>left</menuPos>
-      <name>cms_channel2</name>
-      <orderNum>1</orderNum>
-      <pid>4900346948510727</pid>
-    </role_menu>
-    <role_menu>
-      <display>on</display>
-      <href>/cms/channel/list</href>
-      <iconCls>icon-sys</iconCls>
-      <levelType>application</levelType>
-      <menuid>55242707375113</menuid>
-      <menuPos>left</menuPos>
-      <name>cms_channel2</name>
-      <orderNum>1</orderNum>
-      <pid>4900346948510727</pid>
+      <pid>4937805643610681</pid>
     </role_menu>
   </menus>
   <user_roles>
@@ -459,107 +382,107 @@
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>4900335617310710</menuid>
-      <role_menu_id>55056886017119</role_menu_id>
+      <role_menu_id>55503847663118</role_menu_id>
     </role_menu>
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>4900346948510727</menuid>
-      <role_menu_id>55056886030126</role_menu_id>
+      <role_menu_id>55503847666128</role_menu_id>
     </role_menu>
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>4929825908611119</menuid>
-      <role_menu_id>55056886043138</role_menu_id>
+      <role_menu_id>55503847678130</role_menu_id>
     </role_menu>
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>4929831830711125</menuid>
-      <role_menu_id>55056886047140</role_menu_id>
-    </role_menu>
-    <role_menu>
-      <roleid>50642806128136</roleid>
-      <menuid>54991953042110</menuid>
-      <role_menu_id>55056886052152</role_menu_id>
+      <role_menu_id>55503847684142</role_menu_id>
     </role_menu>
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>4929836951411131</menuid>
-      <role_menu_id>55056886056164</role_menu_id>
+      <role_menu_id>55503847686153</role_menu_id>
     </role_menu>
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>4929960509311144</menuid>
-      <role_menu_id>55056886058176</role_menu_id>
+      <role_menu_id>55503847688165</role_menu_id>
     </role_menu>
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>4929974605311158</menuid>
-      <role_menu_id>55056886061189</role_menu_id>
+      <role_menu_id>55503847689177</role_menu_id>
     </role_menu>
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>4930013831011165</menuid>
-      <role_menu_id>55056886065198</role_menu_id>
+      <role_menu_id>55503847690187</role_menu_id>
     </role_menu>
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>4930017459411175</menuid>
-      <role_menu_id>55056886069128</role_menu_id>
+      <role_menu_id>55503847692194</role_menu_id>
     </role_menu>
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>50150286365114</menuid>
-      <role_menu_id>55056886076133</role_menu_id>
+      <role_menu_id>55503847693121</role_menu_id>
     </role_menu>
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>4937759643010612</menuid>
-      <role_menu_id>55056886089143</role_menu_id>
+      <role_menu_id>55503847694135</role_menu_id>
     </role_menu>
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>4937764214310622</menuid>
-      <role_menu_id>55056886096157</role_menu_id>
+      <role_menu_id>55503847695148</role_menu_id>
     </role_menu>
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>4937771630310636</menuid>
-      <role_menu_id>55056886111169</role_menu_id>
+      <role_menu_id>55503847697151</role_menu_id>
     </role_menu>
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>4937775511610643</menuid>
-      <role_menu_id>55056886117173</role_menu_id>
+      <role_menu_id>55503847699168</role_menu_id>
     </role_menu>
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>4937795396310665</menuid>
-      <role_menu_id>55056886123189</role_menu_id>
+      <role_menu_id>55503847701175</role_menu_id>
     </role_menu>
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>4937800330210676</menuid>
-      <role_menu_id>55056886128199</role_menu_id>
+      <role_menu_id>55503847703185</role_menu_id>
     </role_menu>
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>4937787503210655</menuid>
-      <role_menu_id>55056886130127</role_menu_id>
+      <role_menu_id>55503847706199</role_menu_id>
     </role_menu>
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>4937805643610681</menuid>
-      <role_menu_id>55056886133131</role_menu_id>
-    </role_menu>
-    <role_menu>
-      <roleid>50642806128136</roleid>
-      <menuid>4937813894610697</menuid>
-      <role_menu_id>55056886135146</role_menu_id>
+      <role_menu_id>55503847708121</role_menu_id>
     </role_menu>
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>54914376635111</menuid>
-      <role_menu_id>55056886138152</role_menu_id>
+      <role_menu_id>55503847710135</role_menu_id>
+    </role_menu>
+    <role_menu>
+      <roleid>50642806128136</roleid>
+      <menuid>55417005246110</menuid>
+      <role_menu_id>55503847712146</role_menu_id>
+    </role_menu>
+    <role_menu>
+      <roleid>50642806128136</roleid>
+      <menuid>55503481069117</menuid>
+      <role_menu_id>55503847714157</role_menu_id>
     </role_menu>
   </role_menus>
   <comboboxs>

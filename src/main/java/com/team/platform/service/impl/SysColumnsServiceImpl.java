@@ -116,6 +116,7 @@ public class SysColumnsServiceImpl implements SysColumnsService {
 		case "CHARACTER": propertyType = "String"; break;
 		case "TEXT": propertyType = "String"; break;
 		case "LONGTEXT": propertyType = "String"; break;
+		case "CLOB": propertyType = "String"; break;
 		case "TIMESTMP": propertyType = "Date"; break;
 		case "TIMESTAMP": propertyType = "Date"; break;
 		case "SMALLINT": propertyType = "Short"; break;
@@ -171,6 +172,7 @@ System.out.println("propertyType:"+propertyType+ " db2SysColumn.getDataType():"+
 		case "CHARACTER": propertyType = "String"; break;
 		case "TEXT": propertyType = "String"; break;
 		case "LONGTEXT": propertyType = "String"; break;
+		case "CLOB": propertyType = "String"; break;
 		case "TIMESTMP": propertyType = "Date"; break;
 		case "TIMESTAMP": propertyType = "Date"; break;
 		case "SMALLINT": propertyType = "Short"; break;

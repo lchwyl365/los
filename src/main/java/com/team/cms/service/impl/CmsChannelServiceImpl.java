@@ -40,9 +40,11 @@ public class CmsChannelServiceImpl implements CmsChannelService {
 			criteria.andPidEqualTo(pid);
 		}
 		//排序
-		/*if(StringUtils.isNotEmpty(dgm.getSort())){
+		/*
+		if(StringUtils.isNotEmpty(dgm.getSort())){
 			example.setOrderByClause(dgm.getSort() + " " + dgm.getOrder());
-		}*/
+		}
+		*/
 		List<CmsChannelVo> cmsChannelVoList = new ArrayList<CmsChannelVo>();
 		List<CmsChannel> list = cmsChannelMapper.selectByExample(example);
 		for (CmsChannel cmsChannel : list) {
