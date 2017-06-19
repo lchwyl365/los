@@ -20,5 +20,7 @@ public interface CmsBannerService {
 	public ResponseResult delete(List<String> bannerIds);
 
 	public ResponseResult update(CmsBanner cmsBanner);
+
+	public List<CmsBanner> selectByBanner(CmsBanner cmsBanner);
 	
 }

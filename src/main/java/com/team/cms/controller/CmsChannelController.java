@@ -45,7 +45,9 @@ public class CmsChannelController {
     }
 	
 	@RequestMapping(value = "/add",method = RequestMethod.GET)
-    public String add() throws Exception{
+    public String add(HttpServletRequest request,Model model) throws Exception{
+		String pid = request.getParameter("pid");
+		model.addAttribute("pid", pid);
     	return "channel/add";
     }
 	@RequestMapping(value = "/add",method = RequestMethod.POST)
@@ -70,9 +72,19 @@ public class CmsChannelController {
 	
 	@RequestMapping(value = "/update",method = RequestMethod.POST)
 	@ResponseBody
-    public ResponseResult update(CmsChannel cmsChannel) throws Exception{
-		ResponseResult result = cmsChannelService.update(cmsChannel);
-		return result;
+    public ResponseResult update(HttpServletRequest request) throws Exception{
+    
+    	CmsChannel cmsChannel = new CmsChannel();
+		cmsChannel.setChannelId(String.valueOf(request.getParameter("channelId")));
+		cmsChannel.setChannelName(String.valueOf(request.getParameter("channelName")));
+		cmsChannel.setChannelSort(Integer.valueOf(request.getParameter("channelSort")));
+		cmsChannel.setIstop(String.valueOf(request.getParameter("istop")));
+		cmsChannel.setChannelType(String.valueOf(request.getParameter("channelType")));
+		cmsChannel.setPid(String.valueOf(request.getParameter("pid")));
+		cmsChannel.setUrl(String.valueOf(request.getParameter("url")));
+		cmsChannel.setStatus(String.valueOf(request.getParameter("status")));
+		cmsChannel.setContent(String.valueOf(request.getParameter("content")));
+		return cmsChannelService.update(cmsChannel);
     }
 	
 	@RequestMapping(value = "/queryList/{pid}")

@@ -19,5 +19,7 @@ public interface CmsChannelService {
 	public ResponseResult delete(List<String> channelIds);
 
 	public ResponseResult update(CmsChannel cmsChannel);
+
+	public List<CmsChannel> selectByChannel(CmsChannel cmsChannel);
 	
 }

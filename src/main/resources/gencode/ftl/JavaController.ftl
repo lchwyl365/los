@@ -138,9 +138,15 @@ public class ${model.domainObjectName}Controller {
 	
 	@RequestMapping(value = "/update",method = RequestMethod.POST)
 	@ResponseBody
-    public ResponseResult update(${model.domainObjectName} ${model.variableName}) throws Exception{
-		ResponseResult result = ${model.variableName}Service.update(${model.variableName});
-		return result;
+    public ResponseResult update(HttpServletRequest request) throws Exception{
+    
+    	${model.domainObjectName} ${model.variableName} = new ${model.domainObjectName}();
+	<#list model.propertys as property>
+	  <#if property.propertyType != "Date">
+		${model.variableName}.set${property.propertyName?cap_first}(${property.propertyType}.valueOf(request.getParameter("${property.propertyName}")));
+	  </#if>
+	</#list>	
+		return ${model.variableName}Service.update(${model.variableName});
     }
 	
 <#if model.gentype == "DataGrid">

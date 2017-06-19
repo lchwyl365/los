@@ -1,8 +1,7 @@
 package com.team.cms.service.impl;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,20 +9,15 @@ import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.team.common.pojo.EUDataGridModel;
-import com.team.common.pojo.EUDataGridResult;
-import com.team.common.util.ExceptionUtil;
-
-import com.team.common.pojo.ResponseResult;
-import com.team.common.util.PrimaryKeyFactory;
 import com.team.cms.mapper.CmsBannerMapper;
 import com.team.cms.pojo.CmsBanner;
 import com.team.cms.pojo.CmsBannerExample;
 import com.team.cms.pojo.CmsBannerExample.Criteria;
 import com.team.cms.service.CmsBannerService;
-
-
-
+import com.team.common.pojo.EUDataGridModel;
+import com.team.common.pojo.EUDataGridResult;
+import com.team.common.pojo.ResponseResult;
+import com.team.common.util.PrimaryKeyFactory;
 
 /**
  * Created by liuchao on 2017/02/21
@@ -39,7 +33,6 @@ public class CmsBannerServiceImpl implements CmsBannerService {
 		//查询列表
 		CmsBannerExample example = new CmsBannerExample();
 		Criteria criteria = example.createCriteria();
-		
 	
 		//排序
 		if(StringUtils.isNotEmpty(dgm.getSort())){
@@ -110,5 +103,19 @@ public class CmsBannerServiceImpl implements CmsBannerService {
 			e.printStackTrace();
 			return ResponseResult.build(ResponseResult.ERROR, e.getMessage());
 		}
+	}
+
+
+	@Override
+	public List<CmsBanner> selectByBanner(CmsBanner cmsBanner) {
+		//查询列表
+		CmsBannerExample example = new CmsBannerExample();
+		Criteria criteria = example.createCriteria();
+		if(StringUtils.isNotEmpty(cmsBanner.getType())){
+			criteria.andTypeEqualTo(cmsBanner.getType());
+		}
+		//排序
+		example.setOrderByClause("order_num asc");
+		return cmsBannerMapper.selectByExample(example);
 	}
 }

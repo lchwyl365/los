@@ -14,8 +14,8 @@
 <meta name="description" content="济南润易集团有限公司官网网站，提供润易集团简介，鲁丰纸业有限公司,晨光纸业有限公司,欣易特种纸有限公司,晨光空港实业公司等信息。业务涵盖商务综合体领域、文化产业领域、特种纸领域和电商物流领域四大核心产业。">
 <link rel="stylesheet"
 	href="${contextPath}/resources/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="${contextPath}/resources/css/slide.css">
-<link rel="stylesheet" href="${contextPath}/resources/css/runyi.css">
+<link rel="stylesheet" href="${contextPath}/resources/theme/r/css/slide.css">
+<link rel="stylesheet" href="${contextPath}/resources/theme/r/css/runyi.css">
 <style>
 a{blr:expression(this.onFocus=this.blur());}
 a:focus{outline:none;}
@@ -38,14 +38,14 @@ var _hmt = _hmt || [];
 		<div class="navdiv_right">
 			<ul class="nav navbar-nav">
 				<c:forEach items="${channelList}" var="channel">
-					<c:if test="${channel.id == 1603151605010001014 }">
-						<li class=" " style="float: left;"><a href="${contextPath}/index">${channel.name}</a></li>
+					<c:if test="${channel.channelId == 55146271874110 }">
+						<li class=" " style="float: left;"><a href="${contextPath}/index">${channel.channelName}</a></li>
 					</c:if>
-					<c:if test="${channel.id == 1606022304170001014 }">
-						<li class=" " style="float: left;"><a href="${contextPath}/videos">${channel.name}</a></li>
+					<c:if test="${channel.channelId == 1606022304170001014 }">
+						<li class=" " style="float: left;"><a href="${contextPath}/videos">${channel.channelName}</a></li>
 					</c:if>
-					<c:if test="${channel.id != 1603151605010001014 && channel.id != 1606022304170001014}">
-						<li class=" " style="float: left;"><a href="${contextPath}/channel/${channel.id}">${channel.name}</a></li>
+					<c:if test="${channel.channelId != 55146271874110 && channel.channelId != 1606022304170001014}">
+						<li class=" " style="float: left;"><a href="${contextPath}/front/r/channel/${channel.channelId}">${channel.channelName}</a></li>
 					</c:if>
 				</c:forEach>
 			</ul>
@@ -58,7 +58,7 @@ var _hmt = _hmt || [];
 				<ul class="ck-slide-wrapper">
 					<c:forEach items="${bannerList}" var="banner">
 						<li><a href="javascript:"><img class="bannerImg"
-								src="${contextPath}/fileServlet?fileName=banner/${banner.img}" alt="${banner.name}"></a></li>
+								src="${contextPath}/resources/theme/r/img/${banner.img}" alt="${banner.bannerTitle}" /></a></li>
 					</c:forEach>
 				</ul>
 				<a href="javascript:;" class="ctrl-slide ck-prev">上一张</a> <a
@@ -85,21 +85,21 @@ var _hmt = _hmt || [];
 			<div class="col-md-6" style="width: 480px; float: left;padding:0px;">
 				<div class="ohz">
 					<h2 class="artTitle">
-						<span><a href="#">集团要闻</a></span> <a
-							class="cblue fr f14 pt5 lh200" href="${contextPath}/channel/1603310520110001014">更多</a>
+						<span><a href="${contextPath}/front/r/channel/55230388368137">集团要闻</a></span> <a
+							class="cblue fr f14 pt5 lh200" href="${contextPath}/front/r/channel/55230388368137">更多</a>
 					</h2>
 					<c:forEach items="${yaowenList}" var="yaowen" varStatus="st">
 						<c:if test="${st.index == 0}">
 							<div class="mt15 ohz">
 								<p class="fl">
-									<a href="${contextPath}/article/${yaowen.id}" title="" target="_bank"> <img
-										src="${contextPath}/fileServlet?fileName=${yaowen.icon}"
+									<a href="${contextPath}/front/r/article/${yaowen.articleId}" title="" target="_bank"> <img
+										src="${yaowen.thumbnail}"
 										alt="" height="120" width="180">
 									</a>
 								</p>
 								<div class="fr w270">
-									<a href="${contextPath}/article/${yaowen.id}" title="${yaowen.name}" target="_blank">
-										<h2 class="cblue f18">${yaowen.name}</h2>
+									<a href="${contextPath}/front/r/article/${yaowen.articleId}" title="${yaowen.title}" target="_blank">
+										<h2 class="cblue f18">${yaowen.title}</h2>
 									</a>
 									<p class="f12 c6 mt10 lh19 t2 cnp h60 ohz">
 										<c:choose>
@@ -115,16 +115,16 @@ var _hmt = _hmt || [];
 							</div>
 						</c:if>
 					</c:forEach>
-					<ul class="txtlist cf txtlist4 mt5">
+					<ul class="txtlist cf txtlist4 mt5" style="overflow: hidden;min-height: 196px;">
 						<c:forEach items="${yaowenList}" var="yaowen" varStatus="st">
 							<c:if test="${st.index != 0}">
-								<li><span><fmt:formatDate value="${yaowen.createtime}" pattern="MM-dd"/></span> <a href="${contextPath}/article/${yaowen.id}" target="_blank"
-									title="${yaowen.name}"> <c:choose>
-											<c:when test="${fn:length(yaowen.name) > 23}">
-												<c:out value="${fn:substring(yaowen.name, 0, 23)}" />
+								<li><span><fmt:formatDate value="${yaowen.createtime}" pattern="MM-dd"/></span> <a href="${contextPath}/front/r/article/${yaowen.articleId}" target="_blank"
+									title="${yaowen.title}"> <c:choose>
+											<c:when test="${fn:length(yaowen.title) > 23}">
+												<c:out value="${fn:substring(yaowen.title, 0, 23)}" />
 											</c:when>
 											<c:otherwise>
-												<c:out value="${yaowen.name}" />
+												<c:out value="${yaowen.title}" />
 											</c:otherwise>
 										</c:choose>
 								</a></li>
@@ -136,20 +136,21 @@ var _hmt = _hmt || [];
 
 				<div class="ohz mt10">
 					<h2 class="artTitle">
-						<span><a href="#">最新动态</a></span> <a
-							class="cblue fr f14 pt5 lh200" href="${contextPath}/channel/1603310520260002014">更多</a>
+						<span><a href="${contextPath}/front/r/channel/55230443822142">最新动态</a></span> <a
+							class="cblue fr f14 pt5 lh200" href="${contextPath}/front/r/channel/55230443822142">更多</a>
 					</h2>
 
 					<ul class="txtlist cf txtlist4 mt10" style="padding-top: 15px;">
 
 						<c:forEach items="${dongtaiList}" var="dongtai" varStatus="st">
-							<li><span><fmt:formatDate value="${dongtai.createtime}" pattern="MM-dd"/></span> <a href="${contextPath}/article/${dongtai.id}" target="_blank"
-								title="${dongtai.name}"> <c:choose>
-										<c:when test="${fn:length(dongtai.name) > 23}">
-											<c:out value="${fn:substring(dongtai.name, 0, 23)}" />
+							<li><span><fmt:formatDate value="${dongtai.createtime}" pattern="MM-dd"/></span> 
+							<a href="${contextPath}/front/r/article/${dongtai.articleId}" target="_blank"
+								title="${dongtai.title}"> <c:choose>
+										<c:when test="${fn:length(dongtai.title) > 23}">
+											<c:out value="${fn:substring(dongtai.title, 0, 23)}" />
 										</c:when>
 										<c:otherwise>
-											<c:out value="${dongtai.name}" />
+											<c:out value="${dongtai.title}" />
 										</c:otherwise>
 									</c:choose>
 							</a></li>
@@ -168,22 +169,22 @@ var _hmt = _hmt || [];
 					<div class="mt15 ohz"
 						style="margin-top: 0px; padding: 10px; border: 1px solid #CCCCCC;">
 						<p class="fl">
-							<a href="${contextPath}/channel/1603161551390001014" title="" target="_bank"> <img style="width:180px;height:120px;"
-								src="${contextPath}/fileServlet?fileName=${sysArticle.headimg}">
+							<a href="${contextPath}/channel/1603161551390001014" title="" target="_bank"> 
+								<img style="width:180px;height:120px;" src="${contextPath}/resources/theme/r/img/about.jpg" />
 							</a>
 						</p>
 						<div class="fr w270">
 							<p class="lh21 h63 ohz cnp">
 								<c:choose>
-									<c:when test="${fn:length(sysArticle.content) > 200}">
-										<c:out value="${fn:substring(sysArticle.content, 0, 200)}" />
+									<c:when test="${fn:length(introduceChannel.content) > 120}">
+										<c:out value="${fn:substring(introduceChannel.content, 0, 120)}" escapeXml="false" />
 									</c:when>
 									<c:otherwise>
-										<c:out value="${sysArticle.content}" />
+										<c:out value="${introduceChannel.content}"  escapeXml="false" />
 									</c:otherwise>
 								</c:choose>
 							</p>
-							<span class="v4-more fr"><a href="${contextPath}/channel/1603161551390001014" target="_blank">查看更多</a></span>
+							<span class="v4-more fr"><a href="${contextPath}/front/r/channel/55229185193119" target="_blank">查看更多</a></span>
 						</div>
 					</div>
 
@@ -293,7 +294,8 @@ var _hmt = _hmt || [];
 			</div>
 		</div>
 	</div>
-
+	
+</div>
 
 	<div class="container" style="width: 1000px;">
 		<div class="row">
@@ -303,37 +305,37 @@ var _hmt = _hmt || [];
 		<div class="row">
 			<div class="col-md-3" style="width: 250px; float: left;">
 				<div class="col-title">
-					<img src="${contextPath}/resources/img/icon1.png" /> 商务综合体领域
+					<img src="${contextPath}/resources/theme/r/img/icon1.png" /> 商务综合体领域
 				</div>
 				<p class="col-p">计划总投入约50亿，建设集会展、购物、娱乐、服务、文化、社交、住宅等功能于一体的大型商务、商业和住宅综合体。</p>
-				<a class="col-a" href="${contextPath}/channel/1603310449170009014">了解更多</a>
+				<a class="col-a" href="${contextPath}/front/r/channel/56472035632146">了解更多</a>
 			</div>
 			<div class="col-md-3" style="width: 250px; float: left;">
 				<div class="col-title">
-					<img src="${contextPath}/resources/img/icon2.png" /> 文化产业领域
+					<img src="${contextPath}/resources/theme/r/img/icon2.png" /> 文化产业领域
 				</div>
 				<p class="col-p">是一个集儿童水上乐园，陶艺、奇石、古玩、书画，曲艺、KTV、茶吧、影视院线、水族世界及餐饮、商务酒店等为一体的大型泉水文化综合体。</p>
-				<a class="col-a" href="${contextPath}/channel/1603310449340010018">了解更多</a>
+				<a class="col-a" href="${contextPath}/front/r/channel/56472052915150">了解更多</a>
 			</div>
 			<div class="col-md-3" style="width: 250px; float: left;">
 				<div class="col-title">
-					<img src="${contextPath}/resources/img/icon4.png" /> 特种纸领域
+					<img src="${contextPath}/resources/theme/r/img/icon4.png" /> 特种纸领域
 				</div>
 				<p class="col-p">建设特种纸研发中心，发展生活用纸和特种纸，建设绿色环保的“城市造纸”基地。</p>
-				<a class="col-a" href="${contextPath}/channel/1603310454550001014">了解更多</a>
+				<a class="col-a" href="${contextPath}/front/r/channel/56472090587179">了解更多</a>
 			</div>
 			<div class="col-md-3" style="width: 250px; float: left;">
 				<div class="col-title">
-					<img src="${contextPath}/resources/img/icon3.png" /> 电商物流领域
+					<img src="${contextPath}/resources/theme/r/img/icon3.png" /> 电商物流领域
 				</div>
 				<p class="col-p">占地500余亩，规划建设物流基地及所属加油站、加汽站等附属设施。</p>
-				<a class="col-a" href="${contextPath}/channel/1603310449500011019">了解更多</a>
+				<a class="col-a" href="${contextPath}/front/r/channel/56472072075163">了解更多</a>
 			</div>
 		</div>
 	</div>
 
 	<div class="container-fluid"
-		style="height: 300px; margin-top: 60px; background-color: #0082DA;">
+		style="height: 300px; margin-top: 60px; background-color: #0082DA; width:100%;" >
 		<div class="row"
 			style="margin: 0px auto; padding: 0px; width: 1000px; color: #FFF;">
 			<div class="col-md-7" style="float: left; width: 600px">
@@ -342,8 +344,8 @@ var _hmt = _hmt || [];
 						style="float: left; width: 150px">
 						<h3>关于润易</h3>
 						<ul>
-							<c:forEach items="${aboutChannel}" var="item">
-								<li><a href="${contextPath}/channel/${item.id}">${item.name}</a></li>
+							<c:forEach items="${aboutChannels}" var="item">
+								<li><a href="${contextPath}/front/r/channel/${item.channelId}">${item.channelName}</a></li>
 							</c:forEach>
 						</ul>
 					</div>
@@ -351,8 +353,8 @@ var _hmt = _hmt || [];
 						style="float: left; width: 150px">
 						<h3>润易产业</h3>
 						<ul>
-							<c:forEach items="${chanyeChannel}" var="item">
-								<li><a href="${contextPath}/channel/${item.id}">${item.name}</a></li>
+							<c:forEach items="${chanyeChannels}" var="item">
+								<li><a href="${contextPath}/front/r/channel/${item.channelId}">${item.channelName}</a></li>
 							</c:forEach>
 						</ul>
 					</div>
@@ -360,8 +362,8 @@ var _hmt = _hmt || [];
 						style="float: left; width: 150px">
 						<h3>产品服务</h3>
 						<ul>
-							<c:forEach items="${serviceChannel}" var="item">
-								<li><a href="${contextPath}/channel/${item.id}">${item.name}</a></li>
+							<c:forEach items="${serviceChannels}" var="item">
+								<li><a href="${contextPath}/front/r/channel/${item.channelId}">${item.channelName}</a></li>
 							</c:forEach>
 						</ul>
 					</div>
@@ -369,8 +371,8 @@ var _hmt = _hmt || [];
 						style="float: left; width: 150px">
 						<h3>联系我们</h3>
 						<ul>
-							<c:forEach items="${contactChannel}" var="item">
-								<li><a href="${contextPath}/channel/${item.id}">${item.name}</a></li>
+							<c:forEach items="${contactChannels}" var="item">
+								<li><a href="${contextPath}/front/r/channel/${item.channelId}">${item.channelName}</a></li>
 							</c:forEach>
 						</ul>
 					</div>
@@ -390,7 +392,7 @@ var _hmt = _hmt || [];
 			<div class="col-md-2" style="float: left; width: 150px;padding-left:40px;">
 				<div class="bottom-code">
 					<h3>润易集团</h3>
-					<img style="width: 90px" src="${contextPath}/resources/img/code.png" />
+					<img style="width: 90px" src="${contextPath}/resources/theme/r/img/code.png" />
 					<p style="padding: 5px 15px;">官方微信</p>
 				</div>
 			</div>
@@ -404,7 +406,7 @@ var _hmt = _hmt || [];
 		</div>
 	</div>
 </body>
-<script src="${contextPath}/resources/jQuery/jquery-1.8.3.min.js"></script>
+<script src="${contextPath}/resources/js/jquery-1.8.3.min.js"></script>
 <!--<script src="js/slide.min.js"></script>-->
 <script src="${contextPath}/resources/js/slide.js"></script>
 <script type="text/javascript">

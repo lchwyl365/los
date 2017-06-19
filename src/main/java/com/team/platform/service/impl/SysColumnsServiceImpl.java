@@ -143,7 +143,7 @@ System.out.println("propertyType:"+propertyType+ " db2SysColumn.getDataType():"+
 		record.setColtype(db2SysColumn.getDataType());
 		record.setNulls(db2SysColumn.getIsNullable());
 		record.setPropertyLength(db2SysColumn.getLength()==null?64:db2SysColumn.getLength());
-		record.setOrderNum(String.valueOf(++orderNum));
+		record.setOrderNum(++orderNum);
 		record.setIsprimary("F");
 		record.setIsselect("F");
 		record.setIslike("F");

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team.cms.mapper.CrmVideoMapper">
+  <resultMap id="BaseResultMap" type="com.team.cms.pojo.CrmVideo">
+    <id column="video_id" jdbcType="VARCHAR" property="videoId" />
+    <result column="video_title" jdbcType="VARCHAR" property="videoTitle" />
+    <result column="video_image" jdbcType="VARCHAR" property="videoImage" />
+    <result column="video_desc" jdbcType="VARCHAR" property="videoDesc" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="istop" jdbcType="VARCHAR" property="istop" />
+    <result column="ordernum" jdbcType="INTEGER" property="ordernum" />
+    <result column="clicks" jdbcType="INTEGER" property="clicks" />
+    <result column="youkuid" jdbcType="VARCHAR" property="youkuid" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    video_id, video_title, video_image, video_desc, createtime, istop, ordernum, clicks, 
+    youkuid, address
+  </sql>
+  <select id="selectByExample" parameterType="com.team.cms.pojo.CrmVideoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from crm_video
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from crm_video
+    where video_id = #{videoId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from crm_video
+    where video_id = #{videoId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.team.cms.pojo.CrmVideoExample">
+    delete from crm_video
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.team.cms.pojo.CrmVideo">
+    insert into crm_video (video_id, video_title, video_image, 
+      video_desc, createtime, istop, 
+      ordernum, clicks, youkuid, 
+      address)
+    values (#{videoId,jdbcType=VARCHAR}, #{videoTitle,jdbcType=VARCHAR}, #{videoImage,jdbcType=VARCHAR}, 
+      #{videoDesc,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{istop,jdbcType=VARCHAR}, 
+      #{ordernum,jdbcType=INTEGER}, #{clicks,jdbcType=INTEGER}, #{youkuid,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.team.cms.pojo.CrmVideo">
+    insert into crm_video
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="videoId != null">
+        video_id,
+      </if>
+      <if test="videoTitle != null">
+        video_title,
+      </if>
+      <if test="videoImage != null">
+        video_image,
+      </if>
+      <if test="videoDesc != null">
+        video_desc,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="istop != null">
+        istop,
+      </if>
+      <if test="ordernum != null">
+        ordernum,
+      </if>
+      <if test="clicks != null">
+        clicks,
+      </if>
+      <if test="youkuid != null">
+        youkuid,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="videoId != null">
+        #{videoId,jdbcType=VARCHAR},
+      </if>
+      <if test="videoTitle != null">
+        #{videoTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="videoImage != null">
+        #{videoImage,jdbcType=VARCHAR},
+      </if>
+      <if test="videoDesc != null">
+        #{videoDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="istop != null">
+        #{istop,jdbcType=VARCHAR},
+      </if>
+      <if test="ordernum != null">
+        #{ordernum,jdbcType=INTEGER},
+      </if>
+      <if test="clicks != null">
+        #{clicks,jdbcType=INTEGER},
+      </if>
+      <if test="youkuid != null">
+        #{youkuid,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.team.cms.pojo.CrmVideoExample" resultType="java.lang.Long">
+    select count(*) from crm_video
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update crm_video
+    <set>
+      <if test="record.videoId != null">
+        video_id = #{record.videoId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.videoTitle != null">
+        video_title = #{record.videoTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.videoImage != null">
+        video_image = #{record.videoImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.videoDesc != null">
+        video_desc = #{record.videoDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null">
+        createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.istop != null">
+        istop = #{record.istop,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ordernum != null">
+        ordernum = #{record.ordernum,jdbcType=INTEGER},
+      </if>
+      <if test="record.clicks != null">
+        clicks = #{record.clicks,jdbcType=INTEGER},
+      </if>
+      <if test="record.youkuid != null">
+        youkuid = #{record.youkuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update crm_video
+    set video_id = #{record.videoId,jdbcType=VARCHAR},
+      video_title = #{record.videoTitle,jdbcType=VARCHAR},
+      video_image = #{record.videoImage,jdbcType=VARCHAR},
+      video_desc = #{record.videoDesc,jdbcType=VARCHAR},
+      createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      istop = #{record.istop,jdbcType=VARCHAR},
+      ordernum = #{record.ordernum,jdbcType=INTEGER},
+      clicks = #{record.clicks,jdbcType=INTEGER},
+      youkuid = #{record.youkuid,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.team.cms.pojo.CrmVideo">
+    update crm_video
+    <set>
+      <if test="videoTitle != null">
+        video_title = #{videoTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="videoImage != null">
+        video_image = #{videoImage,jdbcType=VARCHAR},
+      </if>
+      <if test="videoDesc != null">
+        video_desc = #{videoDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="istop != null">
+        istop = #{istop,jdbcType=VARCHAR},
+      </if>
+      <if test="ordernum != null">
+        ordernum = #{ordernum,jdbcType=INTEGER},
+      </if>
+      <if test="clicks != null">
+        clicks = #{clicks,jdbcType=INTEGER},
+      </if>
+      <if test="youkuid != null">
+        youkuid = #{youkuid,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where video_id = #{videoId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.team.cms.pojo.CrmVideo">
+    update crm_video
+    set video_title = #{videoTitle,jdbcType=VARCHAR},
+      video_image = #{videoImage,jdbcType=VARCHAR},
+      video_desc = #{videoDesc,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      istop = #{istop,jdbcType=VARCHAR},
+      ordernum = #{ordernum,jdbcType=INTEGER},
+      clicks = #{clicks,jdbcType=INTEGER},
+      youkuid = #{youkuid,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR}
+    where video_id = #{videoId,jdbcType=VARCHAR}
+  </update>
+</mapper>

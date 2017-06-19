@@ -5,6 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <title>cms_channel修改</title>
+	<script type="text/javascript" charset="utf-8" src="${contextPath}/resources/js/kindeditor-4.1.10/kindeditor-min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="${contextPath}/resources/js/kindeditor-4.1.10/lang/zh_CN.js"></script>
     <style type="text/css">
     .form-table-td-left{
     	width:15%;
@@ -29,14 +31,6 @@
 				<table class="easyui-panel form-table">
 				   <tr>
 						<td class="form-table-td-left">
-							<label for="content">栏目内容:</label>
-						</td>
-						<td class="form-table-td-right">
-								<input class="easyui-validatebox" type="text" name="content" data-options="required:true,validType:['length[0,16777215]']" style="width:320px;height:28px;"/>
-						</td>
-				    </tr>
-				   <tr>
-						<td class="form-table-td-left">
 							<label for="channelName">栏目名称:</label>
 						</td>
 						<td class="form-table-td-right">
@@ -56,7 +50,10 @@
 							<label for="istop">顶级栏目:</label>
 						</td>
 						<td class="form-table-td-right">
-								<input class="easyui-switchbutton" name="istop" data-options="onText:'开启',offText:'冻结',checked:true">
+							<input type="radio" id="radio_on" name="istop" value="on"/>
+							<label for="radio_on">显示</label>
+							<input type="radio" id="radio_off" name="istop" value="off"/>
+							<label for="radio_off">隐藏</label>
 						</td>
 				    </tr>
 				   <tr>
@@ -98,16 +95,37 @@
 							<label for="status">状态:</label>
 						</td>
 						<td class="form-table-td-right">
-								<input class="easyui-switchbutton" name="status" data-options="onText:'开启',offText:'冻结',checked:true">
+							<input type="radio" id="radio_on" name="status" value="on"/>
+							<label for="radio_on">显示</label>
+							<input type="radio" id="radio_off" name="status" value="off"/>
+							<label for="radio_off">隐藏</label>
 						</td>
 				    </tr>
 				</table>
+				<div>
+					<p>栏目内容:</p>
+					<textarea name="content" class="common-textarea" id="content" style="width:91%; height:500px;visibility:hidden;"></textarea>
+				</div>
 			</form>
 		</div>
 	</div>
 <script type="text/javascript">
+var contentEditor = null;
 $(function(){
 	
+    contentEditor = KindEditor.create('textarea[name="content"]', {
+	    uploadJson : contextPath + '/kindeditor/fileUpload',  
+	    fileManagerJson : contextPath + '/kindeditor/fileManager',  
+	    allowFileManager : true,
+	    items : ['source', '|', 'undo', 'redo', '|', 'preview', 'template', 'cut', 'copy', 'paste',
+	             'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+	             'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
+	             'superscript', 'clearhtml', 'quickformat', 'selectall', '|', 'fullscreen', '/',
+	             'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+	            'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image','multiimage',
+	            'flash', 'media', 'insertfile', 'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
+	            'anchor', 'link', 'unlink']
+	});
 });
 var contentUpdatePage  = {
 	initFormData:function(){
@@ -116,6 +134,7 @@ var contentUpdatePage  = {
 		$.get(url,function(data){
 			if(data.status == 200){
 				$("#contentEditForm").form("load",data.data);
+						KindEditor.html('#content', data.data.content);
 			}
 		});
 	},
@@ -124,6 +143,7 @@ var contentUpdatePage  = {
 			$.messager.alert('提示','表单还未填写完成!');
 			return ;
 		}
+		contentEditor.sync();
 		$.post("${contextPath}/cms/channel/update",$("#contentEditForm").serialize(), function(data){
 			if(data.status == 200){
 				$.messager.alert('提示','修改成功!');

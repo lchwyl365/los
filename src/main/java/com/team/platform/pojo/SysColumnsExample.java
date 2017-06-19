@@ -1820,62 +1820,52 @@ public class SysColumnsExample {
             return (Criteria) this;
         }
 
-        public Criteria andOrderNumEqualTo(String value) {
+        public Criteria andOrderNumEqualTo(Integer value) {
             addCriterion("ORDER_NUM =", value, "orderNum");
             return (Criteria) this;
         }
 
-        public Criteria andOrderNumNotEqualTo(String value) {
+        public Criteria andOrderNumNotEqualTo(Integer value) {
             addCriterion("ORDER_NUM <>", value, "orderNum");
             return (Criteria) this;
         }
 
-        public Criteria andOrderNumGreaterThan(String value) {
+        public Criteria andOrderNumGreaterThan(Integer value) {
             addCriterion("ORDER_NUM >", value, "orderNum");
             return (Criteria) this;
         }
 
-        public Criteria andOrderNumGreaterThanOrEqualTo(String value) {
+        public Criteria andOrderNumGreaterThanOrEqualTo(Integer value) {
             addCriterion("ORDER_NUM >=", value, "orderNum");
             return (Criteria) this;
         }
 
-        public Criteria andOrderNumLessThan(String value) {
+        public Criteria andOrderNumLessThan(Integer value) {
             addCriterion("ORDER_NUM <", value, "orderNum");
             return (Criteria) this;
         }
 
-        public Criteria andOrderNumLessThanOrEqualTo(String value) {
+        public Criteria andOrderNumLessThanOrEqualTo(Integer value) {
             addCriterion("ORDER_NUM <=", value, "orderNum");
             return (Criteria) this;
         }
 
-        public Criteria andOrderNumLike(String value) {
-            addCriterion("ORDER_NUM like", value, "orderNum");
-            return (Criteria) this;
-        }
-
-        public Criteria andOrderNumNotLike(String value) {
-            addCriterion("ORDER_NUM not like", value, "orderNum");
-            return (Criteria) this;
-        }
-
-        public Criteria andOrderNumIn(List<String> values) {
+        public Criteria andOrderNumIn(List<Integer> values) {
             addCriterion("ORDER_NUM in", values, "orderNum");
             return (Criteria) this;
         }
 
-        public Criteria andOrderNumNotIn(List<String> values) {
+        public Criteria andOrderNumNotIn(List<Integer> values) {
             addCriterion("ORDER_NUM not in", values, "orderNum");
             return (Criteria) this;
         }
 
-        public Criteria andOrderNumBetween(String value1, String value2) {
+        public Criteria andOrderNumBetween(Integer value1, Integer value2) {
             addCriterion("ORDER_NUM between", value1, value2, "orderNum");
             return (Criteria) this;
         }
 
-        public Criteria andOrderNumNotBetween(String value1, String value2) {
+        public Criteria andOrderNumNotBetween(Integer value1, Integer value2) {
             addCriterion("ORDER_NUM not between", value1, value2, "orderNum");
             return (Criteria) this;
         }

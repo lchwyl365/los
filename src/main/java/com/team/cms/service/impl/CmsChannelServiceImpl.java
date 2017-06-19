@@ -40,11 +40,9 @@ public class CmsChannelServiceImpl implements CmsChannelService {
 			criteria.andPidEqualTo(pid);
 		}
 		//排序
-		/*
-		if(StringUtils.isNotEmpty(dgm.getSort())){
+		/*if(StringUtils.isNotEmpty(dgm.getSort())){
 			example.setOrderByClause(dgm.getSort() + " " + dgm.getOrder());
-		}
-		*/
+		}*/
 		List<CmsChannelVo> cmsChannelVoList = new ArrayList<CmsChannelVo>();
 		List<CmsChannel> list = cmsChannelMapper.selectByExample(example);
 		for (CmsChannel cmsChannel : list) {
@@ -75,6 +73,7 @@ public class CmsChannelServiceImpl implements CmsChannelService {
 		  	if(StringUtils.isEmpty(cmsChannel.getChannelId())){
 				cmsChannel.setChannelId(PrimaryKeyFactory.generatePK(""));
 			}
+			cmsChannel.setCreatetime(new Date());
 			cmsChannelMapper.insert(cmsChannel);
 			return ResponseResult.ok();
 		} catch (Exception e) {
@@ -123,5 +122,22 @@ public class CmsChannelServiceImpl implements CmsChannelService {
 			e.printStackTrace();
 			return ResponseResult.build(ResponseResult.ERROR, e.getMessage());
 		}
+	}
+
+	@Override
+	public List<CmsChannel> selectByChannel(CmsChannel cmsChannel) {
+		//查询列表
+		CmsChannelExample example = new CmsChannelExample();
+		Criteria criteria = example.createCriteria();
+		if(StringUtils.isNotEmpty(cmsChannel.getPid())){
+			criteria.andPidEqualTo(cmsChannel.getPid());
+		}
+		if(StringUtils.isNotEmpty(cmsChannel.getIstop())){
+			criteria.andIstopEqualTo(cmsChannel.getIstop());
+		}
+		//排序
+		example.setOrderByClause("channel_sort desc");
+		List<CmsChannel> list = cmsChannelMapper.selectByExample(example);
+		return list;
 	}
 }

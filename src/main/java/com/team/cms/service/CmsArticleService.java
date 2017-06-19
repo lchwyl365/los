@@ -20,5 +20,7 @@ public interface CmsArticleService {
 	public ResponseResult delete(List<String> articleIds);
 
 	public ResponseResult update(CmsArticle cmsArticle);
+
+	public List<CmsArticle> selectByArticle(CmsArticle cmsArticle);
 	
 }

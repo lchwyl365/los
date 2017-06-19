@@ -109,7 +109,7 @@ public class SysColumns extends SysColumnsKey {
     /**
      * 序号
      */
-    private String orderNum;
+    private Integer orderNum;
 
     /**
      * 字段序号
@@ -451,7 +451,7 @@ public class SysColumns extends SysColumnsKey {
      * 序号
      * @return ORDER_NUM 序号
      */
-    public String getOrderNum() {
+    public Integer getOrderNum() {
         return orderNum;
     }
 
@@ -459,7 +459,7 @@ public class SysColumns extends SysColumnsKey {
      * 序号
      * @param orderNum 序号
      */
-    public void setOrderNum(String orderNum) {
-        this.orderNum = orderNum == null ? null : orderNum.trim();
+    public void setOrderNum(Integer orderNum) {
+        this.orderNum = orderNum;
     }
 }
