@@ -5,7 +5,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.team.cms.pojo.CmsArticle;
 import com.team.cms.pojo.CmsBanner;
 import com.team.cms.pojo.CmsChannel;
+import com.team.cms.pojo.CmsVideo;
 import com.team.cms.service.CmsArticleService;
 import com.team.cms.service.CmsBannerService;
 import com.team.cms.service.CmsChannelService;
+import com.team.cms.service.CmsVideoService;
 import com.team.common.pojo.EUDataGridModel;
 import com.team.common.pojo.EUDataGridResult;
 
@@ -33,7 +34,9 @@ public class FrontController {
 	private CmsBannerService cmsBannerService;
 	@Autowired
 	private CmsArticleService cmsArticleService;
-	
+	@Autowired
+	private CmsVideoService cmsVideoService;
+
 	@RequestMapping(value = "/index",method = RequestMethod.GET)
     public String index(HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
 		//顶部栏目导航
@@ -81,10 +84,11 @@ public class FrontController {
     	model.addAttribute("contactChannels", contactChannels);
     	
     	//视频内容
-    	/*
-    	List<CrmVideo> videoList = crmVideoService.listByTop();
+    	CmsVideo cmsVideo = new CmsVideo();
+    	cmsVideo.setIstop("on");
+    	List<CmsVideo> videoList = cmsVideoService.selectByCmsVideo(cmsVideo);
     	if(videoList.size() > 4){ videoList = videoList.subList(0, 4); }
-    	model.addAttribute("videoList", videoList);*/
+    	model.addAttribute("videoList", videoList);
     	//集团简介
     	CmsChannel introduceChannel = cmsChannelService.selectByPrimaryKey("55229185193119");
     	model.addAttribute("introduceChannel", introduceChannel);
@@ -191,6 +195,61 @@ public class FrontController {
     	}
     	
     	return "front/r/article";
+    }
+	
+	@RequestMapping(value = "/videos",method = RequestMethod.GET)
+    public String videos(Model model) throws Exception{
+    
+		//顶部栏目导航
+		CmsChannel cmsChannel = new CmsChannel();
+		cmsChannel.setPid("0");
+		cmsChannel.setIstop("on");
+		List<CmsChannel> channelList = cmsChannelService.selectByChannel(cmsChannel);
+		model.addAttribute("channelList", channelList);
+    	
+    	//视频内容
+    	CmsVideo cmsVideo = new CmsVideo();
+    	cmsVideo.setIstop("on");
+    	List<CmsVideo> videoList = cmsVideoService.selectByCmsVideo(cmsVideo);
+    	model.addAttribute("videoList", videoList);
+    	
+    	/*List<CmsChannel> subChannelList = cmsChannelService.listByParentid(1606022304170001014L);
+    	for (int i = 0; i < subChannelList.size(); i++) {
+			CmsChannel channel = subChannelList.get(i);
+			
+			List<CrmVideo> videos = crmVideoService.listByChannel(channel.getId());
+			for (int j = 0; j < videos.size(); j++) {
+				switch(j){
+				case 0:
+					channel.setFirstVideo(videos.get(j));
+					break;
+				case 1:
+				case 2:
+				case 3:
+					List<CrmVideo> secondVideoList = channel.getSecondVideoList();
+					if(secondVideoList == null) { secondVideoList = new ArrayList<CrmVideo>();}
+					secondVideoList.add(videos.get(j));
+					channel.setSecondVideoList(secondVideoList);
+					break;
+				case 4:
+				case 5:
+					List<CrmVideo> threeVideoList = channel.getThreeVideoList();
+					if(threeVideoList == null) { threeVideoList = new ArrayList<CrmVideo>();}
+					threeVideoList.add(videos.get(j));
+					channel.setThreeVideoList(threeVideoList);
+					break;
+				}
+			}
+		}
+    	model.addAttribute("subChannelList", subChannelList);
+    	
+    	List<CrmVideo> orderList = crmVideoService.listOrderByClick();
+    	model.addAttribute("orderList", orderList);
+    	
+    	List<CrmVideo> newList = crmVideoService.listOrderByTime();
+    	model.addAttribute("newList", newList);*/
+    	
+    	return "web/videos";
     }
 	
 }

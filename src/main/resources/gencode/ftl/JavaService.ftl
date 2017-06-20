@@ -20,6 +20,8 @@ public interface ${model.domainObjectName}Service {
 <#elseif model.gentype == "TreeGrid">
 	public List<${model.domainObjectName}Vo> selectList(String ${model.parentField});
 </#if>
+
+	public List<${model.domainObjectName}> selectBy${model.domainObjectName}(${model.domainObjectName} ${model.variableName});
 	
 	public ${model.domainObjectName} selectByPrimaryKey(${model.primaryKey});
 

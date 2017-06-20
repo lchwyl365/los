@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class CrmVideoExample {
+public class CmsVideoExample {
     /**
-     * crm_video
+     * cms_video
      */
     protected String orderByClause;
 
     /**
-     * crm_video
+     * cms_video
      */
     protected boolean distinct;
 
     /**
-     * crm_video
+     * cms_video
      */
     protected List<Criteria> oredCriteria;
 
@@ -24,7 +24,7 @@ public class CrmVideoExample {
      *
      * @mbg.generated
      */
-    public CrmVideoExample() {
+    public CmsVideoExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -118,7 +118,7 @@ public class CrmVideoExample {
     }
 
     /**
-     * crm_video null
+     * cms_video null
      */
     protected abstract static class GeneratedCriteria {
         protected List<Criterion> criteria;
@@ -833,7 +833,7 @@ public class CrmVideoExample {
     }
 
     /**
-     * crm_video
+     * cms_video
      */
     public static class Criteria extends GeneratedCriteria {
 
@@ -843,7 +843,7 @@ public class CrmVideoExample {
     }
 
     /**
-     * crm_video null
+     * cms_video null
      */
     public static class Criterion {
         private String condition;

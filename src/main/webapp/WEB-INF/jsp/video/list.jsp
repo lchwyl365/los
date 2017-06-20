@@ -29,11 +29,11 @@
 			rownumbers:true, //显示行号
 			columns:[[
 				{field:'ck',checkbox:true,width:2}, //显示复选框
+				{field:'video_image',title:'视频图片',width:100,sortable:'F',
+						formatter:function(value,row,index){ var e = '<p><img src="'+row.videoImage+'" height="80" /></p>';return e;}
+				},
 				{field:'video_title',title:'视频标题',width:100,sortable:'F',
 						formatter:function(value,row,index){return row.videoTitle;}
-				},
-				{field:'video_image',title:'视频图片',width:100,sortable:'F',
-						formatter:function(value,row,index){return row.videoImage;}
 				},
 				{field:'createtime',title:'发布时间',width:100,sortable:'F',
 						formatter:function(value,row,index){if (row.createtime != null) {var date = new Date(row.createtime);return date.format('yyyy-MM-dd hh:mm:ss');}return '';}
@@ -57,14 +57,14 @@
 			}
 		});
 		
-		$("#add-btn").bind('click',CrmVideo.addRow);
-		$("#del-btn").bind('click',CrmVideo.deleteRow);
-		$("#edit-btn").bind('click',CrmVideo.updateRow);
-		$("#search-btn").bind('click',CrmVideo.search);
-		$("#clear-btn").bind('click',CrmVideo.clear);
+		$("#add-btn").bind('click',CmsVideo.addRow);
+		$("#del-btn").bind('click',CmsVideo.deleteRow);
+		$("#edit-btn").bind('click',CmsVideo.updateRow);
+		$("#search-btn").bind('click',CmsVideo.search);
+		$("#clear-btn").bind('click',CmsVideo.clear);
 
 	});
-    var CrmVideo = {
+    var CmsVideo = {
     		addRow:function(){//新增
   				window.self.location = "${contextPath}/cms/video/add";
     		},
@@ -112,7 +112,7 @@
     		//清空查询条件
     		clear:function(){
     			$('#crmVideoForm').form('clear');
-    			CrmVideo.search();
+    			CmsVideo.search();
     		}
 	};
     </script>

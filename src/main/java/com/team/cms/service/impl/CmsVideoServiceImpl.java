@@ -16,11 +16,11 @@ import com.team.common.util.ExceptionUtil;
 
 import com.team.common.pojo.ResponseResult;
 import com.team.common.util.PrimaryKeyFactory;
-import com.team.cms.mapper.CrmVideoMapper;
-import com.team.cms.pojo.CrmVideo;
-import com.team.cms.pojo.CrmVideoExample;
-import com.team.cms.pojo.CrmVideoExample.Criteria;
-import com.team.cms.service.CrmVideoService;
+import com.team.cms.mapper.CmsVideoMapper;
+import com.team.cms.pojo.CmsVideo;
+import com.team.cms.pojo.CmsVideoExample;
+import com.team.cms.pojo.CmsVideoExample.Criteria;
+import com.team.cms.service.CmsVideoService;
 
 
 
@@ -29,15 +29,15 @@ import com.team.cms.service.CrmVideoService;
  * Created by liuchao on 2017/02/21
  */
 @Service
-public class CrmVideoServiceImpl implements CrmVideoService {
+public class CmsVideoServiceImpl implements CmsVideoService {
 
 	@Autowired
-	private CrmVideoMapper crmVideoMapper;
+	private CmsVideoMapper crmVideoMapper;
 	
-	public EUDataGridResult selectList(EUDataGridModel dgm, CrmVideo crmVideo) {
+	public EUDataGridResult selectList(EUDataGridModel dgm, CmsVideo crmVideo) {
 		
 		//查询列表
-		CrmVideoExample example = new CrmVideoExample();
+		CmsVideoExample example = new CmsVideoExample();
 		Criteria criteria = example.createCriteria();
 		
 	
@@ -47,19 +47,29 @@ public class CrmVideoServiceImpl implements CrmVideoService {
 		}
 		//分页处理
 		PageHelper.startPage(dgm.getPage(), dgm.getRows());
-		List<CrmVideo> list = crmVideoMapper.selectByExample(example);
+		List<CmsVideo> list = crmVideoMapper.selectByExample(example);
 		//创建一个返回值对象
 		EUDataGridResult result = new EUDataGridResult();
 		result.setRows(list);
 		//取记录总条数
-		PageInfo<CrmVideo> pageInfo = new PageInfo<CrmVideo>(list);
+		PageInfo<CmsVideo> pageInfo = new PageInfo<CmsVideo>(list);
 		result.setTotal(pageInfo.getTotal());
 		return result;
 	}
 	
+	
+	public List<CmsVideo> selectByCmsVideo(CmsVideo crmVideo){
+		//查询列表
+		CmsVideoExample example = new CmsVideoExample();
+		Criteria criteria = example.createCriteria();
+		
+	
+		List<CmsVideo> list = crmVideoMapper.selectByExample(example);
+		return list;
+	}
 
 	@Override
-	public ResponseResult insert(CrmVideo crmVideo) {
+	public ResponseResult insert(CmsVideo crmVideo) {
 		try {
 			//补全pojo内容
 		  	if(StringUtils.isEmpty(crmVideo.getVideoId())){
@@ -90,17 +100,17 @@ public class CrmVideoServiceImpl implements CrmVideoService {
 	}
 
 	@Override
-	public CrmVideo selectByPrimaryKey(String videoId) {
-		CrmVideo crmVideo = crmVideoMapper.selectByPrimaryKey(videoId);
+	public CmsVideo selectByPrimaryKey(String videoId) {
+		CmsVideo crmVideo = crmVideoMapper.selectByPrimaryKey(videoId);
 		return crmVideo;
 	}
 
 	@Override
-	public ResponseResult update(CrmVideo crmVideo) {
+	public ResponseResult update(CmsVideo crmVideo) {
 		try {
-			CrmVideo temp = crmVideoMapper.selectByPrimaryKey(crmVideo.getVideoId());
-			temp.setVideoTitle(crmVideo.getVideoTitle());
+			CmsVideo temp = crmVideoMapper.selectByPrimaryKey(crmVideo.getVideoId());
 			temp.setVideoImage(crmVideo.getVideoImage());
+			temp.setVideoTitle(crmVideo.getVideoTitle());
 			temp.setVideoDesc(crmVideo.getVideoDesc());
 			temp.setCreatetime(crmVideo.getCreatetime());
 			temp.setIstop(crmVideo.getIstop());

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.team.cms.mapper.CrmVideoMapper">
-  <resultMap id="BaseResultMap" type="com.team.cms.pojo.CrmVideo">
+<mapper namespace="com.team.cms.mapper.CmsVideoMapper">
+  <resultMap id="BaseResultMap" type="com.team.cms.pojo.CmsVideo">
     <id column="video_id" jdbcType="VARCHAR" property="videoId" />
     <result column="video_title" jdbcType="VARCHAR" property="videoTitle" />
     <result column="video_image" jdbcType="VARCHAR" property="videoImage" />
@@ -75,13 +75,13 @@
     video_id, video_title, video_image, video_desc, createtime, istop, ordernum, clicks, 
     youkuid, address
   </sql>
-  <select id="selectByExample" parameterType="com.team.cms.pojo.CrmVideoExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.team.cms.pojo.CmsVideoExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from crm_video
+    from cms_video
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -92,21 +92,21 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from crm_video
+    from cms_video
     where video_id = #{videoId,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from crm_video
+    delete from cms_video
     where video_id = #{videoId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.team.cms.pojo.CrmVideoExample">
-    delete from crm_video
+  <delete id="deleteByExample" parameterType="com.team.cms.pojo.CmsVideoExample">
+    delete from cms_video
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.team.cms.pojo.CrmVideo">
-    insert into crm_video (video_id, video_title, video_image, 
+  <insert id="insert" parameterType="com.team.cms.pojo.CmsVideo">
+    insert into cms_video (video_id, video_title, video_image, 
       video_desc, createtime, istop, 
       ordernum, clicks, youkuid, 
       address)
@@ -115,8 +115,8 @@
       #{ordernum,jdbcType=INTEGER}, #{clicks,jdbcType=INTEGER}, #{youkuid,jdbcType=VARCHAR}, 
       #{address,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.team.cms.pojo.CrmVideo">
-    insert into crm_video
+  <insert id="insertSelective" parameterType="com.team.cms.pojo.CmsVideo">
+    insert into cms_video
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="videoId != null">
         video_id,
@@ -182,14 +182,14 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.team.cms.pojo.CrmVideoExample" resultType="java.lang.Long">
-    select count(*) from crm_video
+  <select id="countByExample" parameterType="com.team.cms.pojo.CmsVideoExample" resultType="java.lang.Long">
+    select count(*) from cms_video
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update crm_video
+    update cms_video
     <set>
       <if test="record.videoId != null">
         video_id = #{record.videoId,jdbcType=VARCHAR},
@@ -227,7 +227,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update crm_video
+    update cms_video
     set video_id = #{record.videoId,jdbcType=VARCHAR},
       video_title = #{record.videoTitle,jdbcType=VARCHAR},
       video_image = #{record.videoImage,jdbcType=VARCHAR},
@@ -242,8 +242,8 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.team.cms.pojo.CrmVideo">
-    update crm_video
+  <update id="updateByPrimaryKeySelective" parameterType="com.team.cms.pojo.CmsVideo">
+    update cms_video
     <set>
       <if test="videoTitle != null">
         video_title = #{videoTitle,jdbcType=VARCHAR},
@@ -275,8 +275,8 @@
     </set>
     where video_id = #{videoId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.team.cms.pojo.CrmVideo">
-    update crm_video
+  <update id="updateByPrimaryKey" parameterType="com.team.cms.pojo.CmsVideo">
+    update cms_video
     set video_title = #{videoTitle,jdbcType=VARCHAR},
       video_image = #{videoImage,jdbcType=VARCHAR},
       video_desc = #{videoDesc,jdbcType=VARCHAR},

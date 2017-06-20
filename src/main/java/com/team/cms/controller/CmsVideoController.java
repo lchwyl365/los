@@ -19,8 +19,8 @@ import com.team.common.pojo.EUDataGridModel;
 import com.team.common.pojo.EUDataGridResult;
 
 import com.team.common.pojo.ResponseResult;
-import com.team.cms.pojo.CrmVideo;
-import com.team.cms.service.CrmVideoService;
+import com.team.cms.pojo.CmsVideo;
+import com.team.cms.service.CmsVideoService;
 import javax.servlet.ServletContext;
 import java.io.File;
 import com.team.common.util.FileUtil;
@@ -31,12 +31,12 @@ import java.util.Random;
 
 @Controller
 @RequestMapping("/cms/video")
-public class CrmVideoController {
+public class CmsVideoController {
 
-	private static final Logger logger = Logger.getLogger(CrmVideoController.class);
+	private static final Logger logger = Logger.getLogger(CmsVideoController.class);
 	
 	@Autowired
-	private CrmVideoService crmVideoService;
+	private CmsVideoService crmVideoService;
 	
 	
 	@RequestMapping(value = "/list",method = RequestMethod.GET)
@@ -56,12 +56,11 @@ public class CrmVideoController {
 		
 		ServletContext application = request.getSession().getServletContext();
 		
-		CrmVideo crmVideo = new CrmVideo();
+		CmsVideo crmVideo = new CmsVideo();
         crmVideo.setVideoTitle(String.valueOf(request.getParameter("videoTitle")));
         crmVideo.setVideoDesc(String.valueOf(request.getParameter("videoDesc")));
         crmVideo.setIstop(String.valueOf(request.getParameter("istop")));
         crmVideo.setOrdernum(Integer.valueOf(request.getParameter("ordernum")));
-        crmVideo.setClicks(Integer.valueOf(request.getParameter("clicks")));
         crmVideo.setYoukuid(String.valueOf(request.getParameter("youkuid")));
 		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
 		// 文件保存目录URL
@@ -101,10 +100,10 @@ public class CrmVideoController {
 	@ResponseBody
     public ResponseResult update(HttpServletRequest request) throws Exception{
     
-    	CrmVideo crmVideo = new CrmVideo();
+    	CmsVideo crmVideo = new CmsVideo();
 		crmVideo.setVideoId(String.valueOf(request.getParameter("videoId")));
-		crmVideo.setVideoTitle(String.valueOf(request.getParameter("videoTitle")));
 		crmVideo.setVideoImage(String.valueOf(request.getParameter("videoImage")));
+		crmVideo.setVideoTitle(String.valueOf(request.getParameter("videoTitle")));
 		crmVideo.setVideoDesc(String.valueOf(request.getParameter("videoDesc")));
 		crmVideo.setIstop(String.valueOf(request.getParameter("istop")));
 		crmVideo.setOrdernum(Integer.valueOf(request.getParameter("ordernum")));
@@ -116,7 +115,7 @@ public class CrmVideoController {
 	
 	@RequestMapping(value = "/queryList",method = RequestMethod.POST)
 	@ResponseBody
-    public EUDataGridResult queryList(EUDataGridModel dgm,CrmVideo crmVideo) throws Exception{
+    public EUDataGridResult queryList(EUDataGridModel dgm,CmsVideo crmVideo) throws Exception{
 		EUDataGridResult result = crmVideoService.selectList(dgm, crmVideo);
     	return result;
     }
@@ -124,7 +123,7 @@ public class CrmVideoController {
 	@RequestMapping(value="/load/{videoId}",method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseResult load(@PathVariable String videoId) {
-		CrmVideo crmVideo = crmVideoService.selectByPrimaryKey(videoId);
+		CmsVideo crmVideo = crmVideoService.selectByPrimaryKey(videoId);
 		return new ResponseResult(crmVideo);
 	}
 	

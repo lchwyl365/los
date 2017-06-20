@@ -54,6 +54,11 @@ public class CmsArticle {
     private String status;
 
     /**
+     * 域名
+     */
+    private String domainName;
+
+    /**
      * 文章内容
      */
     private String content;
@@ -216,6 +221,22 @@ public class CmsArticle {
      */
     public void setStatus(String status) {
         this.status = status == null ? null : status.trim();
+    }
+
+    /**
+     * 域名
+     * @return domain_name 域名
+     */
+    public String getDomainName() {
+        return domainName;
+    }
+
+    /**
+     * 域名
+     * @param domainName 域名
+     */
+    public void setDomainName(String domainName) {
+        this.domainName = domainName == null ? null : domainName.trim();
     }
 
     /**

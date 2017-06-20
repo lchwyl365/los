@@ -840,6 +840,76 @@ public class CmsArticleExample {
             addCriterion("status not between", value1, value2, "status");
             return (Criteria) this;
         }
+
+        public Criteria andDomainNameIsNull() {
+            addCriterion("domain_name is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainNameIsNotNull() {
+            addCriterion("domain_name is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainNameEqualTo(String value) {
+            addCriterion("domain_name =", value, "domainName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainNameNotEqualTo(String value) {
+            addCriterion("domain_name <>", value, "domainName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainNameGreaterThan(String value) {
+            addCriterion("domain_name >", value, "domainName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainNameGreaterThanOrEqualTo(String value) {
+            addCriterion("domain_name >=", value, "domainName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainNameLessThan(String value) {
+            addCriterion("domain_name <", value, "domainName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainNameLessThanOrEqualTo(String value) {
+            addCriterion("domain_name <=", value, "domainName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainNameLike(String value) {
+            addCriterion("domain_name like", value, "domainName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainNameNotLike(String value) {
+            addCriterion("domain_name not like", value, "domainName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainNameIn(List<String> values) {
+            addCriterion("domain_name in", values, "domainName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainNameNotIn(List<String> values) {
+            addCriterion("domain_name not in", values, "domainName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainNameBetween(String value1, String value2) {
+            addCriterion("domain_name between", value1, value2, "domainName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainNameNotBetween(String value1, String value2) {
+            addCriterion("domain_name not between", value1, value2, "domainName");
+            return (Criteria) this;
+        }
     }
 
     /**

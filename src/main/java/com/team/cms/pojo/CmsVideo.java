@@ -2,7 +2,7 @@ package com.team.cms.pojo;
 
 import java.util.Date;
 
-public class CrmVideo {
+public class CmsVideo {
     /**
      * 视频编号
      */

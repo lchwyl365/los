@@ -50,7 +50,7 @@
 							<label for="keywords">关键字:</label>
 						</td>
 						<td class="form-table-td-right">
-								<input class="easyui-validatebox" type="text" name="keywords" data-options="required:true,validType:['length[0,255]']" style="width:320px;height:28px;"/>
+								<input class="easyui-validatebox" type="text" name="keywords" data-options="required:false,validType:['length[0,255]']" style="width:320px;height:28px;"/>
 						</td>
 				    </tr>
 				   <tr>
@@ -58,7 +58,7 @@
 							<label for="description">文章描述:</label>
 						</td>
 						<td class="form-table-td-right">
-								<input class="easyui-validatebox" type="text" name="description" data-options="required:true,validType:['length[0,500]']" style="width:320px;height:28px;"/>
+								<input class="easyui-validatebox" type="text" name="description" data-options="required:false,validType:['length[0,500]']" style="width:320px;height:28px;"/>
 						</td>
 				    </tr>
 				   <tr>

@@ -28,18 +28,18 @@
 				<table class="easyui-panel form-table">
 				   <tr>
 						<td class="form-table-td-left">
-							<label for="videoTitle">视频标题:</label>
-						</td>
-						<td class="form-table-td-right">
-								<input class="easyui-validatebox" type="text" name="videoTitle" data-options="required:true,validType:['length[0,255]']" style="width:320px;height:28px;"/>
-						</td>
-				    </tr>
-				   <tr>
-						<td class="form-table-td-left">
 							<label for="videoImage">视频图片:</label>
 						</td>
 						<td class="form-table-td-right">
 								<input type="file" name="videoImage" />
+						</td>
+				    </tr>
+				   <tr>
+						<td class="form-table-td-left">
+							<label for="videoTitle">视频标题:</label>
+						</td>
+						<td class="form-table-td-right">
+								<input class="easyui-validatebox" type="text" name="videoTitle" data-options="required:true,validType:['length[0,255]']" style="width:320px;height:28px;"/>
 						</td>
 				    </tr>
 				   <tr>
@@ -55,7 +55,10 @@
 							<label for="istop">顶部显示:</label>
 						</td>
 						<td class="form-table-td-right">
-								<input class="easyui-validatebox" type="text" name="istop" data-options="required:true,validType:['length[0,10]']" style="width:320px;height:28px;"/>
+							<input type="radio" id="radio_on" name="istop" checked="checked" value="on"/>
+							<label for="radio_on">显示</label>		
+							<input type="radio" id="radio_off" name="istop" value="off"/>
+							<label for="radio_off">隐藏</label>			
 						</td>
 				    </tr>
 				   <tr>
@@ -64,14 +67,6 @@
 						</td>
 						<td class="form-table-td-right">
 								<input class="easyui-validatebox" type="text" name="ordernum" data-options="required:true,validType:['length[0,64]']" style="width:320px;height:28px;"/>
-						</td>
-				    </tr>
-				   <tr>
-						<td class="form-table-td-left">
-							<label for="clicks">点击次数:</label>
-						</td>
-						<td class="form-table-td-right">
-								<input class="easyui-validatebox" type="text" name="clicks" data-options="required:true,validType:['length[0,64]']" style="width:320px;height:28px;"/>
 						</td>
 				    </tr>
 				   <tr>

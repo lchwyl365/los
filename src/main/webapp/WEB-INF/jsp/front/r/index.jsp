@@ -201,15 +201,15 @@ var _hmt = _hmt || [];
 								<ul class="pic">
 									<c:forEach items="${videoList}" var="video" varStatus="st">
 										<c:if test="${st.index == 0}">
-											<li id="pic_${video.id}" style="display: block; opacity: 1;">
-												<a href="${contextPath}/video_detail/${video.id}" title="${video.title}" target="_blank">
-												<img src="${contextPath}/fileServlet?fileName=video/${video.image}" height="200" width="268"></a>
+											<li id="pic_${video.videoId}" style="display: block; opacity: 1;">
+												<a href="${contextPath}/video_detail/${video.videoId}" title="${video.videoTitle}" target="_blank">
+												<img src="${video.videoImage}" height="200" width="268"></a>
 											</li>
 										</c:if>
 										<c:if test="${st.index != 0}">
-											<li id="pic_${video.id}" style="display: none; opacity: 1;">
-												<a href="${contextPath}/video_detail/${video.id}" title="${video.title}" target="_blank">
-												<img src="${contextPath}/fileServlet?fileName=video/${video.image}" height="200" width="268"></a>
+											<li id="pic_${video.videoId}" style="display: none; opacity: 1;">
+												<a href="${contextPath}/video_detail/${video.videoId}" title="${video.videoTitle}" target="_blank">
+												<img src="${video.videoImage}" height="200" width="268"></a>
 											</li>
 										</c:if>
 									</c:forEach>
@@ -217,15 +217,15 @@ var _hmt = _hmt || [];
 								<ul style="width: 268px;" class="par">
 									<c:forEach items="${videoList}" var="video" varStatus="st">
 										<c:if test="${st.index == 0}">
-											<li style="display: block;" id="par_${video.id}">
-												<p><a href="${contextPath}/video_detail/${video.id}" title="${video.title}"
-														target="_blank">${video.title}</a></p><span></span>
+											<li style="display: block;" id="par_${video.videoId}">
+												<p><a href="${contextPath}/video_detail/${video.videoId}" title="${video.videoTitle}"
+														target="_blank">${video.videoTitle}</a></p><span></span>
 											</li>
 										</c:if>
 										<c:if test="${st.index != 0}">
-											<li style="display: none;" id="par_${video.id}">
-												<p><a href="${contextPath}/video_detail/${video.id}" title="${video.title}"
-														target="_blank">${video.title}</a></p><span></span>
+											<li style="display: none;" id="par_${video.videoId}">
+												<p><a href="${contextPath}/video_detail/${video.videoId}" title="${video.videoTitle}"
+														target="_blank">${video.videoTitle}</a></p><span></span>
 											</li>
 										</c:if>
 									</c:forEach>
@@ -233,18 +233,18 @@ var _hmt = _hmt || [];
 								<ul style="width: 185px;" class="parcon">
 									<c:forEach items="${videoList}" var="video" varStatus="st">
 										<c:if test="${st.index == 0}">
-										  <li id="parcon_${video.id}" data-id="${video.id}" class="current parconli" style="width: 185px; height: 51px;">
-											<span><img src="${contextPath}/fileServlet?fileName=video/${video.image}" 
-											alt="${video.title}" height="45" width="60"></span> 
-											<a title="${video.title}"><p>${video.title}</p>
+										  <li id="parcon_${video.videoId}" data-id="${video.videoId}" class="current parconli" style="width: 185px; height: 51px;">
+											<span><img src="${video.videoImage}" 
+											alt="${video.videoTitle}" height="45" width="60"></span> 
+											<a title="${video.videoTitle}"><p>${video.videoTitle}</p>
 											<p>[<fmt:formatDate value="${video.createtime}" type="date"/>]</p></a>
 											<s></s><i></i></li>
 										</c:if>
 										<c:if test="${st.index != 0}">
-											<li id="parcon_${video.id}" data-id="${video.id}" class="parconli" style="width: 185px; height: 51px;">
-											<span><img src="${contextPath}/fileServlet?fileName=video/${video.image}" 
-											alt="${video.title}" height="45" width="60"></span> 
-											<a title="${video.title}"><p>${video.title}</p>
+											<li id="parcon_${video.videoId}" data-id="${video.videoId}" class="parconli" style="width: 185px; height: 51px;">
+											<span><img src="${video.videoImage}" 
+											alt="${video.videoTitle}" height="45" width="60"></span> 
+											<a title="${video.videoTitle}"><p>${video.videoTitle}</p>
 											<p>[<fmt:formatDate value="${video.createtime}" type="date"/>]</p></a>
 											<s></s><i></i></li>
 										</c:if>
@@ -252,8 +252,8 @@ var _hmt = _hmt || [];
 								</ul>
 								<ul class="txt">
 									<c:forEach items="${videoList}" var="video" varStatus="st">
-									  <li id="txt_${video.id}" data-id="${video.id}" class="parconli">
-									  	<a href="${contextPath}/video_detail/${video.id}" title="${video.title}" target="_blank"></a>
+									  <li id="txt_${video.videoId}" data-id="${video.videoId}" class="parconli">
+									  	<a href="${contextPath}/video_detail/${video.videoId}" title="${video.videoTitle}" target="_blank"></a>
 										<p></p>
 										<span></span></li>
 									</c:forEach>

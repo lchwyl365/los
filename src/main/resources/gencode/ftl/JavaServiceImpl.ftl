@@ -110,6 +110,30 @@ public class ${model.domainObjectName}ServiceImpl implements ${model.domainObjec
 		return ${model.variableName}VoList;
 	}
 	</#if>
+	
+	public List<${model.domainObjectName}> selectBy${model.domainObjectName}(${model.domainObjectName} ${model.variableName}){
+		//查询列表
+		${model.domainObjectName}Example example = new ${model.domainObjectName}Example();
+		Criteria criteria = example.createCriteria();
+		
+	<#list model.selectPropertys as property>
+	  <#if property.isselect == "T">
+		if(StringUtils.isNotEmpty(${model.variableName}.get${property.propertyName?cap_first}())){
+			criteria.and${property.propertyName?cap_first}EqualTo(${model.variableName}.get${property.propertyName?cap_first}());
+		}
+	  </#if>
+	</#list>
+	<#list model.selectPropertys as property>
+	  <#if property.islike == "T">
+		if(StringUtils.isNotEmpty(${model.variableName}.get${property.propertyName?cap_first}())){
+			criteria.and${property.propertyName?cap_first}Like("%"+${model.variableName}.get${property.propertyName?cap_first}()+"%");
+		}
+	  </#if>
+	</#list>
+	
+		List<${model.domainObjectName}> list = ${model.variableName}Mapper.selectByExample(example);
+		return list;
+	}
 
 	@Override
 	public ResponseResult insert(${model.domainObjectName} ${model.variableName}) {

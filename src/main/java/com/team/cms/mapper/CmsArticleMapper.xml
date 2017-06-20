@@ -12,6 +12,7 @@
     <result column="userid" jdbcType="VARCHAR" property="userid" />
     <result column="read_count" jdbcType="INTEGER" property="readCount" />
     <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="domain_name" jdbcType="VARCHAR" property="domainName" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.team.cms.pojo.CmsArticle">
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
@@ -76,7 +77,7 @@
   </sql>
   <sql id="Base_Column_List">
     article_id, title, channel_id, thumbnail, keywords, description, createtime, userid, 
-    read_count, status
+    read_count, status, domain_name
   </sql>
   <sql id="Blob_Column_List">
     content
@@ -133,11 +134,13 @@
     insert into cms_article (article_id, title, channel_id, 
       thumbnail, keywords, description, 
       createtime, userid, read_count, 
-      status, content)
+      status, domain_name, content
+      )
     values (#{articleId,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{channelId,jdbcType=VARCHAR}, 
       #{thumbnail,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
       #{createtime,jdbcType=TIMESTAMP}, #{userid,jdbcType=VARCHAR}, #{readCount,jdbcType=INTEGER}, 
-      #{status,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR})
+      #{status,jdbcType=VARCHAR}, #{domainName,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.team.cms.pojo.CmsArticle">
     insert into cms_article
@@ -171,6 +174,9 @@
       </if>
       <if test="status != null">
         status,
+      </if>
+      <if test="domainName != null">
+        domain_name,
       </if>
       <if test="content != null">
         content,
@@ -206,6 +212,9 @@
       </if>
       <if test="status != null">
         #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="domainName != null">
+        #{domainName,jdbcType=VARCHAR},
       </if>
       <if test="content != null">
         #{content,jdbcType=LONGVARCHAR},
@@ -251,6 +260,9 @@
       <if test="record.status != null">
         status = #{record.status,jdbcType=VARCHAR},
       </if>
+      <if test="record.domainName != null">
+        domain_name = #{record.domainName,jdbcType=VARCHAR},
+      </if>
       <if test="record.content != null">
         content = #{record.content,jdbcType=LONGVARCHAR},
       </if>
@@ -271,6 +283,7 @@
       userid = #{record.userid,jdbcType=VARCHAR},
       read_count = #{record.readCount,jdbcType=INTEGER},
       status = #{record.status,jdbcType=VARCHAR},
+      domain_name = #{record.domainName,jdbcType=VARCHAR},
       content = #{record.content,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -287,7 +300,8 @@
       createtime = #{record.createtime,jdbcType=TIMESTAMP},
       userid = #{record.userid,jdbcType=VARCHAR},
       read_count = #{record.readCount,jdbcType=INTEGER},
-      status = #{record.status,jdbcType=VARCHAR}
+      status = #{record.status,jdbcType=VARCHAR},
+      domain_name = #{record.domainName,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -322,6 +336,9 @@
       <if test="status != null">
         status = #{status,jdbcType=VARCHAR},
       </if>
+      <if test="domainName != null">
+        domain_name = #{domainName,jdbcType=VARCHAR},
+      </if>
       <if test="content != null">
         content = #{content,jdbcType=LONGVARCHAR},
       </if>
@@ -339,6 +356,7 @@
       userid = #{userid,jdbcType=VARCHAR},
       read_count = #{readCount,jdbcType=INTEGER},
       status = #{status,jdbcType=VARCHAR},
+      domain_name = #{domainName,jdbcType=VARCHAR},
       content = #{content,jdbcType=LONGVARCHAR}
     where article_id = #{articleId,jdbcType=VARCHAR}
   </update>
@@ -352,7 +370,8 @@
       createtime = #{createtime,jdbcType=TIMESTAMP},
       userid = #{userid,jdbcType=VARCHAR},
       read_count = #{readCount,jdbcType=INTEGER},
-      status = #{status,jdbcType=VARCHAR}
+      status = #{status,jdbcType=VARCHAR},
+      domain_name = #{domainName,jdbcType=VARCHAR}
     where article_id = #{articleId,jdbcType=VARCHAR}
   </update>
 </mapper>
