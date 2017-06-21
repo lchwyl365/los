@@ -58,12 +58,22 @@ public class CmsVideoServiceImpl implements CmsVideoService {
 	}
 	
 	
-	public List<CmsVideo> selectByCmsVideo(CmsVideo crmVideo){
+	public List<CmsVideo> selectByCmsVideo(CmsVideo crmVideo,String orderByClause){
 		//查询列表
 		CmsVideoExample example = new CmsVideoExample();
 		Criteria criteria = example.createCriteria();
-		
-	
+		if(crmVideo != null){
+			if(StringUtils.isNotEmpty(crmVideo.getIstop())){
+				criteria.andIstopEqualTo(crmVideo.getIstop());
+			}
+			if(StringUtils.isNotEmpty(crmVideo.getChannelid())){
+				criteria.andChannelidEqualTo(crmVideo.getChannelid());
+			}
+		}
+		//排序
+		if(StringUtils.isNotEmpty(orderByClause)){
+			example.setOrderByClause(orderByClause);
+		}
 		List<CmsVideo> list = crmVideoMapper.selectByExample(example);
 		return list;
 	}
@@ -111,6 +121,7 @@ public class CmsVideoServiceImpl implements CmsVideoService {
 			CmsVideo temp = crmVideoMapper.selectByPrimaryKey(crmVideo.getVideoId());
 			temp.setVideoImage(crmVideo.getVideoImage());
 			temp.setVideoTitle(crmVideo.getVideoTitle());
+			temp.setChannelid(crmVideo.getChannelid());
 			temp.setVideoDesc(crmVideo.getVideoDesc());
 			temp.setCreatetime(crmVideo.getCreatetime());
 			temp.setIstop(crmVideo.getIstop());

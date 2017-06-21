@@ -830,6 +830,76 @@ public class CmsVideoExample {
             addCriterion("address not between", value1, value2, "address");
             return (Criteria) this;
         }
+
+        public Criteria andChannelidIsNull() {
+            addCriterion("channelId is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelidIsNotNull() {
+            addCriterion("channelId is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelidEqualTo(String value) {
+            addCriterion("channelId =", value, "channelid");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelidNotEqualTo(String value) {
+            addCriterion("channelId <>", value, "channelid");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelidGreaterThan(String value) {
+            addCriterion("channelId >", value, "channelid");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelidGreaterThanOrEqualTo(String value) {
+            addCriterion("channelId >=", value, "channelid");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelidLessThan(String value) {
+            addCriterion("channelId <", value, "channelid");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelidLessThanOrEqualTo(String value) {
+            addCriterion("channelId <=", value, "channelid");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelidLike(String value) {
+            addCriterion("channelId like", value, "channelid");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelidNotLike(String value) {
+            addCriterion("channelId not like", value, "channelid");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelidIn(List<String> values) {
+            addCriterion("channelId in", values, "channelid");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelidNotIn(List<String> values) {
+            addCriterion("channelId not in", values, "channelid");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelidBetween(String value1, String value2) {
+            addCriterion("channelId between", value1, value2, "channelid");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelidNotBetween(String value1, String value2) {
+            addCriterion("channelId not between", value1, value2, "channelid");
+            return (Criteria) this;
+        }
     }
 
     /**

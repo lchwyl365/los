@@ -21,6 +21,7 @@ import com.team.common.pojo.EUDataGridResult;
 import com.team.common.pojo.ResponseResult;
 import com.team.cms.pojo.CmsVideo;
 import com.team.cms.service.CmsVideoService;
+import com.team.platform.service.SysComboBoxService;
 import javax.servlet.ServletContext;
 import java.io.File;
 import com.team.common.util.FileUtil;
@@ -38,10 +39,14 @@ public class CmsVideoController {
 	@Autowired
 	private CmsVideoService crmVideoService;
 	
+	@Autowired
+	private SysComboBoxService sysComboBoxService;
 	
 	@RequestMapping(value = "/list",method = RequestMethod.GET)
     public String list(HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
 		
+	  	String combo56683781353113_json = sysComboBoxService.selectComboid("56683781353113");
+		model.addAttribute("combo56683781353113_json", combo56683781353113_json);
     	return "video/list";
     }
 	
@@ -58,6 +63,7 @@ public class CmsVideoController {
 		
 		CmsVideo crmVideo = new CmsVideo();
         crmVideo.setVideoTitle(String.valueOf(request.getParameter("videoTitle")));
+        crmVideo.setChannelid(String.valueOf(request.getParameter("channelid")));
         crmVideo.setVideoDesc(String.valueOf(request.getParameter("videoDesc")));
         crmVideo.setIstop(String.valueOf(request.getParameter("istop")));
         crmVideo.setOrdernum(Integer.valueOf(request.getParameter("ordernum")));
@@ -104,6 +110,7 @@ public class CmsVideoController {
 		crmVideo.setVideoId(String.valueOf(request.getParameter("videoId")));
 		crmVideo.setVideoImage(String.valueOf(request.getParameter("videoImage")));
 		crmVideo.setVideoTitle(String.valueOf(request.getParameter("videoTitle")));
+		crmVideo.setChannelid(String.valueOf(request.getParameter("channelid")));
 		crmVideo.setVideoDesc(String.valueOf(request.getParameter("videoDesc")));
 		crmVideo.setIstop(String.valueOf(request.getParameter("istop")));
 		crmVideo.setOrdernum(Integer.valueOf(request.getParameter("ordernum")));

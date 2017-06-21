@@ -285,6 +285,8 @@ public class SysTablesController {
 			String dataOptions = sysColumns.getDataOptions();
 			if(StringUtils.isEmpty(dataOptions)){
 				sysColumns.setDataOptions("on:显示,off:隐藏");
+				String formatter = "function(value,row,index){if (row."+sysColumns.getPropertyName()+" == 'on'){return '显示';} else {return '<span style=\"color:red;\">冻结</span>';}}";
+				sysColumns.setFormatter(formatter);
 			}
 		}
 		if("easyui-validatebox".equals(sysColumns.getComponent())){

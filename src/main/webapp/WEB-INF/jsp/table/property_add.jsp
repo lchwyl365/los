@@ -201,6 +201,7 @@ function saverow(target){
 			tbname:row.tbname,
 			columnName:row.columnName,
 			tbcreator:row.tbcreator,
+			propertyName:row.propertyName,
 			propertyTitle:row.propertyTitle,
 			propertyLength:row.propertyLength,
 			component:row.component,

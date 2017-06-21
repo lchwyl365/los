@@ -41,10 +41,10 @@ var _hmt = _hmt || [];
 					<c:if test="${channel.channelId == 55146271874110 }">
 						<li class=" " style="float: left;"><a href="${contextPath}/index">${channel.channelName}</a></li>
 					</c:if>
-					<c:if test="${channel.channelId == 1606022304170001014 }">
-						<li class=" " style="float: left;"><a href="${contextPath}/videos">${channel.channelName}</a></li>
+					<c:if test="${channel.channelId == 56643194809110 }">
+						<li class=" " style="float: left;"><a href="${contextPath}/front/r/videos">${channel.channelName}</a></li>
 					</c:if>
-					<c:if test="${channel.channelId != 55146271874110 && channel.channelId != 1606022304170001014}">
+					<c:if test="${channel.channelId != 55146271874110 && channel.channelId != 56643194809110}">
 						<li class=" " style="float: left;"><a href="${contextPath}/front/r/channel/${channel.channelId}">${channel.channelName}</a></li>
 					</c:if>
 				</c:forEach>
@@ -192,7 +192,7 @@ var _hmt = _hmt || [];
 				<div class="ohz">
 					<h2 class="artTitle" style="border: 0px; margin-bottom: 3px; margin-top: 10px;">
 						<span style="border: 0px;"><a href="${contextPath}/videos">视频中心</a></span> 
-						<a href="${contextPath}/videos" class="cblue fr lh200 pt5 f14" target="_blank">更多</a>
+						<a href="${contextPath}/front/r/videos" class="cblue fr lh200 pt5 f14" target="_blank">更多</a>
 					</h2>
 
 					<div class="mt15 ohz" style="margin-top: 0px; padding: 10px; border: 1px solid #CCCCCC;">
@@ -202,13 +202,13 @@ var _hmt = _hmt || [];
 									<c:forEach items="${videoList}" var="video" varStatus="st">
 										<c:if test="${st.index == 0}">
 											<li id="pic_${video.videoId}" style="display: block; opacity: 1;">
-												<a href="${contextPath}/video_detail/${video.videoId}" title="${video.videoTitle}" target="_blank">
+												<a href="${contextPath}/front/r/video_detail/${video.videoId}" title="${video.videoTitle}" target="_blank">
 												<img src="${video.videoImage}" height="200" width="268"></a>
 											</li>
 										</c:if>
 										<c:if test="${st.index != 0}">
 											<li id="pic_${video.videoId}" style="display: none; opacity: 1;">
-												<a href="${contextPath}/video_detail/${video.videoId}" title="${video.videoTitle}" target="_blank">
+												<a href="${contextPath}/front/r/video_detail/${video.videoId}" title="${video.videoTitle}" target="_blank">
 												<img src="${video.videoImage}" height="200" width="268"></a>
 											</li>
 										</c:if>
@@ -218,13 +218,13 @@ var _hmt = _hmt || [];
 									<c:forEach items="${videoList}" var="video" varStatus="st">
 										<c:if test="${st.index == 0}">
 											<li style="display: block;" id="par_${video.videoId}">
-												<p><a href="${contextPath}/video_detail/${video.videoId}" title="${video.videoTitle}"
+												<p><a href="${contextPath}/front/r/video_detail/${video.videoId}" title="${video.videoTitle}"
 														target="_blank">${video.videoTitle}</a></p><span></span>
 											</li>
 										</c:if>
 										<c:if test="${st.index != 0}">
 											<li style="display: none;" id="par_${video.videoId}">
-												<p><a href="${contextPath}/video_detail/${video.videoId}" title="${video.videoTitle}"
+												<p><a href="${contextPath}/front/r/video_detail/${video.videoId}" title="${video.videoTitle}"
 														target="_blank">${video.videoTitle}</a></p><span></span>
 											</li>
 										</c:if>
@@ -253,7 +253,7 @@ var _hmt = _hmt || [];
 								<ul class="txt">
 									<c:forEach items="${videoList}" var="video" varStatus="st">
 									  <li id="txt_${video.videoId}" data-id="${video.videoId}" class="parconli">
-									  	<a href="${contextPath}/video_detail/${video.videoId}" title="${video.videoTitle}" target="_blank"></a>
+									  	<a href="${contextPath}/front/r/video_detail/${video.videoId}" title="${video.videoTitle}" target="_blank"></a>
 										<p></p>
 										<span></span></li>
 									</c:forEach>

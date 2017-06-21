@@ -12,6 +12,7 @@
     <result column="clicks" jdbcType="INTEGER" property="clicks" />
     <result column="youkuid" jdbcType="VARCHAR" property="youkuid" />
     <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="channelId" jdbcType="VARCHAR" property="channelid" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -73,7 +74,7 @@
   </sql>
   <sql id="Base_Column_List">
     video_id, video_title, video_image, video_desc, createtime, istop, ordernum, clicks, 
-    youkuid, address
+    youkuid, address, channelId
   </sql>
   <select id="selectByExample" parameterType="com.team.cms.pojo.CmsVideoExample" resultMap="BaseResultMap">
     select
@@ -109,11 +110,11 @@
     insert into cms_video (video_id, video_title, video_image, 
       video_desc, createtime, istop, 
       ordernum, clicks, youkuid, 
-      address)
+      address, channelId)
     values (#{videoId,jdbcType=VARCHAR}, #{videoTitle,jdbcType=VARCHAR}, #{videoImage,jdbcType=VARCHAR}, 
       #{videoDesc,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{istop,jdbcType=VARCHAR}, 
       #{ordernum,jdbcType=INTEGER}, #{clicks,jdbcType=INTEGER}, #{youkuid,jdbcType=VARCHAR}, 
-      #{address,jdbcType=VARCHAR})
+      #{address,jdbcType=VARCHAR}, #{channelid,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.team.cms.pojo.CmsVideo">
     insert into cms_video
@@ -148,6 +149,9 @@
       <if test="address != null">
         address,
       </if>
+      <if test="channelid != null">
+        channelId,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="videoId != null">
@@ -179,6 +183,9 @@
       </if>
       <if test="address != null">
         #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="channelid != null">
+        #{channelid,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -221,6 +228,9 @@
       <if test="record.address != null">
         address = #{record.address,jdbcType=VARCHAR},
       </if>
+      <if test="record.channelid != null">
+        channelId = #{record.channelid,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -237,7 +247,8 @@
       ordernum = #{record.ordernum,jdbcType=INTEGER},
       clicks = #{record.clicks,jdbcType=INTEGER},
       youkuid = #{record.youkuid,jdbcType=VARCHAR},
-      address = #{record.address,jdbcType=VARCHAR}
+      address = #{record.address,jdbcType=VARCHAR},
+      channelId = #{record.channelid,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -272,6 +283,9 @@
       <if test="address != null">
         address = #{address,jdbcType=VARCHAR},
       </if>
+      <if test="channelid != null">
+        channelId = #{channelid,jdbcType=VARCHAR},
+      </if>
     </set>
     where video_id = #{videoId,jdbcType=VARCHAR}
   </update>
@@ -285,7 +299,8 @@
       ordernum = #{ordernum,jdbcType=INTEGER},
       clicks = #{clicks,jdbcType=INTEGER},
       youkuid = #{youkuid,jdbcType=VARCHAR},
-      address = #{address,jdbcType=VARCHAR}
+      address = #{address,jdbcType=VARCHAR},
+      channelId = #{channelid,jdbcType=VARCHAR}
     where video_id = #{videoId,jdbcType=VARCHAR}
   </update>
 </mapper>

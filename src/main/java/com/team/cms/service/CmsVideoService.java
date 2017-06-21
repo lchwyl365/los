@@ -13,7 +13,7 @@ public interface CmsVideoService {
 
 	public EUDataGridResult selectList(EUDataGridModel dgm,CmsVideo crmVideo);
 
-	public List<CmsVideo> selectByCmsVideo(CmsVideo crmVideo);
+	public List<CmsVideo> selectByCmsVideo(CmsVideo crmVideo,String orderByClause);
 	
 	public CmsVideo selectByPrimaryKey(String videoId);
 

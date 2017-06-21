@@ -1,6 +1,7 @@
 package com.team.cms.pojo;
 
 import java.util.Date;
+import java.util.List;
 
 public class CmsChannel {
     /**
@@ -52,6 +53,12 @@ public class CmsChannel {
      * 栏目内容
      */
     private String content;
+    
+    private CmsVideo firstVideo;
+    
+    private List<CmsVideo> secondVideoList;
+    
+    private List<CmsVideo> threeVideoList;
 
     /**
      * 栏目编号
@@ -212,4 +219,29 @@ public class CmsChannel {
     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
     }
+
+	public CmsVideo getFirstVideo() {
+		return firstVideo;
+	}
+
+	public void setFirstVideo(CmsVideo firstVideo) {
+		this.firstVideo = firstVideo;
+	}
+
+	public List<CmsVideo> getSecondVideoList() {
+		return secondVideoList;
+	}
+
+	public void setSecondVideoList(List<CmsVideo> secondVideoList) {
+		this.secondVideoList = secondVideoList;
+	}
+
+	public List<CmsVideo> getThreeVideoList() {
+		return threeVideoList;
+	}
+
+	public void setThreeVideoList(List<CmsVideo> threeVideoList) {
+		this.threeVideoList = threeVideoList;
+	}
+    
 }

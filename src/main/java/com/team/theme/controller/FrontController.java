@@ -1,5 +1,6 @@
 package com.team.theme.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -86,7 +87,7 @@ public class FrontController {
     	//视频内容
     	CmsVideo cmsVideo = new CmsVideo();
     	cmsVideo.setIstop("on");
-    	List<CmsVideo> videoList = cmsVideoService.selectByCmsVideo(cmsVideo);
+    	List<CmsVideo> videoList = cmsVideoService.selectByCmsVideo( cmsVideo, null);
     	if(videoList.size() > 4){ videoList = videoList.subList(0, 4); }
     	model.addAttribute("videoList", videoList);
     	//集团简介
@@ -210,14 +211,18 @@ public class FrontController {
     	//视频内容
     	CmsVideo cmsVideo = new CmsVideo();
     	cmsVideo.setIstop("on");
-    	List<CmsVideo> videoList = cmsVideoService.selectByCmsVideo(cmsVideo);
+    	List<CmsVideo> videoList = cmsVideoService.selectByCmsVideo(cmsVideo, null);
     	model.addAttribute("videoList", videoList);
     	
-    	/*List<CmsChannel> subChannelList = cmsChannelService.listByParentid(1606022304170001014L);
+    	CmsChannel tempChannel = new CmsChannel();
+    	tempChannel.setPid("56643194809110");
+    	List<CmsChannel> subChannelList = cmsChannelService.selectByChannel(tempChannel);
     	for (int i = 0; i < subChannelList.size(); i++) {
 			CmsChannel channel = subChannelList.get(i);
 			
-			List<CrmVideo> videos = crmVideoService.listByChannel(channel.getId());
+			CmsVideo temp = new CmsVideo();
+	    	temp.setChannelid(channel.getChannelId());
+			List<CmsVideo> videos = cmsVideoService.selectByCmsVideo(temp, null);
 			for (int j = 0; j < videos.size(); j++) {
 				switch(j){
 				case 0:
@@ -226,15 +231,15 @@ public class FrontController {
 				case 1:
 				case 2:
 				case 3:
-					List<CrmVideo> secondVideoList = channel.getSecondVideoList();
-					if(secondVideoList == null) { secondVideoList = new ArrayList<CrmVideo>();}
+					List<CmsVideo> secondVideoList = channel.getSecondVideoList();
+					if(secondVideoList == null) { secondVideoList = new ArrayList<CmsVideo>();}
 					secondVideoList.add(videos.get(j));
 					channel.setSecondVideoList(secondVideoList);
 					break;
 				case 4:
 				case 5:
-					List<CrmVideo> threeVideoList = channel.getThreeVideoList();
-					if(threeVideoList == null) { threeVideoList = new ArrayList<CrmVideo>();}
+					List<CmsVideo> threeVideoList = channel.getThreeVideoList();
+					if(threeVideoList == null) { threeVideoList = new ArrayList<CmsVideo>();}
 					threeVideoList.add(videos.get(j));
 					channel.setThreeVideoList(threeVideoList);
 					break;
@@ -243,13 +248,32 @@ public class FrontController {
 		}
     	model.addAttribute("subChannelList", subChannelList);
     	
-    	List<CrmVideo> orderList = crmVideoService.listOrderByClick();
+    	List<CmsVideo> orderList = cmsVideoService.selectByCmsVideo(null,"clicks desc");
     	model.addAttribute("orderList", orderList);
     	
-    	List<CrmVideo> newList = crmVideoService.listOrderByTime();
-    	model.addAttribute("newList", newList);*/
+    	List<CmsVideo> newList = cmsVideoService.selectByCmsVideo(null,"createtime desc");
+    	model.addAttribute("newList", newList);
     	
-    	return "web/videos";
+    	return "front/r/videos";
+    }
+	
+	@RequestMapping(value="/video_detail/{id}",method=RequestMethod.GET)
+    public String detail(@PathVariable String id,Model model) {
+    	
+		//顶部栏目导航
+		CmsChannel cmsChannel = new CmsChannel();
+		cmsChannel.setPid("0");
+		cmsChannel.setIstop("on");
+		List<CmsChannel> channelList = cmsChannelService.selectByChannel(cmsChannel);
+		model.addAttribute("channelList", channelList);
+    	
+       CmsVideo video = cmsVideoService.selectByPrimaryKey(id);
+       model.addAttribute("video",video);
+       
+       List<CmsVideo> newList = cmsVideoService.selectByCmsVideo(null,"createtime desc");
+   	   model.addAttribute("newList", newList);
+   	
+       return "front/r/video_detail";
     }
 	
 }

@@ -54,6 +54,11 @@ public class CmsVideo {
     private String address;
 
     /**
+     * 栏目编号
+     */
+    private String channelid;
+
+    /**
      * 视频编号
      * @return video_id 视频编号
      */
@@ -211,5 +216,21 @@ public class CmsVideo {
      */
     public void setAddress(String address) {
         this.address = address == null ? null : address.trim();
+    }
+
+    /**
+     * 栏目编号
+     * @return channelId 栏目编号
+     */
+    public String getChannelid() {
+        return channelid;
+    }
+
+    /**
+     * 栏目编号
+     * @param channelid 栏目编号
+     */
+    public void setChannelid(String channelid) {
+        this.channelid = channelid == null ? null : channelid.trim();
     }
 }

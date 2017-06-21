@@ -21,7 +21,7 @@ public interface ${model.domainObjectName}Service {
 	public List<${model.domainObjectName}Vo> selectList(String ${model.parentField});
 </#if>
 
-	public List<${model.domainObjectName}> selectBy${model.domainObjectName}(${model.domainObjectName} ${model.variableName});
+	public List<${model.domainObjectName}> selectBy${model.domainObjectName}(${model.domainObjectName} ${model.variableName},String orderByClause);
 	
 	public ${model.domainObjectName} selectByPrimaryKey(${model.primaryKey});
 

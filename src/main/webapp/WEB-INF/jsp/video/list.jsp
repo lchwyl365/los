@@ -8,6 +8,7 @@
     <script type="text/javascript">
     $(function(){
     	
+		var combo56683781353113_json = eval('${combo56683781353113_json}');
     	
 		$('#videoTable').datagrid({
 			title:'视频管理', //标题
@@ -35,11 +36,22 @@
 				{field:'video_title',title:'视频标题',width:100,sortable:'F',
 						formatter:function(value,row,index){return row.videoTitle;}
 				},
+				{field:'channelId',title:'栏目编号',width:100,sortable:'F',
+						formatter:function(value,row,index){
+							var text = '';
+							for(var i=0;i<combo56683781353113_json.length;i++){  
+					    		if(row.channelid == combo56683781353113_json[i].id){
+					    			text = combo56683781353113_json[i].text;
+					    		}
+					    	}
+							return text;
+						}
+				},
 				{field:'createtime',title:'发布时间',width:100,sortable:'F',
 						formatter:function(value,row,index){if (row.createtime != null) {var date = new Date(row.createtime);return date.format('yyyy-MM-dd hh:mm:ss');}return '';}
 				},
 				{field:'istop',title:'顶部显示',width:100,sortable:'F',
-						formatter:function(value,row,index){return row.istop;}
+						formatter:function(value,row,index){if (row.istop == 'on'){return '显示';} else {return '<span style="color:red;">冻结</span>';}}
 				},
 				{field:'ordernum',title:'序号',width:100,sortable:'F',
 						formatter:function(value,row,index){return row.ordernum;}

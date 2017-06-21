@@ -127,10 +127,10 @@ var _hmt = _hmt || [];
 				<c:if test="${channel.channelId == 55146271874110 }">
 					<li class=" " style="float: left;"><a href="${contextPath}/index">${channel.channelName}</a></li>
 				</c:if>
-				<c:if test="${channel.channelId == 1606022304170001014 }">
-					<li class=" " style="float: left;"><a href="${contextPath}/videos">${channel.channelName}</a></li>
+				<c:if test="${channel.channelId == 56643194809110 }">
+					<li class=" " style="float: left;"><a href="${contextPath}/front/r/videos">${channel.channelName}</a></li>
 				</c:if>
-				<c:if test="${channel.channelId != 55146271874110 && channel.channelId != 1606022304170001014}">
+				<c:if test="${channel.channelId != 55146271874110 && channel.channelId != 56643194809110}">
 					<li class=" " style="float: left;"><a href="${contextPath}/front/r/channel/${channel.channelId}">${channel.channelName}</a></li>
 				</c:if>
 			</c:forEach>

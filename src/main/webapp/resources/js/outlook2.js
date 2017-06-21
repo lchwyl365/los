@@ -1,4 +1,5 @@
-﻿$(function(){
+﻿var collapsed = "expand";
+$(function(){
 	var id = $(".main-nav .current").attr("data-id");
 	refreshLeftMenu(id);
 	tabClose();
@@ -42,6 +43,11 @@ function refreshLeftMenu(pid) {
         		$(this).parent().removeClass("hover");
         	});
 	    });
+	    //展开面板
+	    if(collapsed == "collapse"){
+	    	$('#main-content').layout('expand','west');
+	    	collapsed = "expand";
+	    }
 	});
 }
 
@@ -58,12 +64,14 @@ function addTab(menuid,subtitle,url){
 		if(subtitle == '代码生成'){
 			// 折叠west panel
 			$('#main-content').layout('collapse','west');
+			collapsed = "collapse";
 		}
 	}else{
 		$('#tabs').tabs('select',subtitle);
 		if(subtitle == '代码生成'){
 			// 折叠west panel
 			$('#main-content').layout('collapse','west');
+			collapsed = "collapse";
 		}
 	}
 	tabClose();

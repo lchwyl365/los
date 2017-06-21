@@ -44,6 +44,15 @@
 				    </tr>
 				   <tr>
 						<td class="form-table-td-left">
+							<label for="channelid">栏目编号:</label>
+						</td>
+						<td class="form-table-td-right">
+								<input class="easyui-combotree" name="channelid"
+								   data-options="url:'${contextPath}/platform/box/combotree?id=56683781353113',method:'get'" style="width:200px;height:28px;">
+						</td>
+				    </tr>
+				   <tr>
+						<td class="form-table-td-left">
 							<label for="videoDesc">视频描述:</label>
 						</td>
 						<td class="form-table-td-right">

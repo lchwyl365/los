@@ -19,7 +19,7 @@
 			collapsible:false,//可折叠
 			url:"${contextPath}/platform/tables/queryList", //数据来源
 			sortName: 'ctime', //排序的列
-			sortOrder: 'asc', //倒序
+			sortOrder: 'desc', //倒序
 			remoteSort: true, //服务器端排序
 			idField:'userid', //主键字段
 			queryParams:{}, //查询条件

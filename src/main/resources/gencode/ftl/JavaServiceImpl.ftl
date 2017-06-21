@@ -111,7 +111,7 @@ public class ${model.domainObjectName}ServiceImpl implements ${model.domainObjec
 	}
 	</#if>
 	
-	public List<${model.domainObjectName}> selectBy${model.domainObjectName}(${model.domainObjectName} ${model.variableName}){
+	public List<${model.domainObjectName}> selectBy${model.domainObjectName}(${model.domainObjectName} ${model.variableName},String orderByClause){
 		//查询列表
 		${model.domainObjectName}Example example = new ${model.domainObjectName}Example();
 		Criteria criteria = example.createCriteria();
@@ -130,7 +130,10 @@ public class ${model.domainObjectName}ServiceImpl implements ${model.domainObjec
 		}
 	  </#if>
 	</#list>
-	
+		//排序
+		if(StringUtils.isNotEmpty(orderByClause)){
+			example.setOrderByClause(orderByClause);
+		}
 		List<${model.domainObjectName}> list = ${model.variableName}Mapper.selectByExample(example);
 		return list;
 	}
