@@ -36,18 +36,10 @@
 				    </tr>
 				   <tr>
 						<td class="form-table-td-left">
-							<label for="deptId">DEPT_ID:</label>
+							<label for="testname">测试名称:</label>
 						</td>
 						<td class="form-table-td-right">
-								<input class="easyui-validatebox" type="text" name="deptId" data-options="required:true,validType:['length[0,32]']" style="width:320px;height:28px;"/>
-						</td>
-				    </tr>
-				   <tr>
-						<td class="form-table-td-left">
-							<label for="testgroup">组名称:</label>
-						</td>
-						<td class="form-table-td-right">
-								<input class="easyui-validatebox" type="text" name="testgroup" data-options="required:true,validType:['length[0,10]']" style="width:320px;height:28px;"/>
+								<input class="easyui-validatebox" type="text" name="testname" data-options="required:true,validType:['length[0,64]']" style="width:320px;height:28px;"/>
 						</td>
 				    </tr>
 				   <tr>
@@ -60,10 +52,18 @@
 				    </tr>
 				   <tr>
 						<td class="form-table-td-left">
-							<label for="testname">测试名称:</label>
+							<label for="testgroup">组名称:</label>
 						</td>
 						<td class="form-table-td-right">
-								<input class="easyui-validatebox" type="text" name="testname" data-options="required:true,validType:['length[0,64]']" style="width:320px;height:28px;"/>
+								<input class="easyui-validatebox" type="text" name="testgroup" data-options="required:true,validType:['length[0,10]']" style="width:320px;height:28px;"/>
+						</td>
+				    </tr>
+				   <tr>
+						<td class="form-table-td-left">
+							<label for="deptId">DEPT_ID:</label>
+						</td>
+						<td class="form-table-td-right">
+								<input class="easyui-validatebox" type="text" name="deptId" data-options="required:true,validType:['length[0,32]']" style="width:320px;height:28px;"/>
 						</td>
 				    </tr>
 				</table>

@@ -7,6 +7,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
+import com.team.platform.dao.JedisClient;
+
 public class JedisTest {
 
 	@Test
@@ -33,6 +35,10 @@ public class JedisTest {
 		Jedis jedis = pool.getResource();
 		String string = jedis.get("key1");
 		System.out.println(string);
+		
+		JedisClient jedisClient = (JedisClient) applicationContext.getBean("jedisClient");
+		System.out.println(jedisClient);
+		
 		jedis.close();
 		pool.close();
 	}

@@ -11,58 +11,13 @@
       <createtime>2017-03-30 22:50:04</createtime>
     </user>
     <user>
-      <userid>5144347193411917</userid>
-      <username>zhangshan</username>
-      <operatorname>张三</operatorname>
-      <password>b59c67bf196a4758191e42f76670ceba</password>
+      <userid>56613870548127</userid>
+      <username>runyigroup</username>
+      <operatorname>runyigroup</operatorname>
+      <password>da3177cbd9f064004b6a0d59a3a484bb</password>
       <status>T</status>
-      <altertime>2017-04-21 14:49:11</altertime>
-      <createtime>2017-04-21 14:49:11</createtime>
-    </user>
-    <user>
-      <userid>5144350672711926</userid>
-      <username>lishi</username>
-      <operatorname>李四</operatorname>
-      <password>81dc9bdb52d04dc20036dbd8313ed055</password>
-      <status>T</status>
-      <altertime>2017-04-21 14:49:46</altertime>
-      <createtime>2017-04-21 14:49:46</createtime>
-    </user>
-    <user>
-      <userid>5144353077811933</userid>
-      <username>wangwu</username>
-      <operatorname>王五</operatorname>
-      <password>96e79218965eb72c92a549dd5a330112</password>
-      <status>T</status>
-      <altertime>2017-04-21 14:50:10</altertime>
-      <createtime>2017-04-21 14:50:10</createtime>
-    </user>
-    <user>
-      <userid>5144355337711940</userid>
-      <username>zhaoliu</username>
-      <operatorname>赵六</operatorname>
-      <password>81dc9bdb52d04dc20036dbd8313ed055</password>
-      <status>T</status>
-      <altertime>2017-04-21 14:50:33</altertime>
-      <createtime>2017-04-21 14:50:33</createtime>
-    </user>
-    <user>
-      <userid>5144358056811959</userid>
-      <username>lixing</username>
-      <operatorname>李想</operatorname>
-      <password>e10adc3949ba59abbe56e057f20f883e</password>
-      <status>T</status>
-      <altertime>2017-04-21 14:51:00</altertime>
-      <createtime>2017-04-21 14:51:00</createtime>
-    </user>
-    <user>
-      <userid>51635495518180</userid>
-      <username>zhangwu</username>
-      <operatorname>张武</operatorname>
-      <password>2eee9635947c6da9babef9fbff9702e0</password>
-      <status>T</status>
-      <altertime>2017-04-23 20:09:35</altertime>
-      <createtime>2017-04-23 20:09:35</createtime>
+      <altertime>2017-06-20 11:02:30</altertime>
+      <createtime>2017-06-20 11:02:30</createtime>
     </user>
   </users>
   <roles>
@@ -73,7 +28,7 @@
     </role>
     <role>
       <roleid>50675519372117</roleid>
-      <name>测试人员</name>
+      <name>润易网站管理员</name>
       <type>application</type>
     </role>
   </roles>
@@ -320,6 +275,17 @@
       <orderNum>1</orderNum>
       <pid>4937805643610681</pid>
     </role_menu>
+    <role_menu>
+      <display>on</display>
+      <href>/cms/video/list</href>
+      <iconCls>icon-nav</iconCls>
+      <levelType>application</levelType>
+      <menuid>56524066954113</menuid>
+      <menuPos>left</menuPos>
+      <name>视频管理</name>
+      <orderNum>1</orderNum>
+      <pid>4937805643610681</pid>
+    </role_menu>
   </menus>
   <user_roles>
     <user_role>
@@ -332,157 +298,152 @@
       <userid>51635495518180</userid>
       <user_role_id>51635509117199</user_role_id>
     </user_role>
+    <user_role>
+      <roleid>50675519372117</roleid>
+      <userid>56613870548127</userid>
+      <user_role_id>56613934753191</user_role_id>
+    </user_role>
   </user_roles>
   <role_menus>
     <role_menu>
-      <roleid>50675519372117</roleid>
-      <menuid>4900335617310710</menuid>
-      <role_menu_id>51637448076117</role_menu_id>
-    </role_menu>
-    <role_menu>
-      <roleid>50675519372117</roleid>
-      <menuid>4900346948510727</menuid>
-      <role_menu_id>51637448080129</role_menu_id>
-    </role_menu>
-    <role_menu>
-      <roleid>50675519372117</roleid>
-      <menuid>4929825908611119</menuid>
-      <role_menu_id>51637448082134</role_menu_id>
-    </role_menu>
-    <role_menu>
-      <roleid>50675519372117</roleid>
-      <menuid>4929831830711125</menuid>
-      <role_menu_id>51637448083140</role_menu_id>
-    </role_menu>
-    <role_menu>
-      <roleid>50675519372117</roleid>
-      <menuid>4937759643010612</menuid>
-      <role_menu_id>51637448084156</role_menu_id>
-    </role_menu>
-    <role_menu>
-      <roleid>50675519372117</roleid>
-      <menuid>4937764214310622</menuid>
-      <role_menu_id>51637448085166</role_menu_id>
-    </role_menu>
-    <role_menu>
-      <roleid>50675519372117</roleid>
-      <menuid>4937775511610643</menuid>
-      <role_menu_id>51637448086174</role_menu_id>
-    </role_menu>
-    <role_menu>
-      <roleid>50675519372117</roleid>
-      <menuid>4937795396310665</menuid>
-      <role_menu_id>51637448087181</role_menu_id>
-    </role_menu>
-    <role_menu>
-      <roleid>50675519372117</roleid>
-      <menuid>4937800330210676</menuid>
-      <role_menu_id>51637448088193</role_menu_id>
-    </role_menu>
-    <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>4900335617310710</menuid>
-      <role_menu_id>55503847663118</role_menu_id>
+      <role_menu_id>56524240775112</role_menu_id>
     </role_menu>
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>4900346948510727</menuid>
-      <role_menu_id>55503847666128</role_menu_id>
+      <role_menu_id>56524240778123</role_menu_id>
     </role_menu>
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>4929825908611119</menuid>
-      <role_menu_id>55503847678130</role_menu_id>
+      <role_menu_id>56524240781132</role_menu_id>
     </role_menu>
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>4929831830711125</menuid>
-      <role_menu_id>55503847684142</role_menu_id>
+      <role_menu_id>56524240788148</role_menu_id>
     </role_menu>
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>4929836951411131</menuid>
-      <role_menu_id>55503847686153</role_menu_id>
+      <role_menu_id>56524240790151</role_menu_id>
     </role_menu>
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>4929960509311144</menuid>
-      <role_menu_id>55503847688165</role_menu_id>
+      <role_menu_id>56524240792163</role_menu_id>
     </role_menu>
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>4929974605311158</menuid>
-      <role_menu_id>55503847689177</role_menu_id>
+      <role_menu_id>56524240794172</role_menu_id>
     </role_menu>
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>4930013831011165</menuid>
-      <role_menu_id>55503847690187</role_menu_id>
+      <role_menu_id>56524240796184</role_menu_id>
     </role_menu>
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>4930017459411175</menuid>
-      <role_menu_id>55503847692194</role_menu_id>
+      <role_menu_id>56524240797191</role_menu_id>
     </role_menu>
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>50150286365114</menuid>
-      <role_menu_id>55503847693121</role_menu_id>
+      <role_menu_id>56524240798120</role_menu_id>
     </role_menu>
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>4937759643010612</menuid>
-      <role_menu_id>55503847694135</role_menu_id>
+      <role_menu_id>56524240799131</role_menu_id>
     </role_menu>
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>4937764214310622</menuid>
-      <role_menu_id>55503847695148</role_menu_id>
+      <role_menu_id>56524240800140</role_menu_id>
     </role_menu>
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>4937771630310636</menuid>
-      <role_menu_id>55503847697151</role_menu_id>
+      <role_menu_id>56524240801159</role_menu_id>
     </role_menu>
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>4937775511610643</menuid>
-      <role_menu_id>55503847699168</role_menu_id>
+      <role_menu_id>56524240802167</role_menu_id>
     </role_menu>
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>4937795396310665</menuid>
-      <role_menu_id>55503847701175</role_menu_id>
+      <role_menu_id>56524240804179</role_menu_id>
     </role_menu>
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>4937800330210676</menuid>
-      <role_menu_id>55503847703185</role_menu_id>
+      <role_menu_id>56524240805182</role_menu_id>
     </role_menu>
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>4937787503210655</menuid>
-      <role_menu_id>55503847706199</role_menu_id>
+      <role_menu_id>56524240807198</role_menu_id>
     </role_menu>
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>4937805643610681</menuid>
-      <role_menu_id>55503847708121</role_menu_id>
+      <role_menu_id>56524240808127</role_menu_id>
     </role_menu>
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>54914376635111</menuid>
-      <role_menu_id>55503847710135</role_menu_id>
+      <role_menu_id>56524240809138</role_menu_id>
     </role_menu>
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>55417005246110</menuid>
-      <role_menu_id>55503847712146</role_menu_id>
+      <role_menu_id>56524240810142</role_menu_id>
     </role_menu>
     <role_menu>
       <roleid>50642806128136</roleid>
       <menuid>55503481069117</menuid>
-      <role_menu_id>55503847714157</role_menu_id>
+      <role_menu_id>56524240811155</role_menu_id>
+    </role_menu>
+    <role_menu>
+      <roleid>50642806128136</roleid>
+      <menuid>56524066954113</menuid>
+      <role_menu_id>56524240812163</role_menu_id>
+    </role_menu>
+    <role_menu>
+      <roleid>50675519372117</roleid>
+      <menuid>4937787503210655</menuid>
+      <role_menu_id>56613918938138</role_menu_id>
+    </role_menu>
+    <role_menu>
+      <roleid>50675519372117</roleid>
+      <menuid>4937805643610681</menuid>
+      <role_menu_id>56613918942148</role_menu_id>
+    </role_menu>
+    <role_menu>
+      <roleid>50675519372117</roleid>
+      <menuid>54914376635111</menuid>
+      <role_menu_id>56613918944156</role_menu_id>
+    </role_menu>
+    <role_menu>
+      <roleid>50675519372117</roleid>
+      <menuid>55417005246110</menuid>
+      <role_menu_id>56613918946166</role_menu_id>
+    </role_menu>
+    <role_menu>
+      <roleid>50675519372117</roleid>
+      <menuid>55503481069117</menuid>
+      <role_menu_id>56613918948170</role_menu_id>
+    </role_menu>
+    <role_menu>
+      <roleid>50675519372117</roleid>
+      <menuid>56524066954113</menuid>
+      <role_menu_id>56613918949183</role_menu_id>
     </role_menu>
   </role_menus>
   <comboboxs>
@@ -525,6 +486,16 @@
       <tableName>AUTH_MENU</tableName>
       <textField>name</textField>
       <valueField>menuid</valueField>
+    </combobox>
+    <combobox>
+      <comboid>56683781353113</comboid>
+      <whereCondition />
+      <name>视频栏目</name>
+      <parentField>pid</parentField>
+      <rootValue>56643194809110</rootValue>
+      <tableName>CMS_CHANNEL</tableName>
+      <textField>channel_name</textField>
+      <valueField>channel_id</valueField>
     </combobox>
   </comboboxs>
   <dict_entrys>

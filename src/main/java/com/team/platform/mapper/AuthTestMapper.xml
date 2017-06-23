@@ -3,7 +3,7 @@
 <mapper namespace="com.team.platform.mapper.AuthTestMapper">
   <resultMap id="BaseResultMap" type="com.team.platform.pojo.AuthTest">
     <id column="TESTID" jdbcType="VARCHAR" property="testid" />
-    <id column="GROUP_ID" jdbcType="VARCHAR" property="groupId" />
+    <result column="GROUP_ID" jdbcType="VARCHAR" property="groupId" />
     <result column="TESTNAME" jdbcType="VARCHAR" property="testname" />
     <result column="TESTGROUP" jdbcType="VARCHAR" property="testgroup" />
     <result column="DEPT_ID" jdbcType="VARCHAR" property="deptId" />
@@ -75,7 +75,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from HDMS.AUTH_TEST
+    from auth_test
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -83,32 +83,30 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="com.team.platform.pojo.AuthTestKey" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from HDMS.AUTH_TEST
+    from auth_test
     where TESTID = #{testid,jdbcType=VARCHAR}
-      and GROUP_ID = #{groupId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="com.team.platform.pojo.AuthTestKey">
-    delete from HDMS.AUTH_TEST
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from auth_test
     where TESTID = #{testid,jdbcType=VARCHAR}
-      and GROUP_ID = #{groupId,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.team.platform.pojo.AuthTestExample">
-    delete from HDMS.AUTH_TEST
+    delete from auth_test
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.team.platform.pojo.AuthTest">
-    insert into HDMS.AUTH_TEST (TESTID, GROUP_ID, TESTNAME, 
+    insert into auth_test (TESTID, GROUP_ID, TESTNAME, 
       TESTGROUP, DEPT_ID)
     values (#{testid,jdbcType=VARCHAR}, #{groupId,jdbcType=VARCHAR}, #{testname,jdbcType=VARCHAR}, 
       #{testgroup,jdbcType=VARCHAR}, #{deptId,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.team.platform.pojo.AuthTest">
-    insert into HDMS.AUTH_TEST
+    insert into auth_test
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="testid != null">
         TESTID,
@@ -145,13 +143,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.team.platform.pojo.AuthTestExample" resultType="java.lang.Long">
-    select count(*) from HDMS.AUTH_TEST
+    select count(*) from auth_test
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update HDMS.AUTH_TEST
+    update auth_test
     <set>
       <if test="record.testid != null">
         TESTID = #{record.testid,jdbcType=VARCHAR},
@@ -174,7 +172,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update HDMS.AUTH_TEST
+    update auth_test
     set TESTID = #{record.testid,jdbcType=VARCHAR},
       GROUP_ID = #{record.groupId,jdbcType=VARCHAR},
       TESTNAME = #{record.testname,jdbcType=VARCHAR},
@@ -185,8 +183,11 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.team.platform.pojo.AuthTest">
-    update HDMS.AUTH_TEST
+    update auth_test
     <set>
+      <if test="groupId != null">
+        GROUP_ID = #{groupId,jdbcType=VARCHAR},
+      </if>
       <if test="testname != null">
         TESTNAME = #{testname,jdbcType=VARCHAR},
       </if>
@@ -198,14 +199,13 @@
       </if>
     </set>
     where TESTID = #{testid,jdbcType=VARCHAR}
-      and GROUP_ID = #{groupId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.team.platform.pojo.AuthTest">
-    update HDMS.AUTH_TEST
-    set TESTNAME = #{testname,jdbcType=VARCHAR},
+    update auth_test
+    set GROUP_ID = #{groupId,jdbcType=VARCHAR},
+      TESTNAME = #{testname,jdbcType=VARCHAR},
       TESTGROUP = #{testgroup,jdbcType=VARCHAR},
       DEPT_ID = #{deptId,jdbcType=VARCHAR}
     where TESTID = #{testid,jdbcType=VARCHAR}
-      and GROUP_ID = #{groupId,jdbcType=VARCHAR}
   </update>
 </mapper>

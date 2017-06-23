@@ -2,7 +2,6 @@ package com.team.platform.mapper;
 
 import com.team.platform.pojo.AuthTest;
 import com.team.platform.pojo.AuthTestExample;
-import com.team.platform.pojo.AuthTestKey;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -23,7 +22,7 @@ public interface AuthTestMapper {
      *
      * @mbg.generated
      */
-    int deleteByPrimaryKey(AuthTestKey key);
+    int deleteByPrimaryKey(String testid);
 
     /**
      *
@@ -47,7 +46,7 @@ public interface AuthTestMapper {
      *
      * @mbg.generated
      */
-    AuthTest selectByPrimaryKey(AuthTestKey key);
+    AuthTest selectByPrimaryKey(String testid);
 
     /**
      *

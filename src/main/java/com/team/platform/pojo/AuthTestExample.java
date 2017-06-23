@@ -5,17 +5,17 @@ import java.util.List;
 
 public class AuthTestExample {
     /**
-     * HDMS.AUTH_TEST
+     * auth_test
      */
     protected String orderByClause;
 
     /**
-     * HDMS.AUTH_TEST
+     * auth_test
      */
     protected boolean distinct;
 
     /**
-     * HDMS.AUTH_TEST
+     * auth_test
      */
     protected List<Criteria> oredCriteria;
 
@@ -117,7 +117,7 @@ public class AuthTestExample {
     }
 
     /**
-     * HDMS.AUTH_TEST null
+     * auth_test null
      */
     protected abstract static class GeneratedCriteria {
         protected List<Criterion> criteria;
@@ -512,7 +512,7 @@ public class AuthTestExample {
     }
 
     /**
-     * HDMS.AUTH_TEST
+     * auth_test
      */
     public static class Criteria extends GeneratedCriteria {
 
@@ -522,7 +522,7 @@ public class AuthTestExample {
     }
 
     /**
-     * HDMS.AUTH_TEST null
+     * auth_test null
      */
     public static class Criterion {
         private String condition;

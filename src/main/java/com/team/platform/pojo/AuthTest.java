@@ -1,64 +1,106 @@
 package com.team.platform.pojo;
 
-public class AuthTest extends AuthTestKey {
+public class AuthTest {
     /**
-     * æµ‹è¯•åç§°
+     * ²âÊÔ±àºÅ
+     */
+    private String testid;
+
+    /**
+     * ×é±àºÅ
+     */
+    private String groupId;
+
+    /**
+     * ²âÊÔÃû³Æ
      */
     private String testname;
 
     /**
-     * ç»„åç§°
+     * ×éÃû³Æ
      */
     private String testgroup;
 
     /**
-     * null
+     * 
      */
     private String deptId;
 
     /**
-     * æµ‹è¯•åç§°
-     * @return TESTNAME æµ‹è¯•åç§°
+     * ²âÊÔ±àºÅ
+     * @return TESTID ²âÊÔ±àºÅ
+     */
+    public String getTestid() {
+        return testid;
+    }
+
+    /**
+     * ²âÊÔ±àºÅ
+     * @param testid ²âÊÔ±àºÅ
+     */
+    public void setTestid(String testid) {
+        this.testid = testid == null ? null : testid.trim();
+    }
+
+    /**
+     * ×é±àºÅ
+     * @return GROUP_ID ×é±àºÅ
+     */
+    public String getGroupId() {
+        return groupId;
+    }
+
+    /**
+     * ×é±àºÅ
+     * @param groupId ×é±àºÅ
+     */
+    public void setGroupId(String groupId) {
+        this.groupId = groupId == null ? null : groupId.trim();
+    }
+
+    /**
+     * ²âÊÔÃû³Æ
+     * @return TESTNAME ²âÊÔÃû³Æ
      */
     public String getTestname() {
         return testname;
     }
 
     /**
-     * æµ‹è¯•åç§°
-     * @param testname æµ‹è¯•åç§°
+     * ²âÊÔÃû³Æ
+     * @param testname ²âÊÔÃû³Æ
      */
     public void setTestname(String testname) {
         this.testname = testname == null ? null : testname.trim();
     }
 
     /**
-     * ç»„åç§°
-     * @return TESTGROUP ç»„åç§°
+     * ×éÃû³Æ
+     * @return TESTGROUP ×éÃû³Æ
      */
     public String getTestgroup() {
         return testgroup;
     }
 
     /**
-     * ç»„åç§°
-     * @param testgroup ç»„åç§°
+     * ×éÃû³Æ
+     * @param testgroup ×éÃû³Æ
      */
     public void setTestgroup(String testgroup) {
         this.testgroup = testgroup == null ? null : testgroup.trim();
     }
 
     /**
-     * null
-     * @return DEPT_ID null
+     * 
+     * @return DEPT_ID 
      */
     public String getDeptId() {
         return deptId;
     }
 
     /**
-     * null
-     * @param deptId null
+     * 
+     * @param deptId 
      */
     public void setDeptId(String deptId) {
         this.deptId = deptId == null ? null : deptId.trim();

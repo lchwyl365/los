@@ -26,14 +26,21 @@
 		<div data-options="region:'center',border:false" style="padding:10px">
 			<form id="contentEditForm" method="post">
 				<input type="hidden" name="testid" />
-				<input type="hidden" name="groupId" />
 				<table class="easyui-panel form-table">
 				   <tr>
 						<td class="form-table-td-left">
-							<label for="deptId">DEPT_ID:</label>
+							<label for="testname">测试名称:</label>
 						</td>
 						<td class="form-table-td-right">
-								<input class="easyui-validatebox" type="text" name="deptId" data-options="required:true,validType:['length[0,32]']" style="width:320px;height:28px;"/>
+								<input class="easyui-validatebox" type="text" name="testname" data-options="required:true,validType:['length[0,64]']" style="width:320px;height:28px;"/>
+						</td>
+				    </tr>
+				   <tr>
+						<td class="form-table-td-left">
+							<label for="groupId">组编号:</label>
+						</td>
+						<td class="form-table-td-right">
+								<input class="easyui-validatebox" type="text" name="groupId" data-options="required:true,validType:['length[0,32]']" style="width:320px;height:28px;"/>
 						</td>
 				    </tr>
 				   <tr>
@@ -46,10 +53,10 @@
 				    </tr>
 				   <tr>
 						<td class="form-table-td-left">
-							<label for="testname">测试名称:</label>
+							<label for="deptId">DEPT_ID:</label>
 						</td>
 						<td class="form-table-td-right">
-								<input class="easyui-validatebox" type="text" name="testname" data-options="required:true,validType:['length[0,64]']" style="width:320px;height:28px;"/>
+								<input class="easyui-validatebox" type="text" name="deptId" data-options="required:true,validType:['length[0,32]']" style="width:320px;height:28px;"/>
 						</td>
 				    </tr>
 				</table>
@@ -64,7 +71,6 @@ var contentUpdatePage  = {
 	initFormData:function(){
 		var url = "${contextPath}/platform/test/load";
 		url += "/${testid}";
-		url += "/${groupId}";
 		$.get(url,function(data){
 			if(data.status == 200){
 				$("#contentEditForm").form("load",data.data);

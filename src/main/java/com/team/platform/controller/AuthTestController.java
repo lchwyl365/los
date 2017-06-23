@@ -51,23 +51,28 @@ public class AuthTestController {
 	
 	@RequestMapping(value="/delete",method=RequestMethod.POST)
 	@ResponseBody
-	public ResponseResult delete(@RequestParam List<String> testids,@RequestParam List<String> groupIds)throws Exception{
-		ResponseResult result = authTestService.delete(testids,groupIds);
+	public ResponseResult delete(@RequestParam List<String> testids)throws Exception{
+		ResponseResult result = authTestService.delete(testids);
 		return result;
 	}
 	
-	@RequestMapping(value = "/update/{testid}/{groupId}",method = RequestMethod.GET)
-    public String update(@PathVariable String testid,@PathVariable String groupId,Model model) throws Exception{
+	@RequestMapping(value = "/update/{testid}",method = RequestMethod.GET)
+    public String update(@PathVariable String testid,Model model) throws Exception{
 	  	model.addAttribute("testid", testid);
-	  	model.addAttribute("groupId", groupId);
     	return "test/update";
     }
 	
 	@RequestMapping(value = "/update",method = RequestMethod.POST)
 	@ResponseBody
-    public ResponseResult update(AuthTest authTest) throws Exception{
-		ResponseResult result = authTestService.update(authTest);
-		return result;
+    public ResponseResult update(HttpServletRequest request) throws Exception{
+    
+    	AuthTest authTest = new AuthTest();
+		authTest.setTestid(String.valueOf(request.getParameter("testid")));
+		authTest.setTestname(String.valueOf(request.getParameter("testname")));
+		authTest.setGroupId(String.valueOf(request.getParameter("groupId")));
+		authTest.setTestgroup(String.valueOf(request.getParameter("testgroup")));
+		authTest.setDeptId(String.valueOf(request.getParameter("deptId")));
+		return authTestService.update(authTest);
     }
 	
 	@RequestMapping(value = "/queryList",method = RequestMethod.POST)
@@ -77,10 +82,10 @@ public class AuthTestController {
     	return result;
     }
 
-	@RequestMapping(value="/load/{testid}/{groupId}",method = RequestMethod.GET)
+	@RequestMapping(value="/load/{testid}",method = RequestMethod.GET)
 	@ResponseBody
-	public ResponseResult load(@PathVariable String testid,@PathVariable String groupId) {
-		AuthTest authTest = authTestService.selectByPrimaryKey(testid,groupId);
+	public ResponseResult load(@PathVariable String testid) {
+		AuthTest authTest = authTestService.selectByPrimaryKey(testid);
 		return new ResponseResult(authTest);
 	}
 	

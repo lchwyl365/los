@@ -23,7 +23,6 @@ import com.team.platform.pojo.AuthTestExample.Criteria;
 import com.team.platform.service.AuthTestService;
 
 
-import com.team.platform.pojo.AuthTestKey;
 
 
 /**
@@ -58,6 +57,19 @@ public class AuthTestServiceImpl implements AuthTestService {
 		return result;
 	}
 	
+	
+	public List<AuthTest> selectByAuthTest(AuthTest authTest,String orderByClause){
+		//查询列表
+		AuthTestExample example = new AuthTestExample();
+		Criteria criteria = example.createCriteria();
+		
+		//排序
+		if(StringUtils.isNotEmpty(orderByClause)){
+			example.setOrderByClause(orderByClause);
+		}
+		List<AuthTest> list = authTestMapper.selectByExample(example);
+		return list;
+	}
 
 	@Override
 	public ResponseResult insert(AuthTest authTest) {
@@ -65,9 +77,6 @@ public class AuthTestServiceImpl implements AuthTestService {
 			//补全pojo内容
 		  	if(StringUtils.isEmpty(authTest.getTestid())){
 				authTest.setTestid(PrimaryKeyFactory.generatePK(""));
-			}
-		  	if(StringUtils.isEmpty(authTest.getGroupId())){
-				authTest.setGroupId(PrimaryKeyFactory.generatePK(""));
 			}
 			authTestMapper.insert(authTest);
 			return ResponseResult.ok();
@@ -79,15 +88,11 @@ public class AuthTestServiceImpl implements AuthTestService {
 	}
 
 	@Override
-	public ResponseResult delete(List<String> testids,List<String> groupIds) {
+	public ResponseResult delete(List<String> testids) {
 		try {
 			for (int i = 0; i < testids.size(); i++) {
 				String testid = testids.get(i);
-				String groupId = groupIds.get(i);
-				AuthTestKey key = new AuthTestKey();
-				key.setTestid(testid);
-				key.setGroupId(groupId);
-				authTestMapper.deleteByPrimaryKey(key);
+			    authTestMapper.deleteByPrimaryKey(testid);
 			}
 			return ResponseResult.ok();
 		} catch (Exception e) {
@@ -97,25 +102,20 @@ public class AuthTestServiceImpl implements AuthTestService {
 	}
 
 	@Override
-	public AuthTest selectByPrimaryKey(String testid,String groupId) {
-		AuthTestKey key = new AuthTestKey();
-		key.setTestid(testid);
-		key.setGroupId(groupId);
-		AuthTest authTest = authTestMapper.selectByPrimaryKey(key);
+	public AuthTest selectByPrimaryKey(String testid) {
+		AuthTest authTest = authTestMapper.selectByPrimaryKey(testid);
 		return authTest;
 	}
 
 	@Override
 	public ResponseResult update(AuthTest authTest) {
 		try {
-			AuthTestKey key = new AuthTestKey();
-			key.setTestid(authTest.getTestid());
-			key.setGroupId(authTest.getGroupId());
-			AuthTest temp = authTestMapper.selectByPrimaryKey(key);
-			temp.setDeptId(authTest.getDeptId());
-			temp.setTestgroup(authTest.getTestgroup());
+			AuthTest temp = authTestMapper.selectByPrimaryKey(authTest.getTestid());
 			temp.setTestname(authTest.getTestname());
-			authTestMapper.updateByPrimaryKeySelective(authTest);
+			temp.setGroupId(authTest.getGroupId());
+			temp.setTestgroup(authTest.getTestgroup());
+			temp.setDeptId(authTest.getDeptId());
+			authTestMapper.updateByPrimaryKeySelective(temp);
 			return ResponseResult.ok();
 		} catch (Exception e) {
 			e.printStackTrace();

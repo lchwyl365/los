@@ -12,12 +12,14 @@ import com.team.platform.pojo.AuthTest;
 public interface AuthTestService {
 
 	public EUDataGridResult selectList(EUDataGridModel dgm,AuthTest authTest);
+
+	public List<AuthTest> selectByAuthTest(AuthTest authTest,String orderByClause);
 	
-	public AuthTest selectByPrimaryKey(String testid,String groupId);
+	public AuthTest selectByPrimaryKey(String testid);
 
 	public ResponseResult insert(AuthTest authTest);
 
-	public ResponseResult delete(List<String> testids,List<String> groupIds);
+	public ResponseResult delete(List<String> testids);
 
 	public ResponseResult update(AuthTest authTest);
 	

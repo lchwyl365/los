@@ -32,17 +32,17 @@
 				{field:'TESTID',title:'测试编号',width:100,sortable:'F',
 						formatter:function(value,row,index){return row.testid;}
 				},
-				{field:'DEPT_ID',title:'DEPT_ID',width:100,sortable:'F',
-						formatter:function(value,row,index){return row.deptId;}
-				},
-				{field:'TESTGROUP',title:'组名称',width:100,sortable:'F',
-						formatter:function(value,row,index){return row.testgroup;}
+				{field:'TESTNAME',title:'测试名称',width:100,sortable:'F',
+						formatter:function(value,row,index){return row.testname;}
 				},
 				{field:'GROUP_ID',title:'组编号',width:100,sortable:'F',
 						formatter:function(value,row,index){return row.groupId;}
 				},
-				{field:'TESTNAME',title:'测试名称',width:100,sortable:'F',
-						formatter:function(value,row,index){return row.testname;}
+				{field:'TESTGROUP',title:'组名称',width:100,sortable:'F',
+						formatter:function(value,row,index){return row.testgroup;}
+				},
+				{field:'DEPT_ID',title:'DEPT_ID',width:100,sortable:'F',
+						formatter:function(value,row,index){return row.deptId;}
 				}
 			]],
 			toolbar:'#tb',
@@ -74,7 +74,6 @@
     			}
     			var ps = "";
 			  	ps += "/" + rows[0].testid;
-			  	ps += "/" + rows[0].groupId;
   				window.self.location = '${contextPath}/platform/test/update'+ps;
     		},
     		deleteRow:function(){//删除
@@ -88,7 +87,6 @@
     		        	var ps = "?1=1";
     		        	$.each(rows,function(i,n){
 					       	ps += "&testids="+n.testid;
-					       	ps += "&groupIds="+n.groupId;
     		        	});
     		        	$.post('${contextPath}/platform/test/delete'+ps,function(data){
 							$("#testTable").datagrid("reload");
