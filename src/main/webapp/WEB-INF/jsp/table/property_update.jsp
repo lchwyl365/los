@@ -32,10 +32,11 @@ var PROPERTY = {
 		}
 };
 var components = [
-    {componentid:'easyui-validatebox',name:'easyui-validatebox'},
-	{componentid:'easyui-combotree',name:'easyui-combotree'},
-	{componentid:'easyui-switchbutton',name:'easyui-switchbutton'},
+    {componentid:'easyui-validatebox',name:'validatebox'},
+	{componentid:'easyui-combotree',name:'combotree'},
+	{componentid:'easyui-switchbutton',name:'switchbutton'},
 	{componentid:'radio',name:'radio'},
+	{componentid:'password',name:'password'},
 	{componentid:'file',name:'file'},
 	{componentid:'kindeditor',name:'kindeditor'}
 ];

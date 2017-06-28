@@ -10,7 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <title>『济南润易集团』润易官网-鲁丰纸业有限公司-晨光纸业有限公司-欣易特种纸有限公司-晨光空港实业公司</title>
-<meta name="keywords" content="济南润易集团,润易官网,济南赵滨,鲁丰纸业有限公司,晨光纸业有限公司,欣易特种纸有限公司,晨光空港实业公司">
+<meta name="keywords" content="济南润易集团,济南润易,济南赵滨,济南造纸,鲁丰纸业有限公司,晨光纸业有限公司,欣易特种纸有限公司,晨光空港实业公司">
 <meta name="description" content="济南润易集团有限公司官网网站，提供润易集团简介，鲁丰纸业有限公司,晨光纸业有限公司,欣易特种纸有限公司,晨光空港实业公司等信息。业务涵盖商务综合体领域、文化产业领域、特种纸领域和电商物流领域四大核心产业。">
 <link rel="stylesheet" href="${contextPath}/resources/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="${contextPath}/resources/theme/r/css/runyi.css">
@@ -167,39 +167,47 @@ var _hmt = _hmt || [];
 		</div>
 	    <div class="main fr">
 			<h1 class="h1 f18" style="margin-top:10px;margin-bottom:0px;">${childchannel.channelName}</h1>
-			<div class="mt30 b1s pl30 pr30" style="margin-top:10px;">
-					<ul class="txtlist pb25 pt25">
-						
-						<c:forEach items="${dataGridResult.rows}" var="item">
-							<li><span><fmt:formatDate value="${item.createtime}" type="date"/></span> 
-								<a href="${contextPath}/front/r/article/${item.articleId}" title="${item.title}" target="_blank">${item.title}</a></li>
-						</c:forEach>
-					</ul>
-				</div>
-				<div class="pt30"></div>
-				<div class="page">
-					<c:if test="${dataGridResult.total > 0}">
-						<pg:pager url="${contextPath}/front/r/channel/${childchannel.channelId}" items="${dataGridResult.total}" 
-                              export="currentPageNumber=pageNumber">
-	                        <pg:first>
-	                            <a href="${pageUrl}&pageNumber=${pageNumber}" class="a1 next">首页</a>
-	                        </pg:first>
-	                        <pg:pages>
-	                            <c:choose>
-	                                <c:when test="${currentPageNumber == pageNumber}">
-	                                    <span class="current">${pageNumber}</span>
-	                                </c:when>
-	                                <c:otherwise>
-	                                	<a href="${pageUrl}&pageNumber=${pageNumber}">${pageNumber}</a>
-	                                </c:otherwise>
-	                            </c:choose>
-	                        </pg:pages>
-	                        <pg:last>
-	                            <a href="${pageUrl}&pageNumber=${pageNumber}" class="a1 next">尾页</a>
-	                        </pg:last>
-	                    </pg:pager>
-					</c:if>
-				</div>
+				<c:if test="${childchannel.channelType == 'cover'}">
+				    <div class="mt30 b1s pl30 pr30" style="margin-top:10px;padding:15px;">
+				    	${childchannel.content}
+				    </div>
+				    <div class="pt30"></div>
+			    </c:if>
+			    <c:if test="${childchannel.channelType == 'list'}">
+				    <div class="mt30 b1s pl30 pr30" style="margin-top:10px;">
+						<ul class="txtlist pb25 pt25">
+							
+							<c:forEach items="${dataGridResult.rows}" var="item">
+								<li><span><fmt:formatDate value="${item.createtime}" type="date"/></span> 
+									<a href="${contextPath}/front/r/article/${item.articleId}" title="${item.title}" target="_blank">${item.title}</a></li>
+							</c:forEach>
+						</ul>
+					</div>
+					<div class="pt30"></div>
+					<div class="page">
+						<c:if test="${dataGridResult.total > 0}">
+							<pg:pager url="${contextPath}/front/r/channel/${childchannel.channelId}" items="${dataGridResult.total}" 
+	                              export="currentPageNumber=pageNumber">
+		                        <pg:first>
+		                            <a href="${pageUrl}&pageNumber=${pageNumber}" class="a1 next">首页</a>
+		                        </pg:first>
+		                        <pg:pages>
+		                            <c:choose>
+		                                <c:when test="${currentPageNumber == pageNumber}">
+		                                    <span class="current">${pageNumber}</span>
+		                                </c:when>
+		                                <c:otherwise>
+		                                	<a href="${pageUrl}&pageNumber=${pageNumber}">${pageNumber}</a>
+		                                </c:otherwise>
+		                            </c:choose>
+		                        </pg:pages>
+		                        <pg:last>
+		                            <a href="${pageUrl}&pageNumber=${pageNumber}" class="a1 next">尾页</a>
+		                        </pg:last>
+		                    </pg:pager>
+						</c:if>
+					</div>
+				</c:if>
 			</div>
 	</div>
 </div>

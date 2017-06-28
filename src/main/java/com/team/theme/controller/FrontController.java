@@ -2,10 +2,12 @@ package com.team.theme.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +26,7 @@ import com.team.cms.service.CmsChannelService;
 import com.team.cms.service.CmsVideoService;
 import com.team.common.pojo.EUDataGridModel;
 import com.team.common.pojo.EUDataGridResult;
+import com.team.common.util.ImageUtil;
 
 @Controller
 @RequestMapping("/front/r")
@@ -92,6 +95,21 @@ public class FrontController {
     	model.addAttribute("videoList", videoList);
     	//集团简介
     	CmsChannel introduceChannel = cmsChannelService.selectByPrimaryKey("55229185193119");
+    	if(introduceChannel != null && StringUtils.isNotEmpty(introduceChannel.getContent())){
+    		Set<String> set = ImageUtil.getImgStr(introduceChannel.getContent());
+    		String thumbnail = "";
+			for (String str : set) {
+				if(StringUtils.isNotEmpty(str) && StringUtils.isEmpty(thumbnail)){
+					thumbnail = str;
+				}
+			}
+			introduceChannel.setThumbnail(thumbnail);
+			
+			String desc = introduceChannel.getContent()
+					.replaceAll("</?[^>]+>", "").replaceAll("\\s*|\t|\r|\n", "").replaceAll("&nbsp;", "");
+			introduceChannel.setDescription(desc);
+    	}
+    	
     	model.addAttribute("introduceChannel", introduceChannel);
 		
     	return "front/r/index";

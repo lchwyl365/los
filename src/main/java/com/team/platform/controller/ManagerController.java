@@ -22,7 +22,8 @@ import com.team.platform.pojo.AuthMenu;
 import com.team.platform.pojo.AuthUser;
 import com.team.platform.service.AuthMenuService;
 import com.team.platform.service.AuthUserService;
-import com.team.platform.service.impl.AuthUserServiceImpl;
+import com.team.platform.service.SessionUserService;
+import com.team.platform.service.impl.SessionUserServiceImpl;
 
 @Controller
 @RequestMapping("/manager")
@@ -33,6 +34,9 @@ public class ManagerController {
 	
 	@Autowired
 	private AuthUserService authUserService;
+	
+	@Autowired
+	private SessionUserService sessionUserService;
 	
 	@Autowired
 	private JedisClient jedisClient;
@@ -50,9 +54,9 @@ public class ManagerController {
 		//根据token换取用户信息，调用sso系统的接口。
 		AuthUser user = null;
 		if(USE_REDIS){
-			user = authUserService.getUserByToken(token);
+			user = sessionUserService.getUserByToken(token);
 		}else{
-			user = (AuthUser) request.getSession().getAttribute(AuthUserServiceImpl.LOGIN_USER);
+			user = (AuthUser) request.getSession().getAttribute(SessionUserServiceImpl.LOGIN_USER);
 		}
 		List<AuthMenu> topMenus = authMenuService.selectListByAuth(user.getUserid(),"4758592868910319","top");
 		model.addAttribute("topMenus", topMenus);
@@ -73,7 +77,7 @@ public class ManagerController {
 		try {
 			//对密码解密
 			password = AesCBC.getInstance().decrypt(password,"utf-8",AesCBC.CBC_KEY,AesCBC.CBC_IV);
-			ResponseResult result = authUserService.userLogin(username, password,request,response);
+			ResponseResult result = sessionUserService.userLogin(username, password,request,response);
 			return result;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -88,7 +92,7 @@ public class ManagerController {
 		if(USE_REDIS){
 			jedisClient.del(REDIS_USER_SESSION_KEY + ":"+ token);
 		}else{
-			request.getSession().setAttribute(AuthUserServiceImpl.LOGIN_USER,null);
+			request.getSession().setAttribute(SessionUserServiceImpl.LOGIN_USER,null);
 		}
     	return "redirect:/manager/login";
 	}

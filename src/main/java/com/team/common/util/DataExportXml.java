@@ -58,7 +58,9 @@ public class DataExportXml {
 		String path = System.getProperty("user.dir");//user.dir指定了当前的路径
 
 		System.out.println("正在生成 datas.xml 文件...");   
-		List<AuthUser> users = authUserService.selectList();
+		
+		List<AuthUser> users = authUserService.selectByAuthUser(null, null);
+		
 		List<AuthRole> roles = authRoleService.selectList();
 		List<AuthMenu> menus = authMenuService.selectList();
 		List<AuthUserRole> userRoles = authUserRoleService.selectList();
@@ -273,7 +275,7 @@ public class DataExportXml {
         	user.setCreatetime(sdf.parse(createtime.getText()));
         	AuthUser temp = authUserService.selectByPrimaryKey(user.getUserid());
         	if(temp == null){
-        		authUserService.insertUser(user);
+        		authUserService.insert(user,false);
         	}
         }
 	}

@@ -10,13 +10,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.team.common.util.CookieUtils;
 import com.team.platform.pojo.AuthUser;
-import com.team.platform.service.AuthUserService;
-import com.team.platform.service.impl.AuthUserServiceImpl;
+import com.team.platform.service.SessionUserService;
+import com.team.platform.service.impl.SessionUserServiceImpl;
 
 public class LoginInterceptor implements HandlerInterceptor {
 	
 	@Autowired
-	private AuthUserService authUserService;
+	private SessionUserService sessionUserService;
 	
 	@Value("${USE_REDIS}")
 	private Boolean USE_REDIS;
@@ -31,9 +31,9 @@ public class LoginInterceptor implements HandlerInterceptor {
 		//根据token换取用户信息，调用sso系统的接口。
 		AuthUser user = null;
 		if(USE_REDIS){
-			user = authUserService.getUserByToken(token);
+			user = sessionUserService.getUserByToken(token);
 		}else{
-			user = (AuthUser) request.getSession().getAttribute(AuthUserServiceImpl.LOGIN_USER);
+			user = (AuthUser) request.getSession().getAttribute(SessionUserServiceImpl.LOGIN_USER);
 		}
 		//取不到用户信息
 		if (null == user) {

@@ -59,6 +59,8 @@ public class GeneratorModel {
     
     private String enctype;
     
+    private Boolean useUser;
+    
 	public String getMenuName() {
 		return menuName;
 	}
@@ -474,6 +476,20 @@ public class GeneratorModel {
 
 	public void setEnctype(String enctype) {
 		this.enctype = enctype;
+	}
+
+	public Boolean getUseUser() {
+		useUser = false;
+		for (GeneratorProperty property : propertys) {
+			if("userid".equals(property.getDefaultValue())){
+				return true;
+			}
+		}
+		return useUser;
+	}
+
+	public void setUseUser(Boolean useUser) {
+		this.useUser = useUser;
 	}
 	
 }

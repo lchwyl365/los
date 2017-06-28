@@ -59,6 +59,9 @@ public class CmsChannel {
     private List<CmsVideo> secondVideoList;
     
     private List<CmsVideo> threeVideoList;
+    
+    private String thumbnail;
+    private String description;
 
     /**
      * 栏目编号
@@ -242,6 +245,22 @@ public class CmsChannel {
 
 	public void setThreeVideoList(List<CmsVideo> threeVideoList) {
 		this.threeVideoList = threeVideoList;
+	}
+
+	public String getThumbnail() {
+		return thumbnail;
+	}
+
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
     
 }

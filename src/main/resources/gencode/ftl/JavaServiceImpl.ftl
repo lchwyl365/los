@@ -7,6 +7,7 @@ import java.util.Date;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.DigestUtils;
 
 <#if model.gentype == "DataGrid">
 import com.github.pagehelper.PageHelper;
@@ -139,19 +140,25 @@ public class ${model.domainObjectName}ServiceImpl implements ${model.domainObjec
 	}
 
 	@Override
-	public ResponseResult insert(${model.domainObjectName} ${model.variableName}) {
+	public ResponseResult insert(${model.domainObjectName} ${model.variableName},Boolean isDefault) {
 		try {
+			if(isDefault){
 			//补全pojo内容
-		<#list model.propertys as property>
-		  <#if property.isprimary == "T" && property.propertyType == "String">
-		  	if(StringUtils.isEmpty(${model.variableName}.get${property.propertyName?cap_first}())){
-				${model.variableName}.set${property.propertyName?cap_first}(PrimaryKeyFactory.generatePK(""));
+			<#list model.propertys as property>
+			  <#if property.isprimary == "T" && property.propertyType == "String">
+			  	if(StringUtils.isEmpty(${model.variableName}.get${property.propertyName?cap_first}())){
+					${model.variableName}.set${property.propertyName?cap_first}(PrimaryKeyFactory.generatePK(""));
+				}
+			  </#if>
+			  <#if property.defaultValue?? && property.defaultValue != "" >
+				${model.variableName}.set${property.propertyName?cap_first}(${property.defaultValue});
+			  </#if>
+			  <#if property.component == "password" >
+				//md5加密
+				${model.variableName}.set${property.propertyName?cap_first}(DigestUtils.md5DigestAsHex(${model.variableName}.get${property.propertyName?cap_first}().getBytes()));
+			  </#if>
+			</#list>
 			}
-		  </#if>
-		  <#if property.defaultValue?? && property.defaultValue != "" >
-			${model.variableName}.set${property.propertyName?cap_first}(${property.defaultValue});
-		  </#if>
-		</#list>
 			${model.variableName}Mapper.insert(${model.variableName});
 			return ResponseResult.ok();
 		} catch (Exception e) {
@@ -227,6 +234,10 @@ public class ${model.domainObjectName}ServiceImpl implements ${model.domainObjec
 		    <#list model.propertys as property>
 			  <#if property.isprimary == "F">
 			temp.set${property.propertyName?cap_first}(${model.variableName}.get${property.propertyName?cap_first}());
+			  </#if>
+			  <#if property.component == "password" >
+				//md5加密
+				${model.variableName}.set${property.propertyName?cap_first}(DigestUtils.md5DigestAsHex(${model.variableName}.get${property.propertyName?cap_first}().getBytes()));
 			  </#if>
 			</#list>
 			${model.variableName}Mapper.updateByPrimaryKeySelective(temp);

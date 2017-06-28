@@ -20,6 +20,8 @@
 						<td class="form-table-td-right">
 							<#if property.component == 'easyui-validatebox'>
 								<input class="easyui-validatebox" type="text" name="${property.propertyName}" data-options="${property.dataOptions}" />
+							<#elseif property.component == 'password'>
+								<input class="easyui-validatebox" type="password" name="${property.propertyName}" data-options="${property.dataOptions}" style="width:320px;height:28px;"/>
 							<#elseif property.component == 'radio'>
 								<#list property.options as optionMap>
 									<#list optionMap?keys as key>
@@ -47,6 +49,8 @@
 						<td class="form-table-td-right">
 							<#if property.component == 'easyui-validatebox'>
 								<input class="easyui-validatebox" type="text" name="${property.propertyName}" data-options="${property.dataOptions}" />
+							<#elseif property.component == 'password'>
+								<input class="easyui-validatebox" type="password" name="${property.propertyName}" data-options="${property.dataOptions}" style="width:320px;height:28px;"/>
 							<#elseif property.component == 'radio'>
 								<#list property.options as optionMap>
 									<#list optionMap?keys as key>

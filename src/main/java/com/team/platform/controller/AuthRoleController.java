@@ -24,6 +24,7 @@ import com.team.platform.service.AuthRoleMenuService;
 import com.team.platform.service.AuthRoleService;
 import com.team.platform.service.AuthUserRoleService;
 import com.team.platform.service.AuthUserService;
+import com.team.platform.service.CommonService;
 import com.team.platform.service.SysComboBoxService;
 
 @Controller
@@ -46,6 +47,9 @@ public class AuthRoleController {
 	
 	@Autowired
 	private AuthUserRoleService authUserRoleService;
+	
+	@Autowired
+	private CommonService commonService;
 	
 	@RequestMapping(value = "/list",method = RequestMethod.GET)
     public String list(HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
@@ -117,7 +121,7 @@ public class AuthRoleController {
 	@RequestMapping(value = "/queryUserList",method = RequestMethod.POST)
 	@ResponseBody
     public EUDataGridResult queryUserList(@RequestParam String roleid,EUDataGridModel dgm,AuthUser user) throws Exception{
-		EUDataGridResult result = authUserService.selectListByRole(dgm, user,roleid);
+		EUDataGridResult result = commonService.selectListByRole(dgm, user,roleid);
     	return result;
     }
 	

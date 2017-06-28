@@ -25,7 +25,7 @@ public interface ${model.domainObjectName}Service {
 	
 	public ${model.domainObjectName} selectByPrimaryKey(${model.primaryKey});
 
-	public ResponseResult insert(${model.domainObjectName} ${model.variableName});
+	public ResponseResult insert(${model.domainObjectName} ${model.variableName},Boolean isDefault);
 
 	public ResponseResult delete(${model.batchServiceParam});
 

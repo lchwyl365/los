@@ -22,6 +22,10 @@ public class InitData implements ApplicationListener<ContextRefreshedEvent> {
 	@Value("${DIALECT}")
 	private String DIALECT;
 	
+	@Value("${INITDATA_AUTO}")
+	private Boolean INITDATA_AUTO;
+	
+	
 	@Autowired
 	private Db2DataServiceImpl db2DataServiceImpl;
 	
@@ -31,17 +35,19 @@ public class InitData implements ApplicationListener<ContextRefreshedEvent> {
     public void onApplicationEvent(final ContextRefreshedEvent event) {
     	
     	if(event.getApplicationContext().getParent() == null){
-        	logger.info("Initialize DB2SysTable data");
-        	
-        	switch (DIALECT.toLowerCase()){
-        		case "db2":
-        			db2DataServiceImpl.initDatabase();
-        			break;
-        		case "mysql":
-        			mysqlDataServiceImpl.initDatabase();
-        			break;
-        	}
-        	
+    		if(INITDATA_AUTO){
+    			logger.info("Initialize DB2SysTable data");
+            	switch (DIALECT.toLowerCase()){
+            		case "db2":
+            			db2DataServiceImpl.initDatabase();
+            			break;
+            		case "mysql":
+            			mysqlDataServiceImpl.initDatabase();
+            			break;
+            	}
+    		}else{
+    			logger.info("INITDATA_AUTO:false");
+    		}
     	}
     	
     }

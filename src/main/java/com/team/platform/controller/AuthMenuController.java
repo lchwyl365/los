@@ -27,8 +27,10 @@ import com.team.platform.service.AuthMenuService;
 import com.team.platform.service.AuthRoleMenuService;
 import com.team.platform.service.AuthRoleService;
 import com.team.platform.service.AuthUserService;
+import com.team.platform.service.SessionUserService;
 import com.team.platform.service.SysComboBoxService;
 import com.team.platform.service.impl.AuthUserServiceImpl;
+import com.team.platform.service.impl.SessionUserServiceImpl;
 import com.team.platform.vo.AuthMenuVo;
 
 @Controller
@@ -51,6 +53,9 @@ public class AuthMenuController {
 	
 	@Autowired
 	private AuthUserService authUserService;
+	
+	@Autowired
+	private SessionUserService sessionUserService;
 	
 	@Value("${USE_REDIS}")
 	private Boolean USE_REDIS;
@@ -109,9 +114,9 @@ public class AuthMenuController {
 		//根据token换取用户信息，调用sso系统的接口。
 		AuthUser user = null;
 		if(USE_REDIS){
-			user = authUserService.getUserByToken(token);
+			user = sessionUserService.getUserByToken(token);
 		}else{
-			user = (AuthUser) request.getSession().getAttribute(AuthUserServiceImpl.LOGIN_USER);
+			user = (AuthUser) request.getSession().getAttribute(SessionUserServiceImpl.LOGIN_USER);
 		}
 		String pos = "left";
 		List<AuthMenuVo> list = authMenuService.selectListByAuth2(user.getUserid(), pid, pos);
@@ -134,9 +139,9 @@ public class AuthMenuController {
 		//根据token换取用户信息，调用sso系统的接口。
 		AuthUser user = null;
 		if(USE_REDIS){
-			user = authUserService.getUserByToken(token);
+			user = sessionUserService.getUserByToken(token);
 		}else{
-			user = (AuthUser) request.getSession().getAttribute(AuthUserServiceImpl.LOGIN_USER);
+			user = (AuthUser) request.getSession().getAttribute(SessionUserServiceImpl.LOGIN_USER);
 		}
 		if(user == null) return null;
 		

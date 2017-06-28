@@ -28,6 +28,10 @@ import ${model.serviceTargetPackage}.${model.domainObjectName}Service;
 <#if model.useCombo == true>
 import com.team.platform.service.SysComboBoxService;
 </#if>
+<#if model.useUser == true>
+import com.team.platform.service.SessionUserService;
+import com.team.platform.service.impl.SessionUserServiceImpl;
+</#if>
 <#if model.enctype == 'multipart/form-data' >
 import javax.servlet.ServletContext;
 import java.io.File;
@@ -50,6 +54,14 @@ public class ${model.domainObjectName}Controller {
 	<#if model.useCombo == true>
 	@Autowired
 	private SysComboBoxService sysComboBoxService;
+	</#if>
+	
+	<#if model.useUser == true>
+	@Autowired
+	private SessionUserService sessionUserService;
+	
+	@Value("${USE_REDIS}")
+	private Boolean USE_REDIS;
 	</#if>
 	
 	@RequestMapping(value = "/list",method = RequestMethod.GET)
@@ -107,14 +119,30 @@ public class ${model.domainObjectName}Controller {
 		</#if>
 	</#list>
         
-        ${model.variableName}Service.insert(${model.variableName});
+        ${model.variableName}Service.insert(${model.variableName},true);
 		return "${model.path}/list";
 	}
 <#else>
 	@RequestMapping(value = "/add",method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseResult add(${model.domainObjectName} ${model.variableName}) throws Exception{
-		ResponseResult result = ${model.variableName}Service.insert(${model.variableName});
+	public ResponseResult add(HttpServletRequest request,${model.domainObjectName} ${model.variableName}) throws Exception{
+	<#if model.useUser == true>
+		//从cookie中取token
+		String token = CookieUtils.getCookieValue(request, "TT_TOKEN");
+		//根据token换取用户信息，调用sso系统的接口。
+		AuthUser user = null;
+		if(USE_REDIS){
+			user = sessionUserService.getUserByToken(token);
+		}else{
+			user = (AuthUser) request.getSession().getAttribute(SessionUserServiceImpl.LOGIN_USER);
+		}
+	</#if>
+	<#list model.addPropertys as property>	
+		<#if property.defaultValue == 'userid' >
+        ${model.variableName}.set${property.propertyName?cap_first}(user.getUserid());
+        </#if>
+	</#list>
+		ResponseResult result = ${model.variableName}Service.insert(${model.variableName},true);
 		return result;
 	}
 </#if>

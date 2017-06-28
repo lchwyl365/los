@@ -6,17 +6,17 @@ import java.util.List;
 
 public class AuthUserExample {
     /**
-     * HDMS.AUTH_USER
+     * auth_user
      */
     protected String orderByClause;
 
     /**
-     * HDMS.AUTH_USER
+     * auth_user
      */
     protected boolean distinct;
 
     /**
-     * HDMS.AUTH_USER
+     * auth_user
      */
     protected List<Criteria> oredCriteria;
 
@@ -118,7 +118,7 @@ public class AuthUserExample {
     }
 
     /**
-     * HDMS.AUTH_USER null
+     * auth_user null
      */
     protected abstract static class GeneratedCriteria {
         protected List<Criterion> criteria;
@@ -630,10 +630,150 @@ public class AuthUserExample {
             addCriterion("STATUS not between", value1, value2, "status");
             return (Criteria) this;
         }
+
+        public Criteria andDomainNameIsNull() {
+            addCriterion("DOMAIN_NAME is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainNameIsNotNull() {
+            addCriterion("DOMAIN_NAME is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainNameEqualTo(String value) {
+            addCriterion("DOMAIN_NAME =", value, "domainName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainNameNotEqualTo(String value) {
+            addCriterion("DOMAIN_NAME <>", value, "domainName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainNameGreaterThan(String value) {
+            addCriterion("DOMAIN_NAME >", value, "domainName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainNameGreaterThanOrEqualTo(String value) {
+            addCriterion("DOMAIN_NAME >=", value, "domainName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainNameLessThan(String value) {
+            addCriterion("DOMAIN_NAME <", value, "domainName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainNameLessThanOrEqualTo(String value) {
+            addCriterion("DOMAIN_NAME <=", value, "domainName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainNameLike(String value) {
+            addCriterion("DOMAIN_NAME like", value, "domainName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainNameNotLike(String value) {
+            addCriterion("DOMAIN_NAME not like", value, "domainName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainNameIn(List<String> values) {
+            addCriterion("DOMAIN_NAME in", values, "domainName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainNameNotIn(List<String> values) {
+            addCriterion("DOMAIN_NAME not in", values, "domainName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainNameBetween(String value1, String value2) {
+            addCriterion("DOMAIN_NAME between", value1, value2, "domainName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainNameNotBetween(String value1, String value2) {
+            addCriterion("DOMAIN_NAME not between", value1, value2, "domainName");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateUserIsNull() {
+            addCriterion("create_user is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateUserIsNotNull() {
+            addCriterion("create_user is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateUserEqualTo(String value) {
+            addCriterion("create_user =", value, "createUser");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateUserNotEqualTo(String value) {
+            addCriterion("create_user <>", value, "createUser");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateUserGreaterThan(String value) {
+            addCriterion("create_user >", value, "createUser");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateUserGreaterThanOrEqualTo(String value) {
+            addCriterion("create_user >=", value, "createUser");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateUserLessThan(String value) {
+            addCriterion("create_user <", value, "createUser");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateUserLessThanOrEqualTo(String value) {
+            addCriterion("create_user <=", value, "createUser");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateUserLike(String value) {
+            addCriterion("create_user like", value, "createUser");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateUserNotLike(String value) {
+            addCriterion("create_user not like", value, "createUser");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateUserIn(List<String> values) {
+            addCriterion("create_user in", values, "createUser");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateUserNotIn(List<String> values) {
+            addCriterion("create_user not in", values, "createUser");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateUserBetween(String value1, String value2) {
+            addCriterion("create_user between", value1, value2, "createUser");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateUserNotBetween(String value1, String value2) {
+            addCriterion("create_user not between", value1, value2, "createUser");
+            return (Criteria) this;
+        }
     }
 
     /**
-     * HDMS.AUTH_USER
+     * auth_user
      */
     public static class Criteria extends GeneratedCriteria {
 
@@ -643,7 +783,7 @@ public class AuthUserExample {
     }
 
     /**
-     * HDMS.AUTH_USER null
+     * auth_user null
      */
     public static class Criterion {
         private String condition;

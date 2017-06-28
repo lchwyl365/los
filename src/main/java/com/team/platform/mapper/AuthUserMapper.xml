@@ -9,6 +9,8 @@
     <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime" />
     <result column="ALTERTIME" jdbcType="TIMESTAMP" property="altertime" />
     <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="DOMAIN_NAME" jdbcType="VARCHAR" property="domainName" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -69,7 +71,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    USERID, USERNAME, OPERATORNAME, PASSWORD, CREATETIME, ALTERTIME, STATUS
+    USERID, USERNAME, OPERATORNAME, PASSWORD, CREATETIME, ALTERTIME, STATUS, DOMAIN_NAME, 
+    create_user
   </sql>
   <select id="selectByExample" parameterType="com.team.platform.pojo.AuthUserExample" resultMap="BaseResultMap">
     select
@@ -77,7 +80,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from HDMS.AUTH_USER
+    from auth_user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -88,29 +91,31 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from HDMS.AUTH_USER
+    from auth_user
     where USERID = #{userid,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from HDMS.AUTH_USER
+    delete from auth_user
     where USERID = #{userid,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.team.platform.pojo.AuthUserExample">
-    delete from HDMS.AUTH_USER
+    delete from auth_user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.team.platform.pojo.AuthUser">
-    insert into HDMS.AUTH_USER (USERID, USERNAME, OPERATORNAME, 
+    insert into auth_user (USERID, USERNAME, OPERATORNAME, 
       PASSWORD, CREATETIME, ALTERTIME, 
-      STATUS)
+      STATUS, DOMAIN_NAME, create_user
+      )
     values (#{userid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{operatorname,jdbcType=VARCHAR}, 
       #{password,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{altertime,jdbcType=TIMESTAMP}, 
-      #{status,jdbcType=VARCHAR})
+      #{status,jdbcType=VARCHAR}, #{domainName,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.team.platform.pojo.AuthUser">
-    insert into HDMS.AUTH_USER
+    insert into auth_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="userid != null">
         USERID,
@@ -132,6 +137,12 @@
       </if>
       <if test="status != null">
         STATUS,
+      </if>
+      <if test="domainName != null">
+        DOMAIN_NAME,
+      </if>
+      <if test="createUser != null">
+        create_user,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -156,16 +167,22 @@
       <if test="status != null">
         #{status,jdbcType=VARCHAR},
       </if>
+      <if test="domainName != null">
+        #{domainName,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.team.platform.pojo.AuthUserExample" resultType="java.lang.Long">
-    select count(*) from HDMS.AUTH_USER
+    select count(*) from auth_user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update HDMS.AUTH_USER
+    update auth_user
     <set>
       <if test="record.userid != null">
         USERID = #{record.userid,jdbcType=VARCHAR},
@@ -188,26 +205,34 @@
       <if test="record.status != null">
         STATUS = #{record.status,jdbcType=VARCHAR},
       </if>
+      <if test="record.domainName != null">
+        DOMAIN_NAME = #{record.domainName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUser != null">
+        create_user = #{record.createUser,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update HDMS.AUTH_USER
+    update auth_user
     set USERID = #{record.userid,jdbcType=VARCHAR},
       USERNAME = #{record.username,jdbcType=VARCHAR},
       OPERATORNAME = #{record.operatorname,jdbcType=VARCHAR},
       PASSWORD = #{record.password,jdbcType=VARCHAR},
       CREATETIME = #{record.createtime,jdbcType=TIMESTAMP},
       ALTERTIME = #{record.altertime,jdbcType=TIMESTAMP},
-      STATUS = #{record.status,jdbcType=VARCHAR}
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      DOMAIN_NAME = #{record.domainName,jdbcType=VARCHAR},
+      create_user = #{record.createUser,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.team.platform.pojo.AuthUser">
-    update HDMS.AUTH_USER
+    update auth_user
     <set>
       <if test="username != null">
         USERNAME = #{username,jdbcType=VARCHAR},
@@ -227,17 +252,25 @@
       <if test="status != null">
         STATUS = #{status,jdbcType=VARCHAR},
       </if>
+      <if test="domainName != null">
+        DOMAIN_NAME = #{domainName,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
     </set>
     where USERID = #{userid,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.team.platform.pojo.AuthUser">
-    update HDMS.AUTH_USER
+    update auth_user
     set USERNAME = #{username,jdbcType=VARCHAR},
       OPERATORNAME = #{operatorname,jdbcType=VARCHAR},
       PASSWORD = #{password,jdbcType=VARCHAR},
       CREATETIME = #{createtime,jdbcType=TIMESTAMP},
       ALTERTIME = #{altertime,jdbcType=TIMESTAMP},
-      STATUS = #{status,jdbcType=VARCHAR}
+      STATUS = #{status,jdbcType=VARCHAR},
+      DOMAIN_NAME = #{domainName,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=VARCHAR}
     where USERID = #{userid,jdbcType=VARCHAR}
   </update>
 </mapper>

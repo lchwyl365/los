@@ -10,7 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <title>『济南润易集团』润易官网-鲁丰纸业有限公司-晨光纸业有限公司-欣易特种纸有限公司-晨光空港实业公司</title>
-<meta name="keywords" content="济南润易集团,润易官网,济南赵滨,鲁丰纸业有限公司,晨光纸业有限公司,欣易特种纸有限公司,晨光空港实业公司">
+<meta name="keywords" content="济南润易集团,济南润易,济南赵滨,济南造纸,鲁丰纸业有限公司,晨光纸业有限公司,欣易特种纸有限公司,晨光空港实业公司">
 <meta name="description" content="济南润易集团有限公司官网网站，提供润易集团简介，鲁丰纸业有限公司,晨光纸业有限公司,欣易特种纸有限公司,晨光空港实业公司等信息。业务涵盖商务综合体领域、文化产业领域、特种纸领域和电商物流领域四大核心产业。">
 <link rel="stylesheet"
 	href="${contextPath}/resources/bootstrap/css/bootstrap.min.css">
@@ -93,7 +93,7 @@ var _hmt = _hmt || [];
 							<div class="mt15 ohz">
 								<p class="fl">
 									<a href="${contextPath}/front/r/article/${yaowen.articleId}" title="" target="_bank"> <img
-										src="${yaowen.thumbnail}"
+										src="${contextPath}${yaowen.thumbnail}"
 										alt="" height="120" width="180">
 									</a>
 								</p>
@@ -169,18 +169,18 @@ var _hmt = _hmt || [];
 					<div class="mt15 ohz"
 						style="margin-top: 0px; padding: 10px; border: 1px solid #CCCCCC;">
 						<p class="fl">
-							<a href="${contextPath}/channel/1603161551390001014" title="" target="_bank"> 
-								<img style="width:180px;height:120px;" src="${contextPath}/resources/theme/r/img/about.jpg" />
+							<a href="${contextPath}/front/r/channel/55229185193119" title="" target="_bank"> 
+								<img style="width:180px;height:120px;" src="${contextPath}${introduceChannel.thumbnail}" />
 							</a>
 						</p>
 						<div class="fr w270">
 							<p class="lh21 h63 ohz cnp">
 								<c:choose>
-									<c:when test="${fn:length(introduceChannel.content) > 120}">
-										<c:out value="${fn:substring(introduceChannel.content, 0, 120)}" escapeXml="false" />
+									<c:when test="${fn:length(introduceChannel.description) > 120}">
+										<c:out value="${fn:substring(introduceChannel.description, 0, 120)}" escapeXml="false" />
 									</c:when>
 									<c:otherwise>
-										<c:out value="${introduceChannel.content}"  escapeXml="false" />
+										<c:out value="${introduceChannel.description}"  escapeXml="false" />
 									</c:otherwise>
 								</c:choose>
 							</p>
@@ -203,13 +203,13 @@ var _hmt = _hmt || [];
 										<c:if test="${st.index == 0}">
 											<li id="pic_${video.videoId}" style="display: block; opacity: 1;">
 												<a href="${contextPath}/front/r/video_detail/${video.videoId}" title="${video.videoTitle}" target="_blank">
-												<img src="${video.videoImage}" height="200" width="268"></a>
+												<img src="${contextPath}${video.videoImage}" height="200" width="268"></a>
 											</li>
 										</c:if>
 										<c:if test="${st.index != 0}">
 											<li id="pic_${video.videoId}" style="display: none; opacity: 1;">
 												<a href="${contextPath}/front/r/video_detail/${video.videoId}" title="${video.videoTitle}" target="_blank">
-												<img src="${video.videoImage}" height="200" width="268"></a>
+												<img src="${contextPath}${video.videoImage}" height="200" width="268"></a>
 											</li>
 										</c:if>
 									</c:forEach>
@@ -234,7 +234,7 @@ var _hmt = _hmt || [];
 									<c:forEach items="${videoList}" var="video" varStatus="st">
 										<c:if test="${st.index == 0}">
 										  <li id="parcon_${video.videoId}" data-id="${video.videoId}" class="current parconli" style="width: 185px; height: 51px;">
-											<span><img src="${video.videoImage}" 
+											<span><img src="${contextPath}${video.videoImage}" 
 											alt="${video.videoTitle}" height="45" width="60"></span> 
 											<a title="${video.videoTitle}"><p>${video.videoTitle}</p>
 											<p>[<fmt:formatDate value="${video.createtime}" type="date"/>]</p></a>
@@ -242,7 +242,7 @@ var _hmt = _hmt || [];
 										</c:if>
 										<c:if test="${st.index != 0}">
 											<li id="parcon_${video.videoId}" data-id="${video.videoId}" class="parconli" style="width: 185px; height: 51px;">
-											<span><img src="${video.videoImage}" 
+											<span><img src="${contextPath}${video.videoImage}" 
 											alt="${video.videoTitle}" height="45" width="60"></span> 
 											<a title="${video.videoTitle}"><p>${video.videoTitle}</p>
 											<p>[<fmt:formatDate value="${video.createtime}" type="date"/>]</p></a>
