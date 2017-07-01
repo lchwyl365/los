@@ -117,14 +117,12 @@ public class ${model.domainObjectName}ServiceImpl implements ${model.domainObjec
 		${model.domainObjectName}Example example = new ${model.domainObjectName}Example();
 		Criteria criteria = example.createCriteria();
 		
-	<#list model.selectPropertys as property>
-	  <#if property.isselect == "T">
+	<#list model.propertys as property>
+	  <#if property.islike == "F" && property.propertyType == "String" && property.propertyLength < 256>
 		if(StringUtils.isNotEmpty(${model.variableName}.get${property.propertyName?cap_first}())){
 			criteria.and${property.propertyName?cap_first}EqualTo(${model.variableName}.get${property.propertyName?cap_first}());
 		}
 	  </#if>
-	</#list>
-	<#list model.selectPropertys as property>
 	  <#if property.islike == "T">
 		if(StringUtils.isNotEmpty(${model.variableName}.get${property.propertyName?cap_first}())){
 			criteria.and${property.propertyName?cap_first}Like("%"+${model.variableName}.get${property.propertyName?cap_first}()+"%");
@@ -150,7 +148,7 @@ public class ${model.domainObjectName}ServiceImpl implements ${model.domainObjec
 					${model.variableName}.set${property.propertyName?cap_first}(PrimaryKeyFactory.generatePK(""));
 				}
 			  </#if>
-			  <#if property.defaultValue?? && property.defaultValue != "" >
+			  <#if property.defaultValue?? && property.defaultValue != "" && property.defaultValue != "userid" && property.defaultValue != "domain">
 				${model.variableName}.set${property.propertyName?cap_first}(${property.defaultValue});
 			  </#if>
 			  <#if property.component == "password" >

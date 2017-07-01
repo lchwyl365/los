@@ -33,6 +33,7 @@ var PROPERTY = {
 };
 var components = [
     {componentid:'easyui-validatebox',name:'validatebox'},
+    {componentid:'easyui-numberbox',name:'numberbox'},
 	{componentid:'easyui-combotree',name:'combotree'},
 	{componentid:'easyui-switchbutton',name:'switchbutton'},
 	{componentid:'radio',name:'radio'},

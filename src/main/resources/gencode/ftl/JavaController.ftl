@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,8 +30,13 @@ import ${model.serviceTargetPackage}.${model.domainObjectName}Service;
 import com.team.platform.service.SysComboBoxService;
 </#if>
 <#if model.useUser == true>
+import org.springframework.beans.factory.annotation.Value;
+import com.team.common.util.CookieUtils;
 import com.team.platform.service.SessionUserService;
 import com.team.platform.service.impl.SessionUserServiceImpl;
+	<#if model.domainObjectName != "AuthUser">
+import com.team.platform.pojo.AuthUser;
+	</#if>
 </#if>
 <#if model.enctype == 'multipart/form-data' >
 import javax.servlet.ServletContext;
@@ -60,7 +66,7 @@ public class ${model.domainObjectName}Controller {
 	@Autowired
 	private SessionUserService sessionUserService;
 	
-	@Value("${USE_REDIS}")
+	@Value("${r"$"}{USE_REDIS}")
 	private Boolean USE_REDIS;
 	</#if>
 	
@@ -138,9 +144,14 @@ public class ${model.domainObjectName}Controller {
 		}
 	</#if>
 	<#list model.addPropertys as property>	
-		<#if property.defaultValue == 'userid' >
+		
+			<#if 'userid' eq property.defaultValue >
         ${model.variableName}.set${property.propertyName?cap_first}(user.getUserid());
-        </#if>
+            </#if>
+            <#if 'domain' eq property.defaultValue >
+        ${model.variableName}.set${property.propertyName?cap_first}(user.getDomainName());
+            </#if>
+       
 	</#list>
 		ResponseResult result = ${model.variableName}Service.insert(${model.variableName},true);
 		return result;
@@ -171,7 +182,10 @@ public class ${model.domainObjectName}Controller {
     	${model.domainObjectName} ${model.variableName} = new ${model.domainObjectName}();
 	<#list model.propertys as property>
 	  <#if property.propertyType != "Date">
-		${model.variableName}.set${property.propertyName?cap_first}(${property.propertyType}.valueOf(request.getParameter("${property.propertyName}")));
+		String ${property.propertyName} = request.getParameter("${property.propertyName}");
+		if(StringUtils.isNotEmpty(${property.propertyName})){
+			${model.variableName}.set${property.propertyName?cap_first}(${property.propertyType}.valueOf(${property.propertyName}));
+		}
 	  </#if>
 	</#list>	
 		return ${model.variableName}Service.update(${model.variableName});

@@ -481,7 +481,7 @@ public class GeneratorModel {
 	public Boolean getUseUser() {
 		useUser = false;
 		for (GeneratorProperty property : propertys) {
-			if("userid".equals(property.getDefaultValue())){
+			if("userid".equals(property.getDefaultValue()) || "domain".equals(property.getDefaultValue())){
 				return true;
 			}
 		}

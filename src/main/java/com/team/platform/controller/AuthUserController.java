@@ -40,6 +40,11 @@ public class AuthUserController {
 	@Autowired
 	private AuthUserService authUserService;
 	
+	@RequestMapping(value = "/list_normal",method = RequestMethod.GET)
+    public String list_normal(HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
+		
+    	return "user/list_normal";
+    }
 	
 	@RequestMapping(value = "/list",method = RequestMethod.GET)
     public String list(HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
@@ -48,7 +53,9 @@ public class AuthUserController {
     }
 	
 	@RequestMapping(value = "/add",method = RequestMethod.GET)
-    public String add() throws Exception{
+    public String add(HttpServletRequest request,Model model) throws Exception{
+		String page = request.getParameter("page");
+		model.addAttribute("page", page);
     	return "user/add";
     }
 	@RequestMapping(value = "/add",method = RequestMethod.POST)
@@ -78,9 +85,12 @@ public class AuthUserController {
 		return result;
 	}
 	
-	@RequestMapping(value = "/update/{userid}",method = RequestMethod.GET)
-    public String update(@PathVariable String userid,Model model) throws Exception{
+	@RequestMapping(value = "/update",method = RequestMethod.GET)
+    public String update(HttpServletRequest request,Model model) throws Exception{
+		String userid = request.getParameter("userid");
 	  	model.addAttribute("userid", userid);
+	  	String page = request.getParameter("page");
+		model.addAttribute("page", page);
     	return "user/update";
     }
 	
@@ -101,7 +111,24 @@ public class AuthUserController {
 	
 	@RequestMapping(value = "/queryList",method = RequestMethod.POST)
 	@ResponseBody
-    public EUDataGridResult queryList(EUDataGridModel dgm,AuthUser authUser) throws Exception{
+    public EUDataGridResult queryList(HttpServletRequest request,EUDataGridModel dgm,AuthUser authUser) throws Exception{
+		EUDataGridResult result = authUserService.selectList(dgm, authUser);
+    	return result;
+    }
+	
+	@RequestMapping(value = "/queryNormalList",method = RequestMethod.POST)
+	@ResponseBody
+    public EUDataGridResult queryNormalList(HttpServletRequest request,EUDataGridModel dgm,AuthUser authUser) throws Exception{
+		//从cookie中取token
+		//根据token换取用户信息，调用sso系统的接口。
+		String token = CookieUtils.getCookieValue(request, "TT_TOKEN");
+		AuthUser user = null;
+		if(USE_REDIS){
+			user = sessionUserService.getUserByToken(token);
+		}else{
+			user = (AuthUser) request.getSession().getAttribute(SessionUserServiceImpl.LOGIN_USER);
+		}
+		authUser.setCreateUser(user.getUserid());
 		EUDataGridResult result = authUserService.selectList(dgm, authUser);
     	return result;
     }

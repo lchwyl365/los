@@ -59,6 +59,11 @@ public class CmsArticle {
     private String domainName;
 
     /**
+     * 置顶序号
+     */
+    private Integer topNumber;
+
+    /**
      * 文章内容
      */
     private String content;
@@ -237,6 +242,22 @@ public class CmsArticle {
      */
     public void setDomainName(String domainName) {
         this.domainName = domainName == null ? null : domainName.trim();
+    }
+
+    /**
+     * 置顶序号
+     * @return top_number 置顶序号
+     */
+    public Integer getTopNumber() {
+        return topNumber;
+    }
+
+    /**
+     * 置顶序号
+     * @param topNumber 置顶序号
+     */
+    public void setTopNumber(Integer topNumber) {
+        this.topNumber = topNumber;
     }
 
     /**

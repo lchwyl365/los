@@ -30,7 +30,7 @@
 			rownumbers:true, //显示行号
 			columns:[[
 				{field:'ck',checkbox:true,width:2}, //显示复选框
-				{field:'title',title:'文章标题',width:140,sortable:'F',
+				{field:'title',title:'文章标题',width:100,sortable:'F',
 						formatter:function(value,row,index){return row.title;}
 				},
 				{field:'channel_id',title:'栏目编号',width:100,sortable:'F',
@@ -52,6 +52,9 @@
 				},
 				{field:'status',title:'状态',width:100,sortable:'F',
 						formatter:function(value,row,index){if (row.status == 'F'){return '<span style="color:red;">隐藏</span>';} else {return '显示';}}
+				},
+				{field:'top_number',title:'置顶序号',width:100,sortable:'F',
+						formatter:function(value,row,index){return row.topNumber;}
 				}
 			]],
 			toolbar:'#tb',

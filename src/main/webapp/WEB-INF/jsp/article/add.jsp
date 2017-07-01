@@ -26,7 +26,7 @@
 		  </div>
 		</div>
 		<div data-options="region:'center',border:false" style="padding:10px">
-			<form id="contentAddForm" method="post">
+			<form id="contentAddForm" method="post" action="${contextPath}/cms/article/add" >
 				<table class="easyui-panel form-table">
 				   <tr>
 						<td class="form-table-td-left">
@@ -72,6 +72,14 @@
 							<label for="radio_off">隐藏</label>			
 						</td>
 				    </tr>
+				   <tr>
+						<td class="form-table-td-left">
+							<label for="topNumber">置顶序号:</label>
+						</td>
+						<td class="form-table-td-right">
+								<input class="easyui-numberbox" type="text" name="topNumber" data-options="required:true,validType:['length[0,64]'],missingMessage:'请输入数字'" style="width:320px;height:28px;"/>
+						</td>
+				    </tr>
 				</table>
 				<div>
 					<p>文章内容:</p>
@@ -105,7 +113,6 @@ var contentAddPage  = {
 			return ;
 		}
 		contentEditor.sync();
-		
 		$.post("${contextPath}/cms/article/add",$("#contentAddForm").serialize(), function(data){
 			if(data.status == 200){
 				$.messager.alert('提示','新增成功!');
@@ -114,6 +121,7 @@ var contentAddPage  = {
 				$.messager.alert('添加错误',data.msg,'error');
 			}
 		});
+		
 	},
 	clearForm : function(){
 		window.self.location = "${contextPath}/cms/article/list";

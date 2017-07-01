@@ -3,18 +3,18 @@ package com.team.cms.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
-import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.DigestUtils;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.team.common.pojo.EUDataGridModel;
 import com.team.common.pojo.EUDataGridResult;
 import com.team.common.util.ExceptionUtil;
-import com.team.common.util.ImageUtil;
+
 import com.team.common.pojo.ResponseResult;
 import com.team.common.util.PrimaryKeyFactory;
 import com.team.cms.mapper.CmsArticleMapper;
@@ -44,9 +44,6 @@ public class CmsArticleServiceImpl implements CmsArticleService {
 		if(StringUtils.isNotEmpty(cmsArticle.getTitle())){
 			criteria.andTitleLike("%"+cmsArticle.getTitle()+"%");
 		}
-		if(StringUtils.isNotEmpty(cmsArticle.getChannelId())){
-			criteria.andChannelIdEqualTo(cmsArticle.getChannelId());
-		}
 	
 		//排序
 		if(StringUtils.isNotEmpty(dgm.getSort())){
@@ -64,25 +61,55 @@ public class CmsArticleServiceImpl implements CmsArticleService {
 		return result;
 	}
 	
+	
+	public List<CmsArticle> selectByCmsArticle(CmsArticle cmsArticle,String orderByClause){
+		//查询列表
+		CmsArticleExample example = new CmsArticleExample();
+		Criteria criteria = example.createCriteria();
+		
+		if(StringUtils.isNotEmpty(cmsArticle.getArticleId())){
+			criteria.andArticleIdEqualTo(cmsArticle.getArticleId());
+		}
+		if(StringUtils.isNotEmpty(cmsArticle.getTitle())){
+			criteria.andTitleLike("%"+cmsArticle.getTitle()+"%");
+		}
+		if(StringUtils.isNotEmpty(cmsArticle.getChannelId())){
+			criteria.andChannelIdEqualTo(cmsArticle.getChannelId());
+		}
+		if(StringUtils.isNotEmpty(cmsArticle.getThumbnail())){
+			criteria.andThumbnailEqualTo(cmsArticle.getThumbnail());
+		}
+		if(StringUtils.isNotEmpty(cmsArticle.getKeywords())){
+			criteria.andKeywordsEqualTo(cmsArticle.getKeywords());
+		}
+		if(StringUtils.isNotEmpty(cmsArticle.getUserid())){
+			criteria.andUseridEqualTo(cmsArticle.getUserid());
+		}
+		if(StringUtils.isNotEmpty(cmsArticle.getStatus())){
+			criteria.andStatusEqualTo(cmsArticle.getStatus());
+		}
+		if(StringUtils.isNotEmpty(cmsArticle.getDomainName())){
+			criteria.andDomainNameEqualTo(cmsArticle.getDomainName());
+		}
+		//排序
+		if(StringUtils.isNotEmpty(orderByClause)){
+			example.setOrderByClause(orderByClause);
+		}
+		List<CmsArticle> list = cmsArticleMapper.selectByExample(example);
+		return list;
+	}
 
 	@Override
-	public ResponseResult insert(CmsArticle cmsArticle) {
+	public ResponseResult insert(CmsArticle cmsArticle,Boolean isDefault) {
 		try {
+			if(isDefault){
 			//补全pojo内容
-		  	if(StringUtils.isEmpty(cmsArticle.getArticleId())){
-				cmsArticle.setArticleId(PrimaryKeyFactory.generatePK(""));
-			}
-			cmsArticle.setCreatetime(new Date());
-			cmsArticle.setReadCount(1);
-			
-			Set<String> set = ImageUtil.getImgStr(cmsArticle.getContent());
-			String thumbnail = "";
-			for (String str : set) {
-				if(StringUtils.isNotEmpty(str) && StringUtils.isEmpty(thumbnail)){
-					thumbnail = str;
+			  	if(StringUtils.isEmpty(cmsArticle.getArticleId())){
+					cmsArticle.setArticleId(PrimaryKeyFactory.generatePK(""));
 				}
+				cmsArticle.setCreatetime(new Date());
+				cmsArticle.setReadCount(1);
 			}
-			cmsArticle.setThumbnail(thumbnail);
 			cmsArticleMapper.insert(cmsArticle);
 			return ResponseResult.ok();
 		} catch (Exception e) {
@@ -126,26 +153,13 @@ public class CmsArticleServiceImpl implements CmsArticleService {
 			temp.setUserid(cmsArticle.getUserid());
 			temp.setReadCount(cmsArticle.getReadCount());
 			temp.setStatus(cmsArticle.getStatus());
+			temp.setDomainName(cmsArticle.getDomainName());
+			temp.setTopNumber(cmsArticle.getTopNumber());
 			cmsArticleMapper.updateByPrimaryKeySelective(temp);
 			return ResponseResult.ok();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ResponseResult.build(ResponseResult.ERROR, e.getMessage());
 		}
-	}
-
-
-	@Override
-	public List<CmsArticle> selectByArticle(CmsArticle cmsArticle) {
-		//查询列表
-		CmsArticleExample example = new CmsArticleExample();
-		Criteria criteria = example.createCriteria();
-		
-		if(StringUtils.isNotEmpty(cmsArticle.getChannelId())){
-			criteria.andChannelIdEqualTo(cmsArticle.getChannelId());
-		}
-		//排序
-		example.setOrderByClause(" article_id desc ");
-		return cmsArticleMapper.selectByExample(example);
 	}
 }

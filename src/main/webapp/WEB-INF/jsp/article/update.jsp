@@ -51,7 +51,7 @@
 							<label for="keywords">关键字:</label>
 						</td>
 						<td class="form-table-td-right">
-								<input class="easyui-validatebox" type="text" name="keywords" data-options="required:true,validType:['length[0,255]']" style="width:320px;height:28px;"/>
+								<input class="easyui-validatebox" type="text" name="keywords" data-options="required:false,validType:['length[0,255]']" style="width:320px;height:28px;"/>
 						</td>
 				    </tr>
 				   <tr>
@@ -59,7 +59,7 @@
 							<label for="description">文章描述:</label>
 						</td>
 						<td class="form-table-td-right">
-								<input class="easyui-validatebox" type="text" name="description" data-options="required:true,validType:['length[0,500]']" style="width:320px;height:28px;"/>
+								<input class="easyui-validatebox" type="text" name="description" data-options="required:false,validType:['length[0,500]']" style="width:320px;height:28px;"/>
 						</td>
 				    </tr>
 				   <tr>
@@ -71,6 +71,14 @@
 							<label for="radio_on">显示</label>
 							<input type="radio" id="radio_off" name="status" value="off"/>
 							<label for="radio_off">隐藏</label>
+						</td>
+				    </tr>
+				   <tr>
+						<td class="form-table-td-left">
+							<label for="topNumber">置顶序号:</label>
+						</td>
+						<td class="form-table-td-right">
+								<input class="easyui-numberbox" type="text" name="topNumber" data-options="required:true,validType:['length[0,64]'],missingMessage:'请输入数字'" style="width:320px;height:28px;"/>
 						</td>
 				    </tr>
 				</table>

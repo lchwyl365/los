@@ -111,7 +111,7 @@ var contentUpdatePage  = {
 		});
 	},
 	clearForm : function(){
-		window.self.location = "${contextPath}/platform/user/list";
+		window.self.location = "${contextPath}/platform/user/${page}";
 	}
 };
 $(function(){

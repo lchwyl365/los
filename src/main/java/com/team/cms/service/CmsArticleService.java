@@ -12,15 +12,15 @@ import com.team.cms.pojo.CmsArticle;
 public interface CmsArticleService {
 
 	public EUDataGridResult selectList(EUDataGridModel dgm,CmsArticle cmsArticle);
+
+	public List<CmsArticle> selectByCmsArticle(CmsArticle cmsArticle,String orderByClause);
 	
 	public CmsArticle selectByPrimaryKey(String articleId);
 
-	public ResponseResult insert(CmsArticle cmsArticle);
+	public ResponseResult insert(CmsArticle cmsArticle,Boolean isDefault);
 
 	public ResponseResult delete(List<String> articleIds);
 
 	public ResponseResult update(CmsArticle cmsArticle);
-
-	public List<CmsArticle> selectByArticle(CmsArticle cmsArticle);
 	
 }

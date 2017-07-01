@@ -296,6 +296,13 @@ public class SysTablesController {
 				sysColumns.setDataOptions("required:true,validType:['length[0,"+length+"]']");
 			}
 		}
+		if("easyui-numberbox".equals(sysColumns.getComponent())){
+			String dataOptions = sysColumns.getDataOptions();
+			if(dataOptions.indexOf("validType:") == -1){
+				long length = sysColumns.getPropertyLength() == null ? 254: sysColumns.getPropertyLength();
+				sysColumns.setDataOptions("required:true,validType:['length[0,"+length+"]'],missingMessage:'请输入数字'");
+			}
+		}
 		
 		ResponseResult result = sysColumnsService.update(sysColumns);
 		return result;

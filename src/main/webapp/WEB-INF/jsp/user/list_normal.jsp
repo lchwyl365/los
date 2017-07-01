@@ -19,7 +19,7 @@
 			fitColumns: true, //自动调整各列，用了这个属性，下面各列的宽度值就只是一个比例。
 			striped: true, //奇偶行颜色不同
 			collapsible:false,//可折叠
-			url:"${contextPath}/platform/user/queryList", //数据来源
+			url:"${contextPath}/platform/user/queryNormalList", //数据来源
 			sortName: 'ALTERTIME', //排序的列
 			sortOrder: 'desc', //倒序
 			remoteSort: true, //服务器端排序
@@ -63,7 +63,7 @@
 	});
     var AuthUser = {
     		addRow:function(){//新增
-  				window.self.location = "${contextPath}/platform/user/add?page=list";
+  				window.self.location = "${contextPath}/platform/user/add?page=list_normal";
     		},
     		updateRow:function(){//更新
     			var rows = $('#userTable').datagrid('getSelections');
@@ -77,7 +77,7 @@
     			}
     			var ps = "";
 			  	ps += "/" + rows[0].userid;
-  				window.self.location = '${contextPath}/platform/user/update?page=list&userid='+ps;
+  				window.self.location = '${contextPath}/platform/user/update?page=list_normal&userid='+ps;;
     		},
     		deleteRow:function(){//删除
     			var rows = $('#userTable').datagrid('getSelections');

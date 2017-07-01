@@ -55,7 +55,7 @@
 							<label for="domainName">域名:</label>
 						</td>
 						<td class="form-table-td-right">
-								<input class="easyui-validatebox" type="text" name="domainName" data-options="required:false,validType:['length[0,255]']" style="width:320px;height:28px;"/>
+								<input class="easyui-validatebox" type="text" name="domainName" data-options="required:true,validType:['length[0,255]']" style="width:320px;height:28px;"/>
 						</td>
 				    </tr>
 				   <tr>
@@ -102,7 +102,7 @@ var contentAddPage  = {
 		
 	},
 	clearForm : function(){
-		window.self.location = "${contextPath}/platform/user/list";
+		window.self.location = "${contextPath}/platform/user/${page}";
 	}
 };
 </script>

@@ -41,6 +41,9 @@ public class AuthUserServiceImpl implements AuthUserService {
 		AuthUserExample example = new AuthUserExample();
 		Criteria criteria = example.createCriteria();
 		
+		if(StringUtils.isNotEmpty(authUser.getCreateUser())){
+			criteria.andCreateUserEqualTo(authUser.getCreateUser());
+		}
 		if(StringUtils.isNotEmpty(authUser.getUsername())){
 			criteria.andUsernameLike("%"+authUser.getUsername()+"%");
 		}

@@ -57,12 +57,14 @@ public class FrontController {
     	//集团要闻	
     	CmsArticle cmsArticle = new CmsArticle();
     	cmsArticle.setChannelId("55230388368137");
-    	List<CmsArticle> yaowenList = cmsArticleService.selectByArticle(cmsArticle);//.listByChannel();
+    	cmsArticle.setStatus("on");
+    	List<CmsArticle> yaowenList = cmsArticleService.selectByCmsArticle(cmsArticle,"top_number desc,createtime desc");
     	model.addAttribute("yaowenList", yaowenList);
     	//最新动态
     	CmsArticle dongtaiArticle = new CmsArticle();
     	dongtaiArticle.setChannelId("55230443822142");
-    	List<CmsArticle> dongtaiList = cmsArticleService.selectByArticle(dongtaiArticle);
+    	dongtaiArticle.setStatus("on");
+    	List<CmsArticle> dongtaiList = cmsArticleService.selectByCmsArticle(dongtaiArticle,"top_number desc,createtime desc");
     	model.addAttribute("dongtaiList", dongtaiList);
     	
     	//底部栏目导航
@@ -153,6 +155,7 @@ public class FrontController {
     		
     		CmsArticle cmsArticle = new CmsArticle();
         	cmsArticle.setChannelId(childchannel.getChannelId());
+        	cmsArticle.setStatus("on");
         	EUDataGridModel dgm = new EUDataGridModel();
         	int page = pagerNumber == null ? 0 : pagerNumber;
         	dgm.setPage(page);

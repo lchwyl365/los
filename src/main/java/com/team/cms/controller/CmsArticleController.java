@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,11 @@ import com.team.common.pojo.ResponseResult;
 import com.team.cms.pojo.CmsArticle;
 import com.team.cms.service.CmsArticleService;
 import com.team.platform.service.SysComboBoxService;
+import org.springframework.beans.factory.annotation.Value;
+import com.team.common.util.CookieUtils;
+import com.team.platform.service.SessionUserService;
+import com.team.platform.service.impl.SessionUserServiceImpl;
+import com.team.platform.pojo.AuthUser;
 
 @Controller
 @RequestMapping("/cms/article")
@@ -35,6 +41,12 @@ public class CmsArticleController {
 	@Autowired
 	private SysComboBoxService sysComboBoxService;
 	
+	@Autowired
+	private SessionUserService sessionUserService;
+	
+	@Value("${USE_REDIS}")
+	private Boolean USE_REDIS;
+	
 	@RequestMapping(value = "/list",method = RequestMethod.GET)
     public String list(HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
 		
@@ -47,11 +59,19 @@ public class CmsArticleController {
     public String add() throws Exception{
     	return "article/add";
     }
-	
 	@RequestMapping(value = "/add",method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseResult add(CmsArticle cmsArticle) throws Exception{
-		ResponseResult result = cmsArticleService.insert(cmsArticle);
+	public ResponseResult add(HttpServletRequest request,CmsArticle cmsArticle) throws Exception{
+		//从cookie中取token
+		String token = CookieUtils.getCookieValue(request, "TT_TOKEN");
+		//根据token换取用户信息，调用sso系统的接口。
+		AuthUser user = null;
+		if(USE_REDIS){
+			user = sessionUserService.getUserByToken(token);
+		}else{
+			user = (AuthUser) request.getSession().getAttribute(SessionUserServiceImpl.LOGIN_USER);
+		}
+		ResponseResult result = cmsArticleService.insert(cmsArticle,true);
 		return result;
 	}
 	
@@ -70,9 +90,58 @@ public class CmsArticleController {
 	
 	@RequestMapping(value = "/update",method = RequestMethod.POST)
 	@ResponseBody
-    public ResponseResult update(CmsArticle cmsArticle) throws Exception{
-		ResponseResult result = cmsArticleService.update(cmsArticle);
-		return result;
+    public ResponseResult update(HttpServletRequest request) throws Exception{
+    
+    	CmsArticle cmsArticle = new CmsArticle();
+		String articleId = request.getParameter("articleId");
+		if(StringUtils.isNotEmpty(articleId)){
+			cmsArticle.setArticleId(String.valueOf(articleId));
+		}
+		String title = request.getParameter("title");
+		if(StringUtils.isNotEmpty(title)){
+			cmsArticle.setTitle(String.valueOf(title));
+		}
+		String content = request.getParameter("content");
+		if(StringUtils.isNotEmpty(content)){
+			cmsArticle.setContent(String.valueOf(content));
+		}
+		String channelId = request.getParameter("channelId");
+		if(StringUtils.isNotEmpty(channelId)){
+			cmsArticle.setChannelId(String.valueOf(channelId));
+		}
+		String thumbnail = request.getParameter("thumbnail");
+		if(StringUtils.isNotEmpty(thumbnail)){
+			cmsArticle.setThumbnail(String.valueOf(thumbnail));
+		}
+		String keywords = request.getParameter("keywords");
+		if(StringUtils.isNotEmpty(keywords)){
+			cmsArticle.setKeywords(String.valueOf(keywords));
+		}
+		String description = request.getParameter("description");
+		if(StringUtils.isNotEmpty(description)){
+			cmsArticle.setDescription(String.valueOf(description));
+		}
+		String userid = request.getParameter("userid");
+		if(StringUtils.isNotEmpty(userid)){
+			cmsArticle.setUserid(String.valueOf(userid));
+		}
+		String readCount = request.getParameter("readCount");
+		if(StringUtils.isNotEmpty(readCount)){
+			cmsArticle.setReadCount(Integer.valueOf(readCount));
+		}
+		String status = request.getParameter("status");
+		if(StringUtils.isNotEmpty(status)){
+			cmsArticle.setStatus(String.valueOf(status));
+		}
+		String domainName = request.getParameter("domainName");
+		if(StringUtils.isNotEmpty(domainName)){
+			cmsArticle.setDomainName(String.valueOf(domainName));
+		}
+		String topNumber = request.getParameter("topNumber");
+		if(StringUtils.isNotEmpty(topNumber)){
+			cmsArticle.setTopNumber(Integer.valueOf(topNumber));
+		}
+		return cmsArticleService.update(cmsArticle);
     }
 	
 	@RequestMapping(value = "/queryList",method = RequestMethod.POST)
