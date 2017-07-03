@@ -55,7 +55,7 @@
 							<label for="domainName">域名:</label>
 						</td>
 						<td class="form-table-td-right">
-								<input class="easyui-validatebox" type="text" name="domainName" data-options="required:true,validType:['length[0,255]']" style="width:320px;height:28px;"/>
+								<input class="easyui-validatebox" type="text" name="domainName" data-options="required:false,validType:['length[0,255]']" style="width:320px;height:28px;"/>
 						</td>
 				    </tr>
 				   <tr>
@@ -67,14 +67,6 @@
 							<label for="radio_on">显示</label>		
 							<input type="radio" id="radio_off" name="status" value="off"/>
 							<label for="radio_off">隐藏</label>			
-						</td>
-				    </tr>
-				   <tr>
-						<td class="form-table-td-left">
-							<label for="createUser">创建用户:</label>
-						</td>
-						<td class="form-table-td-right">
-								<input class="easyui-validatebox" type="text" name="createUser" data-options="required:true,validType:['length[0,255]']" style="width:320px;height:28px;"/>
 						</td>
 				    </tr>
 				</table>
@@ -94,7 +86,7 @@ var contentAddPage  = {
 		$.post("${contextPath}/platform/user/add",$("#contentAddForm").serialize(), function(data){
 			if(data.status == 200){
 				$.messager.alert('提示','新增成功!');
-				window.self.location = "${contextPath}/platform/user/list";
+				window.self.location = "${contextPath}/platform/user/${page}";
 			}else{
 				$.messager.alert('添加错误',data.msg,'error');
 			}

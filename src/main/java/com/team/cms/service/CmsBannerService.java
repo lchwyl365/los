@@ -12,15 +12,15 @@ import com.team.cms.pojo.CmsBanner;
 public interface CmsBannerService {
 
 	public EUDataGridResult selectList(EUDataGridModel dgm,CmsBanner cmsBanner);
+
+	public List<CmsBanner> selectByCmsBanner(CmsBanner cmsBanner,String orderByClause);
 	
 	public CmsBanner selectByPrimaryKey(String bannerId);
 
-	public ResponseResult insert(CmsBanner cmsBanner);
+	public ResponseResult insert(CmsBanner cmsBanner,Boolean isDefault);
 
 	public ResponseResult delete(List<String> bannerIds);
 
 	public ResponseResult update(CmsBanner cmsBanner);
-
-	public List<CmsBanner> selectByBanner(CmsBanner cmsBanner);
 	
 }

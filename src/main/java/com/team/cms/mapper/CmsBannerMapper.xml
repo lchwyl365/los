@@ -8,6 +8,7 @@
     <result column="img" jdbcType="VARCHAR" property="img" />
     <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
     <result column="order_num" jdbcType="INTEGER" property="orderNum" />
+    <result column="domain_name" jdbcType="VARCHAR" property="domainName" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    banner_id, banner_title, type, img, createtime, order_num
+    banner_id, banner_title, type, img, createtime, order_num, domain_name
   </sql>
   <select id="selectByExample" parameterType="com.team.cms.pojo.CmsBannerExample" resultMap="BaseResultMap">
     select
@@ -102,11 +103,11 @@
   </delete>
   <insert id="insert" parameterType="com.team.cms.pojo.CmsBanner">
     insert into cms_banner (banner_id, banner_title, type, 
-      img, createtime, order_num
-      )
+      img, createtime, order_num, 
+      domain_name)
     values (#{bannerId,jdbcType=VARCHAR}, #{bannerTitle,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
-      #{img,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{orderNum,jdbcType=INTEGER}
-      )
+      #{img,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{orderNum,jdbcType=INTEGER}, 
+      #{domainName,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.team.cms.pojo.CmsBanner">
     insert into cms_banner
@@ -129,6 +130,9 @@
       <if test="orderNum != null">
         order_num,
       </if>
+      <if test="domainName != null">
+        domain_name,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="bannerId != null">
@@ -148,6 +152,9 @@
       </if>
       <if test="orderNum != null">
         #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="domainName != null">
+        #{domainName,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -178,6 +185,9 @@
       <if test="record.orderNum != null">
         order_num = #{record.orderNum,jdbcType=INTEGER},
       </if>
+      <if test="record.domainName != null">
+        domain_name = #{record.domainName,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -190,7 +200,8 @@
       type = #{record.type,jdbcType=VARCHAR},
       img = #{record.img,jdbcType=VARCHAR},
       createtime = #{record.createtime,jdbcType=TIMESTAMP},
-      order_num = #{record.orderNum,jdbcType=INTEGER}
+      order_num = #{record.orderNum,jdbcType=INTEGER},
+      domain_name = #{record.domainName,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -213,6 +224,9 @@
       <if test="orderNum != null">
         order_num = #{orderNum,jdbcType=INTEGER},
       </if>
+      <if test="domainName != null">
+        domain_name = #{domainName,jdbcType=VARCHAR},
+      </if>
     </set>
     where banner_id = #{bannerId,jdbcType=VARCHAR}
   </update>
@@ -222,7 +236,8 @@
       type = #{type,jdbcType=VARCHAR},
       img = #{img,jdbcType=VARCHAR},
       createtime = #{createtime,jdbcType=TIMESTAMP},
-      order_num = #{orderNum,jdbcType=INTEGER}
+      order_num = #{orderNum,jdbcType=INTEGER},
+      domain_name = #{domainName,jdbcType=VARCHAR}
     where banner_id = #{bannerId,jdbcType=VARCHAR}
   </update>
 </mapper>

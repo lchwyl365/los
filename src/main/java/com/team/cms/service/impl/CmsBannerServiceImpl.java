@@ -1,23 +1,30 @@
 package com.team.cms.service.impl;
 
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.DigestUtils;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.team.common.pojo.EUDataGridModel;
+import com.team.common.pojo.EUDataGridResult;
+import com.team.common.util.ExceptionUtil;
+
+import com.team.common.pojo.ResponseResult;
+import com.team.common.util.PrimaryKeyFactory;
 import com.team.cms.mapper.CmsBannerMapper;
 import com.team.cms.pojo.CmsBanner;
 import com.team.cms.pojo.CmsBannerExample;
 import com.team.cms.pojo.CmsBannerExample.Criteria;
 import com.team.cms.service.CmsBannerService;
-import com.team.common.pojo.EUDataGridModel;
-import com.team.common.pojo.EUDataGridResult;
-import com.team.common.pojo.ResponseResult;
-import com.team.common.util.PrimaryKeyFactory;
+
+
+
 
 /**
  * Created by liuchao on 2017/02/21
@@ -33,6 +40,7 @@ public class CmsBannerServiceImpl implements CmsBannerService {
 		//查询列表
 		CmsBannerExample example = new CmsBannerExample();
 		Criteria criteria = example.createCriteria();
+		
 	
 		//排序
 		if(StringUtils.isNotEmpty(dgm.getSort())){
@@ -50,15 +58,45 @@ public class CmsBannerServiceImpl implements CmsBannerService {
 		return result;
 	}
 	
+	
+	public List<CmsBanner> selectByCmsBanner(CmsBanner cmsBanner,String orderByClause){
+		//查询列表
+		CmsBannerExample example = new CmsBannerExample();
+		Criteria criteria = example.createCriteria();
+		
+		if(StringUtils.isNotEmpty(cmsBanner.getImg())){
+			criteria.andImgEqualTo(cmsBanner.getImg());
+		}
+		if(StringUtils.isNotEmpty(cmsBanner.getBannerId())){
+			criteria.andBannerIdEqualTo(cmsBanner.getBannerId());
+		}
+		if(StringUtils.isNotEmpty(cmsBanner.getBannerTitle())){
+			criteria.andBannerTitleEqualTo(cmsBanner.getBannerTitle());
+		}
+		if(StringUtils.isNotEmpty(cmsBanner.getType())){
+			criteria.andTypeEqualTo(cmsBanner.getType());
+		}
+		if(StringUtils.isNotEmpty(cmsBanner.getDomainName())){
+			criteria.andDomainNameEqualTo(cmsBanner.getDomainName());
+		}
+		//排序
+		if(StringUtils.isNotEmpty(orderByClause)){
+			example.setOrderByClause(orderByClause);
+		}
+		List<CmsBanner> list = cmsBannerMapper.selectByExample(example);
+		return list;
+	}
 
 	@Override
-	public ResponseResult insert(CmsBanner cmsBanner) {
+	public ResponseResult insert(CmsBanner cmsBanner,Boolean isDefault) {
 		try {
+			if(isDefault){
 			//补全pojo内容
-		  	if(StringUtils.isEmpty(cmsBanner.getBannerId())){
-				cmsBanner.setBannerId(PrimaryKeyFactory.generatePK(""));
+			  	if(StringUtils.isEmpty(cmsBanner.getBannerId())){
+					cmsBanner.setBannerId(PrimaryKeyFactory.generatePK(""));
+				}
+				cmsBanner.setCreatetime(new Date());
 			}
-			cmsBanner.setCreatetime(new Date());
 			cmsBannerMapper.insert(cmsBanner);
 			return ResponseResult.ok();
 		} catch (Exception e) {
@@ -97,25 +135,12 @@ public class CmsBannerServiceImpl implements CmsBannerService {
 			temp.setType(cmsBanner.getType());
 			temp.setCreatetime(cmsBanner.getCreatetime());
 			temp.setOrderNum(cmsBanner.getOrderNum());
+			temp.setDomainName(cmsBanner.getDomainName());
 			cmsBannerMapper.updateByPrimaryKeySelective(temp);
 			return ResponseResult.ok();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ResponseResult.build(ResponseResult.ERROR, e.getMessage());
 		}
-	}
-
-
-	@Override
-	public List<CmsBanner> selectByBanner(CmsBanner cmsBanner) {
-		//查询列表
-		CmsBannerExample example = new CmsBannerExample();
-		Criteria criteria = example.createCriteria();
-		if(StringUtils.isNotEmpty(cmsBanner.getType())){
-			criteria.andTypeEqualTo(cmsBanner.getType());
-		}
-		//排序
-		example.setOrderByClause("order_num asc");
-		return cmsBannerMapper.selectByExample(example);
 	}
 }

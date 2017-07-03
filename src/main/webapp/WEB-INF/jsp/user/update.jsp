@@ -24,7 +24,7 @@
 		  </div>
 		</div>
 		<div data-options="region:'center',border:false" style="padding:10px">
-			<form id="contentEditForm" method="post">
+			<form id="contentEditForm" method="post" action="${contextPath}/platform/user/update" >
 				<input type="hidden" name="userid" />
 				<table class="easyui-panel form-table">
 				   <tr>
@@ -70,14 +70,6 @@
 							<label for="radio_off">隐藏</label>
 						</td>
 				    </tr>
-				   <tr>
-						<td class="form-table-td-left">
-							<label for="createUser">创建用户:</label>
-						</td>
-						<td class="form-table-td-right">
-								<input class="easyui-validatebox" type="text" name="createUser" data-options="required:true,validType:['length[0,255]']" style="width:320px;height:28px;"/>
-						</td>
-				    </tr>
 				</table>
 			</form>
 		</div>
@@ -104,7 +96,7 @@ var contentUpdatePage  = {
 		$.post("${contextPath}/platform/user/update",$("#contentEditForm").serialize(), function(data){
 			if(data.status == 200){
 				$.messager.alert('提示','修改成功!');
-				window.self.location = "${contextPath}/platform/user/list";
+				window.self.location = "${contextPath}/platform/user/${page}";
 			}else{
 				$.messager.alert('修改错误',data.msg,'error');
 			}

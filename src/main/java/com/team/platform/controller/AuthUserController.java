@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,23 +30,23 @@ import com.team.platform.service.impl.SessionUserServiceImpl;
 @RequestMapping("/platform/user")
 public class AuthUserController {
 
+	private static final Logger logger = Logger.getLogger(AuthUserController.class);
+	
+	@Autowired
+	private AuthUserService authUserService;
+	
+	
 	@Autowired
 	private SessionUserService sessionUserService;
 	
 	@Value("${USE_REDIS}")
 	private Boolean USE_REDIS;
 	
-	private static final Logger logger = Logger.getLogger(AuthUserController.class);
-	
-	@Autowired
-	private AuthUserService authUserService;
-	
 	@RequestMapping(value = "/list_normal",method = RequestMethod.GET)
     public String list_normal(HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
 		
     	return "user/list_normal";
     }
-	
 	@RequestMapping(value = "/list",method = RequestMethod.GET)
     public String list(HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
 		
@@ -61,7 +62,6 @@ public class AuthUserController {
 	@RequestMapping(value = "/add",method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseResult add(HttpServletRequest request,AuthUser authUser) throws Exception{
-		
 		//从cookie中取token
 		String token = CookieUtils.getCookieValue(request, "TT_TOKEN");
 		//根据token换取用户信息，调用sso系统的接口。
@@ -71,9 +71,7 @@ public class AuthUserController {
 		}else{
 			user = (AuthUser) request.getSession().getAttribute(SessionUserServiceImpl.LOGIN_USER);
 		}
-		
-		authUser.setCreateUser(user.getUserid());
-		
+        authUser.setCreateUser(user.getUserid());
 		ResponseResult result = authUserService.insert(authUser,true);
 		return result;
 	}
@@ -99,16 +97,36 @@ public class AuthUserController {
     public ResponseResult update(HttpServletRequest request) throws Exception{
     
     	AuthUser authUser = new AuthUser();
-		authUser.setUserid(String.valueOf(request.getParameter("userid")));
-		authUser.setUsername(String.valueOf(request.getParameter("username")));
-		authUser.setOperatorname(String.valueOf(request.getParameter("operatorname")));
-		authUser.setPassword(String.valueOf(request.getParameter("password")));
-		authUser.setDomainName(String.valueOf(request.getParameter("domainName")));
-		authUser.setStatus(String.valueOf(request.getParameter("status")));
-		authUser.setCreateUser(String.valueOf(request.getParameter("createUser")));
+		String userid = request.getParameter("userid");
+		if(StringUtils.isNotEmpty(userid)){
+			authUser.setUserid(String.valueOf(userid));
+		}
+		String username = request.getParameter("username");
+		if(StringUtils.isNotEmpty(username)){
+			authUser.setUsername(String.valueOf(username));
+		}
+		String operatorname = request.getParameter("operatorname");
+		if(StringUtils.isNotEmpty(operatorname)){
+			authUser.setOperatorname(String.valueOf(operatorname));
+		}
+		String password = request.getParameter("password");
+		if(StringUtils.isNotEmpty(password)){
+			authUser.setPassword(String.valueOf(password));
+		}
+		String domainName = request.getParameter("domainName");
+		if(StringUtils.isNotEmpty(domainName)){
+			authUser.setDomainName(String.valueOf(domainName));
+		}
+		String status = request.getParameter("status");
+		if(StringUtils.isNotEmpty(status)){
+			authUser.setStatus(String.valueOf(status));
+		}
+		String createUser = request.getParameter("createUser");
+		if(StringUtils.isNotEmpty(createUser)){
+			authUser.setCreateUser(String.valueOf(createUser));
+		}
 		return authUserService.update(authUser);
     }
-	
 	@RequestMapping(value = "/queryList",method = RequestMethod.POST)
 	@ResponseBody
     public EUDataGridResult queryList(HttpServletRequest request,EUDataGridModel dgm,AuthUser authUser) throws Exception{

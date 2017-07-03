@@ -28,7 +28,7 @@
 		  </div>
 		</div>
 		<div data-options="region:'center',border:false" style="padding:10px">
-			<form id="contentEditForm" method="post">
+			<form id="contentEditForm" method="post" action="${r"${contextPath}"}/${model.businessName}/${model.path}/update" <#if model.enctype == 'multipart/form-data' > enctype="${model.enctype}" </#if>>
 			<#list model.propertys as property>
 				<#if property.isprimary == "T">
 				<input type="hidden" name="${property.propertyName}" />
@@ -60,6 +60,8 @@
 							<#elseif property.component == 'easyui-combotree'>
 								<input class="easyui-combotree" name="${property.propertyName}"
 								   data-options="url:'${r"${contextPath}"}/platform/box/combotree?id=${property.comboid}',method:'get'" style="width:200px;height:28px;">
+							<#elseif property.component == 'file'>
+								<input type="file" name="${property.propertyName}" />
 							</#if>
 						</td>
 				    </tr>
@@ -132,6 +134,9 @@ var contentUpdatePage  = {
 		${property.propertyName}Editor.sync();
 			</#if>
 		</#list>
+	<#if model.enctype == 'multipart/form-data' >
+		$('#contentAddForm').submit();
+	<#else>
 		$.post("${r"${contextPath}"}/${model.businessName}/${model.path}/update",$("#contentEditForm").serialize(), function(data){
 			if(data.status == 200){
 				$.messager.alert('提示','修改成功!');
@@ -140,6 +145,7 @@ var contentUpdatePage  = {
 				$.messager.alert('修改错误',data.msg,'error');
 			}
 		});
+	</#if>
 	},
 	clearForm : function(){
 		window.self.location = "${r"${contextPath}"}/${model.businessName}/${model.path}/list";

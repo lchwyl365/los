@@ -124,7 +124,26 @@ public class ${model.domainObjectName}Controller {
         
 		</#if>
 	</#list>
-        
+	
+	<#if model.useUser == true>
+		//从cookie中取token
+		String token = CookieUtils.getCookieValue(request, "TT_TOKEN");
+		//根据token换取用户信息，调用sso系统的接口。
+		AuthUser user = null;
+		if(USE_REDIS){
+			user = sessionUserService.getUserByToken(token);
+		}else{
+			user = (AuthUser) request.getSession().getAttribute(SessionUserServiceImpl.LOGIN_USER);
+		}
+	</#if>
+	<#list model.propertys as property>	
+		<#if property.defaultValue == 'userid' >
+        ${model.variableName}.set${property.propertyName?cap_first}(user.getUserid());
+        </#if>
+        <#if property.defaultValue =='domain' >
+        ${model.variableName}.set${property.propertyName?cap_first}(user.getDomainName());
+        </#if>
+	</#list>
         ${model.variableName}Service.insert(${model.variableName},true);
 		return "${model.path}/list";
 	}
@@ -143,15 +162,13 @@ public class ${model.domainObjectName}Controller {
 			user = (AuthUser) request.getSession().getAttribute(SessionUserServiceImpl.LOGIN_USER);
 		}
 	</#if>
-	<#list model.addPropertys as property>	
-		
-			<#if 'userid' eq property.defaultValue >
+	<#list model.propertys as property>	
+		<#if property.defaultValue=='userid' >
         ${model.variableName}.set${property.propertyName?cap_first}(user.getUserid());
-            </#if>
-            <#if 'domain' eq property.defaultValue >
+        </#if>
+        <#if property.defaultValue=='domain' >
         ${model.variableName}.set${property.propertyName?cap_first}(user.getDomainName());
-            </#if>
-       
+        </#if>
 	</#list>
 		ResponseResult result = ${model.variableName}Service.insert(${model.variableName},true);
 		return result;
@@ -175,6 +192,51 @@ public class ${model.domainObjectName}Controller {
     	return "${model.path}/update";
     }
 	
+<#if model.enctype == 'multipart/form-data' >
+	@RequestMapping(value = "/update",method = RequestMethod.POST)
+	public String update(
+	<#list model.updatePropertys as property>
+		<#if property.component == 'file'>	
+		@RequestParam(value = "${property.propertyName}", required = false) MultipartFile ${property.propertyName},
+		</#if>
+	</#list>
+		HttpServletRequest request) throws Exception{
+		
+		${model.domainObjectName} ${model.variableName} = new ${model.domainObjectName}();
+	<#list model.propertys as property>
+	  <#if property.isupdate == 'T' && property.propertyType != "Date" && property.component != 'file'>
+		String ${property.propertyName} = request.getParameter("${property.propertyName}");
+		if(StringUtils.isNotEmpty(${property.propertyName})){
+			${model.variableName}.set${property.propertyName?cap_first}(${property.propertyType}.valueOf(${property.propertyName}));
+		}
+	  </#if>
+	</#list>
+	
+		ServletContext application = request.getSession().getServletContext();
+		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
+	<#list model.updatePropertys as property>
+		<#if property.component == 'file'>
+		// 文件保存目录URL
+        String ${property.propertyName}Path = application.getRealPath("/") + "upload/";
+        String ${property.propertyName}Url = request.getContextPath() + "/upload/";
+        String ${property.propertyName}DirName = FileUtil.checkFileDir(${property.propertyName}Path,${property.propertyName}Url,request);
+        ${property.propertyName}Path = ${property.propertyName}Path + ${property.propertyName}DirName;
+        ${property.propertyName}Url = ${property.propertyName}Url + ${property.propertyName}DirName;
+        // 文件名
+        String ${property.propertyName}FileExt = ${property.propertyName}.getOriginalFilename().substring(${property.propertyName}.getOriginalFilename().lastIndexOf(".") + 1).toLowerCase();
+        String ${property.propertyName}NewFileName = df.format(new Date()) + "_" + new Random().nextInt(1000) + "." + ${property.propertyName}FileExt;
+        // 保存文件
+        File ${property.propertyName}NewFile=new File(${property.propertyName}Path + ${property.propertyName}NewFileName);
+        //通过CommonsMultipartFile的方法直接写文件（注意这个时候）
+        ${property.propertyName}.transferTo(${property.propertyName}NewFile);
+        ${model.variableName}.set${property.propertyName?cap_first}(${property.propertyName}Url+${property.propertyName}NewFileName);
+        
+		</#if>
+	</#list>
+		${model.variableName}Service.update(${model.variableName});
+		return "${model.path}/list"; 
+	}
+<#else>
 	@RequestMapping(value = "/update",method = RequestMethod.POST)
 	@ResponseBody
     public ResponseResult update(HttpServletRequest request) throws Exception{
@@ -190,7 +252,7 @@ public class ${model.domainObjectName}Controller {
 	</#list>	
 		return ${model.variableName}Service.update(${model.variableName});
     }
-	
+</#if>	
 <#if model.gentype == "DataGrid">
 	@RequestMapping(value = "/queryList",method = RequestMethod.POST)
 	@ResponseBody

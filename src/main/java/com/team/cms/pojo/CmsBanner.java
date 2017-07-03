@@ -34,6 +34,11 @@ public class CmsBanner {
     private Integer orderNum;
 
     /**
+     * 域名
+     */
+    private String domainName;
+
+    /**
      * 编号
      * @return banner_id 编号
      */
@@ -127,5 +132,21 @@ public class CmsBanner {
      */
     public void setOrderNum(Integer orderNum) {
         this.orderNum = orderNum;
+    }
+
+    /**
+     * 域名
+     * @return domain_name 域名
+     */
+    public String getDomainName() {
+        return domainName;
+    }
+
+    /**
+     * 域名
+     * @param domainName 域名
+     */
+    public void setDomainName(String domainName) {
+        this.domainName = domainName == null ? null : domainName.trim();
     }
 }

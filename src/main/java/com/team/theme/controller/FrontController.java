@@ -52,7 +52,7 @@ public class FrontController {
     	
 		CmsBanner cmsBanner = new CmsBanner();
 		cmsBanner.setType("home");
-		List<CmsBanner> bannerList = cmsBannerService.selectByBanner(cmsBanner);
+		List<CmsBanner> bannerList = cmsBannerService.selectByCmsBanner(cmsBanner,"order_num asc");
     	model.addAttribute("bannerList", bannerList);
     	//集团要闻	
     	CmsArticle cmsArticle = new CmsArticle();

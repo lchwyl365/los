@@ -24,7 +24,7 @@
 		  </div>
 		</div>
 		<div data-options="region:'center',border:false" style="padding:10px">
-			<form id="contentEditForm" method="post">
+			<form id="contentEditForm" method="post" action="${contextPath}/cms/banner/update"  enctype="multipart/form-data" >
 				<input type="hidden" name="bannerId" />
 				<table class="easyui-panel form-table">
 				   <tr>
@@ -32,6 +32,7 @@
 							<label for="img">图片地址:</label>
 						</td>
 						<td class="form-table-td-right">
+								<input type="file" name="img" />
 						</td>
 				    </tr>
 				   <tr>
@@ -49,14 +50,6 @@
 						<td class="form-table-td-right">
 							<input type="radio" id="radio_home" name="type" value="home"/>
 							<label for="radio_home">首页导航</label>
-						</td>
-				    </tr>
-				   <tr>
-						<td class="form-table-td-left">
-							<label for="createtime">创建时间:</label>
-						</td>
-						<td class="form-table-td-right">
-								<input class="easyui-validatebox" type="text" name="createtime" data-options="required:true,validType:['length[0,64]']" style="width:320px;height:28px;"/>
 						</td>
 				    </tr>
 				   <tr>
@@ -90,14 +83,7 @@ var contentUpdatePage  = {
 			$.messager.alert('提示','表单还未填写完成!');
 			return ;
 		}
-		$.post("${contextPath}/cms/banner/update",$("#contentEditForm").serialize(), function(data){
-			if(data.status == 200){
-				$.messager.alert('提示','修改成功!');
-				window.self.location = "${contextPath}/cms/banner/list";
-			}else{
-				$.messager.alert('修改错误',data.msg,'error');
-			}
-		});
+		$('#contentAddForm').submit();
 	},
 	clearForm : function(){
 		window.self.location = "${contextPath}/cms/banner/list";

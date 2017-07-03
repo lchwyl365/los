@@ -71,6 +71,8 @@ public class CmsArticleController {
 		}else{
 			user = (AuthUser) request.getSession().getAttribute(SessionUserServiceImpl.LOGIN_USER);
 		}
+        cmsArticle.setUserid(user.getUserid());
+        cmsArticle.setDomainName(user.getDomainName());
 		ResponseResult result = cmsArticleService.insert(cmsArticle,true);
 		return result;
 	}
