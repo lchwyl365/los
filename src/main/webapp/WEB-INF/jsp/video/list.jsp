@@ -31,7 +31,7 @@
 			columns:[[
 				{field:'ck',checkbox:true,width:2}, //显示复选框
 				{field:'video_image',title:'视频图片',width:100,sortable:'F',
-						formatter:function(value,row,index){ var e = '<p><img src="${contextPath}'+row.videoImage+'" height="80" /></p>';return e;}
+						formatter:function(value,row,index){ var e = '<p><img src="'+row.videoImage+'" height="80" /></p>';return e;}
 				},
 				{field:'video_title',title:'视频标题',width:100,sortable:'F',
 						formatter:function(value,row,index){return row.videoTitle;}

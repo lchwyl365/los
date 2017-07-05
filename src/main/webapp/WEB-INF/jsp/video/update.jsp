@@ -24,7 +24,7 @@
 		  </div>
 		</div>
 		<div data-options="region:'center',border:false" style="padding:10px">
-			<form id="contentEditForm" method="post">
+			<form id="contentEditForm" method="post" action="${contextPath}/cms/video/update"  enctype="multipart/form-data" >
 				<input type="hidden" name="videoId" />
 				<table class="easyui-panel form-table">
 				   <tr>
@@ -32,6 +32,7 @@
 							<label for="videoImage">视频图片:</label>
 						</td>
 						<td class="form-table-td-right">
+								<input type="file" name="videoImage" />
 						</td>
 				    </tr>
 				   <tr>
@@ -117,14 +118,7 @@ var contentUpdatePage  = {
 			$.messager.alert('提示','表单还未填写完成!');
 			return ;
 		}
-		$.post("${contextPath}/cms/video/update",$("#contentEditForm").serialize(), function(data){
-			if(data.status == 200){
-				$.messager.alert('提示','修改成功!');
-				window.self.location = "${contextPath}/cms/video/list";
-			}else{
-				$.messager.alert('修改错误',data.msg,'error');
-			}
-		});
+		$('#contentAddForm').submit();
 	},
 	clearForm : function(){
 		window.self.location = "${contextPath}/cms/video/list";

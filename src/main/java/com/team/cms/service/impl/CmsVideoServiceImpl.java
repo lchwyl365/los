@@ -7,6 +7,7 @@ import java.util.Date;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.DigestUtils;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -39,8 +40,9 @@ public class CmsVideoServiceImpl implements CmsVideoService {
 		//查询列表
 		CmsVideoExample example = new CmsVideoExample();
 		Criteria criteria = example.createCriteria();
-		
-	
+		if(StringUtils.isNotEmpty(crmVideo.getUserid())){
+			criteria.andUseridEqualTo(crmVideo.getUserid());
+		}
 		//排序
 		if(StringUtils.isNotEmpty(dgm.getSort())){
 			example.setOrderByClause(dgm.getSort() + " " + dgm.getOrder());
@@ -62,13 +64,33 @@ public class CmsVideoServiceImpl implements CmsVideoService {
 		//查询列表
 		CmsVideoExample example = new CmsVideoExample();
 		Criteria criteria = example.createCriteria();
-		if(crmVideo != null){
-			if(StringUtils.isNotEmpty(crmVideo.getIstop())){
-				criteria.andIstopEqualTo(crmVideo.getIstop());
-			}
-			if(StringUtils.isNotEmpty(crmVideo.getChannelid())){
-				criteria.andChannelidEqualTo(crmVideo.getChannelid());
-			}
+		
+		if(StringUtils.isNotEmpty(crmVideo.getVideoId())){
+			criteria.andVideoIdEqualTo(crmVideo.getVideoId());
+		}
+		if(StringUtils.isNotEmpty(crmVideo.getVideoImage())){
+			criteria.andVideoImageEqualTo(crmVideo.getVideoImage());
+		}
+		if(StringUtils.isNotEmpty(crmVideo.getVideoTitle())){
+			criteria.andVideoTitleEqualTo(crmVideo.getVideoTitle());
+		}
+		if(StringUtils.isNotEmpty(crmVideo.getChannelid())){
+			criteria.andChannelidEqualTo(crmVideo.getChannelid());
+		}
+		if(StringUtils.isNotEmpty(crmVideo.getVideoDesc())){
+			criteria.andVideoDescEqualTo(crmVideo.getVideoDesc());
+		}
+		if(StringUtils.isNotEmpty(crmVideo.getIstop())){
+			criteria.andIstopEqualTo(crmVideo.getIstop());
+		}
+		if(StringUtils.isNotEmpty(crmVideo.getYoukuid())){
+			criteria.andYoukuidEqualTo(crmVideo.getYoukuid());
+		}
+		if(StringUtils.isNotEmpty(crmVideo.getAddress())){
+			criteria.andAddressEqualTo(crmVideo.getAddress());
+		}
+		if(StringUtils.isNotEmpty(crmVideo.getUserid())){
+			criteria.andUseridEqualTo(crmVideo.getUserid());
 		}
 		//排序
 		if(StringUtils.isNotEmpty(orderByClause)){
@@ -79,13 +101,15 @@ public class CmsVideoServiceImpl implements CmsVideoService {
 	}
 
 	@Override
-	public ResponseResult insert(CmsVideo crmVideo) {
+	public ResponseResult insert(CmsVideo crmVideo,Boolean isDefault) {
 		try {
+			if(isDefault){
 			//补全pojo内容
-		  	if(StringUtils.isEmpty(crmVideo.getVideoId())){
-				crmVideo.setVideoId(PrimaryKeyFactory.generatePK(""));
+			  	if(StringUtils.isEmpty(crmVideo.getVideoId())){
+					crmVideo.setVideoId(PrimaryKeyFactory.generatePK(""));
+				}
+				crmVideo.setCreatetime(new Date());
 			}
-			crmVideo.setCreatetime(new Date());
 			crmVideoMapper.insert(crmVideo);
 			return ResponseResult.ok();
 		} catch (Exception e) {
@@ -129,6 +153,7 @@ public class CmsVideoServiceImpl implements CmsVideoService {
 			temp.setClicks(crmVideo.getClicks());
 			temp.setYoukuid(crmVideo.getYoukuid());
 			temp.setAddress(crmVideo.getAddress());
+			temp.setUserid(crmVideo.getUserid());
 			crmVideoMapper.updateByPrimaryKeySelective(temp);
 			return ResponseResult.ok();
 		} catch (Exception e) {

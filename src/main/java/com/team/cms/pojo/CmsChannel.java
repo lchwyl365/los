@@ -50,10 +50,20 @@ public class CmsChannel {
     private String status;
 
     /**
+     * 用户编号
+     */
+    private String userid;
+
+    /**
+     * 域名
+     */
+    private String domainName;
+
+    /**
      * 栏目内容
      */
     private String content;
-    
+	
     private CmsVideo firstVideo;
     
     private List<CmsVideo> secondVideoList;
@@ -208,6 +218,38 @@ public class CmsChannel {
     }
 
     /**
+     * 用户编号
+     * @return userid 用户编号
+     */
+    public String getUserid() {
+        return userid;
+    }
+
+    /**
+     * 用户编号
+     * @param userid 用户编号
+     */
+    public void setUserid(String userid) {
+        this.userid = userid == null ? null : userid.trim();
+    }
+
+    /**
+     * 域名
+     * @return domain_name 域名
+     */
+    public String getDomainName() {
+        return domainName;
+    }
+
+    /**
+     * 域名
+     * @param domainName 域名
+     */
+    public void setDomainName(String domainName) {
+        this.domainName = domainName == null ? null : domainName.trim();
+    }
+
+    /**
      * 栏目内容
      * @return content 栏目内容
      */
@@ -262,5 +304,5 @@ public class CmsChannel {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-    
+	
 }

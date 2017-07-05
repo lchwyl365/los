@@ -150,9 +150,8 @@ public class AuthUserServiceImpl implements AuthUserService {
 			AuthUser temp = authUserMapper.selectByPrimaryKey(authUser.getUserid());
 			temp.setUsername(authUser.getUsername());
 			temp.setOperatorname(authUser.getOperatorname());
-			temp.setPassword(authUser.getPassword());
-				//md5加密
-				authUser.setPassword(DigestUtils.md5DigestAsHex(authUser.getPassword().getBytes()));
+			//md5加密
+			temp.setPassword(DigestUtils.md5DigestAsHex(authUser.getPassword().getBytes()));
 			temp.setDomainName(authUser.getDomainName());
 			temp.setCreatetime(authUser.getCreatetime());
 			temp.setAltertime(authUser.getAltertime());

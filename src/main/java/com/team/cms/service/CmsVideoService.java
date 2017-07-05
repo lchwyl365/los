@@ -17,7 +17,7 @@ public interface CmsVideoService {
 	
 	public CmsVideo selectByPrimaryKey(String videoId);
 
-	public ResponseResult insert(CmsVideo crmVideo);
+	public ResponseResult insert(CmsVideo crmVideo,Boolean isDefault);
 
 	public ResponseResult delete(List<String> videoIds);
 

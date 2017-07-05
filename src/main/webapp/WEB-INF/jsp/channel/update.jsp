@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>cms_channel修改</title>
+    <title>栏目管理修改</title>
 	<script type="text/javascript" charset="utf-8" src="${contextPath}/resources/js/kindeditor-4.1.10/kindeditor-min.js"></script>
 	<script type="text/javascript" charset="utf-8" src="${contextPath}/resources/js/kindeditor-4.1.10/lang/zh_CN.js"></script>
     <style type="text/css">
@@ -19,14 +19,14 @@
 <body>
 	<div class="easyui-layout" data-options="fit:true">
 		<div data-options="region:'north',border:false" style="height:40px;padding:6px;background-color: #FAFAFA;border-bottom:1px solid #DDDDDD;">
-		  <div class="panel-title" style="float:left;width:200px;height:26px;line-height:26px;margin-left:10px;">cms_channel-修改</div>
+		  <div class="panel-title" style="float:left;width:200px;height:26px;line-height:26px;margin-left:10px;">栏目管理-修改</div>
 		  <div style="float:right;width:200px;">
 			<a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="javascript:void(0)" onclick="contentUpdatePage.submitForm()" style="width:80px">提交</a>
 			<a class="easyui-linkbutton" data-options="iconCls:'icon-back'" href="javascript:void(0)" onclick="contentUpdatePage.clearForm()" style="width:80px">返回</a>
 		  </div>
 		</div>
 		<div data-options="region:'center',border:false" style="padding:10px">
-			<form id="contentEditForm" method="post">
+			<form id="contentEditForm" method="post" action="${contextPath}/cms/channel/update" >
 				<input type="hidden" name="channelId" />
 				<table class="easyui-panel form-table">
 				   <tr>
@@ -76,14 +76,6 @@
 				    </tr>
 				   <tr>
 						<td class="form-table-td-left">
-							<label for="createtime">发布时间:</label>
-						</td>
-						<td class="form-table-td-right">
-								<input class="easyui-validatebox" type="text" name="createtime" data-options="required:true,validType:['length[0,64]']" style="width:320px;height:28px;"/>
-						</td>
-				    </tr>
-				   <tr>
-						<td class="form-table-td-left">
 							<label for="url">链接地址:</label>
 						</td>
 						<td class="form-table-td-right">
@@ -99,6 +91,14 @@
 							<label for="radio_on">显示</label>
 							<input type="radio" id="radio_off" name="status" value="off"/>
 							<label for="radio_off">隐藏</label>
+						</td>
+				    </tr>
+				   <tr>
+						<td class="form-table-td-left">
+							<label for="userid">用户编号:</label>
+						</td>
+						<td class="form-table-td-right">
+								<input class="easyui-validatebox" type="text" name="userid" data-options="required:true,validType:['length[0,32]']" style="width:320px;height:28px;"/>
 						</td>
 				    </tr>
 				</table>

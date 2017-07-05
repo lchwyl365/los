@@ -40,8 +40,9 @@ public class CmsBannerServiceImpl implements CmsBannerService {
 		//查询列表
 		CmsBannerExample example = new CmsBannerExample();
 		Criteria criteria = example.createCriteria();
-		
-	
+		if(StringUtils.isNotEmpty(cmsBanner.getDomainName())){
+			criteria.andDomainNameEqualTo(cmsBanner.getDomainName());
+		}
 		//排序
 		if(StringUtils.isNotEmpty(dgm.getSort())){
 			example.setOrderByClause(dgm.getSort() + " " + dgm.getOrder());

@@ -10,16 +10,16 @@ import com.team.cms.pojo.CmsChannel;
  */
 public interface CmsChannelService {
 
-	public List<CmsChannelVo> selectList(String pid);
+	public List<CmsChannelVo> selectList(String pid,String userid);
+
+	public List<CmsChannel> selectByCmsChannel(CmsChannel cmsChannel,String orderByClause);
 	
 	public CmsChannel selectByPrimaryKey(String channelId);
 
-	public ResponseResult insert(CmsChannel cmsChannel);
+	public ResponseResult insert(CmsChannel cmsChannel,Boolean isDefault);
 
 	public ResponseResult delete(List<String> channelIds);
 
 	public ResponseResult update(CmsChannel cmsChannel);
-
-	public List<CmsChannel> selectByChannel(CmsChannel cmsChannel);
 	
 }

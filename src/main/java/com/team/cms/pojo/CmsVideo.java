@@ -59,6 +59,11 @@ public class CmsVideo {
     private String channelid;
 
     /**
+     * 用户编号
+     */
+    private String userid;
+
+    /**
      * 视频编号
      * @return video_id 视频编号
      */
@@ -232,5 +237,21 @@ public class CmsVideo {
      */
     public void setChannelid(String channelid) {
         this.channelid = channelid == null ? null : channelid.trim();
+    }
+
+    /**
+     * 用户编号
+     * @return userid 用户编号
+     */
+    public String getUserid() {
+        return userid;
+    }
+
+    /**
+     * 用户编号
+     * @param userid 用户编号
+     */
+    public void setUserid(String userid) {
+        this.userid = userid == null ? null : userid.trim();
     }
 }

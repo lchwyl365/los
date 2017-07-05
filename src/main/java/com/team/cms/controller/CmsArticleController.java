@@ -18,12 +18,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team.common.pojo.EUDataGridModel;
 import com.team.common.pojo.EUDataGridResult;
-
 import com.team.common.pojo.ResponseResult;
 import com.team.cms.pojo.CmsArticle;
 import com.team.cms.service.CmsArticleService;
 import com.team.platform.service.SysComboBoxService;
+
 import org.springframework.beans.factory.annotation.Value;
+
 import com.team.common.util.CookieUtils;
 import com.team.platform.service.SessionUserService;
 import com.team.platform.service.impl.SessionUserServiceImpl;
@@ -148,7 +149,17 @@ public class CmsArticleController {
 	
 	@RequestMapping(value = "/queryList",method = RequestMethod.POST)
 	@ResponseBody
-    public EUDataGridResult queryList(EUDataGridModel dgm,CmsArticle cmsArticle) throws Exception{
+    public EUDataGridResult queryList(HttpServletRequest request,EUDataGridModel dgm,CmsArticle cmsArticle) throws Exception{
+		//从cookie中取token
+		String token = CookieUtils.getCookieValue(request, "TT_TOKEN");
+		//根据token换取用户信息，调用sso系统的接口。
+		AuthUser user = null;
+		if(USE_REDIS){
+			user = sessionUserService.getUserByToken(token);
+		}else{
+			user = (AuthUser) request.getSession().getAttribute(SessionUserServiceImpl.LOGIN_USER);
+		}
+		cmsArticle.setUserid(user.getUserid());
 		EUDataGridResult result = cmsArticleService.selectList(dgm, cmsArticle);
     	return result;
     }

@@ -47,7 +47,7 @@ public class FrontController {
 		CmsChannel cmsChannel = new CmsChannel();
 		cmsChannel.setPid("0");
 		cmsChannel.setIstop("on");
-		List<CmsChannel> channelList = cmsChannelService.selectByChannel(cmsChannel);
+		List<CmsChannel> channelList = cmsChannelService.selectByCmsChannel(cmsChannel,"channel_sort desc");
 		model.addAttribute("channelList", channelList);
     	
 		CmsBanner cmsBanner = new CmsBanner();
@@ -70,19 +70,19 @@ public class FrontController {
     	//底部栏目导航
     	CmsChannel aboutChannel = new CmsChannel();
     	aboutChannel.setPid("55226776264115");
-    	List<CmsChannel> aboutChannels = cmsChannelService.selectByChannel(aboutChannel);
+    	List<CmsChannel> aboutChannels = cmsChannelService.selectByCmsChannel(aboutChannel,"channel_sort desc");
     	
     	CmsChannel chanyeChannel = new CmsChannel();
     	chanyeChannel.setPid("55398939588116");
-    	List<CmsChannel> chanyeChannels = cmsChannelService.selectByChannel(chanyeChannel);
+    	List<CmsChannel> chanyeChannels = cmsChannelService.selectByCmsChannel(chanyeChannel,"channel_sort desc");
     	
     	CmsChannel serviceChannel = new CmsChannel();
     	serviceChannel.setPid("56438939530112");
-    	List<CmsChannel> serviceChannels = cmsChannelService.selectByChannel(serviceChannel);
+    	List<CmsChannel> serviceChannels = cmsChannelService.selectByCmsChannel(serviceChannel,"channel_sort desc");
     	
     	CmsChannel contactChannel = new CmsChannel();
     	contactChannel.setPid("56438994540139");
-    	List<CmsChannel> contactChannels = cmsChannelService.selectByChannel(contactChannel);
+    	List<CmsChannel> contactChannels = cmsChannelService.selectByCmsChannel(contactChannel,"channel_sort desc");
     	
     	model.addAttribute("aboutChannels", aboutChannels);
     	model.addAttribute("chanyeChannels", chanyeChannels);
@@ -123,7 +123,7 @@ public class FrontController {
 		CmsChannel cmsChannel = new CmsChannel();
 		cmsChannel.setPid("0");
 		cmsChannel.setIstop("on");
-		List<CmsChannel> channelList = cmsChannelService.selectByChannel(cmsChannel);
+		List<CmsChannel> channelList = cmsChannelService.selectByCmsChannel(cmsChannel,"channel_sort desc");
 		model.addAttribute("channelList", channelList);
     	
 		//当前导航层级
@@ -133,7 +133,7 @@ public class FrontController {
     		model.addAttribute("channel", channel);
     		CmsChannel tempChannel = new CmsChannel();
     		tempChannel.setPid(channel.getChannelId());
-    		List<CmsChannel> childList = cmsChannelService.selectByChannel(tempChannel);
+    		List<CmsChannel> childList = cmsChannelService.selectByCmsChannel(tempChannel,"channel_sort desc");
     		model.addAttribute("childList", childList);
     		if(childList.size() > 0){
     			childchannel = childList.get(0);
@@ -147,7 +147,7 @@ public class FrontController {
     		
     		CmsChannel tempChannel = new CmsChannel();
     		tempChannel.setPid(parent.getChannelId());
-    		List<CmsChannel> childList = cmsChannelService.selectByChannel(tempChannel);
+    		List<CmsChannel> childList = cmsChannelService.selectByCmsChannel(tempChannel,"channel_sort desc");
     		model.addAttribute("childList", childList);
     	}
     	
@@ -185,7 +185,7 @@ public class FrontController {
 		CmsChannel cmsChannel = new CmsChannel();
 		cmsChannel.setPid("0");
 		cmsChannel.setIstop("on");
-		List<CmsChannel> channelList = cmsChannelService.selectByChannel(cmsChannel);
+		List<CmsChannel> channelList = cmsChannelService.selectByCmsChannel(cmsChannel,"channel_sort desc");
 		model.addAttribute("channelList", channelList);
     	
 		if(article == null){
@@ -198,7 +198,7 @@ public class FrontController {
     		model.addAttribute("channel", channel);
     		CmsChannel tempChannel = new CmsChannel();
     		tempChannel.setPid(channel.getChannelId());
-    		List<CmsChannel> childList = cmsChannelService.selectByChannel(tempChannel);
+    		List<CmsChannel> childList = cmsChannelService.selectByCmsChannel(tempChannel,"channel_sort desc");
     		model.addAttribute("childList", childList);
     		if(childList.size() > 0){
     			childchannel = childList.get(0);
@@ -212,7 +212,7 @@ public class FrontController {
     		
     		CmsChannel tempChannel = new CmsChannel();
     		tempChannel.setPid(parent.getChannelId());
-    		List<CmsChannel> childList = cmsChannelService.selectByChannel(tempChannel);
+    		List<CmsChannel> childList = cmsChannelService.selectByCmsChannel(tempChannel,"channel_sort desc");
     		model.addAttribute("childList", childList);
     	}
     	
@@ -226,7 +226,7 @@ public class FrontController {
 		CmsChannel cmsChannel = new CmsChannel();
 		cmsChannel.setPid("0");
 		cmsChannel.setIstop("on");
-		List<CmsChannel> channelList = cmsChannelService.selectByChannel(cmsChannel);
+		List<CmsChannel> channelList = cmsChannelService.selectByCmsChannel(cmsChannel,"channel_sort desc");
 		model.addAttribute("channelList", channelList);
     	
     	//视频内容
@@ -237,7 +237,7 @@ public class FrontController {
     	
     	CmsChannel tempChannel = new CmsChannel();
     	tempChannel.setPid("56643194809110");
-    	List<CmsChannel> subChannelList = cmsChannelService.selectByChannel(tempChannel);
+    	List<CmsChannel> subChannelList = cmsChannelService.selectByCmsChannel(tempChannel,"channel_sort desc");
     	for (int i = 0; i < subChannelList.size(); i++) {
 			CmsChannel channel = subChannelList.get(i);
 			
@@ -285,7 +285,7 @@ public class FrontController {
 		CmsChannel cmsChannel = new CmsChannel();
 		cmsChannel.setPid("0");
 		cmsChannel.setIstop("on");
-		List<CmsChannel> channelList = cmsChannelService.selectByChannel(cmsChannel);
+		List<CmsChannel> channelList = cmsChannelService.selectByCmsChannel(cmsChannel,"channel_sort desc");
 		model.addAttribute("channelList", channelList);
     	
        CmsVideo video = cmsVideoService.selectByPrimaryKey(id);

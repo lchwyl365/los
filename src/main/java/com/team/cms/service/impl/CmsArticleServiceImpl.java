@@ -44,7 +44,10 @@ public class CmsArticleServiceImpl implements CmsArticleService {
 		if(StringUtils.isNotEmpty(cmsArticle.getTitle())){
 			criteria.andTitleLike("%"+cmsArticle.getTitle()+"%");
 		}
-	
+		
+		if(StringUtils.isNotEmpty(cmsArticle.getUserid())){
+			criteria.andUseridEqualTo(cmsArticle.getUserid());
+		}
 		//排序
 		if(StringUtils.isNotEmpty(dgm.getSort())){
 			example.setOrderByClause(dgm.getSort() + " " + dgm.getOrder());
