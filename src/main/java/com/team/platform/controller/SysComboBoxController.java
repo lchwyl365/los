@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,11 +21,16 @@ import com.team.common.pojo.EUDataGridModel;
 import com.team.common.pojo.EUDataGridResult;
 import com.team.common.pojo.EUTreeNode;
 import com.team.common.pojo.ResponseResult;
+import com.team.common.util.CookieUtils;
+import com.team.platform.pojo.AuthUser;
 import com.team.platform.pojo.SysComboBox;
 import com.team.platform.pojo.SysDictEntry;
+import com.team.platform.service.AuthUserService;
+import com.team.platform.service.SessionUserService;
 import com.team.platform.service.SysComboBoxService;
 import com.team.platform.service.SysDictEntryService;
 import com.team.platform.service.SysDictTypeService;
+import com.team.platform.service.impl.SessionUserServiceImpl;
 
 @Controller
 @RequestMapping("/platform/box")
@@ -40,6 +46,15 @@ public class SysComboBoxController {
 	
 	@Autowired
 	private SysDictEntryService sysDictEntryService;
+	
+	@Autowired
+	private AuthUserService authUserService;
+	
+	@Autowired
+	private SessionUserService sessionUserService;
+	
+	@Value("${USE_REDIS}")
+	private Boolean USE_REDIS;
 	
 	@RequestMapping(value = "/list",method = RequestMethod.GET)
     public String list(HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
@@ -95,7 +110,20 @@ public class SysComboBoxController {
 
 	@RequestMapping(value="/combotree",method = RequestMethod.GET)
 	@ResponseBody
-	public List<EUTreeNode> combotree(@RequestParam(value="id",required=false)  String id) {
+	public List<EUTreeNode> combotree(HttpServletRequest request,@RequestParam(value="id",required=false)  String id) {
+		/*String conditon = null;
+		if("55059701325166".equals(id)){
+			//从cookie中取token
+			String token = CookieUtils.getCookieValue(request, "TT_TOKEN");
+			//根据token换取用户信息，调用sso系统的接口。
+			AuthUser user = null;
+			if(USE_REDIS){
+				user = sessionUserService.getUserByToken(token);
+			}else{
+				user = (AuthUser) request.getSession().getAttribute(SessionUserServiceImpl.LOGIN_USER);
+			}
+			conditon = " userid = "+user.getUserid() + " ";
+		}*/
 		
 		List<EUTreeNode> list = sysComboBoxService.combotree(id);
 		if(list == null){

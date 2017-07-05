@@ -171,7 +171,6 @@ public class AuthMenuServiceImpl implements AuthMenuService {
 			node.setId(authMenu.getMenuid());
 			node.setText(authMenu.getName());
 			node.setIconCls(authMenu.getIconCls());
-			System.out.println(node.getText() + " ischecked:"+ischecked);
 			List<EUTreeNode> children = selectTreeList(node.getId(),menus,level);
 			if(children != null && children.size() > 0){
 				node.setChildren(children);

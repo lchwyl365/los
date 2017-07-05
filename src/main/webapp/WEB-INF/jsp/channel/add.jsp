@@ -27,6 +27,7 @@
 		</div>
 		<div data-options="region:'center',border:false" style="padding:10px">
 			<form id="contentAddForm" method="post" action="${contextPath}/cms/channel/add" >
+				<input type="hidden" name="pid" value="${pid}"/>
 				<table class="easyui-panel form-table">
 				   <tr>
 						<td class="form-table-td-left">
@@ -50,9 +51,9 @@
 						</td>
 						<td class="form-table-td-right">
 							<input type="radio" id="radio_on" name="istop" checked="checked" value="on"/>
-							<label for="radio_on">显示</label>		
+							<label for="radio_on">是</label>		
 							<input type="radio" id="radio_off" name="istop" value="off"/>
-							<label for="radio_off">隐藏</label>			
+							<label for="radio_off">不是</label>			
 						</td>
 				    </tr>
 				   <tr>
@@ -60,20 +61,11 @@
 							<label for="channelType">栏目类型:</label>
 						</td>
 						<td class="form-table-td-right">
-								<input class="easyui-combotree" name="channelType"
-								   data-options="url:'${contextPath}/platform/box/combotree?id=55072199221118',method:'get'" style="width:200px;height:28px;">
+							<input id="channelType" class="easyui-combotree" name="channelType"
+								   data-options="url:'${contextPath}/platform/box/combotree?id=55072199221118',method:'get',onChange:changeType" style="width:200px;height:28px;">
 						</td>
 				    </tr>
-				   <tr>
-						<td class="form-table-td-left">
-							<label for="pid">上级栏目编号:</label>
-						</td>
-						<td class="form-table-td-right">
-								<input class="easyui-combotree" name="pid"
-								   data-options="url:'${contextPath}/platform/box/combotree?id=55059701325166',method:'get'" style="width:200px;height:28px;">
-						</td>
-				    </tr>
-				   <tr>
+				   <tr id="link_div" style="display:none;">
 						<td class="form-table-td-left">
 							<label for="url">链接地址:</label>
 						</td>
@@ -92,16 +84,8 @@
 							<label for="radio_off">隐藏</label>			
 						</td>
 				    </tr>
-				   <tr>
-						<td class="form-table-td-left">
-							<label for="userid">用户编号:</label>
-						</td>
-						<td class="form-table-td-right">
-								<input class="easyui-validatebox" type="text" name="userid" data-options="required:true,validType:['length[0,32]']" style="width:320px;height:28px;"/>
-						</td>
-				    </tr>
 				</table>
-				<div>
+				<div id="content_div" style="display:none;">
 					<p>栏目内容:</p>
 					<textarea name="content" class="common-textarea" id="content" style="width:91%; height:500px;visibility:hidden;"></textarea>
 				</div>
@@ -125,6 +109,7 @@ $(function(){
 	            'flash', 'media', 'insertfile', 'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
 	            'anchor', 'link', 'unlink']
 	});
+    
 });
 var contentAddPage  = {
 	submitForm : function (){
@@ -147,6 +132,18 @@ var contentAddPage  = {
 		window.self.location = "${contextPath}/cms/channel/list";
 	}
 };
+function changeType(newValue){
+	if(newValue == 'cover'){
+		$("#content_div").show();
+		$("#link_div").hide();
+	}else if(newValue == 'link'){
+		$("#content_div").hide();
+		$("#link_div").show();
+	}else if(newValue == 'list'){
+		$("#content_div").hide();
+		$("#link_div").hide();
+	}
+}
 </script>
 </body>
 </html>

@@ -57,7 +57,9 @@ public class CmsChannelController {
     }
 	
 	@RequestMapping(value = "/add",method = RequestMethod.GET)
-    public String add() throws Exception{
+    public String add(HttpServletRequest request,Model model) throws Exception{
+		String pid = request.getParameter("pid");
+		model.addAttribute("pid", pid);
     	return "channel/add";
     }
 	@RequestMapping(value = "/add",method = RequestMethod.POST)
@@ -73,6 +75,7 @@ public class CmsChannelController {
 			user = (AuthUser) request.getSession().getAttribute(SessionUserServiceImpl.LOGIN_USER);
 		}
         cmsChannel.setDomainName(user.getDomainName());
+        cmsChannel.setUserid(user.getUserid());
 		ResponseResult result = cmsChannelService.insert(cmsChannel,true);
 		return result;
 	}

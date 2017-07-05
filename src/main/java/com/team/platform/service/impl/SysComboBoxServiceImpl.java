@@ -121,7 +121,7 @@ public class SysComboBoxServiceImpl implements SysComboBoxService {
 	}
 
 	@Override
-	public List<EUTreeNode> combotree(String comboid) {
+	public List<EUTreeNode> combotree(String comboid) {//,String condition
 		//1:自定义字典
 		SysComboBox comboBox = sysComboBoxMapper.selectByPrimaryKey(comboid);
 		String sql="select VALUE_FIELD as id,TEXT_FIELD as text from TABLE_NAME ";
@@ -141,7 +141,7 @@ public class SysComboBoxServiceImpl implements SysComboBoxService {
 	private List<EUTreeNode> getComboTree(String sql, String parentId) {
 		String _sql2 = sql;
 		boolean load_child = false;
-		if(sql.indexOf("where") != -1 && StringUtils.isNotEmpty(parentId)){
+		if(_sql2.indexOf("where") != -1 && StringUtils.isNotEmpty(parentId)){
 			_sql2 = _sql2 + parentId;
 			load_child = true;
 		}

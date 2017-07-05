@@ -93,14 +93,6 @@
 							<label for="radio_off">隐藏</label>
 						</td>
 				    </tr>
-				   <tr>
-						<td class="form-table-td-left">
-							<label for="userid">用户编号:</label>
-						</td>
-						<td class="form-table-td-right">
-								<input class="easyui-validatebox" type="text" name="userid" data-options="required:true,validType:['length[0,32]']" style="width:320px;height:28px;"/>
-						</td>
-				    </tr>
 				</table>
 				<div>
 					<p>栏目内容:</p>

@@ -27,7 +27,16 @@
 				{field:'channelName',title:'栏目名称',width:100},
 				{field:'channelSort',title:'排列顺序',width:100},
 				{field:'channelType',title:'栏目类型',width:100},
-				{field:'status',title:'状态',width:100}
+				{field:'status',title:'状态',width:100},
+				{field:'action',title:'操作',width:100,align:'center',
+					formatter:function(value,row,index){
+						var e = '';
+						if(row.pid == '0'){
+							var e = '<a href="javascript:void(0)" onclick="CmsChannel.addSubRow('+row.channelId+')">添加子栏目</a> ';
+						}
+						return e;
+					}
+				}
 			]]
 		});
 		
@@ -40,7 +49,10 @@
 	});
     var CmsChannel = {
     		addRow:function(){//新增
-  				window.self.location = "${contextPath}/cms/channel/add";
+  				window.self.location = "${contextPath}/cms/channel/add?pid=0";
+    		},
+    		addSubRow:function(pid){
+    			window.self.location = "${contextPath}/cms/channel/add?pid="+pid;
     		},
     		updateRow:function(){//更新
     			var rows = $('#channelTable').datagrid('getSelections');

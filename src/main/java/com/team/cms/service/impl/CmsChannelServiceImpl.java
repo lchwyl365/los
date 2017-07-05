@@ -120,6 +120,9 @@ public class CmsChannelServiceImpl implements CmsChannelService {
 			  	if(StringUtils.isEmpty(cmsChannel.getChannelId())){
 					cmsChannel.setChannelId(PrimaryKeyFactory.generatePK(""));
 				}
+			  	if(StringUtils.isEmpty(cmsChannel.getPid())){
+			  		cmsChannel.setPid("0");
+			  	}
 				cmsChannel.setCreatetime(new Date());
 			}
 			cmsChannelMapper.insert(cmsChannel);
