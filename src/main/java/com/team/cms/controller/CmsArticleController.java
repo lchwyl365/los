@@ -1,6 +1,8 @@
 package com.team.cms.controller;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,19 +19,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.team.cms.pojo.CmsArticle;
+import com.team.cms.service.CmsArticleService;
 import com.team.common.pojo.EUDataGridModel;
 import com.team.common.pojo.EUDataGridResult;
 import com.team.common.pojo.ResponseResult;
-import com.team.cms.pojo.CmsArticle;
-import com.team.cms.service.CmsArticleService;
-import com.team.platform.service.SysComboBoxService;
-
-import org.springframework.beans.factory.annotation.Value;
-
 import com.team.common.util.CookieUtils;
-import com.team.platform.service.SessionUserService;
-import com.team.platform.service.impl.SessionUserServiceImpl;
+import com.team.common.util.ImageUtil;
 import com.team.platform.pojo.AuthUser;
+import com.team.platform.service.SessionUserService;
+import com.team.platform.service.SysComboBoxService;
+import com.team.platform.service.impl.SessionUserServiceImpl;
 
 @Controller
 @RequestMapping("/cms/article")
@@ -74,6 +75,12 @@ public class CmsArticleController {
 		}
         cmsArticle.setUserid(user.getUserid());
         cmsArticle.setDomainName(user.getDomainName());
+        Set<String> imgs = ImageUtil.getImgStr(cmsArticle.getContent());
+        if(imgs != null && imgs.size() > 0){
+        	Iterator<String> iterator = imgs.iterator();
+        	String thumbnail = iterator.next();
+        	cmsArticle.setThumbnail(thumbnail);
+        }
 		ResponseResult result = cmsArticleService.insert(cmsArticle,true);
 		return result;
 	}

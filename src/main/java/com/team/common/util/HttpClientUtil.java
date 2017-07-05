@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -20,6 +22,16 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
 public class HttpClientUtil {
+	
+	public static String getServerName(HttpServletRequest request){
+		String serverName = request.getServerName();
+		
+		if("localhost".equals(serverName)){
+			return "www.quanjian.com";
+		}
+		
+		return serverName;
+	}
 
 	public static String doGet(String url, Map<String, String> param) {
 

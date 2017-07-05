@@ -77,7 +77,7 @@
 							<label for="topNumber">置顶序号:</label>
 						</td>
 						<td class="form-table-td-right">
-								<input class="easyui-numberbox" type="text" name="topNumber" data-options="required:true,validType:['length[0,64]'],missingMessage:'请输入数字'" style="width:320px;height:28px;"/>
+								<input class="easyui-numberbox" type="text" name="topNumber" data-options="required:false,validType:['length[0,64]'],missingMessage:'请输入数字'" style="width:320px;height:28px;"/>
 						</td>
 				    </tr>
 				</table>

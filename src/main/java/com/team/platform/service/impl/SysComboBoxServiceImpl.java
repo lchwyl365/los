@@ -121,7 +121,7 @@ public class SysComboBoxServiceImpl implements SysComboBoxService {
 	}
 
 	@Override
-	public List<EUTreeNode> combotree(String comboid) {//,String condition
+	public List<EUTreeNode> combotree(String comboid,String condition) {
 		//1:自定义字典
 		SysComboBox comboBox = sysComboBoxMapper.selectByPrimaryKey(comboid);
 		String sql="select VALUE_FIELD as id,TEXT_FIELD as text from TABLE_NAME ";
@@ -129,26 +129,32 @@ public class SysComboBoxServiceImpl implements SysComboBoxService {
 			sql = sql.replace("VALUE_FIELD", comboBox.getValueField());
 			sql = sql.replace("TEXT_FIELD", comboBox.getTextField());
 			sql = sql.replace("TABLE_NAME", comboBox.getTableName());
+			boolean haveParentField = false;
 			if(StringUtils.isNotEmpty(comboBox.getParentField())){
-				sql = sql + "where "+comboBox.getParentField()+" = ";
+				haveParentField = true;
+				if(StringUtils.isNotEmpty(condition)){
+					sql = sql + "where "+condition+" and "+comboBox.getParentField()+" = ";
+				}else{
+					sql = sql + "where "+comboBox.getParentField()+" = ";
+				}
 			}
-			return getComboTree(sql,comboBox.getRootValue());
+			return getComboTree(sql,comboBox.getRootValue(),haveParentField);
 		}else{
 			return null;
 		}
 	}
 
-	private List<EUTreeNode> getComboTree(String sql, String parentId) {
+	private List<EUTreeNode> getComboTree(String sql, String parentId,boolean haveParentField) {
 		String _sql2 = sql;
 		boolean load_child = false;
-		if(_sql2.indexOf("where") != -1 && StringUtils.isNotEmpty(parentId)){
+		if(haveParentField && StringUtils.isNotEmpty(parentId)){
 			_sql2 = _sql2 + parentId;
 			load_child = true;
 		}
 		List<EUTreeNode> list = jdbcTemplate.query(_sql2, new EUTreeNodeRowMapper());
 		if(load_child){
 			for (EUTreeNode treeNode : list) {
-				List<EUTreeNode> children = getComboTree(sql,treeNode.getId());
+				List<EUTreeNode> children = getComboTree(sql,treeNode.getId(),haveParentField);
 				treeNode.setChildren(children);
 			}
 		}

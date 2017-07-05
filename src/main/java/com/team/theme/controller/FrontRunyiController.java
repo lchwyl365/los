@@ -26,11 +26,12 @@ import com.team.cms.service.CmsChannelService;
 import com.team.cms.service.CmsVideoService;
 import com.team.common.pojo.EUDataGridModel;
 import com.team.common.pojo.EUDataGridResult;
+import com.team.common.util.HttpClientUtil;
 import com.team.common.util.ImageUtil;
 
 @Controller
 @RequestMapping("/front/r")
-public class FrontController {
+public class FrontRunyiController {
 	
 	@Autowired
 	private CmsChannelService cmsChannelService;
@@ -43,10 +44,12 @@ public class FrontController {
 
 	@RequestMapping(value = "/index",method = RequestMethod.GET)
     public String index(HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
+		String serverName = HttpClientUtil.getServerName(request);
 		//顶部栏目导航
 		CmsChannel cmsChannel = new CmsChannel();
 		cmsChannel.setPid("0");
 		cmsChannel.setIstop("on");
+		cmsChannel.setDomainName(serverName);
 		List<CmsChannel> channelList = cmsChannelService.selectByCmsChannel(cmsChannel,"channel_sort desc");
 		model.addAttribute("channelList", channelList);
     	

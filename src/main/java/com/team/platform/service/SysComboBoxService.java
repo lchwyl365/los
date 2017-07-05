@@ -23,7 +23,7 @@ public interface SysComboBoxService {
 
 	public ResponseResult update(SysComboBox sysComboBox);
 
-	public List<EUTreeNode> combotree(String comboid);//,String condition
+	public List<EUTreeNode> combotree(String comboid,String condition);
 
 	public List<SysComboBox> selectAll();
 

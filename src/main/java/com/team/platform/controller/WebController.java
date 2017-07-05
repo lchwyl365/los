@@ -16,7 +16,7 @@ public class WebController {
 	@RequestMapping(value = "/index",method = RequestMethod.GET)
     public String index(HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
 		
-    	return "redirect:/front/r/index";
+    	return "redirect:/front/q/index";
     }
 	
 }

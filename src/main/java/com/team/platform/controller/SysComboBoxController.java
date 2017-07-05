@@ -111,7 +111,7 @@ public class SysComboBoxController {
 	@RequestMapping(value="/combotree",method = RequestMethod.GET)
 	@ResponseBody
 	public List<EUTreeNode> combotree(HttpServletRequest request,@RequestParam(value="id",required=false)  String id) {
-		/*String conditon = null;
+		String conditon = null;
 		if("55059701325166".equals(id)){
 			//从cookie中取token
 			String token = CookieUtils.getCookieValue(request, "TT_TOKEN");
@@ -123,9 +123,9 @@ public class SysComboBoxController {
 				user = (AuthUser) request.getSession().getAttribute(SessionUserServiceImpl.LOGIN_USER);
 			}
 			conditon = " userid = "+user.getUserid() + " ";
-		}*/
+		}
 		
-		List<EUTreeNode> list = sysComboBoxService.combotree(id);
+		List<EUTreeNode> list = sysComboBoxService.combotree(id,conditon);
 		if(list == null){
 			List<SysDictEntry> entrys = sysDictEntryService.selectByType(id);
 			if(entrys.size() > 0){
