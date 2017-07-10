@@ -2,22 +2,22 @@ package com.team.platform.pojo;
 
 public class AuthTest {
     /**
-     * ²âÊÔ±àºÅ
+     * æµ‹è¯•ç¼–å·
      */
     private String testid;
 
     /**
-     * ×é±àºÅ
+     * ç»„ç¼–å·
      */
     private String groupId;
 
     /**
-     * ²âÊÔÃû³Æ
+     * æµ‹è¯•åç§°
      */
     private String testname;
 
     /**
-     * ×éÃû³Æ
+     * ç»„åç§°
      */
     private String testgroup;
 
@@ -27,64 +27,64 @@ public class AuthTest {
     private String deptId;
 
     /**
-     * ²âÊÔ±àºÅ
-     * @return TESTID ²âÊÔ±àºÅ
+     * æµ‹è¯•ç¼–å·
+     * @return TESTID æµ‹è¯•ç¼–å·
      */
     public String getTestid() {
         return testid;
     }
 
     /**
-     * ²âÊÔ±àºÅ
-     * @param testid ²âÊÔ±àºÅ
+     * æµ‹è¯•ç¼–å·
+     * @param testid æµ‹è¯•ç¼–å·
      */
     public void setTestid(String testid) {
         this.testid = testid == null ? null : testid.trim();
     }
 
     /**
-     * ×é±àºÅ
-     * @return GROUP_ID ×é±àºÅ
+     * ç»„ç¼–å·
+     * @return GROUP_ID ç»„ç¼–å·
      */
     public String getGroupId() {
         return groupId;
     }
 
     /**
-     * ×é±àºÅ
-     * @param groupId ×é±àºÅ
+     * ç»„ç¼–å·
+     * @param groupId ç»„ç¼–å·
      */
     public void setGroupId(String groupId) {
         this.groupId = groupId == null ? null : groupId.trim();
     }
 
     /**
-     * ²âÊÔÃû³Æ
-     * @return TESTNAME ²âÊÔÃû³Æ
+     * æµ‹è¯•åç§°
+     * @return TESTNAME æµ‹è¯•åç§°
      */
     public String getTestname() {
         return testname;
     }
 
     /**
-     * ²âÊÔÃû³Æ
-     * @param testname ²âÊÔÃû³Æ
+     * æµ‹è¯•åç§°
+     * @param testname æµ‹è¯•åç§°
      */
     public void setTestname(String testname) {
         this.testname = testname == null ? null : testname.trim();
     }
 
     /**
-     * ×éÃû³Æ
-     * @return TESTGROUP ×éÃû³Æ
+     * ç»„åç§°
+     * @return TESTGROUP ç»„åç§°
      */
     public String getTestgroup() {
         return testgroup;
     }
 
     /**
-     * ×éÃû³Æ
-     * @param testgroup ×éÃû³Æ
+     * ç»„åç§°
+     * @param testgroup ç»„åç§°
      */
     public void setTestgroup(String testgroup) {
         this.testgroup = testgroup == null ? null : testgroup.trim();

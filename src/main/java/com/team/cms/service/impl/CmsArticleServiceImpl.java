@@ -14,7 +14,6 @@ import com.github.pagehelper.PageInfo;
 import com.team.common.pojo.EUDataGridModel;
 import com.team.common.pojo.EUDataGridResult;
 import com.team.common.util.ExceptionUtil;
-
 import com.team.common.pojo.ResponseResult;
 import com.team.common.util.PrimaryKeyFactory;
 import com.team.cms.mapper.CmsArticleMapper;
@@ -48,6 +47,11 @@ public class CmsArticleServiceImpl implements CmsArticleService {
 		if(StringUtils.isNotEmpty(cmsArticle.getUserid())){
 			criteria.andUseridEqualTo(cmsArticle.getUserid());
 		}
+		
+		if(StringUtils.isNotEmpty(cmsArticle.getChannelId())){
+			criteria.andChannelIdEqualTo(cmsArticle.getChannelId());
+		}
+		
 		//排序
 		if(StringUtils.isNotEmpty(dgm.getSort())){
 			example.setOrderByClause(dgm.getSort() + " " + dgm.getOrder());
@@ -164,5 +168,33 @@ public class CmsArticleServiceImpl implements CmsArticleService {
 			e.printStackTrace();
 			return ResponseResult.build(ResponseResult.ERROR, e.getMessage());
 		}
+	}
+
+	public CmsArticle getPreArticle(String id,String domain) {
+		//查询列表
+		CmsArticleExample example = new CmsArticleExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andArticleIdLessThan(id);
+		criteria.andDomainNameEqualTo(domain);
+		example.setOrderByClause("article_id desc");
+		List<CmsArticle> list = cmsArticleMapper.selectByExample(example);
+		if(list.size() > 0 ){
+			return list.get(0);
+		}
+		return null;
+	}
+	
+	public CmsArticle getAfterArticle(String id,String domain) {
+		//查询列表
+		CmsArticleExample example = new CmsArticleExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andArticleIdGreaterThan(id);
+		criteria.andDomainNameEqualTo(domain);
+		example.setOrderByClause("article_id asc");
+		List<CmsArticle> list = cmsArticleMapper.selectByExample(example);
+		if(list.size() > 0 ){
+			return list.get(0);
+		}
+		return null;
 	}
 }

@@ -15,8 +15,13 @@ public class WebController {
 	
 	@RequestMapping(value = "/index",method = RequestMethod.GET)
     public String index(HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
-		
-    	return "redirect:/front/q/index";
+		String serverName = request.getServerName();
+		System.out.println(serverName);
+		if("www.runyigroup.com.cn".equals(serverName)){
+			return "redirect:/front/r/index";
+		}else{
+			return "redirect:/front/q/index";
+		}
     }
 	
 }

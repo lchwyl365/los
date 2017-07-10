@@ -28,12 +28,12 @@
 								<#list property.options as optionMap>
 									<#list optionMap?keys as key>
 										<#if optionMap_index == 0>
-							<input type="radio" id="radio_${key}" name="${property.propertyName}" checked="checked" value="${key}"/>
-							<label for="radio_${key}">${optionMap[key]}</label>		
+							<input type="radio" id="radio_${key_index}" name="${property.propertyName}" checked="checked" value="${key}"/>
+							<label for="radio_${key_index}">${optionMap[key]}</label>		
 										</#if>
 										<#if optionMap_index != 0>
-							<input type="radio" id="radio_${key}" name="${property.propertyName}" value="${key}"/>
-							<label for="radio_${key}">${optionMap[key]}</label>			
+							<input type="radio" id="radio_${key_index}" name="${property.propertyName}" value="${key}"/>
+							<label for="radio_${key_index}">${optionMap[key]}</label>			
 										</#if>
 									</#list>
 								</#list>

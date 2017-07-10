@@ -29,7 +29,7 @@
                 <div class="login-input">
                 	<p class="user ue-clear">
                     	<label>用户名</label>
-                        <input type="text" name="username" id="username" value="tclz" />
+                        <input type="text" name="username" id="username" />
                     </p>
                     <p class="password ue-clear">
                     	<label>密&nbsp;&nbsp;&nbsp;码</label>

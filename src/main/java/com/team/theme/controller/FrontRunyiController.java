@@ -55,6 +55,7 @@ public class FrontRunyiController {
     	
 		CmsBanner cmsBanner = new CmsBanner();
 		cmsBanner.setType("home");
+		cmsBanner.setDomainName(serverName);
 		List<CmsBanner> bannerList = cmsBannerService.selectByCmsBanner(cmsBanner,"order_num asc");
     	model.addAttribute("bannerList", bannerList);
     	//集团要闻	
@@ -121,11 +122,13 @@ public class FrontRunyiController {
     }
 	
 	@RequestMapping(value = "/channel/{id}",method = RequestMethod.GET)
-    public String channel(@PathVariable String id,@RequestParam(value="pagerNumber",required=false) Integer pagerNumber,Model model) throws Exception{
+    public String channel(HttpServletRequest request,@PathVariable String id,@RequestParam(value="pagerNumber",required=false) Integer pagerNumber,Model model) throws Exception{
+		String serverName = HttpClientUtil.getServerName(request);
 		//顶部栏目导航
 		CmsChannel cmsChannel = new CmsChannel();
 		cmsChannel.setPid("0");
 		cmsChannel.setIstop("on");
+		cmsChannel.setDomainName(serverName);
 		List<CmsChannel> channelList = cmsChannelService.selectByCmsChannel(cmsChannel,"channel_sort desc");
 		model.addAttribute("channelList", channelList);
     	
@@ -179,15 +182,17 @@ public class FrontRunyiController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/article/{id}",method = RequestMethod.GET)
-    public String article(@PathVariable String id,@RequestParam(value="pagerNumber",required=false) Integer pagerNumber,Model model) throws Exception{
+    public String article(HttpServletRequest request,@PathVariable String id,@RequestParam(value="pagerNumber",required=false) Integer pagerNumber,Model model) throws Exception{
     
     	CmsArticle article = cmsArticleService.selectByPrimaryKey(id);
     	model.addAttribute("article", article);
     	
-    	//顶部栏目导航
+    	String serverName = HttpClientUtil.getServerName(request);
+		//顶部栏目导航
 		CmsChannel cmsChannel = new CmsChannel();
 		cmsChannel.setPid("0");
 		cmsChannel.setIstop("on");
+		cmsChannel.setDomainName(serverName);
 		List<CmsChannel> channelList = cmsChannelService.selectByCmsChannel(cmsChannel,"channel_sort desc");
 		model.addAttribute("channelList", channelList);
     	
@@ -223,12 +228,15 @@ public class FrontRunyiController {
     }
 	
 	@RequestMapping(value = "/videos",method = RequestMethod.GET)
-    public String videos(Model model) throws Exception{
+    public String videos(HttpServletRequest request,Model model) throws Exception{
     
+		//顶部栏目导航
+		String serverName = HttpClientUtil.getServerName(request);
 		//顶部栏目导航
 		CmsChannel cmsChannel = new CmsChannel();
 		cmsChannel.setPid("0");
 		cmsChannel.setIstop("on");
+		cmsChannel.setDomainName(serverName);
 		List<CmsChannel> channelList = cmsChannelService.selectByCmsChannel(cmsChannel,"channel_sort desc");
 		model.addAttribute("channelList", channelList);
     	
@@ -272,29 +280,31 @@ public class FrontRunyiController {
 		}
     	model.addAttribute("subChannelList", subChannelList);
     	
-    	List<CmsVideo> orderList = cmsVideoService.selectByCmsVideo(null,"clicks desc");
+    	List<CmsVideo> orderList = cmsVideoService.selectByCmsVideo(new CmsVideo(),"clicks desc");
     	model.addAttribute("orderList", orderList);
     	
-    	List<CmsVideo> newList = cmsVideoService.selectByCmsVideo(null,"createtime desc");
+    	List<CmsVideo> newList = cmsVideoService.selectByCmsVideo(new CmsVideo(),"createtime desc");
     	model.addAttribute("newList", newList);
     	
     	return "front/r/videos";
     }
 	
 	@RequestMapping(value="/video_detail/{id}",method=RequestMethod.GET)
-    public String detail(@PathVariable String id,Model model) {
+    public String detail(HttpServletRequest request,@PathVariable String id,Model model) {
     	
+		String serverName = HttpClientUtil.getServerName(request);
 		//顶部栏目导航
 		CmsChannel cmsChannel = new CmsChannel();
 		cmsChannel.setPid("0");
 		cmsChannel.setIstop("on");
+		cmsChannel.setDomainName(serverName);
 		List<CmsChannel> channelList = cmsChannelService.selectByCmsChannel(cmsChannel,"channel_sort desc");
 		model.addAttribute("channelList", channelList);
     	
        CmsVideo video = cmsVideoService.selectByPrimaryKey(id);
        model.addAttribute("video",video);
        
-       List<CmsVideo> newList = cmsVideoService.selectByCmsVideo(null,"createtime desc");
+       List<CmsVideo> newList = cmsVideoService.selectByCmsVideo(new CmsVideo(),"createtime desc");
    	   model.addAttribute("newList", newList);
    	
        return "front/r/video_detail";

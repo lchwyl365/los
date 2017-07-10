@@ -1,6 +1,7 @@
 package com.team.cms.service;
 
 import java.util.List;
+
 import com.team.common.pojo.EUDataGridModel;
 import com.team.common.pojo.EUDataGridResult;
 import com.team.common.pojo.ResponseResult;
@@ -22,5 +23,9 @@ public interface CmsArticleService {
 	public ResponseResult delete(List<String> articleIds);
 
 	public ResponseResult update(CmsArticle cmsArticle);
+
+	public CmsArticle getPreArticle(String id, String domain);
+	
+	public CmsArticle getAfterArticle(String id, String domain);
 	
 }
