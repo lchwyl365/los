@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team.cms.mapper.CmsMemberMapper">
+  <resultMap id="BaseResultMap" type="com.team.cms.pojo.CmsMember">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="member_id" jdbcType="VARCHAR" property="memberId" />
+    <result column="member_name" jdbcType="VARCHAR" property="memberName" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="createtime" jdbcType="VARCHAR" property="createtime" />
+    <result column="dan" jdbcType="VARCHAR" property="dan" />
+    <result column="domain_name" jdbcType="VARCHAR" property="domainName" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, member_id, member_name, sex, createtime, dan, domain_name
+  </sql>
+  <select id="selectByExample" parameterType="com.team.cms.pojo.CmsMemberExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cms_member
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cms_member
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from cms_member
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.team.cms.pojo.CmsMemberExample">
+    delete from cms_member
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.team.cms.pojo.CmsMember">
+    insert into cms_member (id, member_id, member_name, 
+      sex, createtime, dan, 
+      domain_name)
+    values (#{id,jdbcType=VARCHAR}, #{memberId,jdbcType=VARCHAR}, #{memberName,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}, #{dan,jdbcType=VARCHAR}, 
+      #{domainName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.team.cms.pojo.CmsMember">
+    insert into cms_member
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="memberId != null">
+        member_id,
+      </if>
+      <if test="memberName != null">
+        member_name,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="dan != null">
+        dan,
+      </if>
+      <if test="domainName != null">
+        domain_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=VARCHAR},
+      </if>
+      <if test="memberName != null">
+        #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="dan != null">
+        #{dan,jdbcType=VARCHAR},
+      </if>
+      <if test="domainName != null">
+        #{domainName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.team.cms.pojo.CmsMemberExample" resultType="java.lang.Long">
+    select count(*) from cms_member
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update cms_member
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberId != null">
+        member_id = #{record.memberId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberName != null">
+        member_name = #{record.memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null">
+        sex = #{record.sex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null">
+        createtime = #{record.createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dan != null">
+        dan = #{record.dan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.domainName != null">
+        domain_name = #{record.domainName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update cms_member
+    set id = #{record.id,jdbcType=VARCHAR},
+      member_id = #{record.memberId,jdbcType=VARCHAR},
+      member_name = #{record.memberName,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=VARCHAR},
+      createtime = #{record.createtime,jdbcType=VARCHAR},
+      dan = #{record.dan,jdbcType=VARCHAR},
+      domain_name = #{record.domainName,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.team.cms.pojo.CmsMember">
+    update cms_member
+    <set>
+      <if test="memberId != null">
+        member_id = #{memberId,jdbcType=VARCHAR},
+      </if>
+      <if test="memberName != null">
+        member_name = #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="dan != null">
+        dan = #{dan,jdbcType=VARCHAR},
+      </if>
+      <if test="domainName != null">
+        domain_name = #{domainName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.team.cms.pojo.CmsMember">
+    update cms_member
+    set member_id = #{memberId,jdbcType=VARCHAR},
+      member_name = #{memberName,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=VARCHAR},
+      dan = #{dan,jdbcType=VARCHAR},
+      domain_name = #{domainName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
