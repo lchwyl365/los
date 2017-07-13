@@ -39,7 +39,7 @@
 				    </tr>
 				   <tr>
 						<td class="form-table-td-left">
-							<label for="channelSort">排列顺序:</label>
+							<label for="channelSort">序号:</label>
 						</td>
 						<td class="form-table-td-right">
 								<input class="easyui-validatebox" type="text" name="channelSort" data-options="required:true,validType:['length[0,64]']" style="width:320px;height:28px;"/>
