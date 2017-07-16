@@ -75,6 +75,8 @@ var contentUpdatePage  = {
 		$.get(url,function(data){
 			if(data.status == 200){
 				$("#contentEditForm").form("load",data.data);
+				//$("input[name='bannerId']").val(data.data.bannerId);
+				//$("input[name='bannerTitle']").val(data.data.bannerTitle);
 			}
 		});
 	},
@@ -83,7 +85,7 @@ var contentUpdatePage  = {
 			$.messager.alert('提示','表单还未填写完成!');
 			return ;
 		}
-		$('#contentAddForm').submit();
+		$('#contentEditForm').submit();
 	},
 	clearForm : function(){
 		window.self.location = "${contextPath}/cms/banner/list";

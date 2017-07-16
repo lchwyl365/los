@@ -135,7 +135,7 @@ var contentUpdatePage  = {
 			</#if>
 		</#list>
 	<#if model.enctype == 'multipart/form-data' >
-		$('#contentAddForm').submit();
+		$('#contentEditForm').submit();
 	<#else>
 		$.post("${r"${contextPath}"}/${model.businessName}/${model.path}/update",$("#contentEditForm").serialize(), function(data){
 			if(data.status == 200){
