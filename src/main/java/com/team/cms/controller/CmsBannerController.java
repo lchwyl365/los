@@ -87,6 +87,7 @@ public class CmsBannerController {
         //通过CommonsMultipartFile的方法直接写文件（注意这个时候）
         img.transferTo(imgNewFile);
         cmsBanner.setImg(imgUrl+imgNewFileName);
+        
 	
 		//从cookie中取token
 		String token = CookieUtils.getCookieValue(request, "TT_TOKEN");
@@ -102,7 +103,7 @@ public class CmsBannerController {
 		return "banner/list";
 	}
 	
-	@RequestMapping(value="/delete",method=RequestMethod.POST)
+	@RequestMapping(value="/delete")
 	@ResponseBody
 	public ResponseResult delete(@RequestParam List<String> bannerIds)throws Exception{
 		ResponseResult result = cmsBannerService.delete(bannerIds);
@@ -121,6 +122,10 @@ public class CmsBannerController {
 		HttpServletRequest request) throws Exception{
 		
 		CmsBanner cmsBanner = new CmsBanner();
+		String bannerId = request.getParameter("bannerId");
+		if(StringUtils.isNotEmpty(bannerId)){
+			cmsBanner.setBannerId(String.valueOf(bannerId));
+		}
 		String bannerTitle = request.getParameter("bannerTitle");
 		if(StringUtils.isNotEmpty(bannerTitle)){
 			cmsBanner.setBannerTitle(String.valueOf(bannerTitle));
@@ -156,17 +161,7 @@ public class CmsBannerController {
 	}
 	@RequestMapping(value = "/queryList",method = RequestMethod.POST)
 	@ResponseBody
-    public EUDataGridResult queryList(HttpServletRequest request,EUDataGridModel dgm,CmsBanner cmsBanner) throws Exception{
-		//从cookie中取token
-		String token = CookieUtils.getCookieValue(request, "TT_TOKEN");
-		//根据token换取用户信息，调用sso系统的接口。
-		AuthUser user = null;
-		if(USE_REDIS){
-			user = sessionUserService.getUserByToken(token);
-		}else{
-			user = (AuthUser) request.getSession().getAttribute(SessionUserServiceImpl.LOGIN_USER);
-		}
-        cmsBanner.setDomainName(user.getDomainName());
+    public EUDataGridResult queryList(EUDataGridModel dgm,CmsBanner cmsBanner) throws Exception{
 		EUDataGridResult result = cmsBannerService.selectList(dgm, cmsBanner);
     	return result;
     }

@@ -30,7 +30,7 @@
 			columns:[[
 				{field:'ck',checkbox:true,width:2}, //显示复选框
 				{field:'img',title:'图片地址',width:100,sortable:'F',
-						formatter:function(value,row,index){ var e = '<p><img src="${contextPath}'+row.img+'" height="80" /></p>';return e;}
+						formatter:function(value,row,index){ var e = '<p><img src="'+row.img+'" height="80" /></p>';return e;}
 				},
 				{field:'banner_title',title:'标题',width:100,sortable:'F',
 						formatter:function(value,row,index){return row.bannerTitle;}
@@ -88,9 +88,9 @@
     		        	$.each(rows,function(i,n){
 					       	ps += "&bannerIds="+n.bannerId;
     		        	});
-    		        	$.post('${contextPath}/cms/banner/delete'+ps,function(data){
-							$("#bannerTable").datagrid("reload");
+    		        	$.get('${contextPath}/cms/banner/delete'+ps,function(data){
     		        		$.messager.alert('提示',data.msg,'info');
+    		        		$('#bannerTable').datagrid('reload'); //设置好查询参数 reload 一下就可以了
     		        	});
     		        }
     		    });

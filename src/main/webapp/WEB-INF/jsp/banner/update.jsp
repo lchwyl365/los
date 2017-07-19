@@ -40,7 +40,7 @@
 							<label for="bannerTitle">标题:</label>
 						</td>
 						<td class="form-table-td-right">
-								<input class="easyui-validatebox" type="text" name="bannerTitle" data-options="required:true,validType:['length[0,255]']" style="width:320px;height:28px;"/>
+								<input class="easyui-validatebox" type="text" name="bannerTitle" data-options="required:false,validType:['length[0,255]']" style="width:320px;height:28px;"/>
 						</td>
 				    </tr>
 				   <tr>
@@ -57,7 +57,7 @@
 							<label for="orderNum">序号:</label>
 						</td>
 						<td class="form-table-td-right">
-								<input class="easyui-validatebox" type="text" name="orderNum" data-options="required:true,validType:['length[0,64]']" style="width:320px;height:28px;"/>
+								<input class="easyui-validatebox" type="text" name="orderNum" data-options="required:false,validType:['length[0,64]']" style="width:320px;height:28px;"/>
 						</td>
 				    </tr>
 				</table>
@@ -75,8 +75,6 @@ var contentUpdatePage  = {
 		$.get(url,function(data){
 			if(data.status == 200){
 				$("#contentEditForm").form("load",data.data);
-				//$("input[name='bannerId']").val(data.data.bannerId);
-				//$("input[name='bannerTitle']").val(data.data.bannerTitle);
 			}
 		});
 	},

@@ -47,8 +47,8 @@
 							<label for="type">类型:</label>
 						</td>
 						<td class="form-table-td-right">
-							<input type="radio" id="radio_home" name="type" checked="checked" value="home"/>
-							<label for="radio_home">首页导航</label>		
+							<input type="radio" id="radio_0" name="type" checked="checked" value="home"/>
+							<label for="radio_0">首页导航</label>		
 						</td>
 				    </tr>
 				   <tr>

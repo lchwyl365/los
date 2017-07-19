@@ -39,11 +39,6 @@ public class DB2TabConst {
     /**
      * null
      */
-    private String trusted;
-
-    /**
-     * null
-     */
     private String checkexistingdata;
 
     /**
@@ -55,16 +50,6 @@ public class DB2TabConst {
      * null
      */
     private String definer;
-
-    /**
-     * null
-     */
-    private String periodname;
-
-    /**
-     * null
-     */
-    private String periodpolicy;
 
     /**
      * null
@@ -185,22 +170,6 @@ public class DB2TabConst {
 
     /**
      * null
-     * @return TRUSTED null
-     */
-    public String getTrusted() {
-        return trusted;
-    }
-
-    /**
-     * null
-     * @param trusted null
-     */
-    public void setTrusted(String trusted) {
-        this.trusted = trusted == null ? null : trusted.trim();
-    }
-
-    /**
-     * null
      * @return CHECKEXISTINGDATA null
      */
     public String getCheckexistingdata() {
@@ -245,38 +214,6 @@ public class DB2TabConst {
      */
     public void setDefiner(String definer) {
         this.definer = definer == null ? null : definer.trim();
-    }
-
-    /**
-     * null
-     * @return PERIODNAME null
-     */
-    public String getPeriodname() {
-        return periodname;
-    }
-
-    /**
-     * null
-     * @param periodname null
-     */
-    public void setPeriodname(String periodname) {
-        this.periodname = periodname == null ? null : periodname.trim();
-    }
-
-    /**
-     * null
-     * @return PERIODPOLICY null
-     */
-    public String getPeriodpolicy() {
-        return periodpolicy;
-    }
-
-    /**
-     * null
-     * @param periodpolicy null
-     */
-    public void setPeriodpolicy(String periodpolicy) {
-        this.periodpolicy = periodpolicy == null ? null : periodpolicy.trim();
     }
 
     /**

@@ -9,12 +9,9 @@
     <result column="OWNERTYPE" jdbcType="CHAR" property="ownertype" />
     <result column="TYPE" jdbcType="CHAR" property="type" />
     <result column="ENFORCED" jdbcType="CHAR" property="enforced" />
-    <result column="TRUSTED" jdbcType="CHAR" property="trusted" />
     <result column="CHECKEXISTINGDATA" jdbcType="CHAR" property="checkexistingdata" />
     <result column="ENABLEQUERYOPT" jdbcType="CHAR" property="enablequeryopt" />
     <result column="DEFINER" jdbcType="VARCHAR" property="definer" />
-    <result column="PERIODNAME" jdbcType="VARCHAR" property="periodname" />
-    <result column="PERIODPOLICY" jdbcType="CHAR" property="periodpolicy" />
     <result column="REMARKS" jdbcType="VARCHAR" property="remarks" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -76,8 +73,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    CONSTNAME, TABSCHEMA, TABNAME, OWNER, OWNERTYPE, TYPE, ENFORCED, TRUSTED, CHECKEXISTINGDATA, 
-    ENABLEQUERYOPT, DEFINER, PERIODNAME, PERIODPOLICY, REMARKS
+    CONSTNAME, TABSCHEMA, TABNAME, OWNER, OWNERTYPE, TYPE, ENFORCED, CHECKEXISTINGDATA, 
+    ENABLEQUERYOPT, DEFINER, REMARKS
   </sql>
   <select id="selectByExample" parameterType="com.team.platform.pojo.DB2TabConstExample" resultMap="BaseResultMap">
     select
@@ -102,13 +99,11 @@
   <insert id="insert" parameterType="com.team.platform.pojo.DB2TabConst">
     insert into SYSCAT.TABCONST (CONSTNAME, TABSCHEMA, TABNAME, 
       OWNER, OWNERTYPE, TYPE, ENFORCED, 
-      TRUSTED, CHECKEXISTINGDATA, ENABLEQUERYOPT, 
-      DEFINER, PERIODNAME, PERIODPOLICY, 
+      CHECKEXISTINGDATA, ENABLEQUERYOPT, DEFINER, 
       REMARKS)
     values (#{constname,jdbcType=VARCHAR}, #{tabschema,jdbcType=VARCHAR}, #{tabname,jdbcType=VARCHAR}, 
       #{owner,jdbcType=VARCHAR}, #{ownertype,jdbcType=CHAR}, #{type,jdbcType=CHAR}, #{enforced,jdbcType=CHAR}, 
-      #{trusted,jdbcType=CHAR}, #{checkexistingdata,jdbcType=CHAR}, #{enablequeryopt,jdbcType=CHAR}, 
-      #{definer,jdbcType=VARCHAR}, #{periodname,jdbcType=VARCHAR}, #{periodpolicy,jdbcType=CHAR}, 
+      #{checkexistingdata,jdbcType=CHAR}, #{enablequeryopt,jdbcType=CHAR}, #{definer,jdbcType=VARCHAR}, 
       #{remarks,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.team.platform.pojo.DB2TabConst">
@@ -135,9 +130,6 @@
       <if test="enforced != null">
         ENFORCED,
       </if>
-      <if test="trusted != null">
-        TRUSTED,
-      </if>
       <if test="checkexistingdata != null">
         CHECKEXISTINGDATA,
       </if>
@@ -146,12 +138,6 @@
       </if>
       <if test="definer != null">
         DEFINER,
-      </if>
-      <if test="periodname != null">
-        PERIODNAME,
-      </if>
-      <if test="periodpolicy != null">
-        PERIODPOLICY,
       </if>
       <if test="remarks != null">
         REMARKS,
@@ -179,9 +165,6 @@
       <if test="enforced != null">
         #{enforced,jdbcType=CHAR},
       </if>
-      <if test="trusted != null">
-        #{trusted,jdbcType=CHAR},
-      </if>
       <if test="checkexistingdata != null">
         #{checkexistingdata,jdbcType=CHAR},
       </if>
@@ -190,12 +173,6 @@
       </if>
       <if test="definer != null">
         #{definer,jdbcType=VARCHAR},
-      </if>
-      <if test="periodname != null">
-        #{periodname,jdbcType=VARCHAR},
-      </if>
-      <if test="periodpolicy != null">
-        #{periodpolicy,jdbcType=CHAR},
       </if>
       <if test="remarks != null">
         #{remarks,jdbcType=VARCHAR},
@@ -232,9 +209,6 @@
       <if test="record.enforced != null">
         ENFORCED = #{record.enforced,jdbcType=CHAR},
       </if>
-      <if test="record.trusted != null">
-        TRUSTED = #{record.trusted,jdbcType=CHAR},
-      </if>
       <if test="record.checkexistingdata != null">
         CHECKEXISTINGDATA = #{record.checkexistingdata,jdbcType=CHAR},
       </if>
@@ -243,12 +217,6 @@
       </if>
       <if test="record.definer != null">
         DEFINER = #{record.definer,jdbcType=VARCHAR},
-      </if>
-      <if test="record.periodname != null">
-        PERIODNAME = #{record.periodname,jdbcType=VARCHAR},
-      </if>
-      <if test="record.periodpolicy != null">
-        PERIODPOLICY = #{record.periodpolicy,jdbcType=CHAR},
       </if>
       <if test="record.remarks != null">
         REMARKS = #{record.remarks,jdbcType=VARCHAR},
@@ -267,12 +235,9 @@
       OWNERTYPE = #{record.ownertype,jdbcType=CHAR},
       TYPE = #{record.type,jdbcType=CHAR},
       ENFORCED = #{record.enforced,jdbcType=CHAR},
-      TRUSTED = #{record.trusted,jdbcType=CHAR},
       CHECKEXISTINGDATA = #{record.checkexistingdata,jdbcType=CHAR},
       ENABLEQUERYOPT = #{record.enablequeryopt,jdbcType=CHAR},
       DEFINER = #{record.definer,jdbcType=VARCHAR},
-      PERIODNAME = #{record.periodname,jdbcType=VARCHAR},
-      PERIODPOLICY = #{record.periodpolicy,jdbcType=CHAR},
       REMARKS = #{record.remarks,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
