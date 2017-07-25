@@ -25,7 +25,6 @@ public class InitData implements ApplicationListener<ContextRefreshedEvent> {
 	@Value("${INITDATA_AUTO}")
 	private Boolean INITDATA_AUTO;
 	
-	
 	@Autowired
 	private Db2DataServiceImpl db2DataServiceImpl;
 	

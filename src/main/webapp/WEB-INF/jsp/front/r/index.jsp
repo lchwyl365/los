@@ -25,7 +25,7 @@ a.hidefocus{outline:none}
 var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?946a23deafd9be89f1593b0b6e2ab6bf";
+  hm.src = "https://hm.baidu.com/hm.js?946a23deafd9be89f1593b0b6e2ab6bf";
   var s = document.getElementsByTagName("script")[0]; 
   s.parentNode.insertBefore(hm, s);
 })();
@@ -58,7 +58,7 @@ var _hmt = _hmt || [];
 				<ul class="ck-slide-wrapper">
 					<c:forEach items="${bannerList}" var="banner">
 						<li><a href="javascript:"><img class="bannerImg"
-								src="${contextPath}/resources/theme/r/img/${banner.img}" alt="${banner.bannerTitle}" /></a></li>
+								src="${contextPath}${banner.img}" alt="${banner.bannerTitle}" /></a></li>
 					</c:forEach>
 				</ul>
 				<a href="javascript:;" class="ctrl-slide ck-prev">上一张</a> <a

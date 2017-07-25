@@ -14,6 +14,15 @@
 		<meta name="keywords" content="济南剑道，济南泉剑馆，济南剑道馆，济南泉剑馆">
 		<meta name="description" content="济南剑道和济南泉剑馆专业认证和赛事中心，泉剑馆是最专业的济南剑道馆和济南泉剑馆。招生电话：15552518882">
 		<link rel="stylesheet" type="text/css" href="${contextPath}/resources/theme/q/css/style.css"/>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?9bd683cb778704db6916721cb2e2210d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>	
 	</head>
 	<body>
 		<!--header-->

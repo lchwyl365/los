@@ -27,9 +27,9 @@ public class HttpClientUtil {
 		String serverName = request.getServerName();
 		
 		if("localhost".equals(serverName)){
-			return "www.jinan-kendo.com";
+			return "www.tianhong.com";
 		}else if("nbor.vxg158.10000net.cn".equals(serverName)){
-			return "www.jinan-kendo.com";
+			return "www.tianhong.com";
 		}
 		return serverName;
 	}

@@ -20,7 +20,7 @@ public class WebController {
 		if("www.runyigroup.com.cn".equals(serverName)){
 			return "redirect:/front/r/index";
 		}else{
-			return "redirect:/front/q/index";
+			return "redirect:/front/t/index";
 		}
     }
 	

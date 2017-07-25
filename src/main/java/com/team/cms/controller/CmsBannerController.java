@@ -18,19 +18,25 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team.common.pojo.EUDataGridModel;
 import com.team.common.pojo.EUDataGridResult;
-
 import com.team.common.pojo.ResponseResult;
 import com.team.cms.pojo.CmsBanner;
 import com.team.cms.service.CmsBannerService;
+
 import org.springframework.beans.factory.annotation.Value;
+
 import com.team.common.util.CookieUtils;
 import com.team.platform.service.SessionUserService;
 import com.team.platform.service.impl.SessionUserServiceImpl;
 import com.team.platform.pojo.AuthUser;
+
 import javax.servlet.ServletContext;
+
 import java.io.File;
+
 import com.team.common.util.FileUtil;
+
 import org.springframework.web.multipart.MultipartFile;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
@@ -161,7 +167,21 @@ public class CmsBannerController {
 	}
 	@RequestMapping(value = "/queryList",method = RequestMethod.POST)
 	@ResponseBody
-    public EUDataGridResult queryList(EUDataGridModel dgm,CmsBanner cmsBanner) throws Exception{
+    public EUDataGridResult queryList(HttpServletRequest request,EUDataGridModel dgm,CmsBanner cmsBanner) throws Exception{
+		
+		//从cookie中取token
+		String token = CookieUtils.getCookieValue(request, "TT_TOKEN");
+		//根据token换取用户信息，调用sso系统的接口。
+		AuthUser user = null;
+		if(USE_REDIS){
+			user = sessionUserService.getUserByToken(token);
+		}else{
+			user = (AuthUser) request.getSession().getAttribute(SessionUserServiceImpl.LOGIN_USER);
+		}
+		
+		if(user != null){
+			cmsBanner.setDomainName(user.getDomainName());
+		}
 		EUDataGridResult result = cmsBannerService.selectList(dgm, cmsBanner);
     	return result;
     }
