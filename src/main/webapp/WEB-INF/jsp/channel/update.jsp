@@ -74,7 +74,7 @@
 								   data-options="url:'${contextPath}/platform/box/combotree?id=55059701325166',method:'get'" style="width:200px;height:28px;">
 						</td>
 				    </tr>
-				   <tr>
+				   <tr  id="link_div" style="display:none;">
 						<td class="form-table-td-left">
 							<label for="url">链接地址:</label>
 						</td>
@@ -94,7 +94,7 @@
 						</td>
 				    </tr>
 				</table>
-				<div>
+				<div id="content_div" style="display:none;">
 					<p>栏目内容:</p>
 					<textarea name="content" class="common-textarea" id="content" style="width:91%; height:500px;visibility:hidden;"></textarea>
 				</div>
@@ -126,7 +126,8 @@ var contentUpdatePage  = {
 		$.get(url,function(data){
 			if(data.status == 200){
 				$("#contentEditForm").form("load",data.data);
-						KindEditor.html('#content', data.data.content);
+				KindEditor.html('#content', data.data.content);
+				changeType(data.data.channelType);
 			}
 		});
 	},
@@ -152,6 +153,18 @@ var contentUpdatePage  = {
 $(function(){
 	contentUpdatePage.initFormData();
 });
+function changeType(newValue){
+	if(newValue == 'cover'){
+		$("#content_div").show();
+		$("#link_div").hide();
+	}else if(newValue == 'link'){
+		$("#content_div").hide();
+		$("#link_div").show();
+	}else if(newValue == 'list'){
+		$("#content_div").hide();
+		$("#link_div").hide();
+	}
+}
 </script>
 </body>
 </html>

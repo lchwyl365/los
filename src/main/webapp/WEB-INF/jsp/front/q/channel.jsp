@@ -88,7 +88,7 @@ var _hmt = _hmt || [];
 							</ul>
 							<c:if test="${dataGridResult.total > 0}">
 							<div class="record">
-							<pg:pager url="${contextPath}/front/q/channel/${childchannel.channelId}" items="${dataGridResult.total}" 
+							<pg:pager url="${contextPath}/front/q/channel/${channel.channelId}" items="${dataGridResult.total}" 
 	                              export="currentPageNumber=pageNumber">
 		                        <pg:first>
 		                            <span class="prev"><a href="${pageUrl}&pageNumber=${pageNumber}">首页</a></span>

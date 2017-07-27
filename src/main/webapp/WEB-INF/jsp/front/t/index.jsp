@@ -55,7 +55,7 @@
 		<div class="flexslider">
 			<ul class="slides">
 				<c:forEach items="${bannerList}" var="banner">
-					<li style="background: url(${banner.img}) 50% 0 no-repeat;"><a href="javascript:void(0);"></a></li>
+					<li style="background: url(${contextPath}${banner.img}) 50% 0 no-repeat;"><a href="javascript:void(0);"></a></li>
 				</c:forEach>
 			</ul>
 		</div>
@@ -204,9 +204,18 @@
 		<div class="about_main">
 			<div class="about_left">
 				<h2>荣成市人和镇天宏石材厂<a href=""></a></h2>
-				<p>荣成市人和镇天宏石材厂是一家集矿山开采，石材加工及销售于一体的石材企业，公司位于优质矿区 ：中国棕，石岛红新老八号，紫晶钻，皇室啡，皇室珍珠，皇室棕钻，皇室玛瑙，的原产地 。拥有先进的加工设备、雄厚的技术力量，选用优质荒料，使用红外线切机，大型自动磨板机，精细加工。以质量高，价格低的优势，成品畅销到日本，韩国，欧美等先进国家。受到客户一致好评。主营：中国棕，石岛红，紫晶钻，皇室啡，皇室珍珠，染色板，荣成灰，皇室棕钻，皇室玛瑙，国产皇室珍珠，山东皇室珍珠石材，皇室珍珠外墙干挂石材，皇室珍珠室内装饰石材，染色板等产品。</p>
+				<p>
+					<c:choose>
+						<c:when test="${fn:length(introduceChannel.description) > 300}">
+							<c:out value="${fn:substring(introduceChannel.description, 0, 300)}" escapeXml="false" />......
+						</c:when>
+						<c:otherwise>
+							<c:out value="${introduceChannel.description}"  escapeXml="false" />
+						</c:otherwise>
+					</c:choose>
+				</p>
 			</div>
-			<div class="about_right"><img src="img/about.jpg"/></div>
+			<div class="about_right"><img style="width:437px;" src="${contextPath}${introduceChannel.thumbnail}"/></div>
 		</div>
 	</div>
 </div>

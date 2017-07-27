@@ -2,10 +2,12 @@ package com.team.theme.controller;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +28,7 @@ import com.team.cms.service.CmsVideoService;
 import com.team.common.pojo.EUDataGridModel;
 import com.team.common.pojo.EUDataGridResult;
 import com.team.common.util.HttpClientUtil;
+import com.team.common.util.ImageUtil;
 
 @Controller
 @RequestMapping("/front/t")
@@ -58,6 +61,24 @@ public class FrontTianController {
 		cmsBanner.setDomainName(serverName);
 		List<CmsBanner> bannerList = cmsBannerService.selectByCmsBanner(cmsBanner,"order_num asc");
     	model.addAttribute("bannerList", bannerList);
+    	
+    	//集团简介
+    	CmsChannel introduceChannel = cmsChannelService.selectByPrimaryKey("596189879568725");
+    	if(introduceChannel != null && StringUtils.isNotEmpty(introduceChannel.getContent())){
+    		Set<String> set = ImageUtil.getImgStr(introduceChannel.getContent());
+    		String thumbnail = "";
+			for (String str : set) {
+				if(StringUtils.isNotEmpty(str) && StringUtils.isEmpty(thumbnail)){
+					thumbnail = str;
+				}
+			}
+			introduceChannel.setThumbnail(thumbnail);
+			String desc = introduceChannel.getContent()
+					.replaceAll("</?[^>]+>", "").replaceAll("\\s*|\t|\r|\n", "").replaceAll("&nbsp;", "");
+			introduceChannel.setDescription(desc);
+    	}
+    	model.addAttribute("introduceChannel", introduceChannel);
+    	
     	/*
 		//剑道快讯	
     	CmsArticle cmsArticle = new CmsArticle();
