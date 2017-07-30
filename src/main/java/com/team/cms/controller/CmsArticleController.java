@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team.cms.pojo.CmsArticle;
+import com.team.cms.pojo.CmsChannel;
 import com.team.cms.service.CmsArticleService;
+import com.team.cms.service.CmsChannelService;
 import com.team.common.pojo.EUDataGridModel;
 import com.team.common.pojo.EUDataGridResult;
 import com.team.common.pojo.ResponseResult;
@@ -46,6 +48,9 @@ public class CmsArticleController {
 	@Autowired
 	private SessionUserService sessionUserService;
 	
+	@Autowired
+	private CmsChannelService cmsChannelService;
+	
 	@Value("${USE_REDIS}")
 	private Boolean USE_REDIS;
 	
@@ -58,7 +63,14 @@ public class CmsArticleController {
     }
 	
 	@RequestMapping(value = "/add",method = RequestMethod.GET)
-    public String add() throws Exception{
+    public String add(HttpServletRequest request,Model model) throws Exception{
+		String channelId = request.getParameter("channelId");
+		CmsChannel channel = cmsChannelService.selectByPrimaryKey(channelId);
+		if(channel != null){
+			model.addAttribute("channelId", channelId);
+			model.addAttribute("channelName",channel.getChannelName());
+			System.out.println(channelId + " "+ channel.getChannelName());
+		}
     	return "article/add";
     }
 	@RequestMapping(value = "/add",method = RequestMethod.POST)

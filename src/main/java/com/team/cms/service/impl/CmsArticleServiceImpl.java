@@ -197,4 +197,23 @@ public class CmsArticleServiceImpl implements CmsArticleService {
 		}
 		return null;
 	}
+
+
+	@Override
+	public List<CmsArticle> selectByChannel(List<String> channelIds,
+			String status) {
+		//查询列表
+		CmsArticleExample example = new CmsArticleExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andChannelIdIn(channelIds);
+		criteria.andStatusEqualTo(status);
+		//排序
+		example.setOrderByClause("createtime desc");
+		
+		//分页处理
+		PageHelper.startPage(1, 10);
+		List<CmsArticle> list = cmsArticleMapper.selectByExample(example);
+
+		return list;
+	}
 }

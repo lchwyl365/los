@@ -11,11 +11,11 @@
     <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
     <result column="url" jdbcType="VARCHAR" property="url" />
     <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="userid" jdbcType="VARCHAR" property="userid" />
     <result column="domain_name" jdbcType="VARCHAR" property="domainName" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.team.cms.pojo.CmsChannel">
-    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+    <result column="thumbnail" jdbcType="VARCHAR" property="thumbnail" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -77,27 +77,8 @@
   </sql>
   <sql id="Base_Column_List">
     channel_id, channel_name, channel_sort, istop, channel_type, pid, createtime, url, 
-    status, userid, domain_name
+    status, content, userid, domain_name, thumbnail, description
   </sql>
-  <sql id="Blob_Column_List">
-    content
-  </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.team.cms.pojo.CmsChannelExample" resultMap="ResultMapWithBLOBs">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from cms_channel
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByExample" parameterType="com.team.cms.pojo.CmsChannelExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -112,11 +93,9 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from cms_channel
     where channel_id = #{channelId,jdbcType=VARCHAR}
   </select>
@@ -134,13 +113,13 @@
     insert into cms_channel (channel_id, channel_name, channel_sort, 
       istop, channel_type, pid, 
       createtime, url, status, 
-      userid, domain_name, content
-      )
+      content, userid, domain_name, 
+      thumbnail, description)
     values (#{channelId,jdbcType=VARCHAR}, #{channelName,jdbcType=VARCHAR}, #{channelSort,jdbcType=INTEGER}, 
       #{istop,jdbcType=VARCHAR}, #{channelType,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, 
       #{createtime,jdbcType=TIMESTAMP}, #{url,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
-      #{userid,jdbcType=VARCHAR}, #{domainName,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR}
-      )
+      #{content,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{domainName,jdbcType=VARCHAR}, 
+      #{thumbnail,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.team.cms.pojo.CmsChannel">
     insert into cms_channel
@@ -172,14 +151,20 @@
       <if test="status != null">
         status,
       </if>
+      <if test="content != null">
+        content,
+      </if>
       <if test="userid != null">
         userid,
       </if>
       <if test="domainName != null">
         domain_name,
       </if>
-      <if test="content != null">
-        content,
+      <if test="thumbnail != null">
+        thumbnail,
+      </if>
+      <if test="description != null">
+        description,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -210,14 +195,20 @@
       <if test="status != null">
         #{status,jdbcType=VARCHAR},
       </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
       <if test="userid != null">
         #{userid,jdbcType=VARCHAR},
       </if>
       <if test="domainName != null">
         #{domainName,jdbcType=VARCHAR},
       </if>
-      <if test="content != null">
-        #{content,jdbcType=LONGVARCHAR},
+      <if test="thumbnail != null">
+        #{thumbnail,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -257,34 +248,22 @@
       <if test="record.status != null">
         status = #{record.status,jdbcType=VARCHAR},
       </if>
+      <if test="record.content != null">
+        content = #{record.content,jdbcType=VARCHAR},
+      </if>
       <if test="record.userid != null">
         userid = #{record.userid,jdbcType=VARCHAR},
       </if>
       <if test="record.domainName != null">
         domain_name = #{record.domainName,jdbcType=VARCHAR},
       </if>
-      <if test="record.content != null">
-        content = #{record.content,jdbcType=LONGVARCHAR},
+      <if test="record.thumbnail != null">
+        thumbnail = #{record.thumbnail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null">
+        description = #{record.description,jdbcType=VARCHAR},
       </if>
     </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map">
-    update cms_channel
-    set channel_id = #{record.channelId,jdbcType=VARCHAR},
-      channel_name = #{record.channelName,jdbcType=VARCHAR},
-      channel_sort = #{record.channelSort,jdbcType=INTEGER},
-      istop = #{record.istop,jdbcType=VARCHAR},
-      channel_type = #{record.channelType,jdbcType=VARCHAR},
-      pid = #{record.pid,jdbcType=VARCHAR},
-      createtime = #{record.createtime,jdbcType=TIMESTAMP},
-      url = #{record.url,jdbcType=VARCHAR},
-      status = #{record.status,jdbcType=VARCHAR},
-      userid = #{record.userid,jdbcType=VARCHAR},
-      domain_name = #{record.domainName,jdbcType=VARCHAR},
-      content = #{record.content,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -300,8 +279,11 @@
       createtime = #{record.createtime,jdbcType=TIMESTAMP},
       url = #{record.url,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=VARCHAR},
+      content = #{record.content,jdbcType=VARCHAR},
       userid = #{record.userid,jdbcType=VARCHAR},
-      domain_name = #{record.domainName,jdbcType=VARCHAR}
+      domain_name = #{record.domainName,jdbcType=VARCHAR},
+      thumbnail = #{record.thumbnail,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -333,31 +315,22 @@
       <if test="status != null">
         status = #{status,jdbcType=VARCHAR},
       </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
       <if test="userid != null">
         userid = #{userid,jdbcType=VARCHAR},
       </if>
       <if test="domainName != null">
         domain_name = #{domainName,jdbcType=VARCHAR},
       </if>
-      <if test="content != null">
-        content = #{content,jdbcType=LONGVARCHAR},
+      <if test="thumbnail != null">
+        thumbnail = #{thumbnail,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
       </if>
     </set>
-    where channel_id = #{channelId,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.team.cms.pojo.CmsChannel">
-    update cms_channel
-    set channel_name = #{channelName,jdbcType=VARCHAR},
-      channel_sort = #{channelSort,jdbcType=INTEGER},
-      istop = #{istop,jdbcType=VARCHAR},
-      channel_type = #{channelType,jdbcType=VARCHAR},
-      pid = #{pid,jdbcType=VARCHAR},
-      createtime = #{createtime,jdbcType=TIMESTAMP},
-      url = #{url,jdbcType=VARCHAR},
-      status = #{status,jdbcType=VARCHAR},
-      userid = #{userid,jdbcType=VARCHAR},
-      domain_name = #{domainName,jdbcType=VARCHAR},
-      content = #{content,jdbcType=LONGVARCHAR}
     where channel_id = #{channelId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.team.cms.pojo.CmsChannel">
@@ -370,8 +343,11 @@
       createtime = #{createtime,jdbcType=TIMESTAMP},
       url = #{url,jdbcType=VARCHAR},
       status = #{status,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
       userid = #{userid,jdbcType=VARCHAR},
-      domain_name = #{domainName,jdbcType=VARCHAR}
+      domain_name = #{domainName,jdbcType=VARCHAR},
+      thumbnail = #{thumbnail,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR}
     where channel_id = #{channelId,jdbcType=VARCHAR}
   </update>
 </mapper>

@@ -50,6 +50,11 @@ public class CmsChannel {
     private String status;
 
     /**
+     * 栏目内容
+     */
+    private String content;
+
+    /**
      * 用户编号
      */
     private String userid;
@@ -60,18 +65,20 @@ public class CmsChannel {
     private String domainName;
 
     /**
-     * 栏目内容
+     * 图片
      */
-    private String content;
+    private String thumbnail;
+
+    /**
+     * 
+     */
+    private String description;
 	
-    private CmsVideo firstVideo;
+	private CmsVideo firstVideo;
     
     private List<CmsVideo> secondVideoList;
     
     private List<CmsVideo> threeVideoList;
-    
-    private String thumbnail;
-    private String description;
 
     /**
      * 栏目编号
@@ -218,6 +225,22 @@ public class CmsChannel {
     }
 
     /**
+     * 栏目内容
+     * @return content 栏目内容
+     */
+    public String getContent() {
+        return content;
+    }
+
+    /**
+     * 栏目内容
+     * @param content 栏目内容
+     */
+    public void setContent(String content) {
+        this.content = content == null ? null : content.trim();
+    }
+
+    /**
      * 用户编号
      * @return userid 用户编号
      */
@@ -250,21 +273,37 @@ public class CmsChannel {
     }
 
     /**
-     * 栏目内容
-     * @return content 栏目内容
+     * 图片
+     * @return thumbnail 图片
      */
-    public String getContent() {
-        return content;
+    public String getThumbnail() {
+        return thumbnail;
     }
 
     /**
-     * 栏目内容
-     * @param content 栏目内容
+     * 图片
+     * @param thumbnail 图片
      */
-    public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail == null ? null : thumbnail.trim();
     }
 
+    /**
+     * 
+     * @return description 
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * 
+     * @param description 
+     */
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
+    }
+	
 	public CmsVideo getFirstVideo() {
 		return firstVideo;
 	}
@@ -288,21 +327,4 @@ public class CmsChannel {
 	public void setThreeVideoList(List<CmsVideo> threeVideoList) {
 		this.threeVideoList = threeVideoList;
 	}
-
-	public String getThumbnail() {
-		return thumbnail;
-	}
-
-	public void setThumbnail(String thumbnail) {
-		this.thumbnail = thumbnail;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	
 }

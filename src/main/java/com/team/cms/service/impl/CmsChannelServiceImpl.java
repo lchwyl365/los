@@ -63,6 +63,8 @@ public class CmsChannelServiceImpl implements CmsChannelService {
 			cmsChannelVo.setContent(cmsChannel.getContent());
 			cmsChannelVo.setDomainName(cmsChannel.getDomainName());
 			cmsChannelVo.setUserid(cmsChannel.getUserid());
+			cmsChannelVo.setThumbnail(cmsChannel.getThumbnail());
+			cmsChannelVo.setDescription(cmsChannel.getDescription());
 			List<CmsChannelVo> children = selectList(cmsChannelVo.getChannelId(),userid);
 			if(children != null && children.size() > 0){
 				cmsChannelVo.setChildren(children);
@@ -103,6 +105,9 @@ public class CmsChannelServiceImpl implements CmsChannelService {
 		}
 		if(StringUtils.isNotEmpty(cmsChannel.getUserid())){
 			criteria.andUseridEqualTo(cmsChannel.getUserid());
+		}
+		if(StringUtils.isNotEmpty(cmsChannel.getThumbnail())){
+			criteria.andThumbnailEqualTo(cmsChannel.getThumbnail());
 		}
 		//排序
 		if(StringUtils.isNotEmpty(orderByClause)){
@@ -169,6 +174,8 @@ public class CmsChannelServiceImpl implements CmsChannelService {
 			temp.setContent(cmsChannel.getContent());
 			temp.setDomainName(cmsChannel.getDomainName());
 			temp.setUserid(cmsChannel.getUserid());
+			temp.setThumbnail(cmsChannel.getThumbnail());
+			temp.setDescription(cmsChannel.getDescription());
 			cmsChannelMapper.updateByPrimaryKeySelective(temp);
 			return ResponseResult.ok();
 		} catch (Exception e) {

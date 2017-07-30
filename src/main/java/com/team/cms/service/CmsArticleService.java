@@ -27,5 +27,7 @@ public interface CmsArticleService {
 	public CmsArticle getPreArticle(String id, String domain);
 	
 	public CmsArticle getAfterArticle(String id, String domain);
+
+	public List<CmsArticle> selectByChannel(List<String> channelIds,String status);
 	
 }

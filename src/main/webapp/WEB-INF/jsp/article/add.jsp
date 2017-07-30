@@ -19,7 +19,7 @@
 <body>
 	<div class="easyui-layout" data-options="fit:true">
 		<div data-options="region:'north',border:false" style="height:40px;padding:6px;background-color: #FAFAFA;border-bottom:1px solid #DDDDDD;">
-		  <div class="panel-title" style="float:left;width:200px;height:26px;line-height:26px;margin-left:10px;">文章管理-添加</div>
+		  <div class="panel-title" style="float:left;width:200px;height:26px;line-height:26px;margin-left:10px;">${channelName}文章-添加</div>
 		  <div style="float:right;width:200px;">
 			<a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="javascript:void(0)" onclick="contentAddPage.submitForm()" style="width:80px">提交</a>
 			<a class="easyui-linkbutton" data-options="iconCls:'icon-back'" href="javascript:void(0)" onclick="contentAddPage.clearForm()" style="width:80px">返回</a>
@@ -27,6 +27,7 @@
 		</div>
 		<div data-options="region:'center',border:false" style="padding:10px">
 			<form id="contentAddForm" method="post" action="${contextPath}/cms/article/add" >
+				<input type="hidden" name="channelId" value="${channelId}" />
 				<table class="easyui-panel form-table">
 				   <tr>
 						<td class="form-table-td-left">
@@ -36,15 +37,15 @@
 								<input class="easyui-validatebox" type="text" name="title" data-options="required:true,validType:['length[0,255]']" style="width:320px;height:28px;"/>
 						</td>
 				    </tr>
-				   <tr>
+				   <%-- <tr>
 						<td class="form-table-td-left">
 							<label for="channelId">栏目编号:</label>
 						</td>
 						<td class="form-table-td-right">
-								<input class="easyui-combotree" name="channelId"
-								   data-options="url:'${contextPath}/platform/box/combotree?id=55059701325166',method:'get'" style="width:200px;height:28px;">
+								<input class="easyui-combotree" name="channelId" id="channelId"
+								   data-options="url:'${contextPath}/platform/box/combotree?id=55059701325166',method:'get',onLoadSuccess:loadHandler" style="width:200px;height:28px;">
 						</td>
-				    </tr>
+				    </tr> --%>
 				   <tr>
 						<td class="form-table-td-left">
 							<label for="keywords">关键字:</label>
@@ -90,6 +91,9 @@
 	</div>
 <script type="text/javascript">
 var contentEditor = null;
+/* function loadHandler(node, data){
+	$('#channelId').combotree('setValue', { id:"${channelId}", text:"${channelName}"});
+} */
 $(function(){
 	
     contentEditor = KindEditor.create('textarea[name="content"]', {
@@ -105,6 +109,8 @@ $(function(){
 	            'flash', 'media', 'insertfile', 'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
 	            'anchor', 'link', 'unlink']
 	});
+    
+    $('input[name = "channelId"]').combotree();
 });
 var contentAddPage  = {
 	submitForm : function (){

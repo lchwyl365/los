@@ -25,9 +25,18 @@
 			toolbar:'#tb',
 			columns:[[
 				{field:'channelName',title:'栏目名称',width:100},
-				{field:'channelSort',title:'序号',width:100},
+				{field:'channelSort',title:'排列顺序',width:100},
 				{field:'channelType',title:'栏目类型',width:100},
-				{field:'status',title:'状态',width:100},
+				{field:'istop',title:'首页导航栏目',width:100},
+				{field:'thumbnail',title:'图片',width:100,
+					formatter:function(value,row,index){
+						var e = "";
+						if(row.thumbnail && row.thumbnail.length > 0){
+							e = '<p><img src="${contextPath}'+row.thumbnail+'" height="45px" width="45px"/></p>';
+						}
+						return e;
+					}
+				},
 				{field:'action',title:'操作',width:100,align:'center',
 					formatter:function(value,row,index){
 						var e = '';
@@ -49,7 +58,7 @@
 	});
     var CmsChannel = {
     		addRow:function(){//新增
-  				window.self.location = "${contextPath}/cms/channel/add?pid=0";
+  				window.self.location = "${contextPath}/cms/channel/add";
     		},
     		addSubRow:function(pid){
     			window.self.location = "${contextPath}/cms/channel/add?pid="+pid;

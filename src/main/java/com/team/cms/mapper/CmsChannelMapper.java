@@ -40,12 +40,6 @@ public interface CmsChannelMapper {
      *
      * @mbg.generated
      */
-    List<CmsChannel> selectByExampleWithBLOBs(CmsChannelExample example);
-
-    /**
-     *
-     * @mbg.generated
-     */
     List<CmsChannel> selectByExample(CmsChannelExample example);
 
     /**
@@ -64,12 +58,6 @@ public interface CmsChannelMapper {
      *
      * @mbg.generated
      */
-    int updateByExampleWithBLOBs(@Param("record") CmsChannel record, @Param("example") CmsChannelExample example);
-
-    /**
-     *
-     * @mbg.generated
-     */
     int updateByExample(@Param("record") CmsChannel record, @Param("example") CmsChannelExample example);
 
     /**
@@ -77,12 +65,6 @@ public interface CmsChannelMapper {
      * @mbg.generated
      */
     int updateByPrimaryKeySelective(CmsChannel record);
-
-    /**
-     *
-     * @mbg.generated
-     */
-    int updateByPrimaryKeyWithBLOBs(CmsChannel record);
 
     /**
      *

@@ -26,7 +26,7 @@
 		  </div>
 		</div>
 		<div data-options="region:'center',border:false" style="padding:10px">
-			<form id="contentAddForm" method="post" action="${contextPath}/cms/channel/add" >
+			<form id="contentAddForm" method="post" action="${contextPath}/cms/channel/add" enctype="multipart/form-data" >
 				<input type="hidden" name="pid" value="${pid}"/>
 				<table class="easyui-panel form-table">
 				   <tr>
@@ -39,7 +39,7 @@
 				    </tr>
 				   <tr>
 						<td class="form-table-td-left">
-							<label for="channelSort">序号:</label>
+							<label for="channelSort">排列顺序:</label>
 						</td>
 						<td class="form-table-td-right">
 								<input class="easyui-validatebox" type="text" name="channelSort" data-options="required:true,validType:['length[0,64]']" style="width:320px;height:28px;"/>
@@ -47,7 +47,7 @@
 				    </tr>
 				   <tr>
 						<td class="form-table-td-left">
-							<label for="istop">顶级栏目:</label>
+							<label for="istop">首页导航栏目:</label>
 						</td>
 						<td class="form-table-td-right">
 							<input type="radio" id="radio_on" name="istop" checked="checked" value="on"/>
@@ -65,12 +65,12 @@
 								   data-options="url:'${contextPath}/platform/box/combotree?id=55072199221118',method:'get',onChange:changeType" style="width:200px;height:28px;">
 						</td>
 				    </tr>
-				   <tr id="link_div" style="display:none;">
+				    <tr>
 						<td class="form-table-td-left">
-							<label for="url">链接地址:</label>
+							<label for="thumbnail">图片:</label>
 						</td>
 						<td class="form-table-td-right">
-								<input class="easyui-validatebox" type="text" name="url" data-options="required:false,validType:['length[0,255]']" style="width:320px;height:28px;"/>
+								<input type="file" name="thumbnail" />
 						</td>
 				    </tr>
 				   <tr>
@@ -78,10 +78,18 @@
 							<label for="status">状态:</label>
 						</td>
 						<td class="form-table-td-right">
-							<input type="radio" id="radio_on" name="status" checked="checked" value="on"/>
-							<label for="radio_on">显示</label>		
-							<input type="radio" id="radio_off" name="status" value="off"/>
-							<label for="radio_off">隐藏</label>			
+							<input type="radio" id="radio_0" name="status" checked="checked" value="on"/>
+							<label for="radio_0">显示</label>		
+							<input type="radio" id="radio_0" name="status" value="off"/>
+							<label for="radio_0">隐藏</label>			
+						</td>
+				    </tr>
+				    <tr id="link_div" style="display:none;">
+						<td class="form-table-td-left">
+							<label for="url">链接地址:</label>
+						</td>
+						<td class="form-table-td-right">
+								<input class="easyui-validatebox" type="text" name="url" data-options="required:false,validType:['length[0,255]']" style="width:320px;height:28px;"/>
 						</td>
 				    </tr>
 				</table>
@@ -118,14 +126,7 @@ var contentAddPage  = {
 			return ;
 		}
 		contentEditor.sync();
-		$.post("${contextPath}/cms/channel/add",$("#contentAddForm").serialize(), function(data){
-			if(data.status == 200){
-				$.messager.alert('提示','新增成功!');
-				window.self.location = "${contextPath}/cms/channel/list";
-			}else{
-				$.messager.alert('添加错误',data.msg,'error');
-			}
-		});
+		$('#contentAddForm').submit();
 		
 	},
 	clearForm : function(){

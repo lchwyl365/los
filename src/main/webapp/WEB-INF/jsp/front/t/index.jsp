@@ -9,7 +9,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>天宏首页</title>
+<title>山东天宏石材-专注：中国棕，石岛红，紫晶钻，皇室啡，皇室珍珠，染色板，皇室啡，皇室棕钻，皇室玛瑙，皇室啡，皇室啡的研发生产，专业提供高品质的石岛红，紫晶钻，中国棕，皇室啡，皇室珍珠，染色板，荣成灰，皇室棕钻，皇室玛瑙，白麻，黄金麻等系列产品</title>
+<meta name="keywords" content="中国棕，石岛红，紫晶钻，皇室啡，皇室珍珠，染色板，皇室啡，皇室棕钻，皇室玛瑙，皇室啡，皇室啡" />
+<meta name="description" content="荣成市人和镇天宏石材厂自有大型石岛红矿山，集矿山开采，石材加工，销售于一体的石材企业，采用自动红外线切机，自动磨板机，全自动大切等先进设备生产的建筑用成品，半成品板材，做工精细，品质一流，深受业界好评。主营：中国棕，石岛红，紫晶钻，皇室啡，皇室珍珠，染色板，皇室珍珠，皇室棕钻，皇室玛瑙，皇室珍珠花岗岩，皇室珍珠干挂石材等系列产品。联系电话：13465102999，于总。" />
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/theme/t/css/zui.min.css"/>
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/theme/t/css/reset.css"/>
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/theme/t/css/index.css"/>
@@ -64,6 +66,7 @@
 <!---------------  banner end  ----------------->
 
 <!---------------  search  ----------------->
+<!-- 
 <div class="search">
 	<div class="w cl">
 		<div class="search_hot">
@@ -80,7 +83,7 @@
 			<button type="button" class="btn btn-primary">搜索</button>
 		</div>
 	</div>
-</div>
+</div> -->
 <!---------------  search end  ----------------->
 
 <!---------------  core product  ----------------->
@@ -91,14 +94,23 @@
 		</div>
 		<div class="core_main">
 			<ul>
-				<li><a href=""><img src="${contextPath}/resources/theme/t/img/img.jpg"/><span>皇室玛瑙<br />皇室钻棕</span></a></li>
-				<li><a href=""><img src="${contextPath}/resources/theme/t/img/img.jpg"/><span>皇室珍珠<br />系列</span></a></li>
-				<li><a href=""><img src="${contextPath}/resources/theme/t/img/img.jpg"/><span>皇室咖啡<br />系列</span></a></li>
-				<li><a href=""><img src="${contextPath}/resources/theme/t/img/img.jpg"/><span>皇室珍珠<br />系列</span></a></li>
-				<li><a href=""><img src="${contextPath}/resources/theme/t/img/img.jpg"/><span>皇室珍珠<br />系列</span></a></li>
-				<li><a href=""><img src="${contextPath}/resources/theme/t/img/img.jpg"/><span>皇室咖啡<br />系列</span></a></li>
-				<li><a href=""><img src="${contextPath}/resources/theme/t/img/img.jpg"/><span>皇室珍珠<br />系列</span></a></li>
-				<li><a href=""><img src="${contextPath}/resources/theme/t/img/img.jpg"/><span>皇室玛瑙<br />皇室钻棕</span></a></li>
+			<c:forEach items="${productChannelList}" var="channel">
+				<li><a href="${contextPath}/front/t/channel/${channel.channelId}">
+					<img src="${contextPath}${channel.thumbnail}"/>
+					<span>
+					<c:set var="xindex" value='${fn:indexOf(channel.channelName, "系列")}' />
+					<c:choose>
+						<c:when test="${xindex != -1}">
+							<c:out value="${fn:substring(channel.channelName, 0, xindex)}" /><br>系列
+						</c:when>
+						<c:otherwise>
+							<c:out value="${channel.channelName}" />
+						</c:otherwise>
+					</c:choose>
+					
+					</span></a>
+				</li>
+			</c:forEach>
 			</ul>
 		</div>
 	</div>
@@ -115,7 +127,11 @@
 		</div>
 		<div class="pro_main">
 			<ul>
-				<li><a href=""><img src="${contextPath}/resources/theme/t/img/img.jpg" alt="" /><span>大理石-米黄</span></a></li>
+			<c:forEach items="${channelArtList}" var="channelArt" varStatus="st">
+				<li><a href="${contextPath}/front/t/article/${channelArt.articleId}">
+					<img src="${contextPath}${channelArt.thumbnail}" alt="" /><span>${channelArt.title}</span></a></li>
+			</c:forEach>
+				<%-- <li><a href=""><img src="${contextPath}/resources/theme/t/img/img.jpg" alt="" /><span>大理石-米黄</span></a></li>
 				<li><a href=""><img src="${contextPath}/resources/theme/t/img/img1.jpg" alt="" /><span>大理石-米黄</span></a></li>
 				<li><a href=""><img src="${contextPath}/resources/theme/t/img/img.jpg" alt="" /><span>大理石-米黄</span></a></li>
 				<li><a href=""><img src="${contextPath}/resources/theme/t/img/img1.jpg" alt="" /><span>大理石-米黄</span></a></li>
@@ -124,7 +140,7 @@
 				<li><a href=""><img src="${contextPath}/resources/theme/t/img/img1.jpg" alt="" /><span>大理石-米黄</span></a></li>
 				<li><a href=""><img src="${contextPath}/resources/theme/t/img/img.jpg" alt="" /><span>大理石-米黄</span></a></li>
 				<li><a href=""><img src="${contextPath}/resources/theme/t/img/img1.jpg" alt="" /><span>大理石-米黄</span></a></li>
-				<li><a href=""><img src="${contextPath}/resources/theme/t/img/img.jpg" alt="" /><span>大理石-米黄</span></a></li>
+				<li><a href=""><img src="${contextPath}/resources/theme/t/img/img.jpg" alt="" /><span>大理石-米黄</span></a></li> --%>
 			</ul>
 		</div>
 	</div>
@@ -161,34 +177,33 @@
 						<span id="nextTop" class=" next"></span>
 						<div id="picBox" class="picBox">
 							<ul class="cf">
-								<li><a href=""><img src="${contextPath}/resources/theme/t/img/caseimg.jpg"/></a><a href=""><img src="${contextPath}/resources/theme/t/img/caseimg.jpg"/></a><a href=""><img src="${contextPath}/resources/theme/t/img/caseimg.jpg"/></a><a href=""><img src="${contextPath}/resources/theme/t/img/caseimg.jpg"/></a></li>
-								<li><a href=""><img src="${contextPath}/resources/theme/t/img/caseimg.jpg"/></a><a href=""><img src="${contextPath}/resources/theme/t/img/caseimg.jpg"/></a><a href=""><img src="${contextPath}/resources/theme/t/img/caseimg.jpg"/></a><a href=""><img src="${contextPath}/resources/theme/t/img/caseimg.jpg"/></a></li>
-								<li><a href=""><img src="${contextPath}/resources/theme/t/img/caseimg.jpg"/></a><a href=""><img src="${contextPath}/resources/theme/t/img/caseimg.jpg"/></a><a href=""><img src="${contextPath}/resources/theme/t/img/caseimg.jpg"/></a><a href=""><img src="${contextPath}/resources/theme/t/img/caseimg.jpg"/></a></li>
-								<li><a href=""><img src="${contextPath}/resources/theme/t/img/caseimg.jpg"/></a><a href=""><img src="${contextPath}/resources/theme/t/img/caseimg.jpg"/></a><a href=""><img src="${contextPath}/resources/theme/t/img/caseimg.jpg"/></a><a href=""><img src="${contextPath}/resources/theme/t/img/caseimg.jpg"/></a></li>
-								<li><a href=""><img src="${contextPath}/resources/theme/t/img/caseimg.jpg"/></a><a href=""><img src="${contextPath}/resources/theme/t/img/caseimg.jpg"/></a><a href=""><img src="${contextPath}/resources/theme/t/img/caseimg.jpg"/></a><a href=""><img src="${contextPath}/resources/theme/t/img/caseimg.jpg"/></a></li>
-								<li><a href=""><img src="${contextPath}/resources/theme/t/img/caseimg.jpg"/></a><a href=""><img src="${contextPath}/resources/theme/t/img/caseimg.jpg"/></a><a href=""><img src="${contextPath}/resources/theme/t/img/caseimg.jpg"/></a><a href=""><img src="${contextPath}/resources/theme/t/img/caseimg.jpg"/></a></li>
-								<li><a href=""><img src="${contextPath}/resources/theme/t/img/caseimg.jpg"/></a><a href=""><img src="${contextPath}/resources/theme/t/img/caseimg.jpg"/></a><a href=""><img src="${contextPath}/resources/theme/t/img/caseimg.jpg"/></a><a href=""><img src="${contextPath}/resources/theme/t/img/caseimg.jpg"/></a></li>
-								<li><a href=""><img src="${contextPath}/resources/theme/t/img/caseimg.jpg"/></a><a href=""><img src="${contextPath}/resources/theme/t/img/caseimg.jpg"/></a><a href=""><img src="${contextPath}/resources/theme/t/img/caseimg.jpg"/></a><a href=""><img src="${contextPath}/resources/theme/t/img/caseimg.jpg"/></a>/li>
+								<c:forEach items="${caseList}" var="caseArt" varStatus="st">
+									<li><a href=""><img src="${contextPath}${caseArt.thumbnail}"/></a>
+									<a href=""><img src="${contextPath}${caseArt.thumbnail}"/></a>
+									<a href=""><img src="${contextPath}${caseArt.thumbnail}"/></a>
+									<a href=""><img src="$${contextPath}${caseArt.thumbnail}"/></a></li>
+								</c:forEach>
 							</ul>
 						</div>
 						
 						<div id="listBox" class="listBox">
 							<ul class="cf">
-								<li class="on"><i class="arr2"></i><img width="215" height="147" src="${contextPath}/resources/theme/t/img/caseimg2.jpg" alt="" /></li>
-								<li><i class="arr2"></i><img width="215" height="147" src="${contextPath}/resources/theme/t/img/caseimg2.jpg" alt="" /></li>
-								<li><i class="arr2"></i><img width="215" height="147" src="${contextPath}/resources/theme/t/img/caseimg2.jpg" alt="" /></li>
-								<li><i class="arr2"></i><img width="215" height="147" src="${contextPath}/resources/theme/t/img/caseimg2.jpg" alt="" /></li>
-								<li><i class="arr2"></i><img width="215" height="147" src="${contextPath}/resources/theme/t/img/caseimg2.jpg" alt="" /></li>
-								<li><i class="arr2"></i><img width="215" height="147" src="${contextPath}/resources/theme/t/img/caseimg2.jpg" alt="" /></li>
-								<li><i class="arr2"></i><img width="215" height="147" src="${contextPath}/resources/theme/t/img/caseimg2.jpg" alt="" /></li>
-								<li><i class="arr2"></i><img width="215" height="147" src="${contextPath}/resources/theme/t/img/caseimg2.jpg" alt="" /></li>
+								<c:forEach items="${caseList}" var="caseArt" varStatus="st">
+									<c:if test="${!st.first}">  
+								     <li><i class="arr2"></i>
+								     	<img width="215" height="147" src="${contextPath}${caseArt.thumbnail}" alt="" />
+								     </li>
+								    </c:if>  
+								    <c:if test="${st.first}">  
+								     <li class="on"><i class="arr2"></i>
+								     	<img width="215" height="147" src="${contextPath}${caseArt.thumbnail}" alt="" />
+								     </li>
+								    </c:if>  
+								</c:forEach>
 							</ul>
 						</div>
-						
 					</div>
-
-					</div>
-
+				</div>
 			</div>
 		</div>
 	</div>
@@ -231,41 +246,64 @@
 		</div>
 		<div class="news_main">
 			<div class="news_box news_right">
-				<div class="news_title"><em></em><span>天宏石材最新动态</span><a href="">+MORE</a></div>
-				<div class="hot_img"><img src="${contextPath}/resources/theme/t/img/newsimg.jpg"/></div>
+				<div class="news_title"><em></em><span>公司新闻</span><a href="">+MORE</a></div>
+				<%-- <div class="hot_img"><img src="${contextPath}/resources/theme/t/img/newsimg.jpg"/></div> --%>
 				<div class="news_list">
 					<ul>
-						<li><em></em><a href="">2016年石岛红石材新景象</a><span>[2017-06-17]</span></li>
-						<li><em></em><a href="">2016年石岛红石材新景象</a><span>[2017-06-17]</span></li>
-						<li><em></em><a href="">2016年石岛红石材新景象</a><span>[2017-06-17]</span></li>
-						<li><em></em><a href="">2016年石岛红石材新景象</a><span>[2017-06-17]</span></li>
-						<li><em></em><a href="">2016年石岛红石材新景象</a><span>[2017-06-17]</span></li>
+					 <c:forEach items="${companyArticleList}" var="companyArt" varStatus="st">
+					   <li><em></em><a href="${contextPath}/front/t/article/${companyArt.articleId}">
+					   		<c:choose>
+								<c:when test="${fn:length(companyArt.title) > 14}">
+									<c:out value="${fn:substring(companyArt.title, 0, 14)}......" escapeXml="false" />
+								</c:when>
+								<c:otherwise>
+									<c:out value="${companyArt.title}"  escapeXml="false" />
+								</c:otherwise>
+							</c:choose>
+					   		</a>
+						   <span>[<fmt:formatDate value="${companyArt.createtime}" pattern="yyyy-MM-dd"/>]</span></li>
+					 </c:forEach>
 					</ul>
 				</div>
 			</div>
 			<div class="news_box news_right">
-				<div class="news_title"><em></em><span>天宏石材最新动态</span><a href="">+MORE</a></div>
-				<div class="hot_img"><img src="${contextPath}/resources/theme/t/img/newsimg.jpg"/></div>
+				<div class="news_title"><em></em><span>行业信息</span><a href="">+MORE</a></div>
 				<div class="news_list">
 					<ul>
-						<li><em></em><a href="">2016年石岛红石材新景象</a><span>[2017-06-17]</span></li>
-						<li><em></em><a href="">2016年石岛红石材新景象</a><span>[2017-06-17]</span></li>
-						<li><em></em><a href="">2016年石岛红石材新景象</a><span>[2017-06-17]</span></li>
-						<li><em></em><a href="">2016年石岛红石材新景象</a><span>[2017-06-17]</span></li>
-						<li><em></em><a href="">2016年石岛红石材新景象</a><span>[2017-06-17]</span></li>
+					<c:forEach items="${industryList}" var="industryArt" varStatus="st">
+					   <li><em></em><a href="${contextPath}/front/t/article/${industryArt.articleId}">
+					   		<c:choose>
+								<c:when test="${fn:length(industryArt.title) > 14}">
+									<c:out value="${fn:substring(industryArt.title, 0, 14)}......" escapeXml="false" />
+								</c:when>
+								<c:otherwise>
+									<c:out value="${industryArt.title}"  escapeXml="false" />
+								</c:otherwise>
+							</c:choose>
+					   		</a>
+						   <span>[<fmt:formatDate value="${industryArt.createtime}" pattern="yyyy-MM-dd"/>]</span></li>
+					 </c:forEach>
 					</ul>
 				</div>
 			</div>
 			<div class="news_box">
-				<div class="news_title"><em></em><span>天宏石材最新动态</span><a href="">+MORE</a></div>
-				<div class="hot_img"><img src="${contextPath}/resources/theme/t/img/newsimg.jpg"/></div>
+				<div class="news_title"><em></em><span>技术支持</span><a href="">+MORE</a></div>
+				<%-- <div class="hot_img"><img src="${contextPath}/resources/theme/t/img/newsimg.jpg"/></div> --%>
 				<div class="news_list">
 					<ul>
-						<li><em></em><a href="">2016年石岛红石材新景象</a><span>[2017-06-17]</span></li>
-						<li><em></em><a href="">2016年石岛红石材新景象</a><span>[2017-06-17]</span></li>
-						<li><em></em><a href="">2016年石岛红石材新景象</a><span>[2017-06-17]</span></li>
-						<li><em></em><a href="">2016年石岛红石材新景象</a><span>[2017-06-17]</span></li>
-						<li><em></em><a href="">2016年石岛红石材新景象</a><span>[2017-06-17]</span></li>
+					<c:forEach items="${technologyList}" var="technologyArt" varStatus="st">
+					   <li><em></em><a href="${contextPath}/front/t/article/${technologyArt.articleId}">
+					   		<c:choose>
+								<c:when test="${fn:length(technologyArt.title) > 14}">
+									<c:out value="${fn:substring(technologyArt.title, 0, 14)}......" escapeXml="false" />
+								</c:when>
+								<c:otherwise>
+									<c:out value="${technologyArt.title}"  escapeXml="false" />
+								</c:otherwise>
+							</c:choose>
+					   	</a>
+						   <span>[<fmt:formatDate value="${technologyArt.createtime}" pattern="yyyy-MM-dd"/>]</span></li>
+					 </c:forEach>
 					</ul>
 				</div>
 			</div>
@@ -297,14 +335,14 @@
 <div class="foot">
 	<div class="w">
 		<div class="foot_nav">
-			<a href="">首页</a>
-			<a href="">厂家简介</a>
-			<a href="">天然石材</a>
-			<a href="">新闻中心</a>
-			<a href="">建筑案例</a>
-			<a href="">矿山风貌</a>
-			<a href="">服务体系</a>
-			<a href="">联系我们</a>
+		<c:forEach items="${channelList}" var="channel">
+			<c:if test="${channel.channelId == '596188949908799'}">
+				<a href="${contextPath}/index">${channel.channelName}</a>
+			</c:if>
+			<c:if test="${channel.channelId != '596188949908799'}">
+				<a href="${contextPath}/front/t/channel/${channel.channelId}">${channel.channelName}</a>
+			</c:if>
+		</c:forEach>
 		</div>
 		<div class="foot_main">
 			<div class="foot_logo"><img src="${contextPath}/resources/theme/t/img/logo.png"/></div>

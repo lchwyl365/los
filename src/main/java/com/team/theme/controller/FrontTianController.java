@@ -1,5 +1,6 @@
 package com.team.theme.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -50,7 +51,6 @@ public class FrontTianController {
 		String serverName = HttpClientUtil.getServerName(request);
 		//顶部栏目导航
 		CmsChannel cmsChannel = new CmsChannel();
-		cmsChannel.setPid("0");
 		cmsChannel.setIstop("on");
 		cmsChannel.setDomainName(serverName);
 		List<CmsChannel> channelList = cmsChannelService.selectByCmsChannel(cmsChannel,"channel_sort desc");
@@ -61,7 +61,13 @@ public class FrontTianController {
 		cmsBanner.setDomainName(serverName);
 		List<CmsBanner> bannerList = cmsBannerService.selectByCmsBanner(cmsBanner,"order_num asc");
     	model.addAttribute("bannerList", bannerList);
-    	
+
+    	//产品栏目
+		CmsChannel productChannel = new CmsChannel();
+		productChannel.setPid("596190358348736");
+		List<CmsChannel> productChannelList = cmsChannelService.selectByCmsChannel(productChannel,"channel_sort desc");
+		model.addAttribute("productChannelList", productChannelList);
+		
     	//集团简介
     	CmsChannel introduceChannel = cmsChannelService.selectByPrimaryKey("596189879568725");
     	if(introduceChannel != null && StringUtils.isNotEmpty(introduceChannel.getContent())){
@@ -79,30 +85,48 @@ public class FrontTianController {
     	}
     	model.addAttribute("introduceChannel", introduceChannel);
     	
-    	/*
-		//剑道快讯	
-    	CmsArticle cmsArticle = new CmsArticle();
-    	cmsArticle.setChannelId("57930030891125");
-    	cmsArticle.setStatus("on");
-    	List<CmsArticle> newsList = cmsArticleService.selectByCmsArticle(cmsArticle,"top_number desc,createtime desc");
-    	model.addAttribute("newsList", newsList);
+		//公司新闻
+    	CmsArticle companyArticle = new CmsArticle();
+    	companyArticle.setChannelId("599896164508719");
+    	companyArticle.setStatus("on");
+    	List<CmsArticle> companyArticleList = cmsArticleService.selectByCmsArticle(companyArticle,"top_number desc,createtime desc");
+    	model.addAttribute("companyArticleList", companyArticleList);
     	
-    	//最新通知
-    	CmsArticle tongzhiArticle = new CmsArticle();
-    	tongzhiArticle.setChannelId("57930074317136");
-    	tongzhiArticle.setStatus("on");
-    	List<CmsArticle> tongzhiList = cmsArticleService.selectByCmsArticle(tongzhiArticle,"top_number desc,createtime desc");
-    	model.addAttribute("tongzhiList", tongzhiList);
+    	//行业新闻
+    	CmsArticle industryArticle = new CmsArticle();
+    	industryArticle.setChannelId("599899530688725");
+    	industryArticle.setStatus("on");
+    	List<CmsArticle> industryList = cmsArticleService.selectByCmsArticle(industryArticle,"top_number desc,createtime desc");
+    	model.addAttribute("industryList", industryList);
     	
-    	//照片
-    	CmsArticle imgArticle = new CmsArticle();
-    	imgArticle.setChannelId("57944129830119");
-    	imgArticle.setStatus("on");
-    	List<CmsArticle> imgList = cmsArticleService.selectByCmsArticle(imgArticle,"top_number desc,createtime desc");
-    	if(imgList != null){
-    		int outIndex = imgList.size() > 7 ? 7 : imgList.size();
-        	model.addAttribute("imgList", imgList.subList(0,outIndex));
-    	}*/
+    	//技术支持
+    	CmsArticle technologyArticle = new CmsArticle();
+    	technologyArticle.setChannelId("599919071288713");
+    	technologyArticle.setStatus("on");
+    	List<CmsArticle> technologyList = cmsArticleService.selectByCmsArticle(technologyArticle,"top_number desc,createtime desc");
+        model.addAttribute("technologyList", technologyList);
+        
+        //案例
+    	CmsArticle caseArticle = new CmsArticle();
+    	caseArticle.setChannelId("596191211738751");
+    	caseArticle.setStatus("on");
+    	List<CmsArticle> caseList = cmsArticleService.selectByCmsArticle(caseArticle,"top_number desc,createtime desc");
+        model.addAttribute("caseList", caseList);
+        
+        //产品热销推荐
+        List<String> channelIds = new ArrayList<String>();
+        channelIds.add("599671970728716");
+        channelIds.add("599821923728718");
+        channelIds.add("599822728358728");
+        channelIds.add("599823329808737");
+        channelIds.add("599823604848743");
+        channelIds.add("599823895078757");
+        channelIds.add("599824175998767");
+        channelIds.add("599832359338712");
+        String status = "on";
+        List<CmsArticle> channelArtList = cmsArticleService.selectByChannel(channelIds,status);
+        model.addAttribute("channelArtList", channelArtList);
+        
     	return "front/t/index";
     }
 	

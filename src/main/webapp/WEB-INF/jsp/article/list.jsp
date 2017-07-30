@@ -11,7 +11,7 @@
 		var combo55059701325166_json = eval('${combo55059701325166_json}');
     	
 		$('#articleTable').datagrid({
-			title:'文章管理', //标题
+			title:'栏目文章管理', //标题
 			border:false,
 			method:'post',
 			iconCls:'icon-table', //图标
@@ -33,7 +33,7 @@
 				{field:'title',title:'文章标题',width:100,sortable:'F',
 						formatter:function(value,row,index){return row.title;}
 				},
-				{field:'channel_id',title:'栏目编号',width:100,sortable:'F',
+				{field:'channel_id',title:'栏目',width:100,sortable:'F',
 						formatter:function(value,row,index){
 							var text = '';
 							for(var i=0;i<combo55059701325166_json.length;i++){  
@@ -72,7 +72,12 @@
 	});
     var CmsArticle = {
     		addRow:function(){//新增
-  				window.self.location = "${contextPath}/cms/article/add";
+    			var node = $('#artChannelGrid').tree('getSelected');
+                if (!node){
+                	$.messager.alert('提示',"请选择你要添加文章的栏目",'info');
+    				return;
+                }
+  				window.self.location = "${contextPath}/cms/article/add?channelId="+node.id;
     		},
     		updateRow:function(){//更新
     			var rows = $('#articleTable').datagrid('getSelections');
@@ -119,11 +124,33 @@
     		clear:function(){
     			$('#cmsArticleForm').form('clear');
     			CmsArticle.search();
-    		}
+    		},
+    		channelClickHandler:function(node){
+    			var url = "${contextPath}/cms/article/queryList?channelId=" +node.id;   
+    			//重新赋值url 属性
+    		    $('#articleTable').datagrid('options').url=url;
+    		    $("#articleTable").datagrid('reload');
+    	    }
 	};
     </script>
 </head>
 <body class="easyui-layout" style="overflow-y: hidden" scroll="no">
+	<div data-options="region:'west',split:true,collapsible:false,border:false" title="栏目列表" style="width:170px;border-right:1px solid #D3D3D3;">
+		<!-- <div id="tree-toolbar" style="padding:5px;background-color: #FAFAFA;border-bottom:1px solid #DDDDDD;">
+			<table cellpadding="0" cellspacing="0" style="width:100%">
+				<tr>
+					<td>
+						<a href="#" id="type-add" class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a>
+						<a href="#" id="type-update" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a>
+						<a href="#" id="type-delete" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
+					</td>
+				</tr>
+			</table>
+		</div> -->
+		<ul id="artChannelGrid" class="easyui-tree" 
+			data-options="url:'${contextPath}/platform/box/combotree?id=55059701325166',method:'get',onClick:CmsArticle.channelClickHandler">
+		</ul>
+	</div>
     <div data-options="region:'center',border:false">
     	<table id="articleTable"></table>
     	<div id="tb" style="padding:10px;height:auto">

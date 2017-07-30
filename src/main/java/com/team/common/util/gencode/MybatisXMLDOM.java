@@ -83,6 +83,14 @@ public class MybatisXMLDOM {
             	Map<String,String> attrMap = new HashMap<String,String>();
             	attrMap.put("column", sysColumns.getColumnName());
             	attrMap.put("property", sysColumns.getPropertyName());
+            	String jdbcType = sysColumns.getColtype().toUpperCase();
+            	if("LONGTEXT".equals(jdbcType) || "TEXT".equals(jdbcType)){
+            		jdbcType = "VARCHAR";
+            	}
+            	if("INT".equals(jdbcType)){
+            		jdbcType = "INTEGER";
+            	}
+            	attrMap.put("jdbcType", jdbcType);
             	addElementAttribute(doc,"table","columnOverride",attrMap);
 			}
     		

@@ -26,7 +26,7 @@
 		  </div>
 		</div>
 		<div data-options="region:'center',border:false" style="padding:10px">
-			<form id="contentEditForm" method="post" action="${contextPath}/cms/channel/update" >
+			<form id="contentEditForm" method="post" action="${contextPath}/cms/channel/update" enctype="multipart/form-data" >
 				<input type="hidden" name="channelId" />
 				<table class="easyui-panel form-table">
 				   <tr>
@@ -39,7 +39,7 @@
 				    </tr>
 				   <tr>
 						<td class="form-table-td-left">
-							<label for="channelSort">序号:</label>
+							<label for="channelSort">排列顺序:</label>
 						</td>
 						<td class="form-table-td-right">
 								<input class="easyui-validatebox" type="text" name="channelSort" data-options="required:true,validType:['length[0,64]']" style="width:320px;height:28px;"/>
@@ -93,6 +93,14 @@
 							<label for="radio_off">隐藏</label>
 						</td>
 				    </tr>
+				   <tr>
+						<td class="form-table-td-left">
+							<label for="thumbnail">图片:</label>
+						</td>
+						<td class="form-table-td-right">
+								<input type="file" name="thumbnail" />
+						</td>
+				    </tr>
 				</table>
 				<div id="content_div" style="display:none;">
 					<p>栏目内容:</p>
@@ -104,7 +112,6 @@
 <script type="text/javascript">
 var contentEditor = null;
 $(function(){
-	
     contentEditor = KindEditor.create('textarea[name="content"]', {
 	    uploadJson : contextPath + '/kindeditor/fileUpload',  
 	    fileManagerJson : contextPath + '/kindeditor/fileManager',  
@@ -137,14 +144,7 @@ var contentUpdatePage  = {
 			return ;
 		}
 		contentEditor.sync();
-		$.post("${contextPath}/cms/channel/update",$("#contentEditForm").serialize(), function(data){
-			if(data.status == 200){
-				$.messager.alert('提示','修改成功!');
-				window.self.location = "${contextPath}/cms/channel/list";
-			}else{
-				$.messager.alert('修改错误',data.msg,'error');
-			}
-		});
+		$('#contentEditForm').submit();
 	},
 	clearForm : function(){
 		window.self.location = "${contextPath}/cms/channel/list";

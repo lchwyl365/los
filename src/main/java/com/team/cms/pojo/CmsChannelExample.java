@@ -771,6 +771,76 @@ public class CmsChannelExample {
             return (Criteria) this;
         }
 
+        public Criteria andContentIsNull() {
+            addCriterion("content is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentIsNotNull() {
+            addCriterion("content is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentEqualTo(String value) {
+            addCriterion("content =", value, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentNotEqualTo(String value) {
+            addCriterion("content <>", value, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentGreaterThan(String value) {
+            addCriterion("content >", value, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentGreaterThanOrEqualTo(String value) {
+            addCriterion("content >=", value, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentLessThan(String value) {
+            addCriterion("content <", value, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentLessThanOrEqualTo(String value) {
+            addCriterion("content <=", value, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentLike(String value) {
+            addCriterion("content like", value, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentNotLike(String value) {
+            addCriterion("content not like", value, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentIn(List<String> values) {
+            addCriterion("content in", values, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentNotIn(List<String> values) {
+            addCriterion("content not in", values, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentBetween(String value1, String value2) {
+            addCriterion("content between", value1, value2, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentNotBetween(String value1, String value2) {
+            addCriterion("content not between", value1, value2, "content");
+            return (Criteria) this;
+        }
+
         public Criteria andUseridIsNull() {
             addCriterion("userid is null");
             return (Criteria) this;
@@ -908,6 +978,146 @@ public class CmsChannelExample {
 
         public Criteria andDomainNameNotBetween(String value1, String value2) {
             addCriterion("domain_name not between", value1, value2, "domainName");
+            return (Criteria) this;
+        }
+
+        public Criteria andThumbnailIsNull() {
+            addCriterion("thumbnail is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andThumbnailIsNotNull() {
+            addCriterion("thumbnail is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andThumbnailEqualTo(String value) {
+            addCriterion("thumbnail =", value, "thumbnail");
+            return (Criteria) this;
+        }
+
+        public Criteria andThumbnailNotEqualTo(String value) {
+            addCriterion("thumbnail <>", value, "thumbnail");
+            return (Criteria) this;
+        }
+
+        public Criteria andThumbnailGreaterThan(String value) {
+            addCriterion("thumbnail >", value, "thumbnail");
+            return (Criteria) this;
+        }
+
+        public Criteria andThumbnailGreaterThanOrEqualTo(String value) {
+            addCriterion("thumbnail >=", value, "thumbnail");
+            return (Criteria) this;
+        }
+
+        public Criteria andThumbnailLessThan(String value) {
+            addCriterion("thumbnail <", value, "thumbnail");
+            return (Criteria) this;
+        }
+
+        public Criteria andThumbnailLessThanOrEqualTo(String value) {
+            addCriterion("thumbnail <=", value, "thumbnail");
+            return (Criteria) this;
+        }
+
+        public Criteria andThumbnailLike(String value) {
+            addCriterion("thumbnail like", value, "thumbnail");
+            return (Criteria) this;
+        }
+
+        public Criteria andThumbnailNotLike(String value) {
+            addCriterion("thumbnail not like", value, "thumbnail");
+            return (Criteria) this;
+        }
+
+        public Criteria andThumbnailIn(List<String> values) {
+            addCriterion("thumbnail in", values, "thumbnail");
+            return (Criteria) this;
+        }
+
+        public Criteria andThumbnailNotIn(List<String> values) {
+            addCriterion("thumbnail not in", values, "thumbnail");
+            return (Criteria) this;
+        }
+
+        public Criteria andThumbnailBetween(String value1, String value2) {
+            addCriterion("thumbnail between", value1, value2, "thumbnail");
+            return (Criteria) this;
+        }
+
+        public Criteria andThumbnailNotBetween(String value1, String value2) {
+            addCriterion("thumbnail not between", value1, value2, "thumbnail");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionIsNull() {
+            addCriterion("description is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionIsNotNull() {
+            addCriterion("description is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionEqualTo(String value) {
+            addCriterion("description =", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionNotEqualTo(String value) {
+            addCriterion("description <>", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionGreaterThan(String value) {
+            addCriterion("description >", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionGreaterThanOrEqualTo(String value) {
+            addCriterion("description >=", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionLessThan(String value) {
+            addCriterion("description <", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionLessThanOrEqualTo(String value) {
+            addCriterion("description <=", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionLike(String value) {
+            addCriterion("description like", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionNotLike(String value) {
+            addCriterion("description not like", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionIn(List<String> values) {
+            addCriterion("description in", values, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionNotIn(List<String> values) {
+            addCriterion("description not in", values, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionBetween(String value1, String value2) {
+            addCriterion("description between", value1, value2, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionNotBetween(String value1, String value2) {
+            addCriterion("description not between", value1, value2, "description");
             return (Criteria) this;
         }
     }

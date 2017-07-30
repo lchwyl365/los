@@ -107,21 +107,22 @@ public class ${model.domainObjectName}Controller {
 		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
 	<#list model.addPropertys as property>
 		<#if property.component == 'file'>
-		// 文件保存目录URL
-        String ${property.propertyName}Path = application.getRealPath("/") + "upload/";
-        String ${property.propertyName}Url = request.getContextPath() + "/upload/";
-        String ${property.propertyName}DirName = FileUtil.checkFileDir(${property.propertyName}Path,${property.propertyName}Url,request);
-        ${property.propertyName}Path = ${property.propertyName}Path + ${property.propertyName}DirName;
-        ${property.propertyName}Url = ${property.propertyName}Url + ${property.propertyName}DirName;
-        // 文件名
-        String ${property.propertyName}FileExt = ${property.propertyName}.getOriginalFilename().substring(${property.propertyName}.getOriginalFilename().lastIndexOf(".") + 1).toLowerCase();
-        String ${property.propertyName}NewFileName = df.format(new Date()) + "_" + new Random().nextInt(1000) + "." + ${property.propertyName}FileExt;
-        // 保存文件
-        File ${property.propertyName}NewFile=new File(${property.propertyName}Path + ${property.propertyName}NewFileName);
-        //通过CommonsMultipartFile的方法直接写文件（注意这个时候）
-        ${property.propertyName}.transferTo(${property.propertyName}NewFile);
-        ${model.variableName}.set${property.propertyName?cap_first}(${property.propertyName}Url+${property.propertyName}NewFileName);
-        
+		if(StringUtils.isNotEmpty(${property.propertyName}.getOriginalFilename())){
+			// 文件保存目录URL
+	        String ${property.propertyName}Path = application.getRealPath("/") + "upload/";
+	        String ${property.propertyName}Url = request.getContextPath() + "/upload/";
+	        String ${property.propertyName}DirName = FileUtil.checkFileDir(${property.propertyName}Path,${property.propertyName}Url,request);
+	        ${property.propertyName}Path = ${property.propertyName}Path + ${property.propertyName}DirName;
+	        ${property.propertyName}Url = ${property.propertyName}Url + ${property.propertyName}DirName;
+	        // 文件名
+	        String ${property.propertyName}FileExt = ${property.propertyName}.getOriginalFilename().substring(${property.propertyName}.getOriginalFilename().lastIndexOf(".") + 1).toLowerCase();
+	        String ${property.propertyName}NewFileName = df.format(new Date()) + "_" + new Random().nextInt(1000) + "." + ${property.propertyName}FileExt;
+	        // 保存文件
+	        File ${property.propertyName}NewFile=new File(${property.propertyName}Path + ${property.propertyName}NewFileName);
+	        //通过CommonsMultipartFile的方法直接写文件（注意这个时候）
+	        ${property.propertyName}.transferTo(${property.propertyName}NewFile);
+	        ${model.variableName}.set${property.propertyName?cap_first}(${property.propertyName}Url+${property.propertyName}NewFileName);
+	    }
 		</#if>
 	</#list>
 	
@@ -216,21 +217,22 @@ public class ${model.domainObjectName}Controller {
 		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
 	<#list model.updatePropertys as property>
 		<#if property.component == 'file'>
-		// 文件保存目录URL
-        String ${property.propertyName}Path = application.getRealPath("/") + "upload/";
-        String ${property.propertyName}Url = request.getContextPath() + "/upload/";
-        String ${property.propertyName}DirName = FileUtil.checkFileDir(${property.propertyName}Path,${property.propertyName}Url,request);
-        ${property.propertyName}Path = ${property.propertyName}Path + ${property.propertyName}DirName;
-        ${property.propertyName}Url = ${property.propertyName}Url + ${property.propertyName}DirName;
-        // 文件名
-        String ${property.propertyName}FileExt = ${property.propertyName}.getOriginalFilename().substring(${property.propertyName}.getOriginalFilename().lastIndexOf(".") + 1).toLowerCase();
-        String ${property.propertyName}NewFileName = df.format(new Date()) + "_" + new Random().nextInt(1000) + "." + ${property.propertyName}FileExt;
-        // 保存文件
-        File ${property.propertyName}NewFile=new File(${property.propertyName}Path + ${property.propertyName}NewFileName);
-        //通过CommonsMultipartFile的方法直接写文件（注意这个时候）
-        ${property.propertyName}.transferTo(${property.propertyName}NewFile);
-        ${model.variableName}.set${property.propertyName?cap_first}(${property.propertyName}Url+${property.propertyName}NewFileName);
-        
+		if(StringUtils.isNotEmpty(${property.propertyName}.getOriginalFilename())){
+			// 文件保存目录URL
+	        String ${property.propertyName}Path = application.getRealPath("/") + "upload/";
+	        String ${property.propertyName}Url = request.getContextPath() + "/upload/";
+	        String ${property.propertyName}DirName = FileUtil.checkFileDir(${property.propertyName}Path,${property.propertyName}Url,request);
+	        ${property.propertyName}Path = ${property.propertyName}Path + ${property.propertyName}DirName;
+	        ${property.propertyName}Url = ${property.propertyName}Url + ${property.propertyName}DirName;
+	        // 文件名
+	        String ${property.propertyName}FileExt = ${property.propertyName}.getOriginalFilename().substring(${property.propertyName}.getOriginalFilename().lastIndexOf(".") + 1).toLowerCase();
+	        String ${property.propertyName}NewFileName = df.format(new Date()) + "_" + new Random().nextInt(1000) + "." + ${property.propertyName}FileExt;
+	        // 保存文件
+	        File ${property.propertyName}NewFile=new File(${property.propertyName}Path + ${property.propertyName}NewFileName);
+	        //通过CommonsMultipartFile的方法直接写文件（注意这个时候）
+	        ${property.propertyName}.transferTo(${property.propertyName}NewFile);
+	        ${model.variableName}.set${property.propertyName?cap_first}(${property.propertyName}Url+${property.propertyName}NewFileName);
+        }
 		</#if>
 	</#list>
 		${model.variableName}Service.update(${model.variableName});
