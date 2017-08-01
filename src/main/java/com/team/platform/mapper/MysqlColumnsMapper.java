@@ -34,12 +34,6 @@ public interface MysqlColumnsMapper {
      *
      * @mbg.generated
      */
-    List<Columns> selectByExampleWithBLOBs(MysqlColumnsExample example);
-
-    /**
-     *
-     * @mbg.generated
-     */
     List<Columns> selectByExample(MysqlColumnsExample example);
 
     /**
@@ -47,12 +41,6 @@ public interface MysqlColumnsMapper {
      * @mbg.generated
      */
     int updateByExampleSelective(@Param("record") Columns record, @Param("example") MysqlColumnsExample example);
-
-    /**
-     *
-     * @mbg.generated
-     */
-    int updateByExampleWithBLOBs(@Param("record") Columns record, @Param("example") MysqlColumnsExample example);
 
     /**
      *

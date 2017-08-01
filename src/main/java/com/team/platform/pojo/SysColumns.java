@@ -109,7 +109,12 @@ public class SysColumns extends SysColumnsKey {
     /**
      * 序号
      */
-    private Integer orderNum;
+    private String orderNum;
+
+    /**
+     * 规模
+     */
+    private Integer propertyScale;
 
     /**
      * 字段序号
@@ -451,7 +456,7 @@ public class SysColumns extends SysColumnsKey {
      * 序号
      * @return ORDER_NUM 序号
      */
-    public Integer getOrderNum() {
+    public String getOrderNum() {
         return orderNum;
     }
 
@@ -459,7 +464,23 @@ public class SysColumns extends SysColumnsKey {
      * 序号
      * @param orderNum 序号
      */
-    public void setOrderNum(Integer orderNum) {
-        this.orderNum = orderNum;
+    public void setOrderNum(String orderNum) {
+        this.orderNum = orderNum == null ? null : orderNum.trim();
+    }
+
+    /**
+     * 规模
+     * @return PROPERTY_SCALE 规模
+     */
+    public Integer getPropertyScale() {
+        return propertyScale;
+    }
+
+    /**
+     * 规模
+     * @param propertyScale 规模
+     */
+    public void setPropertyScale(Integer propertyScale) {
+        this.propertyScale = propertyScale;
     }
 }

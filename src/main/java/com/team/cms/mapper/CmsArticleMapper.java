@@ -40,12 +40,6 @@ public interface CmsArticleMapper {
      *
      * @mbg.generated
      */
-    List<CmsArticle> selectByExampleWithBLOBs(CmsArticleExample example);
-
-    /**
-     *
-     * @mbg.generated
-     */
     List<CmsArticle> selectByExample(CmsArticleExample example);
 
     /**
@@ -64,12 +58,6 @@ public interface CmsArticleMapper {
      *
      * @mbg.generated
      */
-    int updateByExampleWithBLOBs(@Param("record") CmsArticle record, @Param("example") CmsArticleExample example);
-
-    /**
-     *
-     * @mbg.generated
-     */
     int updateByExample(@Param("record") CmsArticle record, @Param("example") CmsArticleExample example);
 
     /**
@@ -77,12 +65,6 @@ public interface CmsArticleMapper {
      * @mbg.generated
      */
     int updateByPrimaryKeySelective(CmsArticle record);
-
-    /**
-     *
-     * @mbg.generated
-     */
-    int updateByPrimaryKeyWithBLOBs(CmsArticle record);
 
     /**
      *

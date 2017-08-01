@@ -97,61 +97,44 @@ public class SysColumnsServiceImpl implements SysColumnsService {
 	}
 
 	@Override
-	public int update(Columns db2SysColumn) {
+	public int update(Columns column) {
 		SysColumns record = new SysColumns();
-		record.setColumnName(db2SysColumn.getColumnName());
-		record.setTbname(db2SysColumn.getTableName());
-		record.setTbcreator(db2SysColumn.getTableSchema());
-		record.setColtype(db2SysColumn.getDataType());
-		record.setNulls(db2SysColumn.getIsNullable());
-		record.setPropertyLength(db2SysColumn.getLength()==null?64:db2SysColumn.getLength());
-		record.setColno(db2SysColumn.getColno());
+		record.setColno(column.getColno());
+		record.setColumnName(column.getColumnName());
+		record.setTbname(column.getTableName());
+		record.setTbcreator(column.getTableSchema());
+		record.setColtype(column.getDataType());
+		record.setNulls(column.getIsNullable());
+		record.setPropertyLength(column.getLength()==null?64:column.getLength());
 		record.setIsprimary("F");
-		
 		//PROPERTY_TYPE
-		String propertyType = "";
-		switch (db2SysColumn.getDataType().toUpperCase()) {
-		case "VARCHAR": propertyType = "String"; break;
-		case "CHAR": propertyType = "String"; break;
-		case "CHARACTER": propertyType = "String"; break;
-		case "TEXT": propertyType = "String"; break;
-		case "LONGTEXT": propertyType = "String"; break;
-		case "CLOB": propertyType = "String"; break;
-		case "TIMESTMP": propertyType = "Date"; break;
-		case "TIMESTAMP": propertyType = "Date"; break;
-		case "SMALLINT": propertyType = "Short"; break;
-		case "BIGINT": propertyType = "Long"; break;
-		case "INTEGER": propertyType = "Integer"; break;
-		case "INT": propertyType = "Integer"; break;
-		case "DOUBLE": propertyType = "Double"; break;
-		}
-		if(StringUtil.isEmpty(propertyType)){
-System.out.println("propertyType:"+propertyType+ " db2SysColumn.getDataType():"+db2SysColumn.getDataType().toUpperCase());
-		}
+		String propertyType = getJavaTypeResolver(column);
+		
 		record.setPropertyType(propertyType);
 				
 		return sysColumnsMapper.updateByPrimaryKeySelective(record);
 	}
 
 	@Override
-	public int insert(Columns db2SysColumn,int orderNum) {
+	public int insert(Columns column,int orderNum) {
 		SysColumns record = new SysColumns();
-		record.setColno(db2SysColumn.getColno());
-		record.setColumnName(db2SysColumn.getColumnName());
-		record.setTbname(db2SysColumn.getTableName());
-		record.setTbcreator(db2SysColumn.getTableSchema());
-		record.setColtype(db2SysColumn.getDataType());
-		record.setNulls(db2SysColumn.getIsNullable());
-		record.setPropertyLength(db2SysColumn.getLength()==null?64:db2SysColumn.getLength());
-		record.setOrderNum(++orderNum);
+		record.setColno(column.getColno());
+		record.setColumnName(column.getColumnName());
+		record.setTbname(column.getTableName());
+		record.setTbcreator(column.getTableSchema());
+		record.setColtype(column.getDataType());
+		record.setNulls(column.getIsNullable());
+		record.setPropertyLength(column.getLength()==null?64:column.getLength());
 		record.setIsprimary("F");
+		
+		record.setOrderNum(String.valueOf(++orderNum));
 		record.setIsselect("F");
 		record.setIslike("F");
 		record.setIsadd("T");
 		record.setIsupdate("T");
 		record.setIsdisplay("T");
-		record.setRemarks(db2SysColumn.getColumnComment());
-		record.setPropertyTitle(StringUtils.isNotEmpty(db2SysColumn.getColumnComment())?db2SysColumn.getColumnComment():record.getColumnName());
+		record.setRemarks(column.getColumnComment());
+		record.setPropertyTitle(StringUtils.isNotEmpty(column.getColumnComment())?column.getColumnComment():record.getColumnName());
 		//PROPERTY_NAME
 		String[] names = record.getColumnName().split("_");
 		StringBuilder propertyName = new StringBuilder();
@@ -165,25 +148,7 @@ System.out.println("propertyType:"+propertyType+ " db2SysColumn.getDataType():"+
 		}
 		record.setPropertyName(propertyName.toString());
 		//PROPERTY_TYPE
-		String propertyType = "";
-		switch (db2SysColumn.getDataType().toUpperCase()) {
-		case "VARCHAR": propertyType = "String"; break;
-		case "CHAR": propertyType = "String"; break;
-		case "CHARACTER": propertyType = "String"; break;
-		case "TEXT": propertyType = "String"; break;
-		case "LONGTEXT": propertyType = "String"; break;
-		case "CLOB": propertyType = "String"; break;
-		case "TIMESTMP": propertyType = "Date"; break;
-		case "TIMESTAMP": propertyType = "Date"; break;
-		case "SMALLINT": propertyType = "Short"; break;
-		case "BIGINT": propertyType = "Long"; break;
-		case "INTEGER": propertyType = "Integer"; break;
-		case "INT": propertyType = "Integer"; break;
-		case "DOUBLE": propertyType = "Double"; break;
-		}
-		if(StringUtil.isEmpty(propertyType)){
-System.out.println("propertyType:"+propertyType+ " db2SysColumn.getDataType():"+db2SysColumn.getDataType().toUpperCase());
-		}
+		String propertyType = getJavaTypeResolver(column);
 		record.setPropertyType(propertyType);
 		record.setWidth(Short.valueOf("100"));
 		record.setComponent("easyui-validatebox");
@@ -201,6 +166,42 @@ System.out.println("propertyType:"+propertyType+ " db2SysColumn.getDataType():"+
 		
 		//TODO add cloumn
 		return sysColumnsMapper.insert(record);
+	}
+
+	private String getJavaTypeResolver(Columns column) {
+		String answer = "";
+		switch (column.getDataType().trim().toUpperCase()) {
+		case "VARCHAR": answer = "String"; break;
+		case "CHAR": answer = "String"; break;
+		case "CHARACTER": answer = "String"; break;
+		case "TEXT": answer = "String"; break;
+		case "LONGTEXT": answer = "String"; break;
+		case "LONGVAR": answer = "String"; break;
+		case "CLOB": answer = "String"; break;
+		case "TIMESTMP": answer = "Date"; break;
+		case "TIMESTAMP": answer = "Date"; break;
+		case "DATE": answer = "Date"; break;
+		case "SMALLINT": answer = "Short"; break;
+		case "BIGINT": answer = "Long"; break;
+		case "INTEGER": answer = "Integer"; break;
+		case "INT": answer = "Integer"; break;
+		case "DOUBLE": answer = "Double"; break;
+		case "DECIMAL":
+		    if (column.getScale() > 0 || column.getLength() > 18){
+		    	answer = "BigDecimal";
+		    } else if (column.getLength() > 9){
+		    	answer = "Long";
+		    } else if (column.getLength() > 4){
+		    	answer = "Integer";
+		    } else{
+		    	answer = "Short";
+		    }
+			break;
+		}
+		if(StringUtil.isEmpty(answer)){
+System.out.println("propertyType:"+answer+ " "+column.getDataType().trim().toUpperCase());
+		}
+		return answer;
 	}
 
 	@Override

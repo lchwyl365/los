@@ -2,7 +2,9 @@ package com.team.theme.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +30,7 @@ import com.team.cms.service.CmsChannelService;
 import com.team.cms.service.CmsVideoService;
 import com.team.common.pojo.EUDataGridModel;
 import com.team.common.pojo.EUDataGridResult;
+import com.team.common.util.BeanUtil;
 import com.team.common.util.HttpClientUtil;
 import com.team.common.util.ImageUtil;
 
@@ -107,15 +110,27 @@ public class FrontTianController {
         model.addAttribute("technologyList", technologyList);
         
         //案例
+        List<Map<String,Object>> mapList = new ArrayList<Map<String,Object>>();
     	CmsArticle caseArticle = new CmsArticle();
     	caseArticle.setChannelId("596191211738751");
     	caseArticle.setStatus("on");
     	List<CmsArticle> caseList = cmsArticleService.selectByCmsArticle(caseArticle,"top_number desc,createtime desc");
     	for (int i = 0; i < caseList.size(); i++) {
-			System.out.println(caseList.get(i).getContent());
-			System.out.println(caseList.get(i).getImgList().size());
+    		CmsArticle caseArt = caseList.get(i);
+    		Map<String,Object> map = BeanUtil.transBean2Map(caseArt);
+    		List<String> imgList = new ArrayList<String>();
+    		if(StringUtils.isNotEmpty(caseArt.getContent())){
+    			Set<String> imgs = ImageUtil.getImgStr(caseArt.getContent());
+    	        if(imgs != null && imgs.size() > 0){
+    	        	Iterator<String> iterator = imgs.iterator();
+    	        	String img = iterator.next();
+    	        	imgList.add(img);
+    	        }
+    		}
+			map.put("imgList", imgList);
+			mapList.add(map);
 		}
-        model.addAttribute("caseList", caseList);
+        model.addAttribute("mapList", mapList);
         
         //产品热销推荐
         List<String> channelIds = new ArrayList<String>();

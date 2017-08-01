@@ -18,7 +18,7 @@ public interface ${model.domainObjectName}Service {
 <#if model.gentype == "DataGrid">
 	public EUDataGridResult selectList(EUDataGridModel dgm,${model.domainObjectName} ${model.variableName});
 <#elseif model.gentype == "TreeGrid">
-	public List<${model.domainObjectName}Vo> selectList(String ${model.parentField});
+	public List<${model.domainObjectName}Vo> selectList(${model.typeMap[model.parentField]} ${model.parentField});
 </#if>
 
 	public List<${model.domainObjectName}> selectBy${model.domainObjectName}(${model.domainObjectName} ${model.variableName},String orderByClause);

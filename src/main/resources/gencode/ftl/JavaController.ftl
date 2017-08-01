@@ -1,6 +1,11 @@
 package ${model.controllerTargetPackage};
 
 import java.util.List;
+<#list model.propertys as property>
+	  <#if property.propertyType == "BigDecimal">
+import java.math.BigDecimal;
+	  </#if>
+</#list>
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -107,7 +112,7 @@ public class ${model.domainObjectName}Controller {
 		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
 	<#list model.addPropertys as property>
 		<#if property.component == 'file'>
-		if(StringUtils.isNotEmpty(${property.propertyName}.getOriginalFilename())){
+	if(StringUtils.isNotEmpty(${property.propertyName}.getOriginalFilename())){
 			// 文件保存目录URL
 	        String ${property.propertyName}Path = application.getRealPath("/") + "upload/";
 	        String ${property.propertyName}Url = request.getContextPath() + "/upload/";
@@ -269,7 +274,7 @@ public class ${model.domainObjectName}Controller {
 		List<${model.domainObjectName}Vo> list = ${model.variableName}Service.selectList(${model.parentField});
     	return list;
     }
-</#if>
+    </#if>
 
 	@RequestMapping(value="/load${model.pathPrimaryKeyURL}",method = RequestMethod.GET)
 	@ResponseBody

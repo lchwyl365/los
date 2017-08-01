@@ -39,12 +39,12 @@ public class Columns {
     /**
      * 
      */
-    private String columnComment;
+    private Long scale;
 
     /**
      * 
      */
-    private String columnType;
+    private String columnComment;
 
     /**
      * 
@@ -160,6 +160,22 @@ public class Columns {
 
     /**
      * 
+     * @return NUMERIC_SCALE 
+     */
+    public Long getScale() {
+        return scale;
+    }
+
+    /**
+     * 
+     * @param scale 
+     */
+    public void setScale(Long scale) {
+        this.scale = scale;
+    }
+
+    /**
+     * 
      * @return COLUMN_COMMENT 
      */
     public String getColumnComment() {
@@ -174,19 +190,4 @@ public class Columns {
         this.columnComment = columnComment == null ? null : columnComment.trim();
     }
 
-    /**
-     * 
-     * @return COLUMN_TYPE 
-     */
-    public String getColumnType() {
-        return columnType;
-    }
-
-    /**
-     * 
-     * @param columnType 
-     */
-    public void setColumnType(String columnType) {
-        this.columnType = columnType == null ? null : columnType.trim();
-    }
 }

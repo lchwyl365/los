@@ -3,7 +3,7 @@ package com.team.platform.pojo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Db2ColumnsExample {
+public class DB2ColumnsExample {
     /**
      * SYSIBM.SYSCOLUMNS
      */
@@ -23,7 +23,7 @@ public class Db2ColumnsExample {
      *
      * @mbg.generated
      */
-    public Db2ColumnsExample() {
+    public DB2ColumnsExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -637,6 +637,66 @@ public class Db2ColumnsExample {
 
         public Criteria andLengthNotBetween(Short value1, Short value2) {
             addCriterion("LENGTH not between", value1, value2, "length");
+            return (Criteria) this;
+        }
+
+        public Criteria andScaleIsNull() {
+            addCriterion("SCALE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andScaleIsNotNull() {
+            addCriterion("SCALE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andScaleEqualTo(Short value) {
+            addCriterion("SCALE =", value, "scale");
+            return (Criteria) this;
+        }
+
+        public Criteria andScaleNotEqualTo(Short value) {
+            addCriterion("SCALE <>", value, "scale");
+            return (Criteria) this;
+        }
+
+        public Criteria andScaleGreaterThan(Short value) {
+            addCriterion("SCALE >", value, "scale");
+            return (Criteria) this;
+        }
+
+        public Criteria andScaleGreaterThanOrEqualTo(Short value) {
+            addCriterion("SCALE >=", value, "scale");
+            return (Criteria) this;
+        }
+
+        public Criteria andScaleLessThan(Short value) {
+            addCriterion("SCALE <", value, "scale");
+            return (Criteria) this;
+        }
+
+        public Criteria andScaleLessThanOrEqualTo(Short value) {
+            addCriterion("SCALE <=", value, "scale");
+            return (Criteria) this;
+        }
+
+        public Criteria andScaleIn(List<Short> values) {
+            addCriterion("SCALE in", values, "scale");
+            return (Criteria) this;
+        }
+
+        public Criteria andScaleNotIn(List<Short> values) {
+            addCriterion("SCALE not in", values, "scale");
+            return (Criteria) this;
+        }
+
+        public Criteria andScaleBetween(Short value1, Short value2) {
+            addCriterion("SCALE between", value1, value2, "scale");
+            return (Criteria) this;
+        }
+
+        public Criteria andScaleNotBetween(Short value1, Short value2) {
+            addCriterion("SCALE not between", value1, value2, "scale");
             return (Criteria) this;
         }
 

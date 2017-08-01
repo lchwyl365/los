@@ -1,14 +1,6 @@
 package com.team.cms.pojo;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
-
-import org.apache.commons.lang3.StringUtils;
-
-import com.team.common.util.ImageUtil;
 
 public class CmsArticle {
     /**
@@ -20,6 +12,11 @@ public class CmsArticle {
      * 文章标题
      */
     private String title;
+
+    /**
+     * 文章内容
+     */
+    private String content;
 
     /**
      * 栏目编号
@@ -62,21 +59,14 @@ public class CmsArticle {
     private String status;
 
     /**
-     * 域名
-     */
-    private String domainName;
-
-    /**
      * 置顶序号
      */
     private Integer topNumber;
 
     /**
-     * 文章内容
+     * 域名
      */
-    private String content;
-    
-    private List<String> imgList;
+    private String domainName;
 
     /**
      * 文章编号
@@ -108,6 +98,22 @@ public class CmsArticle {
      */
     public void setTitle(String title) {
         this.title = title == null ? null : title.trim();
+    }
+
+    /**
+     * 文章内容
+     * @return content 文章内容
+     */
+    public String getContent() {
+        return content;
+    }
+
+    /**
+     * 文章内容
+     * @param content 文章内容
+     */
+    public void setContent(String content) {
+        this.content = content == null ? null : content.trim();
     }
 
     /**
@@ -239,22 +245,6 @@ public class CmsArticle {
     }
 
     /**
-     * 域名
-     * @return domain_name 域名
-     */
-    public String getDomainName() {
-        return domainName;
-    }
-
-    /**
-     * 域名
-     * @param domainName 域名
-     */
-    public void setDomainName(String domainName) {
-        this.domainName = domainName == null ? null : domainName.trim();
-    }
-
-    /**
      * 置顶序号
      * @return top_number 置顶序号
      */
@@ -271,36 +261,18 @@ public class CmsArticle {
     }
 
     /**
-     * 文章内容
-     * @return content 文章内容
+     * 域名
+     * @return domain_name 域名
      */
-    public String getContent() {
-        return content;
+    public String getDomainName() {
+        return domainName;
     }
 
     /**
-     * 文章内容
-     * @param content 文章内容
+     * 域名
+     * @param domainName 域名
      */
-    public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
+    public void setDomainName(String domainName) {
+        this.domainName = domainName == null ? null : domainName.trim();
     }
-
-	public List<String> getImgList() {
-		this.imgList = new ArrayList<String>();
-		if(StringUtils.isNotEmpty(this.content)){
-			Set<String> imgs = ImageUtil.getImgStr(this.content);
-	        if(imgs != null && imgs.size() > 0){
-	        	Iterator<String> iterator = imgs.iterator();
-	        	String img = iterator.next();
-	        	imgList.add(img);
-	        }
-		}
-		return imgList;
-	}
-
-	public void setImgList(List<String> imgList) {
-		this.imgList = imgList;
-	}
-    
 }

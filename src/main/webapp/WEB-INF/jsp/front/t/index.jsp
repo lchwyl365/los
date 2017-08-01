@@ -177,7 +177,7 @@
 						<span id="nextTop" class=" next"></span>
 						<div id="picBox" class="picBox">
 							<ul class="cf">
-								<c:forEach items="${caseList}" var="caseArt" varStatus="st">
+								<c:forEach items="${mapList}" var="caseArt" varStatus="st">
 									<li>
 									<c:forEach items="${caseArt.imgList}" var="item">
 										<a href=""><img style="width: 296px;height:259px" src="${contextPath}${item}"/></a>
@@ -188,7 +188,7 @@
 						</div>
 						<div id="listBox" class="listBox">
 							<ul class="cf">
-								<c:forEach items="${caseList}" var="caseArt" varStatus="st">
+								<c:forEach items="${mapList}" var="caseArt" varStatus="st">
 									<c:if test="${!st.first}">  
 								     <li><i class="arr2"></i>
 								     	<img width="215" height="147" src="${contextPath}${caseArt.thumbnail}" alt="" />

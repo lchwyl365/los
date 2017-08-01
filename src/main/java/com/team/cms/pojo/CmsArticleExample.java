@@ -301,6 +301,76 @@ public class CmsArticleExample {
             return (Criteria) this;
         }
 
+        public Criteria andContentIsNull() {
+            addCriterion("content is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentIsNotNull() {
+            addCriterion("content is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentEqualTo(String value) {
+            addCriterion("content =", value, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentNotEqualTo(String value) {
+            addCriterion("content <>", value, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentGreaterThan(String value) {
+            addCriterion("content >", value, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentGreaterThanOrEqualTo(String value) {
+            addCriterion("content >=", value, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentLessThan(String value) {
+            addCriterion("content <", value, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentLessThanOrEqualTo(String value) {
+            addCriterion("content <=", value, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentLike(String value) {
+            addCriterion("content like", value, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentNotLike(String value) {
+            addCriterion("content not like", value, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentIn(List<String> values) {
+            addCriterion("content in", values, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentNotIn(List<String> values) {
+            addCriterion("content not in", values, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentBetween(String value1, String value2) {
+            addCriterion("content between", value1, value2, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentNotBetween(String value1, String value2) {
+            addCriterion("content not between", value1, value2, "content");
+            return (Criteria) this;
+        }
+
         public Criteria andChannelIdIsNull() {
             addCriterion("channel_id is null");
             return (Criteria) this;
@@ -841,6 +911,66 @@ public class CmsArticleExample {
             return (Criteria) this;
         }
 
+        public Criteria andTopNumberIsNull() {
+            addCriterion("top_number is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopNumberIsNotNull() {
+            addCriterion("top_number is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopNumberEqualTo(Integer value) {
+            addCriterion("top_number =", value, "topNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopNumberNotEqualTo(Integer value) {
+            addCriterion("top_number <>", value, "topNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopNumberGreaterThan(Integer value) {
+            addCriterion("top_number >", value, "topNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopNumberGreaterThanOrEqualTo(Integer value) {
+            addCriterion("top_number >=", value, "topNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopNumberLessThan(Integer value) {
+            addCriterion("top_number <", value, "topNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopNumberLessThanOrEqualTo(Integer value) {
+            addCriterion("top_number <=", value, "topNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopNumberIn(List<Integer> values) {
+            addCriterion("top_number in", values, "topNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopNumberNotIn(List<Integer> values) {
+            addCriterion("top_number not in", values, "topNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopNumberBetween(Integer value1, Integer value2) {
+            addCriterion("top_number between", value1, value2, "topNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopNumberNotBetween(Integer value1, Integer value2) {
+            addCriterion("top_number not between", value1, value2, "topNumber");
+            return (Criteria) this;
+        }
+
         public Criteria andDomainNameIsNull() {
             addCriterion("domain_name is null");
             return (Criteria) this;
@@ -908,66 +1038,6 @@ public class CmsArticleExample {
 
         public Criteria andDomainNameNotBetween(String value1, String value2) {
             addCriterion("domain_name not between", value1, value2, "domainName");
-            return (Criteria) this;
-        }
-
-        public Criteria andTopNumberIsNull() {
-            addCriterion("top_number is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTopNumberIsNotNull() {
-            addCriterion("top_number is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTopNumberEqualTo(Integer value) {
-            addCriterion("top_number =", value, "topNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andTopNumberNotEqualTo(Integer value) {
-            addCriterion("top_number <>", value, "topNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andTopNumberGreaterThan(Integer value) {
-            addCriterion("top_number >", value, "topNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andTopNumberGreaterThanOrEqualTo(Integer value) {
-            addCriterion("top_number >=", value, "topNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andTopNumberLessThan(Integer value) {
-            addCriterion("top_number <", value, "topNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andTopNumberLessThanOrEqualTo(Integer value) {
-            addCriterion("top_number <=", value, "topNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andTopNumberIn(List<Integer> values) {
-            addCriterion("top_number in", values, "topNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andTopNumberNotIn(List<Integer> values) {
-            addCriterion("top_number not in", values, "topNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andTopNumberBetween(Integer value1, Integer value2) {
-            addCriterion("top_number between", value1, value2, "topNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andTopNumberNotBetween(Integer value1, Integer value2) {
-            addCriterion("top_number not between", value1, value2, "topNumber");
             return (Criteria) this;
         }
     }

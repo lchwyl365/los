@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/")
 public class WebController {
 	
-	
 	@RequestMapping(value = "/index",method = RequestMethod.GET)
     public String index(HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
 		String serverName = request.getServerName();

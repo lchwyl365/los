@@ -9,10 +9,8 @@
     <result column="IS_NULLABLE" jdbcType="VARCHAR" property="isNullable" />
     <result column="DATA_TYPE" jdbcType="VARCHAR" property="dataType" />
     <result column="CHARACTER_MAXIMUM_LENGTH" jdbcType="BIGINT" property="length" />
+    <result column="NUMERIC_SCALE" jdbcType="BIGINT" property="scale" />
     <result column="COLUMN_COMMENT" jdbcType="VARCHAR" property="columnComment" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.team.platform.pojo.Columns">
-    <result column="COLUMN_TYPE" jdbcType="LONGVARCHAR" property="columnType" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -74,27 +72,8 @@
   </sql>
   <sql id="Base_Column_List">
     TABLE_SCHEMA, TABLE_NAME, COLUMN_NAME, ORDINAL_POSITION, IS_NULLABLE, DATA_TYPE, 
-    CHARACTER_MAXIMUM_LENGTH, COLUMN_COMMENT
+    CHARACTER_MAXIMUM_LENGTH, NUMERIC_SCALE, COLUMN_COMMENT
   </sql>
-  <sql id="Blob_Column_List">
-    COLUMN_TYPE
-  </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.team.platform.pojo.MysqlColumnsExample" resultMap="ResultMapWithBLOBs">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from information_schema.COLUMNS
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByExample" parameterType="com.team.platform.pojo.MysqlColumnsExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -116,17 +95,17 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.team.platform.pojo.Columns">
-    insert into information_schema.COLUMNS (TABLE_SCHEMA, TABLE_NAME, COLUMN_NAME, 
+    insert into COLUMNS (TABLE_SCHEMA, TABLE_NAME, COLUMN_NAME, 
       ORDINAL_POSITION, IS_NULLABLE, DATA_TYPE, 
-      CHARACTER_MAXIMUM_LENGTH, COLUMN_COMMENT, COLUMN_TYPE
+      CHARACTER_MAXIMUM_LENGTH, NUMERIC_SCALE, COLUMN_COMMENT
       )
     values (#{tableSchema,jdbcType=VARCHAR}, #{tableName,jdbcType=VARCHAR}, #{columnName,jdbcType=VARCHAR}, 
       #{colno,jdbcType=BIGINT}, #{isNullable,jdbcType=VARCHAR}, #{dataType,jdbcType=VARCHAR}, 
-      #{length,jdbcType=BIGINT}, #{columnComment,jdbcType=VARCHAR}, #{columnType,jdbcType=LONGVARCHAR}
+      #{length,jdbcType=BIGINT}, #{scale,jdbcType=BIGINT}, #{columnComment,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.team.platform.pojo.Columns">
-    insert into information_schema.COLUMNS
+    insert into COLUMNS
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="tableSchema != null">
         TABLE_SCHEMA,
@@ -149,11 +128,11 @@
       <if test="length != null">
         CHARACTER_MAXIMUM_LENGTH,
       </if>
+      <if test="scale != null">
+        NUMERIC_SCALE,
+      </if>
       <if test="columnComment != null">
         COLUMN_COMMENT,
-      </if>
-      <if test="columnType != null">
-        COLUMN_TYPE,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -178,11 +157,11 @@
       <if test="length != null">
         #{length,jdbcType=BIGINT},
       </if>
+      <if test="scale != null">
+        #{scale,jdbcType=BIGINT},
+      </if>
       <if test="columnComment != null">
         #{columnComment,jdbcType=VARCHAR},
-      </if>
-      <if test="columnType != null">
-        #{columnType,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -193,7 +172,7 @@
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update information_schema.COLUMNS
+    update COLUMNS
     <set>
       <if test="record.tableSchema != null">
         TABLE_SCHEMA = #{record.tableSchema,jdbcType=VARCHAR},
@@ -216,34 +195,19 @@
       <if test="record.length != null">
         CHARACTER_MAXIMUM_LENGTH = #{record.length,jdbcType=BIGINT},
       </if>
+      <if test="record.scale != null">
+        NUMERIC_SCALE = #{record.scale,jdbcType=BIGINT},
+      </if>
       <if test="record.columnComment != null">
         COLUMN_COMMENT = #{record.columnComment,jdbcType=VARCHAR},
-      </if>
-      <if test="record.columnType != null">
-        COLUMN_TYPE = #{record.columnType,jdbcType=LONGVARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map">
-    update information_schema.COLUMNS
-    set TABLE_SCHEMA = #{record.tableSchema,jdbcType=VARCHAR},
-      TABLE_NAME = #{record.tableName,jdbcType=VARCHAR},
-      COLUMN_NAME = #{record.columnName,jdbcType=VARCHAR},
-      ORDINAL_POSITION = #{record.colno,jdbcType=BIGINT},
-      IS_NULLABLE = #{record.isNullable,jdbcType=VARCHAR},
-      DATA_TYPE = #{record.dataType,jdbcType=VARCHAR},
-      CHARACTER_MAXIMUM_LENGTH = #{record.length,jdbcType=BIGINT},
-      COLUMN_COMMENT = #{record.columnComment,jdbcType=VARCHAR},
-      COLUMN_TYPE = #{record.columnType,jdbcType=LONGVARCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
   <update id="updateByExample" parameterType="map">
-    update information_schema.COLUMNS
+    update COLUMNS
     set TABLE_SCHEMA = #{record.tableSchema,jdbcType=VARCHAR},
       TABLE_NAME = #{record.tableName,jdbcType=VARCHAR},
       COLUMN_NAME = #{record.columnName,jdbcType=VARCHAR},
@@ -251,6 +215,7 @@
       IS_NULLABLE = #{record.isNullable,jdbcType=VARCHAR},
       DATA_TYPE = #{record.dataType,jdbcType=VARCHAR},
       CHARACTER_MAXIMUM_LENGTH = #{record.length,jdbcType=BIGINT},
+      NUMERIC_SCALE = #{record.scale,jdbcType=BIGINT},
       COLUMN_COMMENT = #{record.columnComment,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />

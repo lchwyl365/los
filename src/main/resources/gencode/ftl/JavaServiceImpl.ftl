@@ -83,14 +83,21 @@ public class ${model.domainObjectName}ServiceImpl implements ${model.domainObjec
 	</#if>
 	
 	<#if model.gentype == "TreeGrid">
-	public List<${model.domainObjectName}Vo> selectList(String ${model.parentField}) {
+	public List<${model.domainObjectName}Vo> selectList(${model.typeMap[model.parentField]} ${model.parentField}) {
 		
 		//查询列表
 		${model.domainObjectName}Example example = new ${model.domainObjectName}Example();
 		Criteria criteria = example.createCriteria();
+		<#if model.typeMap[model.parentField] == "String">
 		if(StringUtils.isNotEmpty(${model.parentField})){
 			criteria.and${model.parentField?cap_first}EqualTo(${model.parentField});
 		}
+		<#else>
+		if(${model.parentField} != null){
+			criteria.and${model.parentField?cap_first}EqualTo(${model.parentField});
+		}
+		</#if>
+		
 		//排序
 		/*if(StringUtils.isNotEmpty(dgm.getSort())){
 			example.setOrderByClause(dgm.getSort() + " " + dgm.getOrder());

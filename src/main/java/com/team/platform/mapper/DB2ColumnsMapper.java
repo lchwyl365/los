@@ -1,22 +1,22 @@
 package com.team.platform.mapper;
 
 import com.team.platform.pojo.Columns;
-import com.team.platform.pojo.Db2ColumnsExample;
+import com.team.platform.pojo.DB2ColumnsExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-public interface Db2ColumnsMapper {
+public interface DB2ColumnsMapper {
     /**
      *
      * @mbg.generated
      */
-    long countByExample(Db2ColumnsExample example);
+    long countByExample(DB2ColumnsExample example);
 
     /**
      *
      * @mbg.generated
      */
-    int deleteByExample(Db2ColumnsExample example);
+    int deleteByExample(DB2ColumnsExample example);
 
     /**
      *
@@ -34,17 +34,17 @@ public interface Db2ColumnsMapper {
      *
      * @mbg.generated
      */
-    List<Columns> selectByExample(Db2ColumnsExample example);
+    List<Columns> selectByExample(DB2ColumnsExample example);
 
     /**
      *
      * @mbg.generated
      */
-    int updateByExampleSelective(@Param("record") Columns record, @Param("example") Db2ColumnsExample example);
+    int updateByExampleSelective(@Param("record") Columns record, @Param("example") DB2ColumnsExample example);
 
     /**
      *
      * @mbg.generated
      */
-    int updateByExample(@Param("record") Columns record, @Param("example") Db2ColumnsExample example);
+    int updateByExample(@Param("record") Columns record, @Param("example") DB2ColumnsExample example);
 }

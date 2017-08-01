@@ -71,7 +71,6 @@ public class MybatisXMLDOM {
     		updateElementAttribute(doc,"sqlMapGenerator","targetPackage",sysTables.getMapperTargetPackage());
     		//4.更新javaClientGenerator
     		updateElementAttribute(doc,"javaClientGenerator","targetPackage",sysTables.getMapperTargetPackage());
-    		//< ="HDMS" ="AUTH_ROLE" ="AuthRole">
     		//5.更新表结构
             Map<String,String> tableMap = new HashMap<String,String>();
             tableMap.put("schema", sysTables.getSchemaName());

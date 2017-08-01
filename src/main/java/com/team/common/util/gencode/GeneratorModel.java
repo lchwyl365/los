@@ -2,6 +2,7 @@ package com.team.common.util.gencode;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class GeneratorModel {
 
@@ -16,6 +17,7 @@ public class GeneratorModel {
 	private String serviceTargetPackage;// SERVICE_TARGET_PACKAGE;
 	private String controllerTargetPackage;// CONTROLLER_TARGET_PACKAGE;
 	private List<GeneratorProperty> propertys;// 前台赋值属性
+	private Map<String,String> typeMap;
 	
 	private List<GeneratorProperty> addPropertys;// 需要添加的属性
 	private List<GeneratorProperty> updatePropertys;// 需要修改的属性
@@ -490,6 +492,14 @@ public class GeneratorModel {
 
 	public void setUseUser(Boolean useUser) {
 		this.useUser = useUser;
+	}
+
+	public Map<String, String> getTypeMap() {
+		return typeMap;
+	}
+
+	public void setTypeMap(Map<String, String> typeMap) {
+		this.typeMap = typeMap;
 	}
 	
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.team.platform.mapper.Db2ColumnsMapper">
+<mapper namespace="com.team.platform.mapper.DB2ColumnsMapper">
   <resultMap id="BaseResultMap" type="com.team.platform.pojo.Columns">
     <result column="NAME" jdbcType="VARCHAR" property="columnName" />
     <result column="TBNAME" jdbcType="VARCHAR" property="tableName" />
@@ -9,6 +9,7 @@
     <result column="COLTYPE" jdbcType="CHAR" property="dataType" />
     <result column="NULLS" jdbcType="CHAR" property="isNullable" />
     <result column="LENGTH" jdbcType="SMALLINT" property="length" />
+    <result column="SCALE" jdbcType="SMALLINT" property="scale" />
     <result column="COLNO" jdbcType="SMALLINT" property="colno" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -70,9 +71,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    NAME, TBNAME, TBCREATOR, REMARKS, COLTYPE, NULLS, LENGTH, COLNO
+    NAME, TBNAME, TBCREATOR, REMARKS, COLTYPE, NULLS, LENGTH, SCALE, COLNO
   </sql>
-  <select id="selectByExample" parameterType="com.team.platform.pojo.Db2ColumnsExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.team.platform.pojo.DB2ColumnsExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -86,7 +87,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.team.platform.pojo.Db2ColumnsExample">
+  <delete id="deleteByExample" parameterType="com.team.platform.pojo.DB2ColumnsExample">
     delete from SYSIBM.SYSCOLUMNS
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -95,10 +96,12 @@
   <insert id="insert" parameterType="com.team.platform.pojo.Columns">
     insert into SYSIBM.SYSCOLUMNS (NAME, TBNAME, TBCREATOR, 
       REMARKS, COLTYPE, NULLS, 
-      LENGTH, COLNO)
+      LENGTH, SCALE, COLNO
+      )
     values (#{columnName,jdbcType=VARCHAR}, #{tableName,jdbcType=VARCHAR}, #{tableSchema,jdbcType=VARCHAR}, 
       #{columnComment,jdbcType=VARCHAR}, #{dataType,jdbcType=CHAR}, #{isNullable,jdbcType=CHAR}, 
-      #{length,jdbcType=SMALLINT}, #{colno,jdbcType=SMALLINT})
+      #{length,jdbcType=SMALLINT}, #{scale,jdbcType=SMALLINT}, #{colno,jdbcType=SMALLINT}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.team.platform.pojo.Columns">
     insert into SYSIBM.SYSCOLUMNS
@@ -123,6 +126,9 @@
       </if>
       <if test="length != null">
         LENGTH,
+      </if>
+      <if test="scale != null">
+        SCALE,
       </if>
       <if test="colno != null">
         COLNO,
@@ -150,12 +156,15 @@
       <if test="length != null">
         #{length,jdbcType=SMALLINT},
       </if>
+      <if test="scale != null">
+        #{scale,jdbcType=SMALLINT},
+      </if>
       <if test="colno != null">
         #{colno,jdbcType=SMALLINT},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.team.platform.pojo.Db2ColumnsExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.team.platform.pojo.DB2ColumnsExample" resultType="java.lang.Long">
     select count(*) from SYSIBM.SYSCOLUMNS
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -185,6 +194,9 @@
       <if test="record.length != null">
         LENGTH = #{record.length,jdbcType=SMALLINT},
       </if>
+      <if test="record.scale != null">
+        SCALE = #{record.scale,jdbcType=SMALLINT},
+      </if>
       <if test="record.colno != null">
         COLNO = #{record.colno,jdbcType=SMALLINT},
       </if>
@@ -202,6 +214,7 @@
       COLTYPE = #{record.dataType,jdbcType=CHAR},
       NULLS = #{record.isNullable,jdbcType=CHAR},
       LENGTH = #{record.length,jdbcType=SMALLINT},
+      SCALE = #{record.scale,jdbcType=SMALLINT},
       COLNO = #{record.colno,jdbcType=SMALLINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
