@@ -24,6 +24,7 @@
 			idField:'userid', //主键字段
 			queryParams:{}, //查询条件
 			pagination:true, //显示分页
+			pageSize:20,//每页多少行
 			rownumbers:true, //显示行号
 			columns:[[
 				{field:'ck',checkbox:true,width:2}, //显示复选框

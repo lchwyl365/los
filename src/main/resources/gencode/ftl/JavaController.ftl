@@ -250,11 +250,13 @@ public class ${model.domainObjectName}Controller {
     
     	${model.domainObjectName} ${model.variableName} = new ${model.domainObjectName}();
 	<#list model.propertys as property>
-	  <#if property.propertyType != "Date">
+	  <#if property.propertyType != "Date" && property.propertyType != "BigDecimal" &&  property.propertyType != "Long" &&  property.propertyType != "Short" >
 		String ${property.propertyName} = request.getParameter("${property.propertyName}");
 		if(StringUtils.isNotEmpty(${property.propertyName})){
 			${model.variableName}.set${property.propertyName?cap_first}(${property.propertyType}.valueOf(${property.propertyName}));
 		}
+	  <#else>
+	  	${model.variableName}.set${property.propertyName?cap_first}(new ${property.propertyType}(request.getParameter("${property.propertyName}")));
 	  </#if>
 	</#list>	
 		return ${model.variableName}Service.update(${model.variableName});
@@ -270,11 +272,11 @@ public class ${model.domainObjectName}Controller {
 <#elseif model.gentype == "TreeGrid">
 	@RequestMapping(value = "/queryList/{${model.parentField}}")
 	@ResponseBody
-    public List<${model.domainObjectName}Vo> queryList(@PathVariable String ${model.parentField}) throws Exception{
+    public List<${model.domainObjectName}Vo> queryList(@PathVariable ${model.typeMap[model.parentField]} ${model.parentField}) throws Exception{
 		List<${model.domainObjectName}Vo> list = ${model.variableName}Service.selectList(${model.parentField});
     	return list;
     }
-    </#if>
+</#if>
 
 	@RequestMapping(value="/load${model.pathPrimaryKeyURL}",method = RequestMethod.GET)
 	@ResponseBody

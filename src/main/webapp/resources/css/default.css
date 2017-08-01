@@ -58,8 +58,8 @@ color:#575765;
 .form-table-three-td-right{border:1px solid #D3D3D3;width:22%;background-color: #FFF;text-align: left;padding:6px;}
 
 .search-table{width:90%;border:0px solid #D3D3D3;}
-.search-table-four-td-left{width:10%;text-align: right;padding:4px;}
-.search-table-four-td-right{width:10%;text-align: left;padding:4px;}
+.search-table-four-td-left{width:7%;text-align: right;padding:4px;}
+.search-table-four-td-right{width:9%;text-align: left;padding:4px;}
 .search-table-four-td-right input{height:24px;}
 
 .radioSpan {

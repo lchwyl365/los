@@ -26,7 +26,8 @@
     <result column="FORMATTER" jdbcType="VARCHAR" property="formatter" />
     <result column="COMBOID" jdbcType="VARCHAR" property="comboid" />
     <result column="DEFAULT_VALUE" jdbcType="VARCHAR" property="defaultValue" />
-    <result column="ORDER_NUM" jdbcType="INTEGER" property="orderNum" />
+    <result column="ORDER_NUM" jdbcType="VARCHAR" property="orderNum" />
+    <result column="PROPERTY_SCALE" jdbcType="INTEGER" property="propertyScale" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -90,7 +91,7 @@
     COLUMN_NAME, TBNAME, TBCREATOR, COLNO, REMARKS, COLTYPE, PROPERTY_LENGTH, NULLS, 
     PROPERTY_NAME, PROPERTY_TYPE, PROPERTY_TITLE, ISPRIMARY, ISSELECT, ISLIKE, ISDISPLAY, 
     ISADD, ISUPDATE, WIDTH, SORTABLE, COMPONENT, DATA_OPTIONS, FORMATTER, COMBOID, DEFAULT_VALUE, 
-    ORDER_NUM
+    ORDER_NUM, PROPERTY_SCALE
   </sql>
   <select id="selectByExample" parameterType="com.team.platform.pojo.SysColumnsExample" resultMap="BaseResultMap">
     select
@@ -98,7 +99,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from sys_columns
+    from HDMS.SYS_COLUMNS
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -109,25 +110,25 @@
   <select id="selectByPrimaryKey" parameterType="com.team.platform.pojo.SysColumnsKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from sys_columns
+    from HDMS.SYS_COLUMNS
     where COLUMN_NAME = #{columnName,jdbcType=VARCHAR}
       and TBNAME = #{tbname,jdbcType=VARCHAR}
       and TBCREATOR = #{tbcreator,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="com.team.platform.pojo.SysColumnsKey">
-    delete from sys_columns
+    delete HDMS.from SYS_COLUMNS
     where COLUMN_NAME = #{columnName,jdbcType=VARCHAR}
       and TBNAME = #{tbname,jdbcType=VARCHAR}
       and TBCREATOR = #{tbcreator,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.team.platform.pojo.SysColumnsExample">
-    delete from sys_columns
+    delete HDMS.from SYS_COLUMNS
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.team.platform.pojo.SysColumns">
-    insert into sys_columns (COLUMN_NAME, TBNAME, TBCREATOR, 
+    insert into HDMS.SYS_COLUMNS (COLUMN_NAME, TBNAME, TBCREATOR, 
       COLNO, REMARKS, COLTYPE, 
       PROPERTY_LENGTH, NULLS, PROPERTY_NAME, 
       PROPERTY_TYPE, PROPERTY_TITLE, ISPRIMARY, 
@@ -135,7 +136,7 @@
       ISADD, ISUPDATE, WIDTH, 
       SORTABLE, COMPONENT, DATA_OPTIONS, 
       FORMATTER, COMBOID, DEFAULT_VALUE, 
-      ORDER_NUM)
+      ORDER_NUM, PROPERTY_SCALE)
     values (#{columnName,jdbcType=VARCHAR}, #{tbname,jdbcType=VARCHAR}, #{tbcreator,jdbcType=VARCHAR}, 
       #{colno,jdbcType=BIGINT}, #{remarks,jdbcType=VARCHAR}, #{coltype,jdbcType=VARCHAR}, 
       #{propertyLength,jdbcType=BIGINT}, #{nulls,jdbcType=VARCHAR}, #{propertyName,jdbcType=VARCHAR}, 
@@ -144,10 +145,10 @@
       #{isadd,jdbcType=CHAR}, #{isupdate,jdbcType=CHAR}, #{width,jdbcType=SMALLINT}, 
       #{sortable,jdbcType=CHAR}, #{component,jdbcType=VARCHAR}, #{dataOptions,jdbcType=VARCHAR}, 
       #{formatter,jdbcType=VARCHAR}, #{comboid,jdbcType=VARCHAR}, #{defaultValue,jdbcType=VARCHAR}, 
-      #{orderNum,jdbcType=INTEGER})
+      #{orderNum,jdbcType=VARCHAR}, #{propertyScale,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.team.platform.pojo.SysColumns">
-    insert into sys_columns
+    insert into HDMS.SYS_COLUMNS
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="columnName != null">
         COLUMN_NAME,
@@ -224,6 +225,9 @@
       <if test="orderNum != null">
         ORDER_NUM,
       </if>
+      <if test="propertyScale != null">
+        PROPERTY_SCALE,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="columnName != null">
@@ -299,18 +303,21 @@
         #{defaultValue,jdbcType=VARCHAR},
       </if>
       <if test="orderNum != null">
-        #{orderNum,jdbcType=INTEGER},
+        #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyScale != null">
+        #{propertyScale,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.team.platform.pojo.SysColumnsExample" resultType="java.lang.Long">
-    select count(*) from sys_columns
+    select count(*) from HDMS.SYS_COLUMNS
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update sys_columns
+    update HDMS.SYS_COLUMNS
     <set>
       <if test="record.columnName != null">
         COLUMN_NAME = #{record.columnName,jdbcType=VARCHAR},
@@ -385,7 +392,10 @@
         DEFAULT_VALUE = #{record.defaultValue,jdbcType=VARCHAR},
       </if>
       <if test="record.orderNum != null">
-        ORDER_NUM = #{record.orderNum,jdbcType=INTEGER},
+        ORDER_NUM = #{record.orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.propertyScale != null">
+        PROPERTY_SCALE = #{record.propertyScale,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -393,7 +403,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update sys_columns
+    update HDMS.SYS_COLUMNS
     set COLUMN_NAME = #{record.columnName,jdbcType=VARCHAR},
       TBNAME = #{record.tbname,jdbcType=VARCHAR},
       TBCREATOR = #{record.tbcreator,jdbcType=VARCHAR},
@@ -418,13 +428,14 @@
       FORMATTER = #{record.formatter,jdbcType=VARCHAR},
       COMBOID = #{record.comboid,jdbcType=VARCHAR},
       DEFAULT_VALUE = #{record.defaultValue,jdbcType=VARCHAR},
-      ORDER_NUM = #{record.orderNum,jdbcType=INTEGER}
+      ORDER_NUM = #{record.orderNum,jdbcType=VARCHAR},
+      PROPERTY_SCALE = #{record.propertyScale,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.team.platform.pojo.SysColumns">
-    update sys_columns
+    update HDMS.SYS_COLUMNS
     <set>
       <if test="colno != null">
         COLNO = #{colno,jdbcType=BIGINT},
@@ -490,7 +501,10 @@
         DEFAULT_VALUE = #{defaultValue,jdbcType=VARCHAR},
       </if>
       <if test="orderNum != null">
-        ORDER_NUM = #{orderNum,jdbcType=INTEGER},
+        ORDER_NUM = #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyScale != null">
+        PROPERTY_SCALE = #{propertyScale,jdbcType=INTEGER},
       </if>
     </set>
     where COLUMN_NAME = #{columnName,jdbcType=VARCHAR}
@@ -498,7 +512,7 @@
       and TBCREATOR = #{tbcreator,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.team.platform.pojo.SysColumns">
-    update sys_columns
+    update HDMS.SYS_COLUMNS
     set COLNO = #{colno,jdbcType=BIGINT},
       REMARKS = #{remarks,jdbcType=VARCHAR},
       COLTYPE = #{coltype,jdbcType=VARCHAR},
@@ -520,7 +534,8 @@
       FORMATTER = #{formatter,jdbcType=VARCHAR},
       COMBOID = #{comboid,jdbcType=VARCHAR},
       DEFAULT_VALUE = #{defaultValue,jdbcType=VARCHAR},
-      ORDER_NUM = #{orderNum,jdbcType=INTEGER}
+      ORDER_NUM = #{orderNum,jdbcType=VARCHAR},
+      PROPERTY_SCALE = #{propertyScale,jdbcType=INTEGER}
     where COLUMN_NAME = #{columnName,jdbcType=VARCHAR}
       and TBNAME = #{tbname,jdbcType=VARCHAR}
       and TBCREATOR = #{tbcreator,jdbcType=VARCHAR}

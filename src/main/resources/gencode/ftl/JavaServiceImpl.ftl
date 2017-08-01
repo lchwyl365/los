@@ -85,6 +85,7 @@ public class ${model.domainObjectName}ServiceImpl implements ${model.domainObjec
 	<#if model.gentype == "TreeGrid">
 	public List<${model.domainObjectName}Vo> selectList(${model.typeMap[model.parentField]} ${model.parentField}) {
 		
+		
 		//查询列表
 		${model.domainObjectName}Example example = new ${model.domainObjectName}Example();
 		Criteria criteria = example.createCriteria();

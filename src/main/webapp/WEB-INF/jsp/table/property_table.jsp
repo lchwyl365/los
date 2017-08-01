@@ -61,7 +61,7 @@ $(function(){
 	
 	$("#isAddBtn").click(function(){
 		var isAdd = $('#isAddBtn').is(':checked');
-		var addValue = isAdd ? "F" : "T";
+		var addValue = isAdd ? "T" : "F";
 		PROPERTY.update("isadd="+addValue);
 	});
 	$("#isUpdateBtn").click(function(){

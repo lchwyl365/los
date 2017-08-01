@@ -26,30 +26,31 @@
 							<label for="password">Java类名:</label>
 						</td>
 						<td class="search-table-four-td-right">
-							<input class="easyui-textbox" type="text" name="domainObjectName" data-options="required:true" style="width:128px;"></input>
+							<input class="easyui-textbox" type="text" name="domainObjectName" data-options="required:true" style="width:115px;"></input>
 						</td>
 						<td class="search-table-four-td-left">
 							<label for="username">菜单名:</label>
 						</td>
 						<td class="search-table-four-td-right">
-							<input class="easyui-textbox" type="text" name="menuName" data-options="required:true" style="width:128px;"></input>
+							<input class="easyui-textbox" type="text" name="menuName" data-options="required:true" style="width:115px;"></input>
 						</td>
 						<td class="search-table-four-td-left">
 							<label for="username">访问路径:</label>
 						</td>
 						<td class="search-table-four-td-right">
-							<input class="easyui-textbox" type="text" name="path" data-options="required:true" style="width:128px;"></input>
+							<input class="easyui-textbox" type="text" name="path" data-options="required:true" style="width:115px;"></input>
 						</td>
-						<td class="search-table-four-td-left">&nbsp;</td>
-						<td class="search-table-four-td-right">&nbsp;</td>
+						<td colspan="2" style="padding-left:30px;">
+							<a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="javascript:void(0)" onclick="contentAddPage.submitForm()" style="width:80px">生成</a>
+							<a class="easyui-linkbutton" data-options="iconCls:'icon-back'" href="javascript:void(0)" onclick="contentAddPage.clearForm()" style="width:80px">返回</a>
+						</td>
 					</tr>
 					<tr>
 						<td class="search-table-four-td-left">
 							<label for="status">业务包名:</label>
 						</td>
 						<td class="search-table-four-td-right">
-							
-							<select id="businessName" class="easyui-combobox" name="businessName" data-options="panelHeight:'auto',editable:false" style="width:100%;">
+							<select id="businessName" class="easyui-combobox" name="businessName" data-options="panelHeight:'auto',editable:false" style="width:90%;">
 				                <c:forEach items="${dictitems}" var="item">
 				                	<option value="${item.dictid}">${item.dictname}</option>
 				                </c:forEach>
@@ -59,7 +60,7 @@
 							<label for="status">主界面模型:</label>
 						</td>
 						<td class="search-table-four-td-right">
-			                <select id="gentype" class="easyui-combobox" name="gentype" data-options="panelHeight:'auto',editable:false" style="width:100%;">
+			                <select id="gentype" class="easyui-combobox" name="gentype" data-options="panelHeight:'auto',editable:false" style="width:90%;">
 				                <option value="DataGrid">DataGrid</option>
 				                <option value="TreeGrid">TreeGrid</option>
 			                </select>
@@ -69,7 +70,7 @@
 						</td>
 						<td class="search-table-four-td-right">
 							<div id="parentField_div" style="visibility:hidden">
-				                <select id="parentField" class="easyui-combobox" name="parentField" data-options="panelHeight:'auto',editable:false" style="width:100%;">
+				                <select id="parentField" class="easyui-combobox" name="parentField" data-options="panelHeight:'auto',editable:false" style="width:90%;">
 					                <c:forEach items="${columns}" var="column">
 					                	<option value="${column.propertyName}">${column.propertyName}</option>
 					                </c:forEach>
@@ -81,17 +82,15 @@
 						</td>
 						<td class="search-table-four-td-right">
 							<div id="treeField_div" style="visibility:hidden">
-				                <select id="treeField" class="easyui-combobox" name="treeField" data-options="panelHeight:'auto',editable:false" style="width:100%;">
+				                <select id="treeField" class="easyui-combobox" name="treeField" data-options="panelHeight:'auto',editable:false" style="width:90%;">
 					                <c:forEach items="${columns}" var="column">
 					                	<option value="${column.propertyName}">${column.propertyName}</option>
 					                </c:forEach>
 				                </select>
 			                </div>
 						</td>
-						<td colspan="2" style="padding-left:30px;">
-							<a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="javascript:void(0)" onclick="contentAddPage.submitForm()" style="width:80px">生成</a>
-							<a class="easyui-linkbutton" data-options="iconCls:'icon-back'" href="javascript:void(0)" onclick="contentAddPage.clearForm()" style="width:80px">返回</a>
-						</td>
+						<td class="search-table-four-td-left">&nbsp;</td>
+						<td class="search-table-four-td-right">&nbsp;</td>
 					</tr>
 				</table>
 	    	</form>
