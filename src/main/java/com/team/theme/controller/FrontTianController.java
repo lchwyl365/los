@@ -111,6 +111,10 @@ public class FrontTianController {
     	caseArticle.setChannelId("596191211738751");
     	caseArticle.setStatus("on");
     	List<CmsArticle> caseList = cmsArticleService.selectByCmsArticle(caseArticle,"top_number desc,createtime desc");
+    	for (int i = 0; i < caseList.size(); i++) {
+			System.out.println(caseList.get(i).getContent());
+			System.out.println(caseList.get(i).getImgList().size());
+		}
         model.addAttribute("caseList", caseList);
         
         //产品热销推荐
@@ -135,7 +139,7 @@ public class FrontTianController {
 		String serverName = HttpClientUtil.getServerName(request);
 		//顶部栏目导航
 		CmsChannel cmsChannel = new CmsChannel();
-		cmsChannel.setPid("0");
+		//cmsChannel.setPid("0");
 		cmsChannel.setIstop("on");
 		cmsChannel.setDomainName(serverName);
 		List<CmsChannel> channelList = cmsChannelService.selectByCmsChannel(cmsChannel,"channel_sort desc");
@@ -143,11 +147,40 @@ public class FrontTianController {
     	
 		//当前导航层级
 		CmsChannel channel = cmsChannelService.selectByPrimaryKey(id);
-		model.addAttribute("channel", channel);
-    	if(channel != null && "list".equals(channel.getChannelType())){
+    	CmsChannel childchannel = null;
+    	if("0".equals(channel.getPid())){ //有子栏目
+    		model.addAttribute("channel", channel);
+    		CmsChannel tempChannel = new CmsChannel();
+    		tempChannel.setPid(channel.getChannelId());
+    		List<CmsChannel> childList = cmsChannelService.selectByCmsChannel(tempChannel,"channel_sort desc");
+    		model.addAttribute("childList", childList);
+    		if(childList.size() == 0){ //如果没有子节点，把自己添加进去
+        		childList.add(channel);
+    		}
+    		if(childList.size() > 0){
+    			childchannel = childList.get(0);
+        		model.addAttribute("childchannel", childchannel);
+    		}
+    	}else{
+    		CmsChannel parent = cmsChannelService.selectByPrimaryKey(channel.getPid());
+    		model.addAttribute("channel", parent);
+    		childchannel = channel;
+    		model.addAttribute("childchannel", childchannel);
+    		
+    		CmsChannel tempChannel = new CmsChannel();
+    		tempChannel.setPid(parent.getChannelId());
+    		List<CmsChannel> childList = cmsChannelService.selectByCmsChannel(tempChannel,"channel_sort desc");
+    		model.addAttribute("childList", childList);
+    		
+    		if(childList.size() == 0){//如果没有子节点，把自己添加进去
+    			childList.add(channel);
+    		}
+    	}
+    	
+    	if(childchannel != null && "list".equals(childchannel.getChannelType())){
     		
     		CmsArticle cmsArticle = new CmsArticle();
-        	cmsArticle.setChannelId(channel.getChannelId());
+        	cmsArticle.setChannelId(childchannel.getChannelId());
         	cmsArticle.setStatus("on");
         	EUDataGridModel dgm = new EUDataGridModel();
         	int page = pagerNumber == null ? 0 : pagerNumber;
@@ -155,10 +188,11 @@ public class FrontTianController {
         	dgm.setRows(10);
         	EUDataGridResult result = cmsArticleService.selectList(dgm, cmsArticle);
         	model.addAttribute("dataGridResult", result);
-        	model.addAttribute("pagerNumber", pagerNumber);
     	}
-    	return "front/q/channel";
-    }
+    	model.addAttribute("pagerNumber", pagerNumber);
+    	
+    	return "front/t/channel";
+	}
 	/**
 	 * 文章内容页面
 	 * @param id
@@ -175,19 +209,48 @@ public class FrontTianController {
     	
     	//顶部栏目导航
     	String serverName = HttpClientUtil.getServerName(request);
-		//顶部栏目导航
+    	//顶部栏目导航
 		CmsChannel cmsChannel = new CmsChannel();
-		cmsChannel.setPid("0");
+		//cmsChannel.setPid("0");
 		cmsChannel.setIstop("on");
 		cmsChannel.setDomainName(serverName);
 		List<CmsChannel> channelList = cmsChannelService.selectByCmsChannel(cmsChannel,"channel_sort desc");
 		model.addAttribute("channelList", channelList);
 		
-		//当前导航层级
 		if(article != null){
+			//当前导航层级
 			CmsChannel channel = cmsChannelService.selectByPrimaryKey(article.getChannelId());
-			model.addAttribute("channel", channel);
+	    	CmsChannel childchannel = null;
+	    	if("0".equals(channel.getPid())){ //有子栏目
+	    		model.addAttribute("channel", channel);
+	    		CmsChannel tempChannel = new CmsChannel();
+	    		tempChannel.setPid(channel.getChannelId());
+	    		List<CmsChannel> childList = cmsChannelService.selectByCmsChannel(tempChannel,"channel_sort desc");
+	    		model.addAttribute("childList", childList);
+	    		if(childList.size() == 0){ //如果没有子节点，把自己添加进去
+	        		childList.add(channel);
+	    		}
+	    		if(childList.size() > 0){
+	    			childchannel = childList.get(0);
+	        		model.addAttribute("childchannel", childchannel);
+	    		}
+	    	}else{
+	    		CmsChannel parent = cmsChannelService.selectByPrimaryKey(channel.getPid());
+	    		model.addAttribute("channel", parent);
+	    		childchannel = channel;
+	    		model.addAttribute("childchannel", childchannel);
+	    		
+	    		CmsChannel tempChannel = new CmsChannel();
+	    		tempChannel.setPid(parent.getChannelId());
+	    		List<CmsChannel> childList = cmsChannelService.selectByCmsChannel(tempChannel,"channel_sort desc");
+	    		model.addAttribute("childList", childList);
+	    		
+	    		if(childList.size() == 0){//如果没有子节点，把自己添加进去
+	    			childList.add(channel);
+	    		}
+	    	}
 			
+			model.addAttribute("channel", channel);
 			CmsArticle preArticle = cmsArticleService.getPreArticle(id,article.getDomainName());
 	    	model.addAttribute("preArticle", preArticle);
 	    	
@@ -208,7 +271,7 @@ public class FrontTianController {
 	    		cmsAccessLogService.insert(cmsAccessLog, true);
 	    	}
 		}
-    	return "front/q/article";
+    	return "front/t/article";
     }
 	
 	public String getRemoteHost(javax.servlet.http.HttpServletRequest request){

@@ -178,14 +178,14 @@
 						<div id="picBox" class="picBox">
 							<ul class="cf">
 								<c:forEach items="${caseList}" var="caseArt" varStatus="st">
-									<li><a href=""><img src="${contextPath}${caseArt.thumbnail}"/></a>
-									<a href=""><img src="${contextPath}${caseArt.thumbnail}"/></a>
-									<a href=""><img src="${contextPath}${caseArt.thumbnail}"/></a>
-									<a href=""><img src="$${contextPath}${caseArt.thumbnail}"/></a></li>
+									<li>
+									<c:forEach items="${caseArt.imgList}" var="item">
+										<a href=""><img style="width: 296px;height:259px" src="${contextPath}${item}"/></a>
+									</c:forEach>
+									</li>
 								</c:forEach>
 							</ul>
 						</div>
-						
 						<div id="listBox" class="listBox">
 							<ul class="cf">
 								<c:forEach items="${caseList}" var="caseArt" varStatus="st">
@@ -218,7 +218,7 @@
 		</div>
 		<div class="about_main">
 			<div class="about_left">
-				<h2>荣成市人和镇天宏石材厂<a href=""></a></h2>
+				<h2>荣成市人和镇天宏石材厂<a href="${contextPath}/front/t/channel/596189879568725"></a></h2>
 				<p>
 					<c:choose>
 						<c:when test="${fn:length(introduceChannel.description) > 300}">
@@ -246,7 +246,7 @@
 		</div>
 		<div class="news_main">
 			<div class="news_box news_right">
-				<div class="news_title"><em></em><span>公司新闻</span><a href="">+MORE</a></div>
+				<div class="news_title"><em></em><span>公司新闻</span><a href="${contextPath}/front/t/channel/596190729418742">+MORE</a></div>
 				<%-- <div class="hot_img"><img src="${contextPath}/resources/theme/t/img/newsimg.jpg"/></div> --%>
 				<div class="news_list">
 					<ul>
@@ -267,7 +267,7 @@
 				</div>
 			</div>
 			<div class="news_box news_right">
-				<div class="news_title"><em></em><span>行业信息</span><a href="">+MORE</a></div>
+				<div class="news_title"><em></em><span>行业信息</span><a href="${contextPath}/front/t/channel/599899530688725">+MORE</a></div>
 				<div class="news_list">
 					<ul>
 					<c:forEach items="${industryList}" var="industryArt" varStatus="st">
@@ -287,7 +287,7 @@
 				</div>
 			</div>
 			<div class="news_box">
-				<div class="news_title"><em></em><span>技术支持</span><a href="">+MORE</a></div>
+				<div class="news_title"><em></em><span>技术支持</span><a href="${contextPath}/front/t/channel/599919071288713">+MORE</a></div>
 				<%-- <div class="hot_img"><img src="${contextPath}/resources/theme/t/img/newsimg.jpg"/></div> --%>
 				<div class="news_list">
 					<ul>

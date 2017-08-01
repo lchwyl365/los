@@ -79,6 +79,8 @@ public class CmsChannel {
     private List<CmsVideo> secondVideoList;
     
     private List<CmsVideo> threeVideoList;
+    
+    private String englishStr;
 
     /**
      * 栏目编号
@@ -327,4 +329,13 @@ public class CmsChannel {
 	public void setThreeVideoList(List<CmsVideo> threeVideoList) {
 		this.threeVideoList = threeVideoList;
 	}
+
+	public String getEnglishStr() {
+		return englishStr;
+	}
+
+	public void setEnglishStr(String englishStr) {
+		this.englishStr = englishStr;
+	}
+	
 }

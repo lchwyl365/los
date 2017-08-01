@@ -1,6 +1,14 @@
 package com.team.cms.pojo;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
+import org.apache.commons.lang3.StringUtils;
+
+import com.team.common.util.ImageUtil;
 
 public class CmsArticle {
     /**
@@ -67,6 +75,8 @@ public class CmsArticle {
      * 文章内容
      */
     private String content;
+    
+    private List<String> imgList;
 
     /**
      * 文章编号
@@ -275,4 +285,22 @@ public class CmsArticle {
     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
     }
+
+	public List<String> getImgList() {
+		this.imgList = new ArrayList<String>();
+		if(StringUtils.isNotEmpty(this.content)){
+			Set<String> imgs = ImageUtil.getImgStr(this.content);
+	        if(imgs != null && imgs.size() > 0){
+	        	Iterator<String> iterator = imgs.iterator();
+	        	String img = iterator.next();
+	        	imgList.add(img);
+	        }
+		}
+		return imgList;
+	}
+
+	public void setImgList(List<String> imgList) {
+		this.imgList = imgList;
+	}
+    
 }
