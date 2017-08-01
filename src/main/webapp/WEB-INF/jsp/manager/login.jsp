@@ -47,7 +47,7 @@
             </form>
 		</div>
 	</div>
-    <div id="ft">CopyRight&nbsp;2017&nbsp;&nbsp;版权所有&nbsp;&nbsp;山东普元数智信息技术有限公司</div>
+    <div id="ft">CopyRight&nbsp;2017&nbsp;&nbsp;版权所有&nbsp;&nbsp; 朝龙网络科技有限公司  技术支持:18954198703</div>
 </body>
 
 <script type="text/javascript">

@@ -317,14 +317,9 @@
 	<div class="w">
 		<div class="link_main">
 			<ul>
-				<li><a href="">皇室啡室内装饰石材</a></li>
-				<li><a href="">石岛红花岗岩外墙干挂石材</a></li>
-				<li><a href="">山东皇室珍珠石材</a></li>
-				<li><a href="">紫晶钻石材厂家</a></li>
-				<li><a href="">中国棕石材厂家</a></li>
-				<li><a href="">皇室棕石材厂家</a></li>
-				<li><a href="">皇室啡珠花岗岩厂家</a></li>
-				<li><a href="">皇室棕钻石材厂家</a></li>
+			<c:forEach items="${friendlyLinks}" var="link" varStatus="st">
+				<li><a href="${link.url}">${link.name}</a></li>
+			</c:forEach>
 			</ul>
 		</div>
 	</div>

@@ -156,8 +156,12 @@ public class ${model.domainObjectName}ServiceImpl implements ${model.domainObjec
 					${model.variableName}.set${property.propertyName?cap_first}(PrimaryKeyFactory.generatePK(""));
 				}
 			  </#if>
-			  <#if property.defaultValue?? && property.defaultValue != "" && property.defaultValue != "userid" && property.defaultValue != "domain">
-				${model.variableName}.set${property.propertyName?cap_first}(${property.defaultValue});
+			  <#if property.defaultValue?? && property.defaultValue != "" && property.defaultValue != "userid" && property.defaultValue != "domain" >
+				<#if property.defaultValue == "Date">
+					${model.variableName}.set${property.propertyName?cap_first}(new ${property.defaultValue}());
+				<#else>
+					${model.variableName}.set${property.propertyName?cap_first}(${property.defaultValue});
+				</#if>
 			  </#if>
 			  <#if property.component == "password" >
 				//md5加密

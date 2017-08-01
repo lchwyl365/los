@@ -97,11 +97,10 @@
 
 		<!--内容-->
 		<div class="gsjj_nr">
-			<c:if test="${channel.channelId == childchannel.channelId}">
+			<c:if test="${childchannel.channelType == 'cover'}">
 				${childchannel.content}
 			</c:if>
-			<c:if test="${channel.channelId != childchannel.channelId}">
-				<c:if test="${childchannel.channelType == 'list'}">
+			<c:if test="${childchannel.channelType == 'list'}">
 				<ul class="xwlb_bj">
 					<c:forEach items="${dataGridResult.rows}" var="item">
 						<li>
@@ -147,7 +146,6 @@
 		        </c:if>
 		        </div>
 		    </c:if>
-		</c:if>
 			
 		</div>
 	</div>

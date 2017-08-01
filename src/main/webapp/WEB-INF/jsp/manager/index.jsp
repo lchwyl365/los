@@ -191,7 +191,7 @@
 	    </div>
 	    <div region="south" split="true" style="height: 30px;">
 	        <div id="southPanel" class="footer">
-	        	Copyright © 2017   山东普元数智信息技术有限公司 
+	        	Copyright © 2017   朝龙网络科技有限公司  技术支持:18954198703
 	        </div>
 	    </div>
 	    <div region="west" split="true" title="导航菜单" style="width:180px;" id="west">
@@ -201,7 +201,7 @@
 	    <div id="mainPanle" region="center" style="background: #eee; overflow-y:hidden">
 	        <div id="tabs" class="easyui-tabs"  fit="true" border="false" >
 				<div title="欢迎使用" data-options="iconCls:'icon-home'" style="padding:20px;overflow:hidden;display:none;" id="homeTab">
-					<h1>Welcome to 互联网综合服务平台</h1>
+					<h1>Welcome to 云商智建综合服务平台</h1>
 				</div>
 			</div>
 	    </div>

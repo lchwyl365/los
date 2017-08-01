@@ -108,7 +108,7 @@
 
 
 /* news */
-.news{height: 590px;width: 100%;background: #eaeaea;padding-top:40px ;}
+.news{height: 620px;width: 100%;background: #eaeaea;padding-top:20px ;}
 .news_right{margin-right: 100px;}
 .news .title i{width: 980px;}
 .news_box{width: 330px;float: left;}

@@ -23,10 +23,12 @@ import com.team.cms.pojo.CmsAccessLog;
 import com.team.cms.pojo.CmsArticle;
 import com.team.cms.pojo.CmsBanner;
 import com.team.cms.pojo.CmsChannel;
+import com.team.cms.pojo.CmsFriendlyLink;
 import com.team.cms.service.CmsAccessLogService;
 import com.team.cms.service.CmsArticleService;
 import com.team.cms.service.CmsBannerService;
 import com.team.cms.service.CmsChannelService;
+import com.team.cms.service.CmsFriendlyLinkService;
 import com.team.cms.service.CmsVideoService;
 import com.team.common.pojo.EUDataGridModel;
 import com.team.common.pojo.EUDataGridResult;
@@ -48,6 +50,8 @@ public class FrontTianController {
 	private CmsVideoService cmsVideoService;
 	@Autowired
 	private CmsAccessLogService cmsAccessLogService;
+	@Autowired
+	private CmsFriendlyLinkService cmsFriendlyLinkService;
 
 	@RequestMapping(value = "/index",method = RequestMethod.GET)
     public String index(HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
@@ -123,8 +127,10 @@ public class FrontTianController {
     			Set<String> imgs = ImageUtil.getImgStr(caseArt.getContent());
     	        if(imgs != null && imgs.size() > 0){
     	        	Iterator<String> iterator = imgs.iterator();
-    	        	String img = iterator.next();
-    	        	imgList.add(img);
+    	        	while (iterator.hasNext()) {  
+    	        		String img = iterator.next();
+    	        		imgList.add(img);
+    	        	} 
     	        }
     		}
 			map.put("imgList", imgList);
@@ -145,6 +151,11 @@ public class FrontTianController {
         String status = "on";
         List<CmsArticle> channelArtList = cmsArticleService.selectByChannel(channelIds,status);
         model.addAttribute("channelArtList", channelArtList);
+        
+        CmsFriendlyLink link = new CmsFriendlyLink();
+        link.setDomain(serverName);
+        List<CmsFriendlyLink> friendlyLinks = cmsFriendlyLinkService.selectByCmsFriendlyLink(link, "order_num desc");
+        model.addAttribute("friendlyLinks", friendlyLinks);
         
     	return "front/t/index";
     }
