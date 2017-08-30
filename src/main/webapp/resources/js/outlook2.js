@@ -1,6 +1,6 @@
 ﻿var collapsed = "expand";
 $(function(){
-	var id = $(".main-nav .current").attr("data-id");
+	var id = $(".nav .curr").attr("data-id");
 	refreshLeftMenu(id);
 	tabClose();
 	tabCloseEven();

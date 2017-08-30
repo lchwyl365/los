@@ -24,7 +24,7 @@
 		  </div>
 		</div>
 		<div data-options="region:'center',border:false" style="padding:10px">
-			<form id="contentEditForm" method="post">
+			<form id="contentEditForm" method="post" action="${contextPath}/platform/test/update" >
 				<input type="hidden" name="testid" />
 				<table class="easyui-panel form-table">
 				   <tr>

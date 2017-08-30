@@ -27,9 +27,7 @@
 				{field:'name',title:'菜单名称',width:140},
 				{field:'menuPos',title:'菜单位置',width:60},
 				{field:'href',title:'链接地址',width:100},
-				{field:'iconCls',title:'菜单图标',width:100,
-					formatter:function(value,row,index){return '<span class="icon '+row.iconCls+'">'+row.iconCls+'</span>';}
-				},
+				{field:'iconCls',title:'菜单图标',width:100},
 				{field:'display',title:'是否显示',width:100},
 				{field:'orderNum',title:'序号',width:100},
 				{field:'pid',title:'父菜单编号',width:100}

@@ -49,14 +49,19 @@
 			                        {value:'icon-log',text:'icon-log',iconCls:'icon-log'},
 			                        {value:'icon-table',text:'icon-table',iconCls:'icon-table'},
 			                        {value:'icon-file',text:'icon-file',iconCls:'icon-file'},
-			                        {value:'icon-setting',text:'icon-setting',iconCls:'icon-setting'},
+			                        {value:'icon-setting',text:'icon-setting ',iconCls:'icon-setting'},
 			                        {value:'icon-menu',text:'icon-menu',iconCls:'icon-menu'},
 			                        {value:'icon-test',text:'icon-test',iconCls:'icon-test'},
 			                        {value:'icon-count',text:'icon-count',iconCls:'icon-count'},
-			                        {value:'icon-rule',text:'icon-rule',iconCls:'icon-rule'}
+			                        {value:'icon-rule',text:'icon-rule',iconCls:'icon-rule'},
+			                        {value:'icon-excel',text:'icon-excel',iconCls:'icon-excel'},
+			                        {value:'icon-monitor',text:'icon-monitor',iconCls:'icon-monitor'},
+			                        {value:'icon-settings',text:'icon-settings',iconCls:'icon-settings'},
+			                        {value:'icon-integral',text:'icon-integral',iconCls:'icon-integral'},
+			                        {value:'icon-site',text:'icon-site',iconCls:'icon-site'}
 			                    ],
 			                    editable: false,
-			                    panelHeight: 'auto'
+			                    panelHeight: '300'
 			                    ">
 						</td>
 				    </tr>
@@ -65,7 +70,7 @@
 							<label for="display">是否显示:</label>
 						</td>
 						<td class="form-table-td-right">
-								<input class="easyui-switchbutton" name="display" data-options="onText:'开启',offText:'冻结',checked:true">
+								<input class="easyui-switchbutton" name="display" data-options="onText:'显示',offText:'隐藏',checked:true">
 						</td>
 					    <td class="form-table-td-left">
 							<label for="orderNum">序号:</label>

@@ -7,6 +7,7 @@ import java.util.Date;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.DigestUtils;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -63,6 +64,21 @@ public class AuthTestServiceImpl implements AuthTestService {
 		AuthTestExample example = new AuthTestExample();
 		Criteria criteria = example.createCriteria();
 		
+		if(StringUtils.isNotEmpty(authTest.getTestid())){
+			criteria.andTestidEqualTo(authTest.getTestid());
+		}
+		if(StringUtils.isNotEmpty(authTest.getTestname())){
+			criteria.andTestnameEqualTo(authTest.getTestname());
+		}
+		if(StringUtils.isNotEmpty(authTest.getGroupId())){
+			criteria.andGroupIdEqualTo(authTest.getGroupId());
+		}
+		if(StringUtils.isNotEmpty(authTest.getTestgroup())){
+			criteria.andTestgroupEqualTo(authTest.getTestgroup());
+		}
+		if(StringUtils.isNotEmpty(authTest.getDeptId())){
+			criteria.andDeptIdEqualTo(authTest.getDeptId());
+		}
 		//排序
 		if(StringUtils.isNotEmpty(orderByClause)){
 			example.setOrderByClause(orderByClause);
@@ -72,11 +88,13 @@ public class AuthTestServiceImpl implements AuthTestService {
 	}
 
 	@Override
-	public ResponseResult insert(AuthTest authTest) {
+	public ResponseResult insert(AuthTest authTest,Boolean isDefault) {
 		try {
+			if(isDefault){
 			//补全pojo内容
-		  	if(StringUtils.isEmpty(authTest.getTestid())){
-				authTest.setTestid(PrimaryKeyFactory.generatePK(""));
+			  	if(StringUtils.isEmpty(authTest.getTestid())){
+					authTest.setTestid(PrimaryKeyFactory.generatePK(""));
+				}
 			}
 			authTestMapper.insert(authTest);
 			return ResponseResult.ok();

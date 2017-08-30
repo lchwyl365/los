@@ -5,41 +5,32 @@
 <head>
     <title>互联网综合管理业务平台</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <%-- <link type="text/css" rel="stylesheet" href="${contextPath}/resources/fontsawesome/css/font-awesome.css"/> --%>
+<style type="text/css">
+ul,ol,dl{list-style-type:none}
+.nav{margin-left:100px;height:74px;float:left;font-size:14px;text-align:center;overflow:hidden;position:relative;}
+.nav ul{position:absolute;top:0;left:0;margin: 0;padding: 0;display: block;}
+.nav li{float:left;width:48px;height:61px;padding:13px 13px 0px 13px;cursor:pointer;color:#FFF;}
+.nav li:hover,.nav li.curr{background-color:#1d73a0;}
+.nav li p{width:48px;height:29px;line-height:29px;margin:0px;padding:0px;}
+
+.nav_roll{width:61px;height:74px;line-height:74px;text-align:center;cursor:pointer;background-color:#3B9FE1;}
+.nav_roll div{width:30px;}
+.clearfix {
+    zoom: 1;
+}
+.fa-1x {
+    padding: 27px 0px;
+    font-size: 1.7em;
+    color:#fff;
+}
+/*====font icon===*/
+.font_lager{font-size:32px;}
+.f_left{float:left;height:74px;}
+.f_right{float:right;height:74px;border-left:1px solid #2A83CF;}
+</style>	
 	<script type="text/javascript" src='${contextPath}/resources/js/outlook2.js'> </script>
     <script type="text/javascript">
-	 /* var _menus = {"menus":[
-						{"menuid":"1","icon":"icon-sys","menuname":"控件使用",
-							"menus":[{"menuid":"m001","menuname":"菜单管理","icon":"icon-nav","url":"${contextPath}/menu/list"},
-									{"menuid":"m002","menuname":"添加用户","icon":"icon-plus","url":"http://www.baidu.com"},
-									{"menuid":"m003","menuname":"用户管理","icon":"icon-users","url":"${contextPath}/user/list"},
-									{"menuid":"m004","menuname":"代码生成","icon":"icon-log","url":"${contextPath}/tables/list"},
-									{"menuid":"m005","menuname":"自定义字典","icon":"icon-role","url":"${contextPath}/box/list"},
-									{"menuid":"m006","menuname":"权限设置","icon":"icon-set","url":"demo.html"},
-									{"menuid":"m007","menuname":"系统日志","icon":"icon-log","url":"demo.html"},
-									{"menuid":"m008","menuname":"测试管理","icon":"icon-log","url":"${contextPath}/test/list"},
-									{"menuid":"m009","menuname":"员工管理","icon":"icon-log","url":"demo.html"},
-									{"menuid":"m010","menuname":"员工管理","icon":"icon-log","url":"demo.html"}
-								]
-						},{"menuid":"8","icon":"icon-sys","menuname":"员工管理",
-							"menus":[{"menuid":"m011","menuname":"员工列表","icon":"icon-nav","url":"demo.html"},
-									{"menuid":"m012","menuname":"视频监控","icon":"icon-nav","url":"demo1.html"}
-								]
-						},{"menuid":"56","icon":"icon-sys","menuname":"部门管理",
-							"menus":[{"menuid":"m013","menuname":"添加部门","icon":"icon-nav","url":"demo1.html"},
-									{"menuid":"m014","menuname":"部门列表","icon":"icon-nav","url":"demo2.html"}
-								]
-						},{"menuid":"28","icon":"icon-sys","menuname":"财务管理",
-							"menus":[{"menuid":"m015","menuname":"收支分类","icon":"icon-nav","url":"demo.html"},
-									{"menuid":"m016","menuname":"报表统计","icon":"icon-nav","url":"demo1.html"},
-									{"menuid":"m017","menuname":"添加支出","icon":"icon-nav","url":"demo.html"}
-								]
-						},{"menuid":"39","icon":"icon-sys","menuname":"商城管理",
-							"menus":[{"menuid":"m018","menuname":"商品分","icon":"icon-nav","url":"/shop/productcatagory.aspx"},
-									{"menuid":"m019","menuname":"商品列表","icon":"icon-nav","url":"/shop/product.aspx"},
-									{"menuid":"m020","menuname":"商品订单","icon":"icon-nav","url":"/shop/orders.aspx"}
-								]
-						}
-				]}; */
         //设置登录窗口
         function openPwd() {
             $('#w').window({
@@ -84,6 +75,27 @@
             })
             
         }
+        function initNavBar(){
+        	var top_width = $(document.body).width() - 800;
+			if(top_width>=74){
+				var w = parseInt(top_width / 74) * 74;
+				$("#nav_bar").show();
+				$("#nav_roll_bar").show();
+				$("#nav_bar").width(w + "px");
+			}else{
+				$("#nav_bar").hide();
+				$("#nav_roll_bar").hide();
+			}
+			offset = parseInt($(".nav ul").width())-parseInt($(".nav").width());
+			if(offset>0){
+				$("#nav_roll_bar").show();
+			}else{
+				$("#nav_roll_bar").hide();
+			}
+			$(".nav ul").animate({
+                left:"0px"
+            },300);
+        }
 
         $(function() {
 
@@ -115,25 +127,58 @@
             $("#homeTab").show();
             $("#southPanel").show();
             
-            $(".main-nav li a").click(function(){
-            	$(".main-nav li").removeClass("current");
-            	$(this).parent().addClass("current");
-            	
-            	//清空 panel
-            	var panels = $('#menu').accordion("panels");
-            	for ( var i = panels.length-1 ; i >= 0 ; i-- ){
-            		var index = $('#menu').accordion('getPanelIndex',panels[i]);
-    				$('#menu').accordion('remove',index);
-            	}
-            	var id = $(this).parent().attr("data-id");
-            	refreshLeftMenu(id);
-            	
-            });
- 
+
+            
+            offset = parseInt($(".nav ul").width())-parseInt($(".nav").width());
+			
+            initNavBar();
+    		$(window).resize(function(){
+    			initNavBar();
+    		});
+    		function navLeft(){
+    			if($(".nav ul").position().left < 0){
+    				$(".nav_roll .f_left").off("click");
+    				$(".nav ul").animate({
+    	                left:$(".nav ul").position().left+parseInt($(".nav li").outerWidth())+"px"
+    	            },300,function(){
+    	            	$(".nav_roll .f_left").on("click",navLeft);
+    	            });
+    			}
+    		}
+    		function navright(){
+    			if($(".nav ul").position().left > -offset){
+    				$(".nav_roll .f_right").off("click");
+    				$(".nav ul").animate({
+    	                left:$(".nav ul").position().left+parseInt(-$(".nav li").outerWidth())+"px"
+    	            },300,function(){
+    	            	$(".nav_roll .f_right").on("click",navright);
+    	            });
+    			}
+    		}
+            $(".nav_roll .f_left").click(function(){
+    			navLeft();
+    		});
+    		$(".nav_roll .f_right").click(function(){
+    			navright();
+    		});
+    		$(".nav li").click(function(){
+		
+			//清空 panel
+	            	var panels = $('#menu').accordion("panels");
+	            	for ( var i = panels.length-1 ; i >= 0 ; i-- ){
+	            		var index = $('#menu').accordion('getPanelIndex',panels[i]);
+	    				$('#menu').accordion('remove',index);
+	            	}
+		
+    			var dataId = $(this).attr("data-id");	
+    			refreshLeftMenu(dataId);
+    			
+    			$(this).addClass("curr").siblings().removeClass("curr");
+    		});
         });
         
         function sessionTimeout(){
-        	window.self.location = "${contextPath}/login";
+        	window.self.location = "${contextPath}/manager/login";
         }
     </script>
 
@@ -150,7 +195,36 @@
 				<div class="hd-wrap clearfix">
 					<div class="top-light"></div>
             		<h1 class="logo"></h1>
-            		<ul class="main-nav clearfix">
+            		
+            		<div id="nav_bar" class="nav" style="width:600px;">
+						<ul class="clearfix" style="width:${fn:length(topMenus) * 74}px; left: 0px;">
+							<c:forEach items="${topMenus}" var="topMenu" varStatus="status">
+	            				<c:if test="${status.index == 0}">
+	            					<li class="curr" data-id="${topMenu.menuid}" >
+										<div class="nav-icon ${topMenu.iconCls}"></div>
+										<p>${topMenu.name}</p>
+									</li>
+	            				</c:if>
+	            				<c:if test="${status.index != 0}">
+	            					<li data-id="${topMenu.menuid}" >
+										<div class="nav-icon ${topMenu.iconCls}"></div>
+										<p>${topMenu.name}</p>
+									</li>
+	            				</c:if>
+	            			</c:forEach>
+						</ul>
+					</div>
+					<div id="nav_roll_bar" class="nav_roll f_left" style="">
+						<div class="f_left">
+							<div class="nav-roll-icon icon-left"></div>
+						</div>
+						<div class="f_right">
+							<div class="nav-roll-icon icon-right"></div>
+						</div>
+					</div>
+            		
+            		<%-- <ul class="main-nav clearfix">
+            			<li class="" ><a href="${contextPath}/index">网站首页</a></li>
             			<c:forEach items="${topMenus}" var="topMenu" varStatus="status">
             				<c:if test="${status.index == 0}">
             					<li class="current" data-id="${topMenu.menuid}"><a href="javascript:;">${topMenu.name}</a></li>
@@ -159,7 +233,7 @@
             					<li class="" data-id="${topMenu.menuid}"><a href="javascript:;">${topMenu.name}</a></li>
             				</c:if>
             			</c:forEach>
-		            </ul>
+		            </ul> --%>
 		            <!-- <div class="notice clearfix">
 		                <ul class="clearfix">
 		                    <li class="current"><a href="javascript:;">关于客票行程单打印通知</a></li>
@@ -175,14 +249,14 @@
 		                <div class="login-info clearfix">
 		                    <div class="welcome clearfix"><span>欢迎您,</span><a href="javascript:;" class="user-name">Admin</a></div>
 		                    <div class="login-msg clearfix">
-		                        <a href="javascript:;" class="msg-txt">消息</a>
-		                        <a href="javascript:;" class="msg-num">10</a>
+		                        <!-- <a href="javascript:;" class="msg-txt">消息</a>
+		                        <a href="javascript:;" class="msg-num">10</a> -->
 		                    </div>
 		                </div>
 		                <div class="tool clearfix">
-		                    <a class="tips" href="javascript:;">合作须知</a>
-		                    <a class="tips" href="javascript:;">协议</a>
-		                    <a href="javascript:;" class="help-btn">帮助</a>
+		                    <a class="tips" href="javascript:;" style="display:hidden;">合作须知</a>
+		                    <a class="tips" href="javascript:;" style="display:hidden;">协议</a>
+		                    <a href="javascript:;" class="help-btn" style="display:hidden;">帮助</a>
 		                    <a id="loginOut" href="javascript:;" class="quit-btn exit">退出</a>
 		                </div>
 		            </div>

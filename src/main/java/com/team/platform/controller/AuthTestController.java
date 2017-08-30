@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,6 +33,7 @@ public class AuthTestController {
 	private AuthTestService authTestService;
 	
 	
+	
 	@RequestMapping(value = "/list",method = RequestMethod.GET)
     public String list(HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
 		
@@ -44,8 +46,8 @@ public class AuthTestController {
     }
 	@RequestMapping(value = "/add",method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseResult add(AuthTest authTest) throws Exception{
-		ResponseResult result = authTestService.insert(authTest);
+	public ResponseResult add(HttpServletRequest request,AuthTest authTest) throws Exception{
+		ResponseResult result = authTestService.insert(authTest,true);
 		return result;
 	}
 	
@@ -67,14 +69,28 @@ public class AuthTestController {
     public ResponseResult update(HttpServletRequest request) throws Exception{
     
     	AuthTest authTest = new AuthTest();
-		authTest.setTestid(String.valueOf(request.getParameter("testid")));
-		authTest.setTestname(String.valueOf(request.getParameter("testname")));
-		authTest.setGroupId(String.valueOf(request.getParameter("groupId")));
-		authTest.setTestgroup(String.valueOf(request.getParameter("testgroup")));
-		authTest.setDeptId(String.valueOf(request.getParameter("deptId")));
+		String testid = request.getParameter("testid");
+		if(StringUtils.isNotEmpty(testid)){
+			authTest.setTestid(String.valueOf(testid));
+		}
+		String testname = request.getParameter("testname");
+		if(StringUtils.isNotEmpty(testname)){
+			authTest.setTestname(String.valueOf(testname));
+		}
+		String groupId = request.getParameter("groupId");
+		if(StringUtils.isNotEmpty(groupId)){
+			authTest.setGroupId(String.valueOf(groupId));
+		}
+		String testgroup = request.getParameter("testgroup");
+		if(StringUtils.isNotEmpty(testgroup)){
+			authTest.setTestgroup(String.valueOf(testgroup));
+		}
+		String deptId = request.getParameter("deptId");
+		if(StringUtils.isNotEmpty(deptId)){
+			authTest.setDeptId(String.valueOf(deptId));
+		}
 		return authTestService.update(authTest);
     }
-	
 	@RequestMapping(value = "/queryList",method = RequestMethod.POST)
 	@ResponseBody
     public EUDataGridResult queryList(EUDataGridModel dgm,AuthTest authTest) throws Exception{

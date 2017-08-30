@@ -17,7 +17,7 @@ public interface AuthTestService {
 	
 	public AuthTest selectByPrimaryKey(String testid);
 
-	public ResponseResult insert(AuthTest authTest);
+	public ResponseResult insert(AuthTest authTest,Boolean isDefault);
 
 	public ResponseResult delete(List<String> testids);
 

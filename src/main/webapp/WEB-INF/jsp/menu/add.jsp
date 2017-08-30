@@ -52,10 +52,15 @@
 			                        {value:'icon-menu',text:'icon-menu',iconCls:'icon-menu'},
 			                        {value:'icon-test',text:'icon-test',iconCls:'icon-test'},
 			                        {value:'icon-count',text:'icon-count',iconCls:'icon-count'},
-			                        {value:'icon-rule',text:'icon-rule',iconCls:'icon-rule'}
+			                        {value:'icon-rule',text:'icon-rule',iconCls:'icon-rule'},
+			                        {value:'icon-excel',text:'icon-excel',iconCls:'icon-excel'},
+			                        {value:'icon-monitor',text:'icon-monitor',iconCls:'icon-monitor'},
+			                        {value:'icon-settings',text:'icon-settings',iconCls:'icon-settings'},
+			                        {value:'icon-integral',text:'icon-integral',iconCls:'icon-integral'},
+			                        {value:'icon-site',text:'icon-site',iconCls:'icon-site'}
 			                    ],
 			                    editable: false,
-			                    panelHeight: 'auto'
+			                    panelHeight: '300'
 			                    ">
 						</td>
 				    </tr>

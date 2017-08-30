@@ -130,6 +130,9 @@ public class FrontTianController {
     	        	while (iterator.hasNext()) {  
     	        		String img = iterator.next();
     	        		imgList.add(img);
+    	        		if(imgList.size() == 4){
+    	        			break;
+    	        		}
     	        	} 
     	        }
     		}
