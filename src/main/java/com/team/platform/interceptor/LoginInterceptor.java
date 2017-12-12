@@ -40,7 +40,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 			//跳转到登录页面，把用户请求的url作为参数传递给登录页面。
 //			response.sendRedirect(authUserService.SSO_DOMAIN_BASE_USRL + authUserService.SSO_PAGE_LOGIN 
 //					+ "?redirect=" + request.getRequestURL());
-			response.sendRedirect(request.getContextPath()+"/manager/login");
+			response.sendRedirect(request.getContextPath()+"/admin/login");
 			//返回false
 			return false;
 		}

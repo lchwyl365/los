@@ -47,7 +47,7 @@ public class AuthUser {
      * 创建用户
      */
     private String createUser;
-
+    
     /**
      * 用户编号
      * @return USERID 用户编号
@@ -191,4 +191,5 @@ public class AuthUser {
     public void setCreateUser(String createUser) {
         this.createUser = createUser == null ? null : createUser.trim();
     }
+
 }

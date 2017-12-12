@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
-    <title>互联网综合管理业务平台</title>
+    <title>云商智建服务平台</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="${contextPath}/resources/css/login.css" />
     <link rel="stylesheet" href="${contextPath}/resources/js/icheck-1.0.2/skins/all.css?v=1.0.2" />
@@ -59,7 +59,8 @@ $(function() {
 	
 	var height = $(window).height();
 	$("#container").height(height);
-	$("#bd").css("padding-top",height/2 - $("#bd").height()/2);
+	var bd_ptop = height/2 - ($("#bd").height()/2);
+	$("#bd").css("padding-top", bd_ptop);
 	
 	$(window).resize(function(){
 		var height = $(window).height();
@@ -84,9 +85,9 @@ $(function() {
 			alert("请输入密码!");
 		}
 		var pwd = Encrypt(password);//进行加密
-		$.post("${contextPath}/manager/login",{username:username,password:pwd}, function(data){
+		$.post("${contextPath}/admin/login",{username:username,password:pwd}, function(data){
 			if(data.status == 200){
-				window.self.location = "${contextPath}/manager/index";
+				window.self.location = "${contextPath}/admin/index";
 			} else {
 				alert('登录错误:'+data.msg);
 			}

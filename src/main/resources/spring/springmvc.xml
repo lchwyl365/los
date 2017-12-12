@@ -48,7 +48,7 @@
 	<!-- 拦截器配置 -->
     <mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/manager/index*" />
+			<mvc:mapping path="/admin/index*" />
 			<mvc:mapping path="/platform/**"/>
 			<bean class="com.team.platform.interceptor.LoginInterceptor"/>
 		</mvc:interceptor>

@@ -55,10 +55,11 @@ public class CmsArticleController {
 	private Boolean USE_REDIS;
 	
 	@RequestMapping(value = "/list",method = RequestMethod.GET)
-    public String list(HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
+    public String list(@RequestParam(value="channelId",required=false)String channelId,Model model) throws Exception{
 		
 	  	String combo55059701325166_json = sysComboBoxService.selectComboid("55059701325166");
 		model.addAttribute("combo55059701325166_json", combo55059701325166_json);
+		model.addAttribute("channelId", channelId);
     	return "article/list";
     }
 	
@@ -87,16 +88,24 @@ public class CmsArticleController {
 		}
         cmsArticle.setUserid(user.getUserid());
         cmsArticle.setDomainName(user.getDomainName());
-        Set<String> imgs = ImageUtil.getImgStr(cmsArticle.getContent());
-        if(imgs != null && imgs.size() > 0){
-        	Iterator<String> iterator = imgs.iterator();
-        	String thumbnail = iterator.next();
-        	cmsArticle.setThumbnail(thumbnail);
-        }
+    	String thumbnail = getThumbnail(cmsArticle.getContent());
+    	cmsArticle.setThumbnail(thumbnail);
 		ResponseResult result = cmsArticleService.insert(cmsArticle,true);
 		return result;
 	}
 	
+	public String getThumbnail(String content) {
+		if(StringUtils.isNotEmpty(content)) {
+			Set<String> imgs = ImageUtil.getImgStr(content);
+	        if(imgs != null && imgs.size() > 0){
+	        	Iterator<String> iterator = imgs.iterator();
+	        	String thumbnail = iterator.next();
+	        	return thumbnail;
+	        }
+		}
+		return "";
+	}
+
 	@RequestMapping(value="/delete",method=RequestMethod.POST)
 	@ResponseBody
 	public ResponseResult delete(@RequestParam List<String> articleIds)throws Exception{
@@ -107,6 +116,8 @@ public class CmsArticleController {
 	@RequestMapping(value = "/update/{articleId}",method = RequestMethod.GET)
     public String update(@PathVariable String articleId,Model model) throws Exception{
 	  	model.addAttribute("articleId", articleId);
+	  	CmsArticle cmsArticle = cmsArticleService.selectByPrimaryKey(articleId);
+	  	model.addAttribute("channelId", cmsArticle.getChannelId());
     	return "article/update";
     }
 	
@@ -130,10 +141,6 @@ public class CmsArticleController {
 		String channelId = request.getParameter("channelId");
 		if(StringUtils.isNotEmpty(channelId)){
 			cmsArticle.setChannelId(String.valueOf(channelId));
-		}
-		String thumbnail = request.getParameter("thumbnail");
-		if(StringUtils.isNotEmpty(thumbnail)){
-			cmsArticle.setThumbnail(String.valueOf(thumbnail));
 		}
 		String keywords = request.getParameter("keywords");
 		if(StringUtils.isNotEmpty(keywords)){
@@ -163,6 +170,8 @@ public class CmsArticleController {
 		if(StringUtils.isNotEmpty(topNumber)){
 			cmsArticle.setTopNumber(Integer.valueOf(topNumber));
 		}
+		String thumbnail = getThumbnail(cmsArticle.getContent());
+    	cmsArticle.setThumbnail(thumbnail);
 		return cmsArticleService.update(cmsArticle);
     }
 	

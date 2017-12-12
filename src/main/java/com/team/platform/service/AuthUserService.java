@@ -1,6 +1,7 @@
 package com.team.platform.service;
 
 import java.util.List;
+
 import com.team.common.pojo.EUDataGridModel;
 import com.team.common.pojo.EUDataGridResult;
 import com.team.common.pojo.ResponseResult;
@@ -23,4 +24,9 @@ public interface AuthUserService {
 
 	public ResponseResult update(AuthUser authUser);
 	
+	/**
+	 * 修改密码
+	 */
+	public ResponseResult modPass(AuthUser authUser,String prePassword);
+
 }

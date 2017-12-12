@@ -20,7 +20,7 @@
 			fitColumns: true, //自动调整各列，用了这个属性，下面各列的宽度值就只是一个比例。
 			striped: true, //奇偶行颜色不同
 			collapsible:false,//可折叠
-			url:"${contextPath}/cms/article/queryList", //数据来源
+			url:"${contextPath}/cms/article/queryList?channelId=${channelId}", //数据来源
 			sortName: 'createtime', //排序的列
 			sortOrder: 'desc', //倒序
 			remoteSort: true, //服务器端排序
@@ -72,7 +72,7 @@
 	});
     var CmsArticle = {
     		addRow:function(){//新增
-    			var node = $('#artChannelGrid').tree('getSelected');
+    			var node = $('#artChannelTree').tree('getSelected');
                 if (!node){
                 	$.messager.alert('提示',"请选择你要添加文章的栏目",'info');
     				return;
@@ -130,6 +130,13 @@
     			//重新赋值url 属性
     		    $('#articleTable').datagrid('options').url=url;
     		    $("#articleTable").datagrid('reload');
+    	    },
+    	    channelLoadHandler:function(node,data){
+    	    	var channelId = "${channelId}";
+    	    	if(channelId){
+    	    		var node = $("#artChannelTree").tree("find",channelId);
+    	    		$('#artChannelTree').tree('select', node.target);
+    	    	}
     	    }
 	};
     </script>
@@ -147,8 +154,8 @@
 				</tr>
 			</table>
 		</div> -->
-		<ul id="artChannelGrid" class="easyui-tree" 
-			data-options="url:'${contextPath}/platform/box/combotree?id=55059701325166',method:'get',onClick:CmsArticle.channelClickHandler">
+		<ul id="artChannelTree" class="easyui-tree" 
+			data-options="url:'${contextPath}/platform/box/combotree?id=55059701325166',method:'get',onClick:CmsArticle.channelClickHandler,onLoadSuccess:CmsArticle.channelLoadHandler">
 		</ul>
 	</div>
     <div data-options="region:'center',border:false">

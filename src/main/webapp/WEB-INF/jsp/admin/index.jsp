@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
-    <title>互联网综合管理业务平台</title>
+    <title>云商智建服务平台</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <%-- <link type="text/css" rel="stylesheet" href="${contextPath}/resources/fontsawesome/css/font-awesome.css"/> --%>
 <style type="text/css">
@@ -50,31 +50,47 @@ ul,ol,dl{list-style-type:none}
 
         //修改密码
         function serverLogin() {
+        	var $prepass = $('#txtPrePass');
             var $newpass = $('#txtNewPass');
             var $rePass = $('#txtRePass');
-
+            if ($prepass.val() == '') {
+                msgShow('系统提示', '请输入原密码！', 'warning');
+                return false;
+            }
             if ($newpass.val() == '') {
-                msgShow('系统提示', '请输入密码！', 'warning');
+                msgShow('系统提示', '请输入新密码！', 'warning');
                 return false;
             }
             if ($rePass.val() == '') {
-                msgShow('系统提示', '请在一次输入密码！', 'warning');
+                msgShow('系统提示', '请输入确认密码！', 'warning');
                 return false;
             }
 
             if ($newpass.val() != $rePass.val()) {
-                msgShow('系统提示', '两次密码不一至！请重新输入', 'warning');
-                return false;
-            }
-
-            $.post('/ajax/editpassword.ashx?newpass=' + $newpass.val(), function(msg) {
-                msgShow('系统提示', '恭喜，密码修改成功！<br>您的新密码为：' + msg, 'info');
+                msgShow('系统提示', '两次新密码不一致！请重新输入', 'warning');
+                $prepass.val('');
                 $newpass.val('');
                 $rePass.val('');
-                close();
-            })
-            
+                $rePass.focus();
+                return false;
+            }
+            $.post("${contextPath}/platform/user/modPass?userid=${authUser.userid}&password=" + $newpass.val()+"&prePassword=" + $prepass.val(), function(data){
+    			if(data.status == 200){
+    				msgShow('系统提示', '密码修改成功！', 'info');
+    				$prepass.val('');
+    				$newpass.val('');
+                    $rePass.val('');
+                    $('#password-window').window('close');
+    			}else{
+    				$.messager.alert('错误',data.msg,'error');
+    				$prepass.val('');
+    				$newpass.val('');
+                    $rePass.val('');
+                    //$('#password-window').window('close');
+    			}
+    		});
         }
+        
         function initNavBar(){
         	var top_width = $(document.body).width() - 800;
 			if(top_width>=74){
@@ -100,16 +116,16 @@ ul,ol,dl{list-style-type:none}
         $(function() {
 
             openPwd();
-            //
+            
             $('#editpass').click(function() {
-                $('#w').window('open');
+            	$('#password-window').window('open');
             });
 
             $('#btnEp').click(function() {
                 serverLogin();
             })
 
-			$('#btnCancel').click(function(){closePwd();})
+			$('#btnCancel').click(function(){$('#password-window').window('close');})
 
            
 
@@ -117,7 +133,7 @@ ul,ol,dl{list-style-type:none}
                 $.messager.confirm('系统提示', '您确定要退出本次登录吗?', function(r) {
 
                     if (r) {
-                        location.href = '${contextPath}/manager/loginout';
+                        location.href = '${contextPath}/admin/loginout';
                     }
                 });
 
@@ -163,22 +179,24 @@ ul,ol,dl{list-style-type:none}
     		});
     		$(".nav li").click(function(){
 		
-			//清空 panel
+    			var dataId = $(this).attr("data-id");	
+    			if(dataId == '0000'){
+    				window.open("${contextPath}/index");
+    			}else{
+    				//清空 panel
 	            	var panels = $('#menu').accordion("panels");
 	            	for ( var i = panels.length-1 ; i >= 0 ; i-- ){
 	            		var index = $('#menu').accordion('getPanelIndex',panels[i]);
 	    				$('#menu').accordion('remove',index);
 	            	}
-		
-    			var dataId = $(this).attr("data-id");	
-    			refreshLeftMenu(dataId);
-    			
+    				refreshLeftMenu(dataId);
+    			}
     			$(this).addClass("curr").siblings().removeClass("curr");
     		});
         });
         
         function sessionTimeout(){
-        	window.self.location = "${contextPath}/manager/login";
+        	window.self.location = "${contextPath}/admin/login";
         }
     </script>
 
@@ -197,7 +215,7 @@ ul,ol,dl{list-style-type:none}
             		<h1 class="logo"></h1>
             		
             		<div id="nav_bar" class="nav" style="width:600px;">
-						<ul class="clearfix" style="width:${fn:length(topMenus) * 74}px; left: 0px;">
+						<ul class="clearfix" style="width:${fn:length(topMenus) * 74 + 74}px; left: 0px;">
 							<c:forEach items="${topMenus}" var="topMenu" varStatus="status">
 	            				<c:if test="${status.index == 0}">
 	            					<li class="curr" data-id="${topMenu.menuid}" >
@@ -212,6 +230,10 @@ ul,ol,dl{list-style-type:none}
 									</li>
 	            				</c:if>
 	            			</c:forEach>
+	            			<li data-id="0000">
+								<div class="nav-icon icon-first"></div>
+								<p>网站首页</p>							
+							</li>
 						</ul>
 					</div>
 					<div id="nav_roll_bar" class="nav_roll f_left" style="">
@@ -247,15 +269,15 @@ ul,ol,dl{list-style-type:none}
 		            </div> -->
 		            <div class="toolbar">
 		                <div class="login-info clearfix">
-		                    <div class="welcome clearfix"><span>欢迎您,</span><a href="javascript:;" class="user-name">Admin</a></div>
+		                    <div class="welcome clearfix"><span>欢迎您,</span><a href="javascript:;" class="user-name">${authUser.operatorname}</a></div>
 		                    <div class="login-msg clearfix">
 		                        <!-- <a href="javascript:;" class="msg-txt">消息</a>
 		                        <a href="javascript:;" class="msg-num">10</a> -->
 		                    </div>
 		                </div>
 		                <div class="tool clearfix">
-		                    <a class="tips" href="javascript:;" style="display:hidden;">合作须知</a>
-		                    <a class="tips" href="javascript:;" style="display:hidden;">协议</a>
+		                    <a id="editpass" class="tips" href="javascript:;" style="display:hidden;">修改密码</a>
+		                    <!-- <a class="tips" href="javascript:;" style="display:hidden;">协议</a> -->
 		                    <a href="javascript:;" class="help-btn" style="display:hidden;">帮助</a>
 		                    <a id="loginOut" href="javascript:;" class="quit-btn exit">退出</a>
 		                </div>
@@ -281,28 +303,51 @@ ul,ol,dl{list-style-type:none}
 	    </div>
 	    
 	    <!--修改密码窗口-->
-	    <!-- <div id="w" class="easyui-window" title="修改密码" collapsible="false" minimizable="false"
-	        maximizable="false" icon="icon-save"  style="width: 300px; height: 150px; padding: 5px;
+	    <div id="password-window" class="easyui-window" title="修改密码" collapsible="false" minimizable="false" closed="true"
+	        maximizable="false" icon="icon-save"  style="width: 400px; height: 200px; padding: 5px;
 	        background: #fafafa;">
-	        <div class="easyui-layout" fit="true">
-	            <div region="center" border="false" style="padding: 10px; background: #fff; border: 1px solid #ccc;">
-	                <table cellpadding=3>
-	                    <tr>
-	                        <td>新密码：</td>
-	                        <td><input id="txtNewPass" type="password" class="txt01" /></td>
-	                    </tr>
-	                    <tr>
-	                        <td>确认密码：</td>
-	                        <td><input id="txtRePass" type="password" class="txt01" /></td>
-	                    </tr>
-	                </table>
-	            </div>
-	            <div region="south" border="false" style="text-align: right; height: 30px; line-height: 30px;">
-	                <a id="btnEp" class="easyui-linkbutton" icon="icon-ok" href="javascript:void(0)" >
-	                    确定</a> <a id="btnCancel" class="easyui-linkbutton" icon="icon-cancel" href="javascript:void(0)">取消</a>
-	            </div>
-	        </div>
-	    </div> -->
+	    	<div class="easyui-layout" data-options="fit:true">
+				<div data-options="region:'center,border:false'">
+					<form id="contentAddForm" method="post">
+						<table class="easyui-panel form-table">
+							<tr>
+								<td class="form-table-td-left">
+									<label for="username">原密码：</label>
+								</td>
+								<td class="form-table-td-right">
+									<input class="easyui-validatebox" type="password" id="txtPrePass" name="txtPrePass" data-options="required:true,validType:['length[0,50]']" style="width:200px;"/>
+								</td>
+								
+							</tr>
+							<tr>
+								<td class="form-table-td-left">
+									<label for="username">新密码：</label>
+								</td>
+								<td class="form-table-td-right">
+									<input class="easyui-validatebox" type="password" id="txtNewPass" name="txtNewPass" data-options="required:true,validType:['length[0,50]']" style="width:200px;"/>
+								</td>
+								
+							</tr>
+							<tr>
+								<td class="form-table-td-left">
+									<label for="password">确认密码：</label>
+								</td>
+								<td class="form-table-td-right">
+									<input class="easyui-validatebox" type="password" id="txtRePass" name="txtRePass" data-options="required:true,validType:['length[0,50]']"  style="width:200px;"/>
+								</td>
+								
+							</tr>
+						</table>
+					</form>
+				</div>
+				<div data-options="region:'south',border:false" style="text-align:right;padding:10px 10px;">
+					<a id="btnEp" class="easyui-linkbutton" icon="icon-ok" href="javascript:void(0)" >
+			                    确定</a> <a id="btnCancel" class="easyui-linkbutton" icon="icon-cancel" href="javascript:void(0)">取消</a>
+				</div>
+			</div>
+	    
+	    
+	    </div>
 	
 		<div id="mm" class="easyui-menu" style="width:150px;">
 			<div id="mm-tabclose">关闭</div>

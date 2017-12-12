@@ -26,7 +26,7 @@
 	</filter-mapping>
 	<!-- springmvc的前端控制器 -->
 	<servlet>
-		<servlet-name>los</servlet-name>
+		<servlet-name>DispatcherServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<!-- contextConfigLocation不是必须的， 如果不配置contextConfigLocation， springmvc的配置文件默认在：WEB-INF/servlet的name+"-servlet.xml" -->
 		<init-param>
@@ -36,11 +36,11 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
-        <servlet-name>los</servlet-name>
+        <servlet-name>DispatcherServlet</servlet-name>
         <url-pattern>/index</url-pattern>
     </servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>los</servlet-name>
+		<servlet-name>DispatcherServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>

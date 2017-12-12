@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sun.tracing.dtrace.Attributes;
 import com.team.common.pojo.EUDataGridModel;
 import com.team.common.pojo.EUDataGridResult;
 import com.team.common.pojo.ResponseResult;
@@ -156,6 +157,24 @@ public class AuthUserController {
 	public ResponseResult load(@PathVariable String userid) {
 		AuthUser authUser = authUserService.selectByPrimaryKey(userid);
 		return new ResponseResult(authUser);
+	}
+	
+	/**
+	 * 修改密码
+	 * @param user
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/modPass", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseResult modPass(AuthUser user,@RequestParam(value="prePassword") String prePassword) throws Exception {
+		try {
+			ResponseResult result = authUserService.modPass(user,prePassword);
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseResult.build(ResponseResult.ERROR, e.getMessage());
+		}
 	}
 	
 }

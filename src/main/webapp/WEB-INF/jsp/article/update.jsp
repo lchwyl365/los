@@ -127,14 +127,14 @@ var contentUpdatePage  = {
 		$.post("${contextPath}/cms/article/update",$("#contentEditForm").serialize(), function(data){
 			if(data.status == 200){
 				$.messager.alert('提示','修改成功!');
-				window.self.location = "${contextPath}/cms/article/list";
+				window.self.location = "${contextPath}/cms/article/list?channelId=${channelId}";
 			}else{
 				$.messager.alert('修改错误',data.msg,'error');
 			}
 		});
 	},
 	clearForm : function(){
-		window.self.location = "${contextPath}/cms/article/list";
+		window.self.location = "${contextPath}/cms/article/list?channelId=${channelId}";
 	}
 };
 $(function(){

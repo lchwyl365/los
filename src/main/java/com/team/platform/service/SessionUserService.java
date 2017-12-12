@@ -13,6 +13,8 @@ import com.team.platform.pojo.AuthUser;
 public interface SessionUserService {
 	
 	AuthUser getUserByToken(String token);
+	
+	AuthUser getLoginUser(HttpServletRequest request);
 
 	ResponseResult userLogin(String username, String password,
 			HttpServletRequest request, HttpServletResponse response);

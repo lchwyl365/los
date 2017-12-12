@@ -38,7 +38,6 @@
 	</bean>
 
 	<bean id="jedisClient" class="com.team.platform.dao.impl.JedisClientSingle"/>
-
 	
 	<!-- jedis集群版配置 -->
 	<!-- <bean id="redisClient" class="redis.clients.jedis.JedisCluster">

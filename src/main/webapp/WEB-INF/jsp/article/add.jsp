@@ -122,7 +122,7 @@ var contentAddPage  = {
 		$.post("${contextPath}/cms/article/add",$("#contentAddForm").serialize(), function(data){
 			if(data.status == 200){
 				$.messager.alert('提示','新增成功!');
-				window.self.location = "${contextPath}/cms/article/list";
+				window.self.location = "${contextPath}/cms/article/list?channelId=${channelId}";
 			}else{
 				$.messager.alert('添加错误',data.msg,'error');
 			}
@@ -130,7 +130,7 @@ var contentAddPage  = {
 		
 	},
 	clearForm : function(){
-		window.self.location = "${contextPath}/cms/article/list";
+		window.self.location = "${contextPath}/cms/article/list?channelId=${channelId}";
 	}
 };
 </script>

@@ -26,14 +26,11 @@ import com.team.platform.service.SessionUserService;
 import com.team.platform.service.impl.SessionUserServiceImpl;
 
 @Controller
-@RequestMapping("/manager")
-public class ManagerController {
+@RequestMapping("/admin")
+public class AdminController {
 	
 	@Autowired
 	private AuthMenuService authMenuService;
-	
-	@Autowired
-	private AuthUserService authUserService;
 	
 	@Autowired
 	private SessionUserService sessionUserService;
@@ -49,18 +46,11 @@ public class ManagerController {
 
 	@RequestMapping(value = "/index",method = RequestMethod.GET)
     public String index(HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
-		//从cookie中取token
-		String token = CookieUtils.getCookieValue(request, "TT_TOKEN");
-		//根据token换取用户信息，调用sso系统的接口。
-		AuthUser user = null;
-		if(USE_REDIS){
-			user = sessionUserService.getUserByToken(token);
-		}else{
-			user = (AuthUser) request.getSession().getAttribute(SessionUserServiceImpl.LOGIN_USER);
-		}
+		AuthUser user = sessionUserService.getLoginUser(request);
 		List<AuthMenu> topMenus = authMenuService.selectListByAuth(user.getUserid(),"4758592868910319","top");
 		model.addAttribute("topMenus", topMenus);
-    	return "manager/index";
+		model.addAttribute("authUser",user);
+    	return "admin/index";
     }
 	
 	@RequestMapping(value = "/login",method = RequestMethod.GET)
@@ -68,7 +58,7 @@ public class ManagerController {
 		//AES 加密使用
 		model.addAttribute("key",AesCBC.CBC_KEY);
 		model.addAttribute("iv",AesCBC.CBC_IV);
-    	return "manager/login";
+    	return "admin/login";
     }
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
@@ -94,6 +84,6 @@ public class ManagerController {
 		}else{
 			request.getSession().setAttribute(SessionUserServiceImpl.LOGIN_USER,null);
 		}
-    	return "redirect:/manager/login";
+    	return "redirect:/admin/login";
 	}
 }

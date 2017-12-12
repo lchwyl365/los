@@ -41,6 +41,20 @@ public class SessionUserServiceImpl implements SessionUserService {
 	
 	@Autowired
 	private AuthUserMapper authUserMapper;
+	
+	@Override
+	public AuthUser getLoginUser(HttpServletRequest request) {
+		//从cookie中取token
+		String token = CookieUtils.getCookieValue(request, "TT_TOKEN");
+		//根据token换取用户信息，调用sso系统的接口。
+		AuthUser sessionUser = null;
+		if(USE_REDIS){
+			sessionUser = getUserByToken(token);
+		}else{
+			sessionUser = (AuthUser) request.getSession().getAttribute(LOGIN_USER);
+		}
+		return sessionUser;
+	}
 
 	@Override
 	public AuthUser getUserByToken(String token) {

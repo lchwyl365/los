@@ -392,7 +392,7 @@ var _hmt = _hmt || [];
 			<div class="col-md-2" style="float: left; width: 150px;padding-left:40px;">
 				<div class="bottom-code">
 					<h3>润易集团</h3>
-					<img style="width: 90px" src="${contextPath}/resources/theme/r/img/code.png" />
+					<img style="width: 90px" src="${contextPath}/resources/theme/r/img/code.jpg" />
 					<p style="padding: 5px 15px;">官方微信</p>
 				</div>
 			</div>

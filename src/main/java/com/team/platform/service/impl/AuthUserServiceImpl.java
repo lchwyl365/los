@@ -1,8 +1,7 @@
 package com.team.platform.service.impl;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +12,6 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.team.common.pojo.EUDataGridModel;
 import com.team.common.pojo.EUDataGridResult;
-import com.team.common.util.ExceptionUtil;
-
 import com.team.common.pojo.ResponseResult;
 import com.team.common.util.PrimaryKeyFactory;
 import com.team.platform.mapper.AuthUserMapper;
@@ -22,9 +19,6 @@ import com.team.platform.pojo.AuthUser;
 import com.team.platform.pojo.AuthUserExample;
 import com.team.platform.pojo.AuthUserExample.Criteria;
 import com.team.platform.service.AuthUserService;
-
-
-
 
 /**
  * Created by liuchao on 2017/02/21
@@ -164,4 +158,25 @@ public class AuthUserServiceImpl implements AuthUserService {
 			return ResponseResult.build(ResponseResult.ERROR, e.getMessage());
 		}
 	}
+	
+	/**
+	 * 修改密码
+	 */
+	@Override
+	public ResponseResult modPass(AuthUser user,String prePassword) {
+		if(user==null||user.getUserid()==null){
+			throw new RuntimeException("用户不存在或登录超时！");
+		}
+		
+		AuthUser temp = authUserMapper.selectByPrimaryKey(user.getUserid());
+		String oldPassword = DigestUtils.md5DigestAsHex(prePassword.getBytes());
+		if(!temp.getPassword().equals(oldPassword)){
+			throw new RuntimeException("原密码不正确！");
+		}
+		//md5加密
+		user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
+		authUserMapper.updateByPrimaryKeySelective(user);
+		return ResponseResult.ok();
+	}
+	
 }

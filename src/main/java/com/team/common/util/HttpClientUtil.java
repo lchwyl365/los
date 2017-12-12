@@ -27,9 +27,9 @@ public class HttpClientUtil {
 		String serverName = request.getServerName();
 		
 		if("localhost".equals(serverName)){
-			return "www.rctianhong.com";
+			return "www.runyigroup.com.cn";
 		}else if("nbor.vxg158.10000net.cn".equals(serverName)){
-			return "www.rctianhong.com";
+			return "www.jinan-kendo.com";
 		}else if("yszj.0531yx.cn".equals(serverName)){
 			return "www.rctianhong.com";
 		}
