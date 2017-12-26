@@ -19,7 +19,7 @@
 <body>
 	<div class="easyui-layout" data-options="fit:true">
 		<div data-options="region:'north',border:false" style="height:40px;padding:6px;background-color: #FAFAFA;border-bottom:1px solid #DDDDDD;">
-		  <div class="panel-title" style="float:left;width:200px;height:26px;line-height:26px;margin-left:10px;">${channelName}文章-添加</div>
+		  <div class="panel-title" style="float:left;width:200px;height:26px;line-height:26px;margin-left:10px;">${channelName}-添加</div>
 		  <div style="float:right;width:200px;">
 			<a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="javascript:void(0)" onclick="contentAddPage.submitForm()" style="width:80px">提交</a>
 			<a class="easyui-linkbutton" data-options="iconCls:'icon-back'" href="javascript:void(0)" onclick="contentAddPage.clearForm()" style="width:80px">返回</a>

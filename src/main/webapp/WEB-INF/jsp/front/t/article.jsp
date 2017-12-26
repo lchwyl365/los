@@ -28,7 +28,7 @@
 <div class="head">
 	<div class="w logobox">
 		<div class="logo">
-			<a href=""><img src="${contextPath}/resources/theme/t/img/logo.png" /></a>
+			<a href="${contextPath}/front/t/index"><img src="${contextPath}/resources/theme/t/img/logo.png" /></a>
 			<p>荣成市人和镇天宏石材厂</p>
 			<p>近十年专注天然石材开采、加工经验</p>
 		</div>
@@ -73,7 +73,7 @@
 				<c:forEach items="${childList}" var="item">
 					<c:if test="${childchannel.channelId == item.channelId}">
 						<li id="women"><img src="${contextPath}/resources/theme/t/img/zy1_08.png">
-						<a id="wenzidangq" href="#">${item.channelName}</a></li>
+						<a id="wenzidangq" href="${contextPath}/front/t/channel/${item.channelId}">${item.channelName}</a></li>
 					</c:if>
 					<c:if test="${childchannel.channelId != item.channelId}">
 						<li><img src="${contextPath}/resources/theme/t/img/zy1_08_z.png">
@@ -144,7 +144,9 @@
 				<p>联系电话：17763168888      电子邮件：189651909@qq.com</p>
 				<p>公司主营产品：国产皇室啡石材，山东皇室啡，皇室啡矿山，皇室啡花岗岩、皇室啡石材，皇室啡石材价格。新皇室啡花岗岩，皇室啡石材图片</p>
 			</div>
-			<div class="foot_ewm"><img src="${contextPath}/resources/theme/t/img/ewm.jpg"/></div>
+			<div class="foot_ewm">
+				<%-- <img src="${contextPath}/resources/theme/t/img/ewm.jpg"/> --%>
+			</div>
 		</div>	
 		</div>
 	</div>

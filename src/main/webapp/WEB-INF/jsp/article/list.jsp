@@ -11,7 +11,7 @@
 		var combo55059701325166_json = eval('${combo55059701325166_json}');
     	
 		$('#articleTable').datagrid({
-			title:'栏目文章管理', //标题
+			title:'栏目内容管理', //标题
 			border:false,
 			method:'post',
 			iconCls:'icon-table', //图标
@@ -29,11 +29,11 @@
 			pagination:true, //显示分页
 			rownumbers:true, //显示行号
 			columns:[[
-				{field:'ck',checkbox:true,width:2}, //显示复选框
-				{field:'title',title:'文章标题',width:100,sortable:'F',
+				{field:'ck',checkbox:true,width:10}, //显示复选框
+				{field:'title',title:'标题',width:30,sortable:'F',
 						formatter:function(value,row,index){return row.title;}
 				},
-				{field:'channel_id',title:'栏目',width:100,sortable:'F',
+				{field:'channel_id',title:'栏目',width:30,sortable:'F',
 						formatter:function(value,row,index){
 							var text = '';
 							for(var i=0;i<combo55059701325166_json.length;i++){  
@@ -44,17 +44,26 @@
 							return text;
 						}
 				},
-				{field:'createtime',title:'发布时间',width:100,sortable:'T',
+				{field:'createtime',title:'发布时间',width:20,sortable:'T',
 						formatter:function(value,row,index){if (row.createtime != null) {var date = new Date(row.createtime);return date.format('yyyy-MM-dd hh:mm:ss');}return '';}
 				},
-				{field:'read_count',title:'已读数量',width:100,sortable:'F',
+				{field:'read_count',title:'已读数量',width:20,sortable:'F',
 						formatter:function(value,row,index){return row.readCount;}
 				},
-				{field:'status',title:'状态',width:100,sortable:'F',
+				{field:'status',title:'状态',width:15,sortable:'F',
 						formatter:function(value,row,index){if (row.status == 'F'){return '<span style="color:red;">隐藏</span>';} else {return '显示';}}
 				},
-				{field:'top_number',title:'置顶序号',width:100,sortable:'F',
+				{field:'top_number',title:'置顶序号',width:20,sortable:'F',
 						formatter:function(value,row,index){return row.topNumber;}
+				},
+				{field:'action',title:'操作',width:100,align:'center',
+					formatter:function(value,row,index){
+						var e = '';
+						if(row.pid == '0'){
+							var e = '<a href="javascript:void(0)" onclick="CmsChannel.addSubRow('+row.channelId+')">首页产品推荐</a> ';
+						}
+						return e;
+					}
 				}
 			]],
 			toolbar:'#tb',
@@ -74,7 +83,7 @@
     		addRow:function(){//新增
     			var node = $('#artChannelTree').tree('getSelected');
                 if (!node){
-                	$.messager.alert('提示',"请选择你要添加文章的栏目",'info');
+                	$.messager.alert('提示',"请选择你要添加内容的栏目",'info');
     				return;
                 }
   				window.self.location = "${contextPath}/cms/article/add?channelId="+node.id;
@@ -162,7 +171,7 @@
     	<table id="articleTable"></table>
     	<div id="tb" style="padding:10px;height:auto">
 			<form id="cmsArticleForm" style="margin-bottom: 0px;">
-				<label for="title" style="margin-left:10px;">文章标题: </label>
+				<label for="title" style="margin-left:10px;">标题: </label>
 				<input class="easyui-textbox" name="title" style="width:120px;">
 				<a id="search-btn" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" style="width:80px;">查询</a>
 				<a id="clear-btn" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-clear" style="width:80px;">清空</a>

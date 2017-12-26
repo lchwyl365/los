@@ -288,7 +288,7 @@
 				<configuration>
 					<url>http://localhost:8080/manager/text</url>
 					<server>Tomcat7</server>
-					<path>/los</path>
+					<path>/</path>
 	                <username>tomcat</username> 
 	                <password>tomcat</password>
                 </configuration>
