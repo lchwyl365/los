@@ -1040,6 +1040,66 @@ public class CmsArticleExample {
             addCriterion("domain_name not between", value1, value2, "domainName");
             return (Criteria) this;
         }
+
+        public Criteria andRecommendIsNull() {
+            addCriterion("recommend is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendIsNotNull() {
+            addCriterion("recommend is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendEqualTo(Integer value) {
+            addCriterion("recommend =", value, "recommend");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendNotEqualTo(Integer value) {
+            addCriterion("recommend <>", value, "recommend");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendGreaterThan(Integer value) {
+            addCriterion("recommend >", value, "recommend");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendGreaterThanOrEqualTo(Integer value) {
+            addCriterion("recommend >=", value, "recommend");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendLessThan(Integer value) {
+            addCriterion("recommend <", value, "recommend");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendLessThanOrEqualTo(Integer value) {
+            addCriterion("recommend <=", value, "recommend");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendIn(List<Integer> values) {
+            addCriterion("recommend in", values, "recommend");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendNotIn(List<Integer> values) {
+            addCriterion("recommend not in", values, "recommend");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendBetween(Integer value1, Integer value2) {
+            addCriterion("recommend between", value1, value2, "recommend");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendNotBetween(Integer value1, Integer value2) {
+            addCriterion("recommend not between", value1, value2, "recommend");
+            return (Criteria) this;
+        }
     }
 
     /**

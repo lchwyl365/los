@@ -30,6 +30,15 @@
 			rownumbers:true, //显示行号
 			columns:[[
 				{field:'ck',checkbox:true,width:10}, //显示复选框
+				{field:'thumbnail',title:'缩略图',width:30,sortable:'F',
+					formatter:function(value,row,index){
+						if(row.thumbnail){
+							var e = '<p><img src="'+row.thumbnail+'" height="80" /></p>';return e;
+						}else{
+							return "";
+						}
+					}
+				},
 				{field:'title',title:'标题',width:30,sortable:'F',
 						formatter:function(value,row,index){return row.title;}
 				},
@@ -56,12 +65,19 @@
 				{field:'top_number',title:'置顶序号',width:20,sortable:'F',
 						formatter:function(value,row,index){return row.topNumber;}
 				},
-				{field:'action',title:'操作',width:100,align:'center',
+				{field:'recommend',title:'首页推荐',width:15,sortable:'F',
 					formatter:function(value,row,index){
-						var e = '';
-						if(row.pid == '0'){
-							var e = '<a href="javascript:void(0)" onclick="CmsChannel.addSubRow('+row.channelId+')">首页产品推荐</a> ';
+						if (row.recommend == '1'){
+							return '<span style="color:green;">推荐</span>';
+						} else {
+							return '<span style="color:red;">未推荐</span>';
 						}
+					}
+				},
+				{field:'action',title:'操作',width:40,align:'center',
+					formatter:function(value,row,index){
+						var e = '<a href="javascript:void(0)" style="color:#2882CE;text-decoration:underline;" onclick="CmsArticle.recommendRow('+row.articleId+',1)">推荐</a>&nbsp;&nbsp;';
+						e += '<a href="javascript:void(0)" style="color:#2882CE;text-decoration:underline;" onclick="CmsArticle.recommendRow('+row.articleId+',0)">取消推荐</a> ';
 						return e;
 					}
 				}
@@ -120,6 +136,11 @@
     		        	});
     		        }
     		    });
+    	  	},
+    	  	recommendRow:function(articleId,recommend){
+    	  		$.post('${contextPath}/cms/article/recommend?articleId='+articleId+"&recommend="+recommend,function(data){
+    	  			$("#articleTable").datagrid("reload");
+	        	});
     	  	},
     	  	search:function(){//表格查询
     			var params = $('#articleTable').datagrid('options').queryParams; //先取得 datagrid 的查询参数

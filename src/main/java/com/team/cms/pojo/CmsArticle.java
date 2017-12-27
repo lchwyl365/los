@@ -69,6 +69,11 @@ public class CmsArticle {
     private String domainName;
 
     /**
+     * 
+     */
+    private Integer recommend;
+
+    /**
      * 文章编号
      * @return article_id 文章编号
      */
@@ -274,5 +279,21 @@ public class CmsArticle {
      */
     public void setDomainName(String domainName) {
         this.domainName = domainName == null ? null : domainName.trim();
+    }
+
+    /**
+     * 
+     * @return recommend 
+     */
+    public Integer getRecommend() {
+        return recommend;
+    }
+
+    /**
+     * 
+     * @param recommend 
+     */
+    public void setRecommend(Integer recommend) {
+        this.recommend = recommend;
     }
 }

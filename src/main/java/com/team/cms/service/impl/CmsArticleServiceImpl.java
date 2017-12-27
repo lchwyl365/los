@@ -148,26 +148,22 @@ public class CmsArticleServiceImpl implements CmsArticleService {
 
 	@Override
 	public ResponseResult update(CmsArticle cmsArticle) {
-		try {
-			CmsArticle temp = cmsArticleMapper.selectByPrimaryKey(cmsArticle.getArticleId());
-			temp.setTitle(cmsArticle.getTitle());
-			temp.setContent(cmsArticle.getContent());
-			temp.setChannelId(cmsArticle.getChannelId());
-			temp.setThumbnail(cmsArticle.getThumbnail());
-			temp.setKeywords(cmsArticle.getKeywords());
-			temp.setDescription(cmsArticle.getDescription());
-			temp.setCreatetime(cmsArticle.getCreatetime());
-			temp.setUserid(cmsArticle.getUserid());
-			temp.setReadCount(cmsArticle.getReadCount());
-			temp.setStatus(cmsArticle.getStatus());
-			temp.setDomainName(cmsArticle.getDomainName());
-			temp.setTopNumber(cmsArticle.getTopNumber());
-			cmsArticleMapper.updateByPrimaryKeySelective(temp);
-			return ResponseResult.ok();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return ResponseResult.build(ResponseResult.ERROR, e.getMessage());
-		}
+		CmsArticle temp = cmsArticleMapper.selectByPrimaryKey(cmsArticle.getArticleId());
+		temp.setTitle(cmsArticle.getTitle());
+		temp.setContent(cmsArticle.getContent());
+		temp.setChannelId(cmsArticle.getChannelId());
+		temp.setThumbnail(cmsArticle.getThumbnail());
+		temp.setKeywords(cmsArticle.getKeywords());
+		temp.setDescription(cmsArticle.getDescription());
+		temp.setCreatetime(cmsArticle.getCreatetime());
+		temp.setUserid(cmsArticle.getUserid());
+		temp.setReadCount(cmsArticle.getReadCount());
+		temp.setStatus(cmsArticle.getStatus());
+		temp.setDomainName(cmsArticle.getDomainName());
+		temp.setTopNumber(cmsArticle.getTopNumber());
+		temp.setRecommend(cmsArticle.getRecommend());
+		cmsArticleMapper.updateByPrimaryKeySelective(temp);
+		return ResponseResult.ok();
 	}
 
 	public CmsArticle getPreArticle(String id,String domain) {
@@ -207,6 +203,7 @@ public class CmsArticleServiceImpl implements CmsArticleService {
 		Criteria criteria = example.createCriteria();
 		criteria.andChannelIdIn(channelIds);
 		criteria.andStatusEqualTo(status);
+		criteria.andRecommendEqualTo(1);
 		//排序
 		example.setOrderByClause("createtime desc");
 		

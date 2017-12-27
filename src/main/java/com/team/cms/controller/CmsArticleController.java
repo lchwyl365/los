@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
@@ -174,6 +173,19 @@ public class CmsArticleController {
     	cmsArticle.setThumbnail(thumbnail);
 		return cmsArticleService.update(cmsArticle);
     }
+	
+	@RequestMapping(value="/recommend",method=RequestMethod.POST)
+	@ResponseBody
+	public ResponseResult recommend(CmsArticle cmsArticle) throws Exception{
+		ResponseResult result;
+		try {
+			result = cmsArticleService.update(cmsArticle);
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseResult.build(ResponseResult.ERROR, e.getMessage());
+		}
+	}
 	
 	@RequestMapping(value = "/queryList",method = RequestMethod.POST)
 	@ResponseBody
