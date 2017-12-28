@@ -59,6 +59,7 @@
 		$("#edit-btn").bind('click',AuthUser.updateRow);
 		$("#search-btn").bind('click',AuthUser.search);
 		$("#clear-btn").bind('click',AuthUser.clear);
+		$("#pass-btn").bind('click',AuthUser.updatePwdRow);
 
 	});
     var AuthUser = {
@@ -78,6 +79,9 @@
     			var ps = "";
 			  	ps += "/" + rows[0].userid;
   				window.self.location = '${contextPath}/platform/user/update?page=list_normal&userid='+ps;;
+    		},
+    		updatePwdRow:function(){
+    			alert(123);
     		},
     		deleteRow:function(){//删除
     			var rows = $('#userTable').datagrid('getSelections');
@@ -129,6 +133,8 @@
 				<a id="add-btn" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a>
 				<a id="edit-btn" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a>
 				<a id="del-btn" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
+				<span class="datagrid-btn-separator" style="float:none;margin-left:5px;margin-right:5px;"></span>
+				<a id="pass-btn" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改密码2</a>
 			</form>
 		</div>
     </div>

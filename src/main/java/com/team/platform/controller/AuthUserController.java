@@ -51,7 +51,7 @@ public class AuthUserController {
 	@RequestMapping(value = "/list",method = RequestMethod.GET)
     public String list(HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
 		
-    	return "user/list";
+    	return "user/list_all";
     }
 	
 	@RequestMapping(value = "/add",method = RequestMethod.GET)
