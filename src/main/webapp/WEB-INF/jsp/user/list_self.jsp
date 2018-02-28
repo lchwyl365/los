@@ -77,11 +77,22 @@
     				return;
     			}
     			var ps = "";
-			  	ps += "/" + rows[0].userid;
-  				window.self.location = '${contextPath}/platform/user/update?page=list_normal&userid='+ps;;
+			  	ps += rows[0].userid;
+  				window.self.location = '${contextPath}/platform/user/update?page=list_self&userid='+ps;;
     		},
     		updatePwdRow:function(){
-    			alert(123);
+    			var rows = $('#userTable').datagrid('getSelections');
+    			if(rows.length==0){
+    				$.messager.alert('提示',"请选择你要更新的记录",'info');
+    				return;
+    			}
+    			if(rows.length > 1){
+    				$.messager.alert('提示',"只能选择一条记录进行更新",'info');
+    				return;
+    			}
+    			var ps = "";
+			  	ps += rows[0].userid;
+  				window.self.location = '${contextPath}/platform/user/update_pwd?page=list_self&userid='+ps;;
     		},
     		deleteRow:function(){//删除
     			var rows = $('#userTable').datagrid('getSelections');
@@ -134,7 +145,7 @@
 				<a id="edit-btn" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a>
 				<a id="del-btn" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
 				<span class="datagrid-btn-separator" style="float:none;margin-left:5px;margin-right:5px;"></span>
-				<a id="pass-btn" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改密码2</a>
+				<a id="pass-btn" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改密码</a>
 			</form>
 		</div>
     </div>

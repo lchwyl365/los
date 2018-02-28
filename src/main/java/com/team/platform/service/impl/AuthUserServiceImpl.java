@@ -15,6 +15,8 @@ import com.team.common.pojo.EUDataGridResult;
 import com.team.common.pojo.ResponseResult;
 import com.team.common.util.PrimaryKeyFactory;
 import com.team.platform.mapper.AuthUserMapper;
+import com.team.platform.mapper.CommonMapper;
+import com.team.platform.pojo.AuthRole;
 import com.team.platform.pojo.AuthUser;
 import com.team.platform.pojo.AuthUserExample;
 import com.team.platform.pojo.AuthUserExample.Criteria;
@@ -28,6 +30,9 @@ public class AuthUserServiceImpl implements AuthUserService {
 
 	@Autowired
 	private AuthUserMapper authUserMapper;
+	
+	@Autowired
+	private CommonMapper commonMapper;
 	
 	public EUDataGridResult selectList(EUDataGridModel dgm, AuthUser authUser) {
 		
@@ -52,6 +57,23 @@ public class AuthUserServiceImpl implements AuthUserService {
 		//分页处理
 		PageHelper.startPage(dgm.getPage(), dgm.getRows());
 		List<AuthUser> list = authUserMapper.selectByExample(example);
+		
+		/** 设置机构信息 、角色信息**/
+		for (AuthUser user : list) {
+			List<AuthRole> roles = commonMapper.selectRoleByUser(user.getUserid());
+			if(roles.size() > 0){
+				StringBuilder roleName = new StringBuilder();
+				for (int i = 0; i < roles.size(); i++) {
+					if(i != 0) {
+						roleName.append(";");
+					}
+					AuthRole role = roles.get(i);
+					roleName.append(role.getName());
+				}
+				user.setRolename(roleName.toString());
+			}
+		}
+		
 		//创建一个返回值对象
 		EUDataGridResult result = new EUDataGridResult();
 		result.setRows(list);

@@ -48,6 +48,8 @@ public class AuthUser {
      */
     private String createUser;
     
+    private String rolename;
+    
     /**
      * 用户编号
      * @return USERID 用户编号
@@ -191,5 +193,13 @@ public class AuthUser {
     public void setCreateUser(String createUser) {
         this.createUser = createUser == null ? null : createUser.trim();
     }
+
+	public String getRolename() {
+		return rolename;
+	}
+
+	public void setRolename(String rolename) {
+		this.rolename = rolename;
+	}
 
 }

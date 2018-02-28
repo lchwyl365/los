@@ -11,6 +11,11 @@
 	( select USER_ID FROM AUTH_USER_ROLE where ROLE_ID = ${roleid})
   </select>
   
+  <select id="selectRoleByUser" parameterType="String" resultType="com.team.platform.pojo.AuthRole" >
+    select * FROM AUTH_ROLE where ROLEID in
+	(select ROLE_ID FROM AUTH_USER_ROLE where USER_ID = '${userid}')
+  </select>
+  
   <select id="selectMenuByRole" parameterType="String" resultType="com.team.platform.pojo.AuthMenu" >
     select MENUID, NAME, MENU_POS, HREF, ICON_CLS as iconCls, DISPLAY, ORDER_NUM, PID, LEVEL_TYPE FROM AUTH_MENU
 	where MENUID in (

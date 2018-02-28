@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.team.common.pojo.EUTreeNode;
 import com.team.platform.pojo.AuthMenu;
+import com.team.platform.pojo.AuthRole;
 import com.team.platform.pojo.AuthUser;
 
 public interface CommonMapper {
@@ -19,6 +20,8 @@ public interface CommonMapper {
     public List<EUTreeNode> findManyData(@Param(value="sql")String sql);
 
 	public List<AuthUser> selectUserByRole(@Param(value="roleid")String roleid);
+	
+	public List<AuthRole> selectRoleByUser(@Param(value="userid")String userid);
 	
 	public List<AuthMenu> selectMenuByRole(@Param(value="userid")String userid,@Param(value="pid")String pid,@Param(value="menuPos")String menuPos);
 
