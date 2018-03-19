@@ -35,7 +35,7 @@
 		<div class="head_contact">
 			<em></em>
 			<span>24小时客户服务热线</span>
-			<p>134-6510-2999</p>
+			<p>177-6316-8888</p>
 		</div>
 	</div>
 	<div class="nav">
@@ -139,9 +139,10 @@
 		<div class="foot_main">
 			<div class="foot_logo"><img src="${contextPath}/resources/theme/t/img/logo.png"/></div>
 			<div class="foot_p">
+				<p>皇室啡外墙干挂石材，皇室啡室内装饰石材</p>
 				<p>公司地址：山东省荣成市人和镇天宏石材厂。</p>
-				<p>联系电话：134-6510-2999      电子邮件：189651909@qq.com</p>
-				<p>公司主营产品：中国棕，石岛红6,7,8号，紫晶钻，皇室啡，皇室珍珠，染色板，皇室棕钻，皇室玛瑙，皇室冰花等</p>
+				<p>联系电话：17763168888      电子邮件：189651909@qq.com</p>
+				<p>公司主营产品：国产皇室啡石材，山东皇室啡，皇室啡矿山，皇室啡花岗岩、皇室啡石材，皇室啡石材价格。新皇室啡花岗岩，皇室啡石材图片</p>
 			</div>
 			<div class="foot_ewm">
 				<%-- <img src="${contextPath}/resources/theme/t/img/ewm.jpg"/> --%>

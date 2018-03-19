@@ -98,11 +98,9 @@ public class CmsBannerController {
 		//从cookie中取token
 		String token = CookieUtils.getCookieValue(request, "TT_TOKEN");
 		//根据token换取用户信息，调用sso系统的接口。
-		AuthUser user = null;
-		if(USE_REDIS){
-			user = sessionUserService.getUserByToken(token);
-		}else{
-			user = (AuthUser) request.getSession().getAttribute(SessionUserServiceImpl.LOGIN_USER);
+		AuthUser user = sessionUserService.getLoginUser(request);
+		if(user == null) {
+			return "redirect:/admin/login";
 		}
         cmsBanner.setDomainName(user.getDomainName());
         cmsBannerService.insert(cmsBanner,true);

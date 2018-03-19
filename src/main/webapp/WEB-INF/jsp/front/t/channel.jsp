@@ -30,7 +30,7 @@
 		<div class="logo">
 			<a href="${contextPath}/front/t/index"><img src="${contextPath}/resources/theme/t/img/logo.png" /></a>
 			<p>荣成市人和镇天宏石材厂</p>
-			<p>近十年专注天然石材开采、加工经验</p>
+			<p>专注天然石材加工</p>
 		</div>
 		<div class="head_contact">
 			<em></em>
@@ -111,7 +111,7 @@
 								<dt><a href="${contextPath}/front/t/article/${item.articleId}">${item.title}</a></dt>
 								<dd>${item.description}...</dd>
 								<span>日期：<fmt:formatDate value="${item.createtime}" type="date"/> </span>
-								<span>阅读（152）</span>
+								<span>阅读（${item.readCount}）</span>
 							</dl>
 						</li>
 					</c:forEach>

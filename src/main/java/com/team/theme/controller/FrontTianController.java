@@ -97,21 +97,33 @@ public class FrontTianController {
     	companyArticle.setChannelId("599896164508719");
     	companyArticle.setStatus("on");
     	List<CmsArticle> companyArticleList = cmsArticleService.selectByCmsArticle(companyArticle,"top_number desc,createtime desc");
-    	model.addAttribute("companyArticleList", companyArticleList);
+    	if(companyArticleList != null && companyArticleList.size() > 10) {
+    		model.addAttribute("companyArticleList", companyArticleList.subList(0, 10));
+    	}else {
+    		model.addAttribute("companyArticleList", companyArticleList);
+    	}
     	
     	//行业新闻
     	CmsArticle industryArticle = new CmsArticle();
     	industryArticle.setChannelId("599899530688725");
     	industryArticle.setStatus("on");
     	List<CmsArticle> industryList = cmsArticleService.selectByCmsArticle(industryArticle,"top_number desc,createtime desc");
-    	model.addAttribute("industryList", industryList);
+    	if(industryList != null && industryList.size() > 10) {
+    		model.addAttribute("industryList", industryList.subList(0, 10));
+    	}else {
+    		model.addAttribute("industryList", industryList);
+    	}
     	
     	//技术支持
     	CmsArticle technologyArticle = new CmsArticle();
     	technologyArticle.setChannelId("599919071288713");
     	technologyArticle.setStatus("on");
     	List<CmsArticle> technologyList = cmsArticleService.selectByCmsArticle(technologyArticle,"top_number desc,createtime desc");
-        model.addAttribute("technologyList", technologyList);
+        if(technologyList != null && technologyList.size() > 10) {
+    		model.addAttribute("technologyList", technologyList.subList(0, 10));
+    	}else {
+    		model.addAttribute("technologyList", technologyList);
+    	}
         
         //案例
         List<Map<String,Object>> mapList = new ArrayList<Map<String,Object>>();
