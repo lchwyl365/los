@@ -78,6 +78,7 @@
      }
      .menu-bar{
         overflow: hidden;
+        margin:0px;
      }
      .menu-bar li{
         float: left;
@@ -213,6 +214,9 @@
 		height:160px;background-color: #232530;color:#FFF;text-align: center;
 		font-size: 16px;
 	}
+	.carousel-control{
+		padding-top: 100px;
+	}
     </style>  
   </head>
   <body>
@@ -238,7 +242,36 @@
             </ul>
         </div>
         <div class="row">
-            <img src="${contextPath}/resources/images/tianhong/banner.gif" style="width: 100%">
+            
+            <div id="myCarousel" class="carousel slide">
+			    <!-- 轮播（Carousel）指标 -->
+			    <ol class="carousel-indicators">
+			        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+			        <li data-target="#myCarousel" data-slide-to="1"></li>
+			        <li data-target="#myCarousel" data-slide-to="2"></li>
+			    </ol>   
+			    <!-- 轮播（Carousel）项目 -->
+			    <div class="carousel-inner">
+			        <div class="item active">
+			            <img src="http://www.17sucai.com/preview/569922/2016-06-30/%E8%BD%AE%E6%92%AD/images/1.jpg" alt="First slide">
+			        </div>
+			        <div class="item">
+			            <img src="http://www.17sucai.com/preview/569922/2016-06-30/%E8%BD%AE%E6%92%AD/images/2.jpg" alt="Second slide">
+			        </div>
+			        <div class="item">
+			            <img src="http://www.17sucai.com/preview/569922/2016-06-30/%E8%BD%AE%E6%92%AD/images/3.jpg" alt="Third slide">
+			        </div>
+			    </div>
+			    <!-- 轮播（Carousel）导航 -->
+			    <a class="carousel-control left" href="#myCarousel" 
+			        data-slide="prev">&lsaquo;
+			    </a>
+			    <a class="carousel-control right" href="#myCarousel" 
+			        data-slide="next">&rsaquo;
+			    </a>
+			</div>
+            
+            
         </div>
         <div class="row">
             <img src="${contextPath}/resources/images/tianhong/channel01.gif" style="width: 100%">
@@ -461,5 +494,11 @@
 
     <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    $(function(){
+    	$('.carousel').carousel();
+    })
+    
+    </script>
   </body>
 </html>
