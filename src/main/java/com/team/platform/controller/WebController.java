@@ -22,8 +22,10 @@ public class WebController {
 			return "redirect:/front/r/index";
 		}else if("www.rctianhong.com".equals(serverName)){
 			return "redirect:/front/t/index";
-		}else{
-			return "redirect:/front/q/index";
+		} else if("thyd.0531yx.cn".equals(serverName)){
+			return "redirect:/front/t/mohome";
+		} else {
+			return "redirect:/front/t/index";
 		}
     }
 	

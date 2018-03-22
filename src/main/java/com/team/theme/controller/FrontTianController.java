@@ -315,6 +315,11 @@ public class FrontTianController {
     	return "front/t/article";
     }
 	
+	@RequestMapping(value = "/mohome",method = RequestMethod.GET)
+    public String mohome(HttpServletRequest request,Model model) throws Exception{
+        	
+    	return "front/t/mohome";
+    }
 	public String getRemoteHost(javax.servlet.http.HttpServletRequest request){
 	    String ip = request.getHeader("x-forwarded-for");
 	    if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)){
