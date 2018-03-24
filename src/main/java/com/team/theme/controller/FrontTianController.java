@@ -62,19 +62,9 @@ public class FrontTianController {
 		cmsChannel.setDomainName(serverName);
 		List<CmsChannel> channelList = cmsChannelService.selectByCmsChannel(cmsChannel,"channel_sort desc");
 		model.addAttribute("channelList", channelList);
-    	
-		CmsBanner cmsBanner = new CmsBanner();
-		cmsBanner.setType("home");
-		cmsBanner.setDomainName(serverName);
-		List<CmsBanner> bannerList = cmsBannerService.selectByCmsBanner(cmsBanner,"order_num asc");
-    	model.addAttribute("bannerList", bannerList);
-
-    	//产品栏目
-		CmsChannel productChannel = new CmsChannel();
-		productChannel.setPid("596190358348736");
-		List<CmsChannel> productChannelList = cmsChannelService.selectByCmsChannel(productChannel,"channel_sort desc");
-		model.addAttribute("productChannelList", productChannelList);
 		
+		initHomeInfo(serverName, model);
+
     	//集团简介
     	CmsChannel introduceChannel = cmsChannelService.selectByPrimaryKey("596189879568725");
     	if(introduceChannel != null && StringUtils.isNotEmpty(introduceChannel.getContent())){
@@ -92,7 +82,7 @@ public class FrontTianController {
     	}
     	model.addAttribute("introduceChannel", introduceChannel);
     	
-		//公司新闻
+    	//公司新闻
     	CmsArticle companyArticle = new CmsArticle();
     	companyArticle.setChannelId("599896164508719");
     	companyArticle.setStatus("on");
@@ -153,19 +143,6 @@ public class FrontTianController {
 		}
         model.addAttribute("mapList", mapList);
         
-        //产品热销推荐
-        List<String> channelIds = new ArrayList<String>();
-        channelIds.add("599671970728716");
-        channelIds.add("599821923728718");
-        channelIds.add("599822728358728");
-        channelIds.add("599823329808737");
-        channelIds.add("599823604848743");
-        channelIds.add("599823895078757");
-        channelIds.add("599824175998767");
-        channelIds.add("599832359338712");
-        String status = "on";
-        List<CmsArticle> channelArtList = cmsArticleService.selectByChannel(channelIds,status);
-        model.addAttribute("channelArtList", channelArtList);
         
         CmsFriendlyLink link = new CmsFriendlyLink();
         link.setDomain(serverName);
@@ -180,7 +157,6 @@ public class FrontTianController {
 		String serverName = HttpClientUtil.getServerName(request);
 		//顶部栏目导航
 		CmsChannel cmsChannel = new CmsChannel();
-		//cmsChannel.setPid("0");
 		cmsChannel.setIstop("on");
 		cmsChannel.setDomainName(serverName);
 		List<CmsChannel> channelList = cmsChannelService.selectByCmsChannel(cmsChannel,"channel_sort desc");
@@ -317,9 +293,80 @@ public class FrontTianController {
 	
 	@RequestMapping(value = "/mohome",method = RequestMethod.GET)
     public String mohome(HttpServletRequest request,Model model) throws Exception{
-        	
+		
+		String serverName = HttpClientUtil.getMobileServerName(request);
+		
+		initHomeInfo(serverName, model);
+		
+		//公司新闻
+    	CmsArticle companyArticle = new CmsArticle();
+    	companyArticle.setDomainName(serverName);
+    	companyArticle.setStatus("on");
+    	List<CmsArticle> companyArticleList = cmsArticleService.selectByCmsArticle(companyArticle,"top_number desc,createtime desc");
+    	if(companyArticleList != null && companyArticleList.size() > 10) {
+    		model.addAttribute("companyArticleList", companyArticleList.subList(0, 10));
+    	}else {
+    		model.addAttribute("companyArticleList", companyArticleList);
+    	}
+    	
+    	CmsArticle caseArticle = new CmsArticle();
+    	caseArticle.setChannelId("596191211738751");
+    	caseArticle.setStatus("on");
+    	List<CmsArticle> caseList = cmsArticleService.selectByCmsArticle(caseArticle,"top_number desc,createtime desc");
+    	if(caseList != null && caseList.size() > 4) {
+    		model.addAttribute("caseList", caseList.subList(0, 4));
+    	}else {
+    		model.addAttribute("caseList", caseList);
+    	}
+    	
+		
     	return "front/t/mohome";
     }
+	@RequestMapping(value = "/mochannel/{id}",method = RequestMethod.GET)
+    public String mochannel(HttpServletRequest request, @PathVariable String id, Model model) throws Exception{
+		
+		CmsChannel channel = cmsChannelService.selectByPrimaryKey(id);
+		List<CmsArticle> artList = new ArrayList<CmsArticle>();
+		if ( "list".equals(channel.getChannelType()) ) {
+			
+			CmsArticle cmsArticle = new CmsArticle();
+        	cmsArticle.setChannelId(channel.getChannelId());
+        	cmsArticle.setStatus("on");
+        	artList = cmsArticleService.selectByCmsArticle(cmsArticle, "createtime desc");
+		}
+		model.addAttribute("artList", artList);
+		model.addAttribute("channel", channel);
+		return "front/t/mochannellist";
+    }
+	private void initHomeInfo(String serverName, Model model) {
+		CmsBanner cmsBanner = new CmsBanner();
+		cmsBanner.setType("home");
+		cmsBanner.setDomainName(serverName);
+		List<CmsBanner> bannerList = cmsBannerService.selectByCmsBanner(cmsBanner,"order_num asc");
+    	model.addAttribute("bannerList", bannerList);
+    	
+    	//产品栏目
+		CmsChannel productChannel = new CmsChannel();
+		productChannel.setPid("596190358348736");
+		List<CmsChannel> productChannelList = cmsChannelService.selectByCmsChannel(productChannel,"channel_sort desc");
+		model.addAttribute("productChannelList", productChannelList);
+		
+		//产品热销推荐
+        List<String> channelIds = new ArrayList<String>();
+        channelIds.add("599671970728716");
+        channelIds.add("599821923728718");
+        channelIds.add("599822728358728");
+        channelIds.add("599823329808737");
+        channelIds.add("599823604848743");
+        channelIds.add("599823895078757");
+        channelIds.add("599824175998767");
+        channelIds.add("599832359338712");
+        String status = "on";
+        List<CmsArticle> channelArtList = cmsArticleService.selectByChannel(channelIds,status);
+        model.addAttribute("channelArtList", channelArtList);
+    	
+	}
+
 	public String getRemoteHost(javax.servlet.http.HttpServletRequest request){
 	    String ip = request.getHeader("x-forwarded-for");
 	    if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)){

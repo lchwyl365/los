@@ -97,13 +97,14 @@
      .product-wapper{
         width:90%;
         margin:0px auto;
-        height:240px;
+        height:250px;
         background-color:#FFF;
         margin-top:-80px;
         box-shadow: 0 2px 4px 0 rgba(7, 17, 27, 0.1);
         border-radius: 8px;
         padding-left: 10px;
         padding-top: 15px;
+        margin-bottom:15px;
      }
      .product-wapper .col-xs-3{
         padding: 0px;
@@ -235,32 +236,36 @@
         </div>
         <div class="row">
             <ul class="menu-bar">
-                <li><a href="#">首页</a></li>
-                <li><a href="#">厂家简介</a></li>
+                <li><a href="${contextPath}/front/t/mohome">首页</a></li>
+                <li><a href="${contextPath}/front/t/mochannel/596189879568725">厂家简介</a></li>
                 <li><a href="#">产品中心</a></li>
                 <li><a href="#">建筑案例</a></li>
             </ul>
         </div>
+        
         <div class="row">
-            
             <div id="myCarousel" class="carousel slide">
 			    <!-- 轮播（Carousel）指标 -->
 			    <ol class="carousel-indicators">
-			        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-			        <li data-target="#myCarousel" data-slide-to="1"></li>
-			        <li data-target="#myCarousel" data-slide-to="2"></li>
+			        <c:forEach items="${bannerList}" var="banner" varStatus="status">
+			    		<c:if test="${status.index == 0}">
+           					<li data-target="#myCarousel" data-slide-to="${status.index}" class="active"></li>
+           				</c:if>
+           				<c:if test="${status.index != 0}">
+           					<li data-target="#myCarousel" data-slide-to="${status.index}"></li>
+           				</c:if>
+					</c:forEach>
 			    </ol>   
 			    <!-- 轮播（Carousel）项目 -->
 			    <div class="carousel-inner">
-			        <div class="item active">
-			            <img src="http://www.17sucai.com/preview/569922/2016-06-30/%E8%BD%AE%E6%92%AD/images/1.jpg" alt="First slide">
-			        </div>
-			        <div class="item">
-			            <img src="http://www.17sucai.com/preview/569922/2016-06-30/%E8%BD%AE%E6%92%AD/images/2.jpg" alt="Second slide">
-			        </div>
-			        <div class="item">
-			            <img src="http://www.17sucai.com/preview/569922/2016-06-30/%E8%BD%AE%E6%92%AD/images/3.jpg" alt="Third slide">
-			        </div>
+			    	<c:forEach items="${bannerList}" var="banner" varStatus="status">
+			    		<c:if test="${status.index == 0}">
+           					<div class="item active"><img src="${contextPath}${banner.img}" /></div>
+           				</c:if>
+           				<c:if test="${status.index != 0}">
+           					<div class="item"><img src="${contextPath}${banner.img}" /></div>
+           				</c:if>
+					</c:forEach>
 			    </div>
 			    <!-- 轮播（Carousel）导航 -->
 			    <a class="carousel-control left" href="#myCarousel" 
@@ -277,93 +282,54 @@
             <img src="${contextPath}/resources/images/tianhong/channel01.gif" style="width: 100%">
             <div style="height:80px;background-color:#333439;"></div>
             <div class="product-wapper" >
-                <div class="col-xs-3">
-                    <img src="${contextPath}/resources/images/tianhong/product01.png" style="width: 100%;" />
-                    <p>中华棕系列</p>
-                </div>
-                <div class="col-xs-3">
-                    <img src="${contextPath}/resources/images/tianhong/product01.png" style="width: 100%;" />
-                    <p>中华棕系列</p>
-                </div>
-                <div class="col-xs-3">
-                    <img src="${contextPath}/resources/images/tianhong/product01.png" style="width: 100%;" />
-                    <p>中华棕系列</p>
-                </div>
-                <div class="col-xs-3">
-                    <img src="${contextPath}/resources/images/tianhong/product01.png" style="width: 100%;" />
-                    <p>中华棕系列</p>
-                </div>
-                <div class="col-xs-3">
-                    <img src="${contextPath}/resources/images/tianhong/product01.png" style="width: 100%;" />
-                    <p>中华棕系列</p>
-                </div>
-                <div class="col-xs-3">
-                    <img src="${contextPath}/resources/images/tianhong/product01.png" style="width: 100%;" />
-                    <p>中华棕系列</p>
-                </div>
-                <div class="col-xs-3">
-                    <img src="${contextPath}/resources/images/tianhong/product01.png" style="width: 100%;" />
-                    <p>中华棕系列</p>
-                </div>
-                <div class="col-xs-3">
-                    <img src="${contextPath}/resources/images/tianhong/product01.png" style="width: 100%;" />
-                    <p>中华棕系列</p>
-                </div>
+            	<c:forEach items="${productChannelList}" var="channel">
+            		<div class="col-xs-3">
+            		<a href="${contextPath}/front/t/channel/${channel.channelId}">
+						<img src="${contextPath}${channel.thumbnail}" style="width: 100%;height:74px;" />
+						<p>
+						<c:set var="xindex" value='${fn:indexOf(channel.channelName, "系列")}' />
+						<c:choose>
+							<c:when test="${xindex != -1}">
+								<c:out value="${fn:substring(channel.channelName, 0, xindex)}" /><br>系列
+							</c:when>
+							<c:otherwise>
+								<c:out value="${channel.channelName}" />
+							</c:otherwise>
+						</c:choose>
+						</p>
+					</a>	
+	                </div>
+            	</c:forEach>
             </div>
         </div>
         <div class="row">
             <img src="${contextPath}/resources/images/tianhong/channel_hot.png" style="width: 100%">
             <div style="height:80px;background-color:#333439;"></div>
-            <div class="product-item mt80" >
-                <div class="product-item-title">国产皇室啡</div>
-                <div class="product-item-content">
-					<div class="col-xs-6">
-						<img src="${contextPath}/resources/images/tianhong/product02.png" alt="">
-					</div>
-					<div class="col-xs-6" >
-						<p>
-							石岛红，皇室啡，中国棕，紫晶钻，皇室棕等系列产品，年产量十万平方米无压力，大面积装修无色差，无黑斑，无石线，十年无投诉
-						</p>
-					</div>
-                </div>
-                <div class="product-item-phone">
-                	<h2>立刻拨打电话询价</h2>
-                </div>
-            </div>
-
-            <div class="product-item" >
-                <div class="product-item-title">国产皇室啡</div>
-                <div class="product-item-content">
-					<div class="col-xs-6">
-						<img src="${contextPath}/resources/images/tianhong/product02.png" alt="">
-					</div>
-					<div class="col-xs-6" >
-						<p>
-							石岛红，皇室啡，中国棕，紫晶钻，皇室棕等系列产品，年产量十万平方米无压力，大面积装修无色差，无黑斑，无石线，十年无投诉
-						</p>
-					</div>
-                </div>
-                <div class="product-item-phone">
-                	<h2>立刻拨打电话询价</h2>
-                </div>
-            </div>
-
-            <div class="product-item" >
-                <div class="product-item-title">国产皇室啡</div>
-                <div class="product-item-content">
-					<div class="col-xs-6">
-						<img src="${contextPath}/resources/images/tianhong/product02.png" alt="">
-					</div>
-					<div class="col-xs-6" >
-						<p>
-							石岛红，皇室啡，中国棕，紫晶钻，皇室棕等系列产品，年产量十万平方米无压力，大面积装修无色差，无黑斑，无石线，十年无投诉
-						</p>
-					</div>
-                </div>
-                <div class="product-item-phone">
-                	<h2>立刻拨打电话询价</h2>
-                </div>
-            </div>
+            
+            <c:forEach items="${channelArtList}" var="channelArt" varStatus="status">
+					
+			<c:if test="${status.index == 0}">
+				<div class="product-item mt80" >
+			</c:if>
+			<c:if test="${status.index != 0}">
+				<div class="product-item" >
+			</c:if>	
+	                <div class="product-item-title">${channelArt.title}</div>
+	                <div class="product-item-content">
+						<div class="col-xs-6">
+							<img src="${contextPath}${channelArt.thumbnail}" alt="" style="height:160px;width:160px;"/>
+						</div>
+						<div class="col-xs-6" >
+							<p>
+								&nbsp;&nbsp;${channelArt.description}
+							</p>
+						</div>
+	                </div>
+	                <div class="product-item-phone">
+	                	<h2><a href="tel:13465102999">立刻拨打电话询价</a></h2>
+	                </div>
+	            </div>
+			</c:forEach>
 
         </div>
 
@@ -443,32 +409,28 @@
             </div>
             <img src="${contextPath}/resources/images/tianhong/channel_demo.png" alt="" style="width: 100%">
             <div class="row inst-item">
-                <div class="col-xs-6">
-					<img src="${contextPath}/resources/images/tianhong/product.png" alt="" style="width: 100%">
-                </div>
-                <div class="col-xs-6">
-					<img src="${contextPath}/resources/images/tianhong/product.png" alt="" style="width: 100%">
-                </div>
-                <div class="col-xs-6">
-					<img src="${contextPath}/resources/images/tianhong/product.png" alt="" style="width: 100%">
-                </div>
-                <div class="col-xs-6">
-					<img src="${contextPath}/resources/images/tianhong/product.png" alt="" style="width: 100%">
-                </div>
+            	<c:forEach items="${caseList}" var="caseArt" varStatus="st">
+				   <div class="col-xs-6">
+						<img src="${contextPath}${caseArt.thumbnail}" alt="" style="width: 100%;width:177px;height:132px" />
+	                </div>
+				 </c:forEach>
             </div>
             <img src="${contextPath}/resources/images/tianhong/channel_new.png" alt="" style="width: 100%">
 			<div class="row news-item">
 				<h2>新闻中心</h2>
 				<ul>
-					<li><a href="#">荣成石材项目与大型超市合作</a></li>
-					<li><a href="#">荣成石材项目与大型超市合作</a></li>
-					<li><a href="#">荣成石材项目与大型超市合作</a></li>
-					<li><a href="#">荣成石材项目与大型超市合作</a></li>
-					<li><a href="#">荣成石材项目与大型超市合作</a></li>
-					<li><a href="#">荣成石材项目与大型超市合作</a></li>
-					<li><a href="#">荣成石材项目与大型超市合作</a></li>
-					<li><a href="#">荣成石材项目与大型超市合作</a></li>
-					<li><a href="#">荣成石材项目与大型超市合作</a></li>
+					<c:forEach items="${companyArticleList}" var="companyArt" varStatus="st">
+					   <li><a href="${contextPath}/front/t/article/${companyArt.articleId}">
+					   		<c:choose>
+							<c:when test="${fn:length(companyArt.title) > 16}">
+								<c:out value="${fn:substring(companyArt.title, 0, 16)}......" escapeXml="false" />
+							</c:when>
+							<c:otherwise>
+								<c:out value="${companyArt.title}"  escapeXml="false" />
+							</c:otherwise>
+						</c:choose>
+					   </a></li>
+					 </c:forEach>
 				</ul>
 			</div>
         </div>

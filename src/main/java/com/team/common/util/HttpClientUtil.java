@@ -36,6 +36,18 @@ public class HttpClientUtil {
 		return serverName;
 	}
 
+	public static String getMobileServerName(HttpServletRequest request) {
+		String serverName = request.getServerName();
+		if("localhost".equals(serverName)){
+			return "www.rctianhong.com";
+		}else if("thyd.0531yx.cn".equals(serverName)){
+			return "www.rctianhong.com";
+		}else if("yszj.0531yx.cn".equals(serverName)){
+			return "www.rctianhong.com";
+		}
+		return serverName;
+	}
+
 	public static String doGet(String url, Map<String, String> param) {
 
 		// 创建Httpclient对象
@@ -147,4 +159,5 @@ public class HttpClientUtil {
 
 		return resultString;
 	}
+
 }
