@@ -104,18 +104,26 @@
 		border-left: 5px solid #242424;
 		padding: 0px 10px;
 	}
+	.news-item p img{
+		width:90%;
+		margin:10px auto;
+	}
 	.news-item li{
 		border-bottom: 2px dashed #7E7F82;
 		padding: 10px;
 		font-size: 16px;
 	}
-	.news-item p img{
-		width:90%;
-	}
 	.news-item li a{
 		font-size: 16px;
 		border-left: 5px solid #F74D62;
 		padding-left: 10px;
+	}
+	.news-time{
+		font-size:14px;
+		padding:10px;
+	}
+	.news-time i{
+		margin-right:8px;
 	}
      .product-wapper{
         width:90%;
@@ -248,35 +256,27 @@
             </ul>
         </div>
         <div class="row news-item">
-			<h2>${channel.channelName}</h2>
-			<c:if test="${channel.channelType == 'cover'}">
+			<h2>${article.title}</h2>
+			<div class="row news-time">
+				<div class="col-xs-6">
+					<i class="fa fa-calendar"></i><fmt:formatDate value="${article.createtime}" pattern="yyyy-MM-dd"/>
+				</div>
+				<div class="col-xs-6">
+					<a href="tel:13465102999"><i class="fa fa-phone-square"></i>电话咨询</a>
+				</div>
+			</div>
 			<p>
-				${channel.content}
+				${article.content}
 			</p>
-			</c:if>
-			<c:if test="${channel.channelType == 'list'}">
-				
-			 <c:forEach items="${artList}" var="channelArt" varStatus="status">
-				<div class="product-item" >
-					<a href="${contextPath}/front/t/moarticle/${channelArt.articleId}">
-		                <div class="product-item-title">${channelArt.title}</div>
-		                <div class="product-item-content">
-							<div class="col-xs-6">
-								<img src="${contextPath}${channelArt.thumbnail}" alt="" style="height:160px;width:160px;"/>
-							</div>
-							<div class="col-xs-6" >
-								<p>
-									&nbsp;&nbsp;${channelArt.description}
-								</p>
-							</div>
-		                </div>
-	                </a>
-	                <div class="product-item-phone">
-	                	<h2><a href="tel:13465102999">立刻拨打电话询价</a></h2>
-	                </div>
-	            </div>
-			</c:forEach>
-			</c:if>
+			<div class="row">
+				<c:if test="${preArticle != null }">
+					上一篇：<a href="${contextPath}/front/t/moarticle/${preArticle.articleId}">${preArticle.title}</a>
+				</c:if>
+				<c:if test="${afterArticle != null }">
+					<br/>
+					下一篇：<a href="${contextPath}/front/t/moarticle/${afterArticle.articleId}">${afterArticle.title}</a>
+				</c:if>
+		    </div>
 		</div>
         <div class="row contact-info" >
 				<h3>产品咨询热线</h3>
@@ -297,6 +297,7 @@
     <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script type="text/javascript">
+
     
     </script>
   </body>

@@ -28,6 +28,6 @@ public interface CmsArticleService {
 	
 	public CmsArticle getAfterArticle(String id, String domain);
 
-	public List<CmsArticle> selectByChannel(List<String> channelIds,String status);
+	public List<CmsArticle> selectByChannel(List<String> channelIds,String status,Integer recommend);
 	
 }

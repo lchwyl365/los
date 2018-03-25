@@ -150,6 +150,7 @@
 		margin: 0px;
 		font-size: 22px;
     }
+    .product-item-phone h2 a{ color:#FFF; }
     .product-item-content{
     	padding: 10px;
     }
@@ -238,8 +239,8 @@
             <ul class="menu-bar">
                 <li><a href="${contextPath}/front/t/mohome">首页</a></li>
                 <li><a href="${contextPath}/front/t/mochannel/596189879568725">厂家简介</a></li>
-                <li><a href="#">产品中心</a></li>
-                <li><a href="#">建筑案例</a></li>
+                <li><a href="${contextPath}/front/t/mochannel/596190358348736">产品中心</a></li>
+                <li><a href="${contextPath}/front/t/mochannel/596191211738751">建筑案例</a></li>
             </ul>
         </div>
         
@@ -284,7 +285,7 @@
             <div class="product-wapper" >
             	<c:forEach items="${productChannelList}" var="channel">
             		<div class="col-xs-3">
-            		<a href="${contextPath}/front/t/channel/${channel.channelId}">
+            		<a href="${contextPath}/front/t/mochannel/${channel.channelId}">
 						<img src="${contextPath}${channel.thumbnail}" style="width: 100%;height:74px;" />
 						<p>
 						<c:set var="xindex" value='${fn:indexOf(channel.channelName, "系列")}' />
@@ -314,17 +315,19 @@
 			<c:if test="${status.index != 0}">
 				<div class="product-item" >
 			</c:if>	
-	                <div class="product-item-title">${channelArt.title}</div>
-	                <div class="product-item-content">
-						<div class="col-xs-6">
-							<img src="${contextPath}${channelArt.thumbnail}" alt="" style="height:160px;width:160px;"/>
-						</div>
-						<div class="col-xs-6" >
-							<p>
-								&nbsp;&nbsp;${channelArt.description}
-							</p>
-						</div>
-	                </div>
+					<a href="${contextPath}/front/t/moarticle/${channelArt.articleId}">
+		                <div class="product-item-title">${channelArt.title}</div>
+		                <div class="product-item-content">
+							<div class="col-xs-6">
+								<img src="${contextPath}${channelArt.thumbnail}" alt="" style="height:160px;width:160px;"/>
+							</div>
+							<div class="col-xs-6" >
+								<p>
+									&nbsp;&nbsp;${channelArt.description}
+								</p>
+							</div>
+		                </div>
+	                </a>
 	                <div class="product-item-phone">
 	                	<h2><a href="tel:13465102999">立刻拨打电话询价</a></h2>
 	                </div>
@@ -409,9 +412,11 @@
             </div>
             <img src="${contextPath}/resources/images/tianhong/channel_demo.png" alt="" style="width: 100%">
             <div class="row inst-item">
-            	<c:forEach items="${caseList}" var="caseArt" varStatus="st">
-				   <div class="col-xs-6">
-						<img src="${contextPath}${caseArt.thumbnail}" alt="" style="width: 100%;width:177px;height:132px" />
+            	 <c:forEach items="${caseList}" var="caseArt" varStatus="st">
+				    <div class="col-xs-6">
+				   		<a href="${contextPath}/front/t/moarticle/${caseArt.articleId}">
+							<img src="${contextPath}${caseArt.thumbnail}" alt="" style="width: 100%;width:177px;height:132px" />
+						</a>
 	                </div>
 				 </c:forEach>
             </div>
@@ -420,7 +425,7 @@
 				<h2>新闻中心</h2>
 				<ul>
 					<c:forEach items="${companyArticleList}" var="companyArt" varStatus="st">
-					   <li><a href="${contextPath}/front/t/article/${companyArt.articleId}">
+					   <li><a href="${contextPath}/front/t/moarticle/${companyArt.articleId}">
 					   		<c:choose>
 							<c:when test="${fn:length(companyArt.title) > 16}">
 								<c:out value="${fn:substring(companyArt.title, 0, 16)}......" escapeXml="false" />
@@ -442,15 +447,13 @@
         </div>
         <div class="row">
             <ul class="menu-bar">
-                <li><a href="#">首页</a></li>
-                <li><a href="#">厂家简介</a></li>
-                <li><a href="#">产品中心</a></li>
-                <li><a href="#">建筑案例</a></li>
+                <li><a href="${contextPath}/front/t/mohome">首页</a></li>
+                <li><a href="${contextPath}/front/t/mochannel/596189879568725">厂家简介</a></li>
+                <li><a href="${contextPath}/front/t/mochannel/596190358348736">产品中心</a></li>
+                <li><a href="${contextPath}/front/t/mochannel/596191211738751">建筑案例</a></li>
             </ul>
     	</div>
-    	<div style="height: 200px;">
-
-    	</div>
+ 
     </div>
     
 

@@ -47,8 +47,6 @@ public class FrontTianController {
 	@Autowired
 	private CmsArticleService cmsArticleService;
 	@Autowired
-	private CmsVideoService cmsVideoService;
-	@Autowired
 	private CmsAccessLogService cmsAccessLogService;
 	@Autowired
 	private CmsFriendlyLinkService cmsFriendlyLinkService;
@@ -64,6 +62,20 @@ public class FrontTianController {
 		model.addAttribute("channelList", channelList);
 		
 		initHomeInfo(serverName, model);
+		
+		//产品热销推荐
+        List<String> channelIds = new ArrayList<String>();
+        channelIds.add("599671970728716");
+        channelIds.add("599821923728718");
+        channelIds.add("599822728358728");
+        channelIds.add("599823329808737");
+        channelIds.add("599823604848743");
+        channelIds.add("599823895078757");
+        channelIds.add("599824175998767");
+        channelIds.add("599832359338712");
+        String status = "on";
+        List<CmsArticle> channelArtList = cmsArticleService.selectByChannel(channelIds,status,0);
+        model.addAttribute("channelArtList", channelArtList);
 
     	//集团简介
     	CmsChannel introduceChannel = cmsChannelService.selectByPrimaryKey("596189879568725");
@@ -268,6 +280,7 @@ public class FrontTianController {
 	    	}
 			
 			model.addAttribute("channel", channel);
+			
 			CmsArticle preArticle = cmsArticleService.getPreArticle(id,article.getDomainName());
 	    	model.addAttribute("preArticle", preArticle);
 	    	
@@ -299,10 +312,12 @@ public class FrontTianController {
 		initHomeInfo(serverName, model);
 		
 		//公司新闻
-    	CmsArticle companyArticle = new CmsArticle();
-    	companyArticle.setDomainName(serverName);
-    	companyArticle.setStatus("on");
-    	List<CmsArticle> companyArticleList = cmsArticleService.selectByCmsArticle(companyArticle,"top_number desc,createtime desc");
+		List<String> newsChannelIds = new ArrayList<String>();
+		newsChannelIds.add("599896164508719");
+		newsChannelIds.add("599899530688725");
+		newsChannelIds.add("599919071288713");
+        String st2 = "on";
+    	List<CmsArticle> companyArticleList = cmsArticleService.selectByChannel(newsChannelIds,st2,0);
     	if(companyArticleList != null && companyArticleList.size() > 10) {
     		model.addAttribute("companyArticleList", companyArticleList.subList(0, 10));
     	}else {
@@ -319,15 +334,45 @@ public class FrontTianController {
     		model.addAttribute("caseList", caseList);
     	}
     	
+    	//产品热销推荐
+        List<String> channelIds = new ArrayList<String>();
+        channelIds.add("599671970728716");
+        channelIds.add("599821923728718");
+        channelIds.add("599822728358728");
+        channelIds.add("599823329808737");
+        channelIds.add("599823604848743");
+        channelIds.add("599823895078757");
+        channelIds.add("599824175998767");
+        channelIds.add("599832359338712");
+        String status = "on";
+        List<CmsArticle> channelArtList = cmsArticleService.selectByChannel(channelIds,status,0);
+        if(channelArtList.size() > 4) {
+        	channelArtList = channelArtList.subList(0, 4);
+        }
+        model.addAttribute("channelArtList", channelArtList);
 		
     	return "front/t/mohome";
     }
+	
 	@RequestMapping(value = "/mochannel/{id}",method = RequestMethod.GET)
     public String mochannel(HttpServletRequest request, @PathVariable String id, Model model) throws Exception{
 		
 		CmsChannel channel = cmsChannelService.selectByPrimaryKey(id);
 		List<CmsArticle> artList = new ArrayList<CmsArticle>();
-		if ( "list".equals(channel.getChannelType()) ) {
+		if("596190358348736".equals(id)) {
+			channel.setChannelName("产品中心");
+			channel.setChannelType("list");
+			CmsChannel temp = new CmsChannel();
+			temp.setPid(id);
+			List<CmsChannel> channelList = cmsChannelService.selectByCmsChannel(temp,"channel_sort desc");
+			List<String> channelIds = new ArrayList<String>();
+			for (CmsChannel _channel : channelList) {
+				channelIds.add(_channel.getChannelId());
+			}
+			String status = "on";
+	        artList = cmsArticleService.selectByChannel(channelIds,status,null);
+	        
+		}else if ( "list".equals(channel.getChannelType()) ) {
 			
 			CmsArticle cmsArticle = new CmsArticle();
         	cmsArticle.setChannelId(channel.getChannelId());
@@ -336,8 +381,24 @@ public class FrontTianController {
 		}
 		model.addAttribute("artList", artList);
 		model.addAttribute("channel", channel);
-		return "front/t/mochannellist";
+		return "front/t/mochannel";
     }
+	
+	@RequestMapping(value = "/moarticle/{id}",method = RequestMethod.GET)
+    public String moarticle(HttpServletRequest request, @PathVariable String id, Model model) throws Exception{
+		
+		CmsArticle article = cmsArticleService.selectByPrimaryKey(id);
+    	model.addAttribute("article", article);
+    	
+    	CmsArticle preArticle = cmsArticleService.getPreArticle(id,article.getDomainName());
+    	model.addAttribute("preArticle", preArticle);
+    	
+    	CmsArticle afterArticle = cmsArticleService.getAfterArticle(id,article.getDomainName());
+    	model.addAttribute("afterArticle", afterArticle);
+    	
+		return "front/t/moarticle";
+    }
+	
 	private void initHomeInfo(String serverName, Model model) {
 		CmsBanner cmsBanner = new CmsBanner();
 		cmsBanner.setType("home");
@@ -350,21 +411,6 @@ public class FrontTianController {
 		productChannel.setPid("596190358348736");
 		List<CmsChannel> productChannelList = cmsChannelService.selectByCmsChannel(productChannel,"channel_sort desc");
 		model.addAttribute("productChannelList", productChannelList);
-		
-		//产品热销推荐
-        List<String> channelIds = new ArrayList<String>();
-        channelIds.add("599671970728716");
-        channelIds.add("599821923728718");
-        channelIds.add("599822728358728");
-        channelIds.add("599823329808737");
-        channelIds.add("599823604848743");
-        channelIds.add("599823895078757");
-        channelIds.add("599824175998767");
-        channelIds.add("599832359338712");
-        String status = "on";
-        List<CmsArticle> channelArtList = cmsArticleService.selectByChannel(channelIds,status);
-        model.addAttribute("channelArtList", channelArtList);
-    	
 	}
 
 	public String getRemoteHost(javax.servlet.http.HttpServletRequest request){
