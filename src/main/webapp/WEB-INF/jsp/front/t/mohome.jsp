@@ -213,8 +213,12 @@
 		padding-left: 10px;
 	}
 	.contact-info{
-		height:160px;background-color: #232530;color:#FFF;text-align: center;
+		height:120px;
+		background-color: #232530;
+		color:#FFF;
+		text-align: center;
 		font-size: 16px;
+		padding:30px;
 	}
 	.carousel-control{
 		padding-top: 100px;
@@ -319,7 +323,7 @@
 		                <div class="product-item-title">${channelArt.title}</div>
 		                <div class="product-item-content">
 							<div class="col-xs-6">
-								<img src="${contextPath}${channelArt.thumbnail}" alt="" style="height:160px;width:160px;"/>
+								<img src="${contextPath}${channelArt.thumbnail}" alt="" style="width:95%;"/>
 							</div>
 							<div class="col-xs-6" >
 								<p>

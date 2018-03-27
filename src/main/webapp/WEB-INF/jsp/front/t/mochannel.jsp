@@ -217,8 +217,12 @@
 		padding: 10px;
 	}
 	.contact-info{
-		height:160px;background-color: #232530;color:#FFF;text-align: center;
+		height:140px;
+		background-color: #232530;
+		color:#FFF;
+		text-align: center;
 		font-size: 16px;
+		padding:30px;
 	}
 	.carousel-control{
 		padding-top: 100px;
