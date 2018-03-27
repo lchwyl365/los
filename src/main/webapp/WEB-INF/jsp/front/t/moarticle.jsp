@@ -243,7 +243,7 @@
             <div class="phone-bar">
                 <i class="iconfont icon-dianhua phone-icon" ></i>
                 <p class="phone-title">24小时客户服务热线</p>
-                <p class="phone-num">134-6510-2999</p>
+                <p class="phone-num">${website.telphone}</p>
             </div>
           </div>
         </div>
@@ -262,7 +262,7 @@
 					<i class="fa fa-calendar"></i><fmt:formatDate value="${article.createtime}" pattern="yyyy-MM-dd"/>
 				</div>
 				<div class="col-xs-6">
-					<a href="tel:13465102999"><i class="fa fa-phone-square"></i>电话咨询</a>
+					<a href="tel:${website.telphone}"><i class="fa fa-phone-square"></i>电话咨询</a>
 				</div>
 			</div>
 			<p>
@@ -280,7 +280,7 @@
 		</div>
         <div class="row contact-info" >
 				<h3>产品咨询热线</h3>
-				<p>地址:山东省荣成市人和镇东邵家山石材工业园</p>
+				<p>地址:${website.address}</p>
 				<p>技术支持:山东创服信息技术有限公司</p>
         </div>
         <div class="row">

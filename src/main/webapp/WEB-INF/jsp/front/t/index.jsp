@@ -10,8 +10,8 @@
 <head>
 <meta charset="UTF-8">
 <title>山东天宏石材-专注：中国棕，石岛红，紫晶钻，皇室啡，皇室珍珠，染色板，皇室啡，皇室棕钻，皇室玛瑙，皇室啡，皇室啡的研发生产，专业提供高品质的石岛红，紫晶钻，中国棕，皇室啡，皇室珍珠，染色板，荣成灰，皇室棕钻，皇室玛瑙，白麻，黄金麻等系列产品</title>
-<meta name="keywords" content="中国棕，石岛红，紫晶钻，皇室啡，皇室珍珠，染色板，皇室啡，皇室棕钻，皇室玛瑙，皇室啡，皇室啡" />
-<meta name="description" content="荣成市人和镇天宏石材厂自有大型石岛红矿山，集矿山开采，石材加工，销售于一体的石材企业，采用自动红外线切机，自动磨板机，全自动大切等先进设备生产的建筑用成品，半成品板材，做工精细，品质一流，深受业界好评。主营：中国棕，石岛红，紫晶钻，皇室啡，皇室珍珠，染色板，皇室珍珠，皇室棕钻，皇室玛瑙，皇室珍珠花岗岩，皇室珍珠干挂石材等系列产品。联系电话：13465102999，于总。" />
+<meta name="keywords" content="${website.keywords}" />
+<meta name="description" content="${website.description}" />
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/theme/t/css/zui.min.css"/>
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/theme/t/css/reset.css"/>
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/theme/t/css/index.css"/>
@@ -31,7 +31,7 @@
 		<div class="head_contact">
 			<em></em>
 			<span>24小时客户服务热线</span>
-			<p>134-6510-2999</p>
+			<p>${website.telphone}</p>
 		</div>
 	</div>
 	<div class="nav">
@@ -342,9 +342,9 @@
 		<div class="foot_main">
 			<div class="foot_logo"><img src="${contextPath}/resources/theme/t/img/logo.png"/></div>
 			<div class="foot_p">
-				<p>公司地址：山东省荣成市人和镇天宏石材厂。</p>
-				<p>联系电话：134-6510-2999      电子邮件：189651909@qq.com</p>
-				<p>公司主营产品：中国棕，石岛红6,7,8号，紫晶钻，皇室啡，皇室珍珠，染色板，皇室棕钻，皇室玛瑙，皇室冰花等</p>
+				<p>公司地址：${website.address}</p>
+				<p>联系电话：${website.telphone}      电子邮件：${website.email}</p>
+				<p>公司主营产品：${website.mainProduct}</p>
 			</div>
 			<div class="foot_ewm">
 				<%-- <img src="${contextPath}/resources/theme/t/img/ewm.jpg"/> --%>

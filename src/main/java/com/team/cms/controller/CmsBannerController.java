@@ -50,7 +50,6 @@ public class CmsBannerController {
 	@Autowired
 	private CmsBannerService cmsBannerService;
 	
-	
 	@Autowired
 	private SessionUserService sessionUserService;
 	

@@ -24,12 +24,13 @@ import com.team.cms.pojo.CmsArticle;
 import com.team.cms.pojo.CmsBanner;
 import com.team.cms.pojo.CmsChannel;
 import com.team.cms.pojo.CmsFriendlyLink;
+import com.team.cms.pojo.CmsWebsite;
 import com.team.cms.service.CmsAccessLogService;
 import com.team.cms.service.CmsArticleService;
 import com.team.cms.service.CmsBannerService;
 import com.team.cms.service.CmsChannelService;
 import com.team.cms.service.CmsFriendlyLinkService;
-import com.team.cms.service.CmsVideoService;
+import com.team.cms.service.CmsWebsiteService;
 import com.team.common.pojo.EUDataGridModel;
 import com.team.common.pojo.EUDataGridResult;
 import com.team.common.util.BeanUtil;
@@ -50,6 +51,8 @@ public class FrontTianController {
 	private CmsAccessLogService cmsAccessLogService;
 	@Autowired
 	private CmsFriendlyLinkService cmsFriendlyLinkService;
+	@Autowired
+	private CmsWebsiteService cmsWebsiteService;
 
 	@RequestMapping(value = "/index",method = RequestMethod.GET)
     public String index(HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
@@ -74,7 +77,7 @@ public class FrontTianController {
         channelIds.add("599824175998767");
         channelIds.add("599832359338712");
         String status = "on";
-        List<CmsArticle> channelArtList = cmsArticleService.selectByChannel(channelIds,status,0);
+        List<CmsArticle> channelArtList = cmsArticleService.selectByChannel(channelIds,status,1);
         model.addAttribute("channelArtList", channelArtList);
 
     	//集团简介
@@ -161,6 +164,11 @@ public class FrontTianController {
         List<CmsFriendlyLink> friendlyLinks = cmsFriendlyLinkService.selectByCmsFriendlyLink(link, "order_num desc");
         model.addAttribute("friendlyLinks", friendlyLinks);
         
+        CmsWebsite _temp = new CmsWebsite();
+        _temp.setDomainName(serverName);
+        CmsWebsite website = cmsWebsiteService.selectByCmsWebsite(_temp);
+        model.addAttribute("website", website);
+        
     	return "front/t/index";
     }
 	
@@ -219,6 +227,11 @@ public class FrontTianController {
         	model.addAttribute("dataGridResult", result);
     	}
     	model.addAttribute("pagerNumber", pagerNumber);
+    	
+    	CmsWebsite _temp = new CmsWebsite();
+        _temp.setDomainName(serverName);
+        CmsWebsite website = cmsWebsiteService.selectByCmsWebsite(_temp);
+        model.addAttribute("website", website);
     	
     	return "front/t/channel";
 	}
@@ -301,6 +314,12 @@ public class FrontTianController {
 	    		cmsAccessLogService.insert(cmsAccessLog, true);
 	    	}
 		}
+		
+		CmsWebsite _temp = new CmsWebsite();
+        _temp.setDomainName(serverName);
+        CmsWebsite website = cmsWebsiteService.selectByCmsWebsite(_temp);
+        model.addAttribute("website", website);
+        
     	return "front/t/article";
     }
 	
@@ -317,7 +336,7 @@ public class FrontTianController {
 		newsChannelIds.add("599899530688725");
 		newsChannelIds.add("599919071288713");
         String st2 = "on";
-    	List<CmsArticle> companyArticleList = cmsArticleService.selectByChannel(newsChannelIds,st2,0);
+    	List<CmsArticle> companyArticleList = cmsArticleService.selectByChannel(newsChannelIds,st2,1);
     	if(companyArticleList != null && companyArticleList.size() > 10) {
     		model.addAttribute("companyArticleList", companyArticleList.subList(0, 10));
     	}else {
@@ -345,11 +364,16 @@ public class FrontTianController {
         channelIds.add("599824175998767");
         channelIds.add("599832359338712");
         String status = "on";
-        List<CmsArticle> channelArtList = cmsArticleService.selectByChannel(channelIds,status,0);
+        List<CmsArticle> channelArtList = cmsArticleService.selectByChannel(channelIds,status,1);
         if(channelArtList.size() > 4) {
         	channelArtList = channelArtList.subList(0, 4);
         }
         model.addAttribute("channelArtList", channelArtList);
+        
+        CmsWebsite _temp = new CmsWebsite();
+        _temp.setDomainName(serverName);
+        CmsWebsite website = cmsWebsiteService.selectByCmsWebsite(_temp);
+        model.addAttribute("website", website);
 		
     	return "front/t/mohome";
     }
@@ -381,6 +405,13 @@ public class FrontTianController {
 		}
 		model.addAttribute("artList", artList);
 		model.addAttribute("channel", channel);
+		
+		String serverName = HttpClientUtil.getMobileServerName(request);
+		CmsWebsite _temp = new CmsWebsite();
+        _temp.setDomainName(serverName);
+        CmsWebsite website = cmsWebsiteService.selectByCmsWebsite(_temp);
+        model.addAttribute("website", website);
+        
 		return "front/t/mochannel";
     }
 	
@@ -396,6 +427,12 @@ public class FrontTianController {
     	CmsArticle afterArticle = cmsArticleService.getAfterArticle(id,article.getDomainName());
     	model.addAttribute("afterArticle", afterArticle);
     	
+    	String serverName = HttpClientUtil.getMobileServerName(request);
+		CmsWebsite _temp = new CmsWebsite();
+        _temp.setDomainName(serverName);
+        CmsWebsite website = cmsWebsiteService.selectByCmsWebsite(_temp);
+        model.addAttribute("website", website);
+        
 		return "front/t/moarticle";
     }
 	
