@@ -139,10 +139,9 @@
 		<div class="foot_main">
 			<div class="foot_logo"><img src="${contextPath}/resources/theme/t/img/logo.png"/></div>
 			<div class="foot_p">
-				<p>皇室啡外墙干挂石材，皇室啡室内装饰石材</p>
-				<p>公司地址：山东省荣成市人和镇天宏石材厂。</p>
-				<p>联系电话：17763168888      电子邮件：189651909@qq.com</p>
-				<p>公司主营产品：国产皇室啡石材，山东皇室啡，皇室啡矿山，皇室啡花岗岩、皇室啡石材，皇室啡石材价格。新皇室啡花岗岩，皇室啡石材图片</p>
+				<p>公司地址：${website.address}</p>
+				<p>联系电话：${website.telphone}      电子邮件：${website.email}</p>
+				<p>公司主营产品：${website.mainProduct}</p>	
 			</div>
 			<div class="foot_ewm">
 				<%-- <img src="${contextPath}/resources/theme/t/img/ewm.jpg"/> --%>
