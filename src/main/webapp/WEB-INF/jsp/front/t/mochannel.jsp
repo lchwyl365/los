@@ -279,7 +279,6 @@
 			</c:if>
 		</div>
         <div class="row contact-info" >
-				<h3>产品咨询热线</h3>
 				<p>地址:${website.address}</p>
 				<p>技术支持:山东创服信息技术有限公司</p>
         </div>

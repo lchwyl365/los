@@ -44,6 +44,8 @@ public class HttpClientUtil {
 			return "www.rctianhong.com";
 		}else if("thyd.0531yx.cn".equals(serverName)){
 			return "www.rctianhong.com";
+		}else if("m.rctianhong.com".equals(serverName)){
+			return "www.rctianhong.com";
 		}else if("yszj.0531yx.cn".equals(serverName)){
 			return "www.rctianhong.com";
 		}
