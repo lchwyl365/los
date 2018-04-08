@@ -10,7 +10,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>首页</title>
+    <title>山东天宏石材-专注：中国棕，石岛红，紫晶钻，皇室啡，皇室珍珠，染色板，皇室啡，皇室棕钻，皇室玛瑙，皇室啡，皇室啡的研发生产，专业提供高品质的石岛红，紫晶钻，中国棕，皇室啡，皇室珍珠，染色板，荣成灰，皇室棕钻，皇室玛瑙，白麻，黄金麻等系列产品</title>
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="http://at.alicdn.com/t/font_598640_c61hk6pc1kcyds4i.css" rel="stylesheet">
