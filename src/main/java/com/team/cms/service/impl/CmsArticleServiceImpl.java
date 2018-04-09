@@ -205,9 +205,11 @@ public class CmsArticleServiceImpl implements CmsArticleService {
 		criteria.andStatusEqualTo(status);
 		if(recommend != null) {
 			criteria.andRecommendEqualTo(recommend);
+			example.setOrderByClause("top_number desc");
+		}else {
+			example.setOrderByClause("createtime desc");
 		}
-		//排序
-		example.setOrderByClause("createtime desc");
+		
 		
 		//分页处理
 		List<CmsArticle> list = cmsArticleMapper.selectByExample(example);

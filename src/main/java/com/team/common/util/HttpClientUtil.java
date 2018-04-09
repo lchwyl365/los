@@ -28,8 +28,8 @@ public class HttpClientUtil {
 		
 		if("localhost".equals(serverName)){
 			
-			return "thyd.0531yx.cn";
-			//return "www.rctianhong.com";
+			//return "thyd.0531yx.cn";
+			return "www.rctianhong.com";
 		}else if("nbor.vxg158.10000net.cn".equals(serverName)){
 			return "www.jinan-kendo.com";
 		}else if("yszj.0531yx.cn".equals(serverName)){
