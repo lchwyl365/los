@@ -73,7 +73,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from HDMS.AUTH_ROLE
+    from hdms.auth_role
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -84,27 +84,27 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from HDMS.AUTH_ROLE
+    from hdms.auth_role
     where ROLEID = #{roleid,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from HDMS.AUTH_ROLE
+    delete from hdms.auth_role
     where ROLEID = #{roleid,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.team.platform.pojo.AuthRoleExample">
-    delete from HDMS.AUTH_ROLE
+    delete from hdms.auth_role
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.team.platform.pojo.AuthRole">
-    insert into HDMS.AUTH_ROLE (ROLEID, NAME, TYPE
+    insert into hdms.auth_role (ROLEID, NAME, TYPE
       )
     values (#{roleid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.team.platform.pojo.AuthRole">
-    insert into HDMS.AUTH_ROLE
+    insert into hdms.auth_role
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="roleid != null">
         ROLEID,
@@ -129,13 +129,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.team.platform.pojo.AuthRoleExample" resultType="java.lang.Long">
-    select count(*) from HDMS.AUTH_ROLE
+    select count(*) from hdms.auth_role
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update HDMS.AUTH_ROLE
+    update hdms.auth_role
     <set>
       <if test="record.roleid != null">
         ROLEID = #{record.roleid,jdbcType=VARCHAR},
@@ -152,7 +152,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update HDMS.AUTH_ROLE
+    update hdms.auth_role
     set ROLEID = #{record.roleid,jdbcType=VARCHAR},
       NAME = #{record.name,jdbcType=VARCHAR},
       TYPE = #{record.type,jdbcType=VARCHAR}
@@ -161,7 +161,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.team.platform.pojo.AuthRole">
-    update HDMS.AUTH_ROLE
+    update hdms.auth_role
     <set>
       <if test="name != null">
         NAME = #{name,jdbcType=VARCHAR},
@@ -173,7 +173,7 @@
     where ROLEID = #{roleid,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.team.platform.pojo.AuthRole">
-    update HDMS.AUTH_ROLE
+    update hdms.auth_role
     set NAME = #{name,jdbcType=VARCHAR},
       TYPE = #{type,jdbcType=VARCHAR}
     where ROLEID = #{roleid,jdbcType=VARCHAR}

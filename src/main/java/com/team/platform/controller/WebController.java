@@ -24,6 +24,8 @@ public class WebController {
 			return "redirect:/front/t/index";
 		} else if("thyd.0531yx.cn".equals(serverName)){
 			return "redirect:/front/t/mohome";
+		} else if("www.jinan-kendo.com".equals(serverName)){
+			return "redirect:/front/q/index";
 		} else {
 			return "redirect:/front/t/index";
 		}

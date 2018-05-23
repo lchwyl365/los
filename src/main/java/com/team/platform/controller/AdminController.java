@@ -21,7 +21,6 @@ import com.team.platform.dao.JedisClient;
 import com.team.platform.pojo.AuthMenu;
 import com.team.platform.pojo.AuthUser;
 import com.team.platform.service.AuthMenuService;
-import com.team.platform.service.AuthUserService;
 import com.team.platform.service.SessionUserService;
 import com.team.platform.service.impl.SessionUserServiceImpl;
 

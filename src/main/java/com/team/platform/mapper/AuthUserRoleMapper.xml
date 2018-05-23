@@ -73,7 +73,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from HDMS.AUTH_USER_ROLE
+    from hdms.auth_user_role
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -84,27 +84,27 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from HDMS.AUTH_USER_ROLE
+    from hdms.auth_user_role
     where USER_ROLE_ID = #{userRoleId,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from HDMS.AUTH_USER_ROLE
+    delete from hdms.auth_user_role
     where USER_ROLE_ID = #{userRoleId,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.team.platform.pojo.AuthUserRoleExample">
-    delete from HDMS.AUTH_USER_ROLE
+    delete from hdms.auth_user_role
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.team.platform.pojo.AuthUserRole">
-    insert into HDMS.AUTH_USER_ROLE (USER_ROLE_ID, USER_ID, ROLE_ID
+    insert into hdms.auth_user_role (USER_ROLE_ID, USER_ID, ROLE_ID
       )
     values (#{userRoleId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.team.platform.pojo.AuthUserRole">
-    insert into HDMS.AUTH_USER_ROLE
+    insert into hdms.auth_user_role
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="userRoleId != null">
         USER_ROLE_ID,
@@ -129,13 +129,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.team.platform.pojo.AuthUserRoleExample" resultType="java.lang.Long">
-    select count(*) from HDMS.AUTH_USER_ROLE
+    select count(*) from hdms.auth_user_role
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update HDMS.AUTH_USER_ROLE
+    update hdms.auth_user_role
     <set>
       <if test="record.userRoleId != null">
         USER_ROLE_ID = #{record.userRoleId,jdbcType=VARCHAR},
@@ -152,7 +152,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update HDMS.AUTH_USER_ROLE
+    update hdms.auth_user_role
     set USER_ROLE_ID = #{record.userRoleId,jdbcType=VARCHAR},
       USER_ID = #{record.userId,jdbcType=VARCHAR},
       ROLE_ID = #{record.roleId,jdbcType=VARCHAR}
@@ -161,7 +161,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.team.platform.pojo.AuthUserRole">
-    update HDMS.AUTH_USER_ROLE
+    update hdms.auth_user_role
     <set>
       <if test="userId != null">
         USER_ID = #{userId,jdbcType=VARCHAR},
@@ -173,7 +173,7 @@
     where USER_ROLE_ID = #{userRoleId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.team.platform.pojo.AuthUserRole">
-    update HDMS.AUTH_USER_ROLE
+    update hdms.auth_user_role
     set USER_ID = #{userId,jdbcType=VARCHAR},
       ROLE_ID = #{roleId,jdbcType=VARCHAR}
     where USER_ROLE_ID = #{userRoleId,jdbcType=VARCHAR}

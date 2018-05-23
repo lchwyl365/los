@@ -35,7 +35,7 @@
 		<div class="head_contact">
 			<em></em>
 			<span>24小时客户服务热线</span>
-			<p>177-6316-8888</p>
+			<p>${website.telphone}</p>
 		</div>
 	</div>
 	<div class="nav">

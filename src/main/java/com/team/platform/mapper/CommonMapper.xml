@@ -7,20 +7,20 @@
   </select>
   
   <select id="selectUserByRole" parameterType="String" resultType="com.team.platform.pojo.AuthUser" >
-    select USERID, USERNAME, OPERATORNAME, PASSWORD, CREATETIME, ALTERTIME, STATUS from AUTH_USER where USERID in
+    select USERID, USERNAME, OPERATORNAME, PASSWORD, CREATETIME, ALTERTIME, STATUS from auth_user where USERID in
 	( select USER_ID FROM AUTH_USER_ROLE where ROLE_ID = ${roleid})
   </select>
   
   <select id="selectRoleByUser" parameterType="String" resultType="com.team.platform.pojo.AuthRole" >
-    select * FROM AUTH_ROLE where ROLEID in
-	(select ROLE_ID FROM AUTH_USER_ROLE where USER_ID = '${userid}')
+    select * FROM auth_role where ROLEID in
+	(select ROLE_ID FROM auth_user_role where USER_ID = '${userid}')
   </select>
   
   <select id="selectMenuByRole" parameterType="String" resultType="com.team.platform.pojo.AuthMenu" >
-    select MENUID, NAME, MENU_POS, HREF, ICON_CLS as iconCls, DISPLAY, ORDER_NUM, PID, LEVEL_TYPE FROM AUTH_MENU
+    select MENUID, NAME, MENU_POS, HREF, ICON_CLS as iconCls, DISPLAY, ORDER_NUM, PID, LEVEL_TYPE FROM auth_menu
 	where MENUID in (
-	  select MENU_ID FROM AUTH_ROLE_MENU 
-	  where ROLE_ID in ( select ROLE_ID FROM AUTH_USER_ROLE where USER_ID = '${userid}')
+	  select MENU_ID FROM auth_role_menu 
+	  where ROLE_ID in ( select ROLE_ID FROM auth_user_role where USER_ID = '${userid}')
 	  group by MENU_ID having COUNT(1) = 1
 	) and PID = '${pid}' and MENU_POS = '${menuPos}'
   </select>
