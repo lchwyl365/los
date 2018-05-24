@@ -32,7 +32,8 @@ public class HttpClientUtil {
 			//return "www.rctianhong.com";
 			//return "www.jinan-kendo.com";
 			return "www.runyigroup.com.cn";
-		}else if("nbor.vxg158.10000net.cn".equals(serverName)){
+		}else if( "nbor.vxg158.10000net.cn".equals(serverName) 
+			   || "qj.autojcode.com".equals(serverName) ){
 			return "www.jinan-kendo.com";
 		}else if("yszj.0531yx.cn".equals(serverName)){
 			return "www.rctianhong.com";
