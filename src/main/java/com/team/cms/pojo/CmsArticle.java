@@ -74,6 +74,11 @@ public class CmsArticle {
     private Integer recommend;
 
     /**
+     * 员工分类
+     */
+    private String emptype;
+
+    /**
      * 文章编号
      * @return article_id 文章编号
      */
@@ -295,5 +300,21 @@ public class CmsArticle {
      */
     public void setRecommend(Integer recommend) {
         this.recommend = recommend;
+    }
+
+    /**
+     * 员工分类
+     * @return emptype 员工分类
+     */
+    public String getEmptype() {
+        return emptype;
+    }
+
+    /**
+     * 员工分类
+     * @param emptype 员工分类
+     */
+    public void setEmptype(String emptype) {
+        this.emptype = emptype == null ? null : emptype.trim();
     }
 }

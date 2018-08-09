@@ -278,7 +278,7 @@ ul,ol,dl{list-style-type:none}
 		                <div class="tool clearfix">
 		                    <a id="editpass" class="tips" href="javascript:;" style="display:hidden;">修改密码</a>
 		                    <!-- <a class="tips" href="javascript:;" style="display:hidden;">协议</a> -->
-		                    <a href="javascript:;" class="help-btn" style="display:hidden;">帮助</a>
+		                    <!-- <a href="javascript:;" class="help-btn" style="display:hidden;">帮助</a> -->
 		                    <a id="loginOut" href="javascript:;" class="quit-btn exit">退出</a>
 		                </div>
 		            </div>

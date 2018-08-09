@@ -5,17 +5,17 @@ import java.util.List;
 
 public class SysComboBoxExample {
     /**
-     * HDMS.SYS_COMBO_BOX
+     * SYS_COMBO_BOX
      */
     protected String orderByClause;
 
     /**
-     * HDMS.SYS_COMBO_BOX
+     * SYS_COMBO_BOX
      */
     protected boolean distinct;
 
     /**
-     * HDMS.SYS_COMBO_BOX
+     * SYS_COMBO_BOX
      */
     protected List<Criteria> oredCriteria;
 
@@ -117,7 +117,7 @@ public class SysComboBoxExample {
     }
 
     /**
-     * HDMS.SYS_COMBO_BOX null
+     * SYS_COMBO_BOX null
      */
     protected abstract static class GeneratedCriteria {
         protected List<Criterion> criteria;
@@ -722,7 +722,7 @@ public class SysComboBoxExample {
     }
 
     /**
-     * HDMS.SYS_COMBO_BOX
+     * SYS_COMBO_BOX
      */
     public static class Criteria extends GeneratedCriteria {
 
@@ -732,7 +732,7 @@ public class SysComboBoxExample {
     }
 
     /**
-     * HDMS.SYS_COMBO_BOX null
+     * SYS_COMBO_BOX null
      */
     public static class Criterion {
         private String condition;

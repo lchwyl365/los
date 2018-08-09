@@ -99,7 +99,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from hdms.sys_columns
+    from sys_columns
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -110,25 +110,25 @@
   <select id="selectByPrimaryKey" parameterType="com.team.platform.pojo.SysColumnsKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from hdms.sys_columns
+    from sys_columns
     where COLUMN_NAME = #{columnName,jdbcType=VARCHAR}
       and TBNAME = #{tbname,jdbcType=VARCHAR}
       and TBCREATOR = #{tbcreator,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="com.team.platform.pojo.SysColumnsKey">
-    delete HDMS.from SYS_COLUMNS
+    delete from SYS_COLUMNS
     where COLUMN_NAME = #{columnName,jdbcType=VARCHAR}
       and TBNAME = #{tbname,jdbcType=VARCHAR}
       and TBCREATOR = #{tbcreator,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.team.platform.pojo.SysColumnsExample">
-    delete HDMS.from SYS_COLUMNS
+    delete from SYS_COLUMNS
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.team.platform.pojo.SysColumns">
-    insert into hdms.sys_columns (COLUMN_NAME, TBNAME, TBCREATOR, 
+    insert into sys_columns (COLUMN_NAME, TBNAME, TBCREATOR, 
       COLNO, REMARKS, COLTYPE, 
       PROPERTY_LENGTH, NULLS, PROPERTY_NAME, 
       PROPERTY_TYPE, PROPERTY_TITLE, ISPRIMARY, 
@@ -148,7 +148,7 @@
       #{orderNum,jdbcType=VARCHAR}, #{propertyScale,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.team.platform.pojo.SysColumns">
-    insert into hdms.sys_columns
+    insert into sys_columns
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="columnName != null">
         COLUMN_NAME,
@@ -311,13 +311,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.team.platform.pojo.SysColumnsExample" resultType="java.lang.Long">
-    select count(*) from hdms.sys_columns
+    select count(*) from sys_columns
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update hdms.sys_columns
+    update sys_columns
     <set>
       <if test="record.columnName != null">
         COLUMN_NAME = #{record.columnName,jdbcType=VARCHAR},
@@ -403,7 +403,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update hdms.sys_columns
+    update sys_columns
     set COLUMN_NAME = #{record.columnName,jdbcType=VARCHAR},
       TBNAME = #{record.tbname,jdbcType=VARCHAR},
       TBCREATOR = #{record.tbcreator,jdbcType=VARCHAR},
@@ -435,7 +435,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.team.platform.pojo.SysColumns">
-    update hdms.sys_columns
+    update sys_columns
     <set>
       <if test="colno != null">
         COLNO = #{colno,jdbcType=BIGINT},
@@ -512,7 +512,7 @@
       and TBCREATOR = #{tbcreator,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.team.platform.pojo.SysColumns">
-    update hdms.sys_columns
+    update sys_columns
     set COLNO = #{colno,jdbcType=BIGINT},
       REMARKS = #{remarks,jdbcType=VARCHAR},
       COLTYPE = #{coltype,jdbcType=VARCHAR},

@@ -64,7 +64,7 @@
 	});
     var AuthUser = {
     		addRow:function(){//新增
-  				window.self.location = "${contextPath}/platform/user/add?page=list_normal";
+  				window.self.location = "${contextPath}/platform/user/add?page=list_self";
     		},
     		updateRow:function(){//更新
     			var rows = $('#userTable').datagrid('getSelections');

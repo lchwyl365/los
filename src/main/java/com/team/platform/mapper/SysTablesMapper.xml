@@ -99,7 +99,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from hdms.sys_tables
+    from sys_tables
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -110,25 +110,25 @@
   <select id="selectByPrimaryKey" parameterType="com.team.platform.pojo.SysTablesKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from hdms.sys_tables
+    from sys_tables
     where TABLE_NAME = #{tableName,jdbcType=VARCHAR}
       and SCHEMA_NAME = #{schemaName,jdbcType=VARCHAR}
       and TYPE = #{type,jdbcType=CHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="com.team.platform.pojo.SysTablesKey">
-    delete from hdms.sys_tables
+    delete from sys_tables
     where TABLE_NAME = #{tableName,jdbcType=VARCHAR}
       and SCHEMA_NAME = #{schemaName,jdbcType=VARCHAR}
       and TYPE = #{type,jdbcType=CHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.team.platform.pojo.SysTablesExample">
-    delete from hdms.sys_tables
+    delete from sys_tables
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.team.platform.pojo.SysTables">
-    insert into hdms.sys_tables (TABLE_NAME, SCHEMA_NAME, TYPE, 
+    insert into sys_tables (TABLE_NAME, SCHEMA_NAME, TYPE, 
       FID, KEYCOLUMNS, CTIME, 
       REMARKS, GENERATE, GENTYPE, 
       GTIME, PATH, MENU_NAME, 
@@ -150,7 +150,7 @@
       )
   </insert>
   <insert id="insertSelective" parameterType="com.team.platform.pojo.SysTables">
-    insert into hdms.sys_tables
+    insert into sys_tables
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="tableName != null">
         TABLE_NAME,
@@ -313,13 +313,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.team.platform.pojo.SysTablesExample" resultType="java.lang.Long">
-    select count(*) from hdms.sys_tables
+    select count(*) from sys_tables
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update hdms.sys_tables
+    update sys_tables
     <set>
       <if test="record.tableName != null">
         TABLE_NAME = #{record.tableName,jdbcType=VARCHAR},
@@ -405,7 +405,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update hdms.sys_tables
+    update sys_tables
     set TABLE_NAME = #{record.tableName,jdbcType=VARCHAR},
       SCHEMA_NAME = #{record.schemaName,jdbcType=VARCHAR},
       TYPE = #{record.type,jdbcType=CHAR},
@@ -437,7 +437,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.team.platform.pojo.SysTables">
-    update hdms.sys_tables
+    update sys_tables
     <set>
       <if test="fid != null">
         FID = #{fid,jdbcType=SMALLINT},
@@ -514,7 +514,7 @@
       and TYPE = #{type,jdbcType=CHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.team.platform.pojo.SysTables">
-    update hdms.sys_tables
+    update sys_tables
     set FID = #{fid,jdbcType=SMALLINT},
       KEYCOLUMNS = #{keycolumns,jdbcType=SMALLINT},
       CTIME = #{ctime,jdbcType=TIMESTAMP},

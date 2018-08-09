@@ -79,7 +79,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from hdms.auth_menu
+    from auth_menu
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -90,21 +90,21 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from hdms.auth_menu
+    from auth_menu
     where MENUID = #{menuid,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from hdms.auth_menu
+    delete from auth_menu
     where MENUID = #{menuid,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.team.platform.pojo.AuthMenuExample">
-    delete from hdms.auth_menu
+    delete from auth_menu
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.team.platform.pojo.AuthMenu">
-    insert into hdms.auth_menu (MENUID, NAME, MENU_POS, 
+    insert into auth_menu (MENUID, NAME, MENU_POS, 
       HREF, ICON_CLS, DISPLAY, 
       ORDER_NUM, PID, LEVEL_TYPE
       )
@@ -114,7 +114,7 @@
       )
   </insert>
   <insert id="insertSelective" parameterType="com.team.platform.pojo.AuthMenu">
-    insert into hdms.auth_menu
+    insert into auth_menu
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="menuid != null">
         MENUID,
@@ -175,13 +175,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.team.platform.pojo.AuthMenuExample" resultType="java.lang.Long">
-    select count(*) from hdms.auth_menu
+    select count(*) from auth_menu
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update hdms.auth_menu
+    update auth_menu
     <set>
       <if test="record.menuid != null">
         MENUID = #{record.menuid,jdbcType=VARCHAR},
@@ -216,7 +216,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update hdms.auth_menu
+    update auth_menu
     set MENUID = #{record.menuid,jdbcType=VARCHAR},
       NAME = #{record.name,jdbcType=VARCHAR},
       MENU_POS = #{record.menuPos,jdbcType=VARCHAR},
@@ -231,7 +231,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.team.platform.pojo.AuthMenu">
-    update hdms.auth_menu
+    update auth_menu
     <set>
       <if test="name != null">
         NAME = #{name,jdbcType=VARCHAR},
@@ -261,7 +261,7 @@
     where MENUID = #{menuid,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.team.platform.pojo.AuthMenu">
-    update hdms.auth_menu
+    update auth_menu
     set NAME = #{name,jdbcType=VARCHAR},
       MENU_POS = #{menuPos,jdbcType=VARCHAR},
       HREF = #{href,jdbcType=VARCHAR},

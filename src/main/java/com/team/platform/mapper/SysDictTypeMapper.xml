@@ -74,7 +74,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from hdms.sys_dict_type
+    from sys_dict_type
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -85,27 +85,27 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from hdms.sys_dict_type
+    from sys_dict_type
     where DICTTYPEID = #{dicttypeid,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from hdms.sys_dict_type
+    delete from sys_dict_type
     where DICTTYPEID = #{dicttypeid,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.team.platform.pojo.SysDictTypeExample">
-    delete from hdms.sys_dict_type
+    delete from sys_dict_type
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.team.platform.pojo.SysDictType">
-    insert into hdms.sys_dict_type (DICTTYPEID, DICTTYPENAME, RANK, 
+    insert into sys_dict_type (DICTTYPEID, DICTTYPENAME, RANK, 
       PARENTID)
     values (#{dicttypeid,jdbcType=VARCHAR}, #{dicttypename,jdbcType=VARCHAR}, #{rank,jdbcType=CHAR}, 
       #{parentid,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.team.platform.pojo.SysDictType">
-    insert into hdms.sys_dict_type
+    insert into sys_dict_type
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="dicttypeid != null">
         DICTTYPEID,
@@ -136,13 +136,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.team.platform.pojo.SysDictTypeExample" resultType="java.lang.Long">
-    select count(*) from hdms.sys_dict_type
+    select count(*) from sys_dict_type
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update hdms.sys_dict_type
+    update sys_dict_type
     <set>
       <if test="record.dicttypeid != null">
         DICTTYPEID = #{record.dicttypeid,jdbcType=VARCHAR},
@@ -162,7 +162,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update hdms.sys_dict_type
+    update sys_dict_type
     set DICTTYPEID = #{record.dicttypeid,jdbcType=VARCHAR},
       DICTTYPENAME = #{record.dicttypename,jdbcType=VARCHAR},
       RANK = #{record.rank,jdbcType=CHAR},
@@ -172,7 +172,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.team.platform.pojo.SysDictType">
-    update hdms.sys_dict_type
+    update sys_dict_type
     <set>
       <if test="dicttypename != null">
         DICTTYPENAME = #{dicttypename,jdbcType=VARCHAR},
@@ -187,7 +187,7 @@
     where DICTTYPEID = #{dicttypeid,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.team.platform.pojo.SysDictType">
-    update hdms.sys_dict_type
+    update sys_dict_type
     set DICTTYPENAME = #{dicttypename,jdbcType=VARCHAR},
       RANK = #{rank,jdbcType=CHAR},
       PARENTID = #{parentid,jdbcType=VARCHAR}

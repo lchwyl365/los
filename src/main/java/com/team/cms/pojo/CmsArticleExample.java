@@ -1100,6 +1100,76 @@ public class CmsArticleExample {
             addCriterion("recommend not between", value1, value2, "recommend");
             return (Criteria) this;
         }
+
+        public Criteria andEmptypeIsNull() {
+            addCriterion("emptype is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmptypeIsNotNull() {
+            addCriterion("emptype is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmptypeEqualTo(String value) {
+            addCriterion("emptype =", value, "emptype");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmptypeNotEqualTo(String value) {
+            addCriterion("emptype <>", value, "emptype");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmptypeGreaterThan(String value) {
+            addCriterion("emptype >", value, "emptype");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmptypeGreaterThanOrEqualTo(String value) {
+            addCriterion("emptype >=", value, "emptype");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmptypeLessThan(String value) {
+            addCriterion("emptype <", value, "emptype");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmptypeLessThanOrEqualTo(String value) {
+            addCriterion("emptype <=", value, "emptype");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmptypeLike(String value) {
+            addCriterion("emptype like", value, "emptype");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmptypeNotLike(String value) {
+            addCriterion("emptype not like", value, "emptype");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmptypeIn(List<String> values) {
+            addCriterion("emptype in", values, "emptype");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmptypeNotIn(List<String> values) {
+            addCriterion("emptype not in", values, "emptype");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmptypeBetween(String value1, String value2) {
+            addCriterion("emptype between", value1, value2, "emptype");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmptypeNotBetween(String value1, String value2) {
+            addCriterion("emptype not between", value1, value2, "emptype");
+            return (Criteria) this;
+        }
     }
 
     /**

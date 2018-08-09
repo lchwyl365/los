@@ -27,16 +27,18 @@ public class HttpClientUtil {
 		String serverName = request.getServerName();
 		
 		if("localhost".equals(serverName)){
-			
+			return "www.0631yuesao.com";
 			//return "thyd.0531yx.cn";
 			//return "www.rctianhong.com";
 			//return "www.jinan-kendo.com";
-			return "www.runyigroup.com.cn";
+			//return "www.runyigroup.com.cn";
 		}else if( "nbor.vxg158.10000net.cn".equals(serverName) 
 			   || "qj.autojcode.com".equals(serverName) ){
 			return "www.jinan-kendo.com";
 		}else if("yszj.0531yx.cn".equals(serverName)){
 			return "www.rctianhong.com";
+		}else if("zry.yunshangzhijian.com.cn".equals(serverName)){
+			return "www.0631yuesao.com";
 		}
 		return serverName;
 	}
@@ -44,13 +46,15 @@ public class HttpClientUtil {
 	public static String getMobileServerName(HttpServletRequest request) {
 		String serverName = request.getServerName();
 		if("localhost".equals(serverName)){
-			return "www.rctianhong.com";
+			return "www.0631yuesao.com";
 		}else if("thyd.0531yx.cn".equals(serverName)){
 			return "www.rctianhong.com";
 		}else if("m.rctianhong.com".equals(serverName)){
-			return "www.rctianhong.com";
+			return "m.rctianhong.com";
 		}else if("yszj.0531yx.cn".equals(serverName)){
 			return "www.rctianhong.com";
+		}else if("zry.yunshangzhijian.com.cn".equals(serverName)){
+			return "www.0631yuesao.com";
 		}
 		return serverName;
 	}

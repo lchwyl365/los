@@ -16,6 +16,7 @@
     <result column="top_number" jdbcType="INTEGER" property="topNumber" />
     <result column="domain_name" jdbcType="VARCHAR" property="domainName" />
     <result column="recommend" jdbcType="INTEGER" property="recommend" />
+    <result column="emptype" jdbcType="VARCHAR" property="emptype" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -77,7 +78,7 @@
   </sql>
   <sql id="Base_Column_List">
     article_id, title, content, channel_id, thumbnail, keywords, description, createtime, 
-    userid, read_count, status, top_number, domain_name, recommend
+    userid, read_count, status, top_number, domain_name, recommend, emptype
   </sql>
   <select id="selectByExample" parameterType="com.team.cms.pojo.CmsArticleExample" resultMap="BaseResultMap">
     select
@@ -114,12 +115,14 @@
       channel_id, thumbnail, keywords, 
       description, createtime, userid, 
       read_count, status, top_number, 
-      domain_name, recommend)
+      domain_name, recommend, emptype
+      )
     values (#{articleId,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
       #{channelId,jdbcType=VARCHAR}, #{thumbnail,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, 
       #{description,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{userid,jdbcType=VARCHAR}, 
       #{readCount,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{topNumber,jdbcType=INTEGER}, 
-      #{domainName,jdbcType=VARCHAR}, #{recommend,jdbcType=INTEGER})
+      #{domainName,jdbcType=VARCHAR}, #{recommend,jdbcType=INTEGER}, #{emptype,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.team.cms.pojo.CmsArticle">
     insert into cms_article
@@ -166,6 +169,9 @@
       <if test="recommend != null">
         recommend,
       </if>
+      <if test="emptype != null">
+        emptype,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="articleId != null">
@@ -209,6 +215,9 @@
       </if>
       <if test="recommend != null">
         #{recommend,jdbcType=INTEGER},
+      </if>
+      <if test="emptype != null">
+        #{emptype,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -263,6 +272,9 @@
       <if test="record.recommend != null">
         recommend = #{record.recommend,jdbcType=INTEGER},
       </if>
+      <if test="record.emptype != null">
+        emptype = #{record.emptype,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -283,7 +295,8 @@
       status = #{record.status,jdbcType=VARCHAR},
       top_number = #{record.topNumber,jdbcType=INTEGER},
       domain_name = #{record.domainName,jdbcType=VARCHAR},
-      recommend = #{record.recommend,jdbcType=INTEGER}
+      recommend = #{record.recommend,jdbcType=INTEGER},
+      emptype = #{record.emptype,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -330,6 +343,9 @@
       <if test="recommend != null">
         recommend = #{recommend,jdbcType=INTEGER},
       </if>
+      <if test="emptype != null">
+        emptype = #{emptype,jdbcType=VARCHAR},
+      </if>
     </set>
     where article_id = #{articleId,jdbcType=VARCHAR}
   </update>
@@ -347,7 +363,8 @@
       status = #{status,jdbcType=VARCHAR},
       top_number = #{topNumber,jdbcType=INTEGER},
       domain_name = #{domainName,jdbcType=VARCHAR},
-      recommend = #{recommend,jdbcType=INTEGER}
+      recommend = #{recommend,jdbcType=INTEGER},
+      emptype = #{emptype,jdbcType=VARCHAR}
     where article_id = #{articleId,jdbcType=VARCHAR}
   </update>
 </mapper>

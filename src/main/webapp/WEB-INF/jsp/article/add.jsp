@@ -34,18 +34,20 @@
 							<label for="title">文章标题:</label>
 						</td>
 						<td class="form-table-td-right">
-								<input class="easyui-validatebox" type="text" name="title" data-options="required:true,validType:['length[0,255]']" style="width:320px;height:28px;"/>
+							<input class="easyui-validatebox" type="text" name="title" data-options="required:true,validType:['length[0,255]']" style="width:320px;height:28px;"/>
 						</td>
 				    </tr>
-				   <%-- <tr>
+				<c:if test="${channelId == '92128268024132'}">
+				   <tr>
 						<td class="form-table-td-left">
-							<label for="channelId">栏目编号:</label>
+							<label for="channelId">员工类型:</label>
 						</td>
 						<td class="form-table-td-right">
-								<input class="easyui-combotree" name="channelId" id="channelId"
-								   data-options="url:'${contextPath}/platform/box/combotree?id=55059701325166',method:'get',onLoadSuccess:loadHandler" style="width:200px;height:28px;">
+							<input class="easyui-combotree" name="emptype"
+								   data-options="url:'${contextPath}/platform/box/combotree?id=92145544385112',method:'get'" style="width:200px;">
 						</td>
-				    </tr> --%>
+				    </tr>
+				 </c:if>
 				   <tr>
 						<td class="form-table-td-left">
 							<label for="keywords">关键字:</label>

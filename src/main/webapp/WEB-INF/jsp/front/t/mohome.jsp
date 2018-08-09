@@ -465,9 +465,9 @@
     $(function(){
     	$('.carousel').carousel();
     	
-    	if(IsPC()){
+    	/* if(IsPC()){
     		window.location.href = "http://www.rctianhong.com";
-    	}
+    	} */
     });
     function IsPC() {
 	   var userAgentInfo = navigator.userAgent;

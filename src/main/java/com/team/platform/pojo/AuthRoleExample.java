@@ -5,17 +5,17 @@ import java.util.List;
 
 public class AuthRoleExample {
     /**
-     * HDMS.AUTH_ROLE
+     * AUTH_ROLE
      */
     protected String orderByClause;
 
     /**
-     * HDMS.AUTH_ROLE
+     * AUTH_ROLE
      */
     protected boolean distinct;
 
     /**
-     * HDMS.AUTH_ROLE
+     * AUTH_ROLE
      */
     protected List<Criteria> oredCriteria;
 
@@ -117,7 +117,7 @@ public class AuthRoleExample {
     }
 
     /**
-     * HDMS.AUTH_ROLE null
+     * AUTH_ROLE null
      */
     protected abstract static class GeneratedCriteria {
         protected List<Criterion> criteria;
@@ -372,7 +372,7 @@ public class AuthRoleExample {
     }
 
     /**
-     * HDMS.AUTH_ROLE
+     * AUTH_ROLE
      */
     public static class Criteria extends GeneratedCriteria {
 
@@ -382,7 +382,7 @@ public class AuthRoleExample {
     }
 
     /**
-     * HDMS.AUTH_ROLE null
+     * AUTH_ROLE null
      */
     public static class Criterion {
         private String condition;

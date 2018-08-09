@@ -5,17 +5,17 @@ import java.util.List;
 
 public class SysDictEntryExample {
     /**
-     * HDMS.SYS_DICT_ENTRY
+     * SYS_DICT_ENTRY
      */
     protected String orderByClause;
 
     /**
-     * HDMS.SYS_DICT_ENTRY
+     * SYS_DICT_ENTRY
      */
     protected boolean distinct;
 
     /**
-     * HDMS.SYS_DICT_ENTRY
+     * SYS_DICT_ENTRY
      */
     protected List<Criteria> oredCriteria;
 
@@ -117,7 +117,7 @@ public class SysDictEntryExample {
     }
 
     /**
-     * HDMS.SYS_DICT_ENTRY null
+     * SYS_DICT_ENTRY null
      */
     protected abstract static class GeneratedCriteria {
         protected List<Criterion> criteria;
@@ -642,7 +642,7 @@ public class SysDictEntryExample {
     }
 
     /**
-     * HDMS.SYS_DICT_ENTRY
+     * SYS_DICT_ENTRY
      */
     public static class Criteria extends GeneratedCriteria {
 
@@ -652,7 +652,7 @@ public class SysDictEntryExample {
     }
 
     /**
-     * HDMS.SYS_DICT_ENTRY null
+     * SYS_DICT_ENTRY null
      */
     public static class Criterion {
         private String condition;

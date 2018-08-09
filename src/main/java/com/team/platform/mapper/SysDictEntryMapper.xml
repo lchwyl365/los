@@ -77,7 +77,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from hdms.sys_dict_entry
+    from sys_dict_entry
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -88,23 +88,23 @@
   <select id="selectByPrimaryKey" parameterType="com.team.platform.pojo.SysDictEntryKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from hdms.sys_dict_entry
+    from sys_dict_entry
     where DICTTYPEID = #{dicttypeid,jdbcType=VARCHAR}
       and DICTID = #{dictid,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="com.team.platform.pojo.SysDictEntryKey">
-    delete from hdms.sys_dict_entry
+    delete from sys_dict_entry
     where DICTTYPEID = #{dicttypeid,jdbcType=VARCHAR}
       and DICTID = #{dictid,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.team.platform.pojo.SysDictEntryExample">
-    delete from hdms.sys_dict_entry
+    delete from sys_dict_entry
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.team.platform.pojo.SysDictEntry">
-    insert into hdms.sys_dict_entry (DICTTYPEID, DICTID, DICTNAME, 
+    insert into sys_dict_entry (DICTTYPEID, DICTID, DICTNAME, 
       STATUS, SORTNO, RANK, 
       PARENTID)
     values (#{dicttypeid,jdbcType=VARCHAR}, #{dictid,jdbcType=VARCHAR}, #{dictname,jdbcType=VARCHAR}, 
@@ -112,7 +112,7 @@
       #{parentid,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.team.platform.pojo.SysDictEntry">
-    insert into hdms.sys_dict_entry
+    insert into sys_dict_entry
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="dicttypeid != null">
         DICTTYPEID,
@@ -161,13 +161,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.team.platform.pojo.SysDictEntryExample" resultType="java.lang.Long">
-    select count(*) from hdms.sys_dict_entry
+    select count(*) from sys_dict_entry
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update hdms.sys_dict_entry
+    update sys_dict_entry
     <set>
       <if test="record.dicttypeid != null">
         DICTTYPEID = #{record.dicttypeid,jdbcType=VARCHAR},
@@ -196,7 +196,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update hdms.sys_dict_entry
+    update sys_dict_entry
     set DICTTYPEID = #{record.dicttypeid,jdbcType=VARCHAR},
       DICTID = #{record.dictid,jdbcType=VARCHAR},
       DICTNAME = #{record.dictname,jdbcType=VARCHAR},
@@ -209,7 +209,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.team.platform.pojo.SysDictEntry">
-    update hdms.sys_dict_entry
+    update sys_dict_entry
     <set>
       <if test="dictname != null">
         DICTNAME = #{dictname,jdbcType=VARCHAR},
@@ -231,7 +231,7 @@
       and DICTID = #{dictid,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.team.platform.pojo.SysDictEntry">
-    update hdms.sys_dict_entry
+    update sys_dict_entry
     set DICTNAME = #{dictname,jdbcType=VARCHAR},
       STATUS = #{status,jdbcType=VARCHAR},
       SORTNO = #{sortno,jdbcType=INTEGER},

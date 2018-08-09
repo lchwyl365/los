@@ -5,17 +5,17 @@ import java.util.List;
 
 public class SysDictTypeExample {
     /**
-     * HDMS.SYS_DICT_TYPE
+     * SYS_DICT_TYPE
      */
     protected String orderByClause;
 
     /**
-     * HDMS.SYS_DICT_TYPE
+     * SYS_DICT_TYPE
      */
     protected boolean distinct;
 
     /**
-     * HDMS.SYS_DICT_TYPE
+     * SYS_DICT_TYPE
      */
     protected List<Criteria> oredCriteria;
 
@@ -117,7 +117,7 @@ public class SysDictTypeExample {
     }
 
     /**
-     * HDMS.SYS_DICT_TYPE null
+     * SYS_DICT_TYPE null
      */
     protected abstract static class GeneratedCriteria {
         protected List<Criterion> criteria;
@@ -442,7 +442,7 @@ public class SysDictTypeExample {
     }
 
     /**
-     * HDMS.SYS_DICT_TYPE
+     * SYS_DICT_TYPE
      */
     public static class Criteria extends GeneratedCriteria {
 
@@ -452,7 +452,7 @@ public class SysDictTypeExample {
     }
 
     /**
-     * HDMS.SYS_DICT_TYPE null
+     * SYS_DICT_TYPE null
      */
     public static class Criterion {
         private String condition;

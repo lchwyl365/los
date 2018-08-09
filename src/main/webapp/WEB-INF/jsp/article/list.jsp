@@ -9,6 +9,7 @@
     $(function(){
     	
 		var combo55059701325166_json = eval('${combo55059701325166_json}');
+		var combo92145544385112_json = eval('${combo92145544385112_json}');
     	
 		$('#articleTable').datagrid({
 			title:'栏目内容管理', //标题
@@ -41,6 +42,18 @@
 				},
 				{field:'title',title:'标题',width:30,sortable:'F',
 						formatter:function(value,row,index){return row.title;}
+				},
+				{field:'emptype',title:'员工类型',width:20,sortable:'F',
+					formatter:function(value,row,index){
+						//combo92145544385112_json
+						var text = '';
+						for(var i=0;i<combo92145544385112_json.length;i++){  
+				    		if(row.emptype == combo92145544385112_json[i].id){
+				    			text = combo92145544385112_json[i].text;
+				    		}
+				    	}
+						return text;
+					}
 				},
 				{field:'channel_id',title:'栏目',width:30,sortable:'F',
 						formatter:function(value,row,index){
@@ -93,6 +106,8 @@
 		$("#edit-btn").bind('click',CmsArticle.updateRow);
 		$("#search-btn").bind('click',CmsArticle.search);
 		$("#clear-btn").bind('click',CmsArticle.clear);
+		
+		$('#articleTable').datagrid('hideColumn','emptype');
 
 	});
     var CmsArticle = {
@@ -156,6 +171,18 @@
     			CmsArticle.search();
     		},
     		channelClickHandler:function(node){
+    			
+    			if('${serverName}' == 'www.0631yuesao.com'){
+    				$('#articleTable').datagrid('hideColumn','recommend');
+    				$('#articleTable').datagrid('hideColumn','action');
+    			}
+    		
+    			if(node.id != '92128268024132'){
+    				$('#articleTable').datagrid('hideColumn','emptype');
+    			} else {
+    				$('#articleTable').datagrid('showColumn','emptype');
+    			}
+    			
     			var url = "${contextPath}/cms/article/queryList?channelId=" +node.id;   
     			//重新赋值url 属性
     		    $('#articleTable').datagrid('options').url=url;

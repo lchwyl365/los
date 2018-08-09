@@ -98,6 +98,9 @@ public class CmsArticleServiceImpl implements CmsArticleService {
 		if(StringUtils.isNotEmpty(cmsArticle.getDomainName())){
 			criteria.andDomainNameEqualTo(cmsArticle.getDomainName());
 		}
+		if(StringUtils.isNotEmpty(cmsArticle.getEmptype())){
+			criteria.andEmptypeEqualTo(cmsArticle.getEmptype());
+		}
 		//排序
 		if(StringUtils.isNotEmpty(orderByClause)){
 			example.setOrderByClause(orderByClause);

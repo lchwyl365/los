@@ -101,7 +101,8 @@ public class AuthRoleMenuServiceImpl implements AuthRoleMenuService {
 		AuthRoleMenuExample example = new AuthRoleMenuExample();
 		Criteria criteria = example.createCriteria();
 		criteria.andRoleIdEqualTo(roleid);
-		return authRoleMenuMapper.selectByExample(example);
+		List<AuthRoleMenu> list = authRoleMenuMapper.selectByExample(example);
+		return list;
 	}
 
 	@Override

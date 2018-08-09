@@ -61,7 +61,7 @@ public class AesCBC {
 
     public static void main(String[] args) throws Exception {
         // 需要加密的字串
-        String cSrc = "abcd1234";
+        String cSrc = "111111";
         System.out.println("加密前的字串是："+cSrc);
         // 加密
         String enString = AesCBC.getInstance().encrypt(cSrc,"utf-8",CBC_KEY,CBC_IV);

@@ -98,6 +98,7 @@ var _hmt = _hmt || [];
 						<p><a href="${contextPath}/front/q/channel/57944184578122">联系我们</a></p>
 						<p>泉剑馆本部地址&nbsp;&nbsp;&nbsp;&nbsp;所在地址：经十一路建设路交叉口139路42路公交站牌西20米</p>
 						<p>版权所有：  济南泉剑剑道馆</p>
+						<p>鲁ICP备18027893号</p>
 					</div>
 				</div>
 				<div class="f_right">

@@ -26,6 +26,7 @@ import com.team.common.pojo.EUDataGridModel;
 import com.team.common.pojo.EUDataGridResult;
 import com.team.common.pojo.ResponseResult;
 import com.team.common.util.CookieUtils;
+import com.team.common.util.HttpClientUtil;
 import com.team.common.util.ImageUtil;
 import com.team.platform.pojo.AuthUser;
 import com.team.platform.service.SessionUserService;
@@ -54,11 +55,18 @@ public class CmsArticleController {
 	private Boolean USE_REDIS;
 	
 	@RequestMapping(value = "/list",method = RequestMethod.GET)
-    public String list(@RequestParam(value="channelId",required=false)String channelId,Model model) throws Exception{
+    public String list(HttpServletRequest request,@RequestParam(value="channelId",required=false)String channelId,Model model) throws Exception{
 		
 	  	String combo55059701325166_json = sysComboBoxService.selectComboid("55059701325166");
 		model.addAttribute("combo55059701325166_json", combo55059701325166_json);
+		
+		String combo92145544385112_json = sysComboBoxService.selectComboid("92145544385112");
+		model.addAttribute("combo92145544385112_json", combo92145544385112_json);
+		
 		model.addAttribute("channelId", channelId);
+		String serverName = HttpClientUtil.getServerName(request);
+		model.addAttribute("serverName", serverName);
+		
     	return "article/list";
     }
 	

@@ -79,7 +79,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from hdms.sys_combo_box
+    from sys_combo_box
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -90,21 +90,21 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from hdms.sys_combo_box
+    from sys_combo_box
     where COMBOID = #{comboid,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from hdms.sys_combo_box
+    delete from sys_combo_box
     where COMBOID = #{comboid,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.team.platform.pojo.SysComboBoxExample">
-    delete from hdms.sys_combo_box
+    delete from sys_combo_box
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.team.platform.pojo.SysComboBox">
-    insert into hdms.sys_combo_box (COMBOID, NAME, TABLE_NAME, 
+    insert into sys_combo_box (COMBOID, NAME, TABLE_NAME, 
       VALUE_FIELD, TEXT_FIELD, WHERE_CONDITION, 
       PARENT_FIELD, ROOT_VALUE)
     values (#{comboid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{tableName,jdbcType=VARCHAR}, 
@@ -112,7 +112,7 @@
       #{parentField,jdbcType=VARCHAR}, #{rootValue,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.team.platform.pojo.SysComboBox">
-    insert into hdms.sys_combo_box
+    insert into sys_combo_box
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="comboid != null">
         COMBOID,
@@ -167,13 +167,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.team.platform.pojo.SysComboBoxExample" resultType="java.lang.Long">
-    select count(*) from hdms.sys_combo_box
+    select count(*) from sys_combo_box
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update hdms.sys_combo_box
+    update sys_combo_box
     <set>
       <if test="record.comboid != null">
         COMBOID = #{record.comboid,jdbcType=VARCHAR},
@@ -205,7 +205,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update hdms.sys_combo_box
+    update sys_combo_box
     set COMBOID = #{record.comboid,jdbcType=VARCHAR},
       NAME = #{record.name,jdbcType=VARCHAR},
       TABLE_NAME = #{record.tableName,jdbcType=VARCHAR},
@@ -219,7 +219,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.team.platform.pojo.SysComboBox">
-    update hdms.sys_combo_box
+    update sys_combo_box
     <set>
       <if test="name != null">
         NAME = #{name,jdbcType=VARCHAR},
@@ -246,7 +246,7 @@
     where COMBOID = #{comboid,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.team.platform.pojo.SysComboBox">
-    update hdms.sys_combo_box
+    update sys_combo_box
     set NAME = #{name,jdbcType=VARCHAR},
       TABLE_NAME = #{tableName,jdbcType=VARCHAR},
       VALUE_FIELD = #{valueField,jdbcType=VARCHAR},

@@ -23,9 +23,13 @@ public class WebController {
 		}else if("www.rctianhong.com".equals(serverName)){
 			return "redirect:/front/t/index";
 		} else if("thyd.0531yx.cn".equals(serverName)){
-			return "redirect:/front/t/mohome";
+			
+			return "redirect:/front/yuesao/mohome";
+			//return "redirect:/front/t/mohome";
 		} else if("www.jinan-kendo.com".equals(serverName)){
 			return "redirect:/front/q/index";
+		} else if("www.0631yuesao.com".equals(serverName)) {
+			return "redirect:/front/yuesao/mohome";
 		} else {
 			return "redirect:/front/t/index";
 		}
