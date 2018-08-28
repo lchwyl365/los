@@ -44,7 +44,7 @@
     .col-xs-6{
         padding: 0px;
     }
-     #page-wrapper{
+    #page-wrapper{
         width:100%;
         max-width: 677px;
         margin:0 auto;
@@ -193,10 +193,14 @@
 		padding: 10px 20px;
 		background-color: #FFF;
 	}
+	.news-item p img{
+		width:90%;
+		margin:10px auto;
+	}
 	.news-item h2{
 		margin:10px 10px;
 		font-size:24px; 
-		border-left: 5px solid #242424;
+		border-left: 5px solid #C32481;
 		padding: 0px 10px;
 	}
 	.news-item li{
@@ -315,188 +319,31 @@
 			</c:forEach>
             </ul>
         </div>
-        <div class="row">
-            <!-- <img src="images/tianhong/banner.gif" style="width: 100%"> -->
-            <div id="myCarousel" class="carousel slide">
-			    <!-- 轮播（Carousel）指标 -->
-			    <ol class="carousel-indicators">
-			        <c:forEach items="${bannerList}" var="banner" varStatus="status">
-			    		<c:if test="${status.index == 0}">
-           					<li data-target="#myCarousel" data-slide-to="${status.index}" class="active"></li>
-           				</c:if>
-           				<c:if test="${status.index != 0}">
-           					<li data-target="#myCarousel" data-slide-to="${status.index}"></li>
-           				</c:if>
-					</c:forEach>
-			    </ol>   
-			    <!-- 轮播（Carousel）项目 -->
-			    <div class="carousel-inner">
-			    	<c:forEach items="${bannerList}" var="banner" varStatus="status">
-			    		<c:if test="${status.index == 0}">
-           					<div class="item active"><img src="${contextPath}${banner.img}" /></div>
-           				</c:if>
-           				<c:if test="${status.index != 0}">
-           					<div class="item"><img src="${contextPath}${banner.img}" /></div>
-           				</c:if>
-					</c:forEach>
-			    </div>
-			    <!-- 轮播（Carousel）导航 -->
-			    <a class="carousel-control left" href="#myCarousel" 
-			        data-slide="prev">&lsaquo;
-			    </a>
-			    <a class="carousel-control right" href="#myCarousel" 
-			        data-slide="next">&rsaquo;
-			    </a>
-			</div>
-        </div>
-        <div class="row">            
-            <div class="row-title">
-                -- 服务范围 --
-            </div>
-            <div class="service-wapper" >
-                <div class="col-xs-3">
-                    <div class="service-item">
-                        <i class="iconfont icon-home"></i>
-                        <p>母婴生活护理</p>
-                    </div>
-                </div>
-                <div class="col-xs-3">
-                    <div class="service-item">
-                        <i class="iconfont icon-yanglaoguihua"></i>
-                        <p>居家养老服务</p>
-                    </div>
-                </div>
-                <div class="col-xs-3">
-                    <div class="service-item">
-                        <i class="iconfont icon-richangbaoji01"></i>
-                        <p>家政服务</p>
-                    </div>
-                </div>
-                <div class="col-xs-3">
-                    <div class="service-item">
-                        <i class="iconfont icon-yuying01"></i>
-                        <p>育婴服务</p>
-                    </div>
-                </div>
-                <div class="col-xs-3">
-                    <div class="service-item">
-                        <i class="iconfont icon-usermd"></i>
-                        <p>医院陪护服务</p>
-                    </div>
-                </div>
-                <div class="col-xs-3">
-                    <div class="service-item">
-                        <i class="iconfont icon-rengongbaojie"></i>
-                        <p>专业保洁服务</p>
-                    </div>
-                </div>
-                <div class="col-xs-3">
-                    <div class="service-item">
-                        <i class="iconfont icon-xingxing"></i>
-                        <p>厨嫂服务</p>
-                    </div>
-                </div>
-                <div class="col-xs-3">
-                    <div class="service-item">
-                        <i class="iconfont icon-jiaoyu"></i>
-                        <p>家教型家政服务</p>
-                    </div>
-                </div>
-            </div>
-        </div>
         
-        <div class="row">
-            <div class="row-title">
-                -- 技师团队 --
-            </div>
-            <div class="service-wapper" >
-            <c:forEach items="${jishiList}" var="jishiArt" varStatus="st">
-			   <div class="col-xs-3">
-                    <div class="employee-item">
-                    	<a href="${contextPath}/front/yuesao/moarticle/${jishiArt.articleId}">
-	                        <img src="${contextPath}${jishiArt.thumbnail}" style="width:100%;height:121px;">
-	                        <p>${jishiArt.title}</p>
-                        </a>
-                    </div>
-                </div>
-			 </c:forEach>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="row-title">
-                -- 月嫂团队 --
-            </div>
-            <div class="service-wapper" >
-            <c:forEach items="${yuesaoList}" var="yuesaoArt" varStatus="st">
-			   <div class="col-xs-3">
-                    <div class="employee-item">
-                    	<a href="${contextPath}/front/yuesao/moarticle/${yuesaoArt.articleId}">
-	                        <img src="${contextPath}${yuesaoArt.thumbnail}" style="width:100%;height:121px;">
-	                        <p>${yuesaoArt.title}</p>
-                        </a>
-                    </div>
-                </div>
-			 </c:forEach>
-            </div>
-        </div>
-
-        <div class="row">            
-            <div class="row-title">
-                -- 服务案例 --
-            </div>
-            <div class="service-wapper" style="overflow:hidden;">
-            <c:forEach items="${caseList}" var="caseArt" varStatus="st">
-               <div class="col-xs-3">
-                    <div class="employee-item">
-                    	<a href="${contextPath}/front/yuesao/moarticle/${caseArt.articleId}">
-                        	<img src="${contextPath}${caseArt.thumbnail}" style="width:100%;height:121px;">
-                        </a>
-                    </div>
-                </div>
-		   </c:forEach>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="row-title">
-                -- 常见问题 --
-            </div>
-			<div class="row news-item">
-				<ul>
-			<c:forEach items="${questList}" var="questArt" varStatus="st">
-               <li><a href="${contextPath}/front/yuesao/moarticle/${questArt.articleId}">
-               			${questArt.title}</a><i><fmt:formatDate value="${questArt.createtime}" pattern="yyyy-MM-dd"/></i>
-               	</li>
-		    </c:forEach>
-				</ul>
+        <div class="row news-item">
+			<h2>${article.title}</h2>
+			<div class="row news-time">
+				<div class="col-xs-6">
+					<i class="fa fa-calendar"></i><fmt:formatDate value="${article.createtime}" pattern="yyyy-MM-dd"/>
+				</div>
+				<div class="col-xs-6">
+					<%-- <a href="tel:${website.telphone}"><i class="fa fa-phone-square"></i>电话咨询</a> --%>
+				</div>
 			</div>
-        </div>
-        <div class="row">
-            <div class="row-title">
-                -- 申请加盟 --
-            </div>
-            <div class="row">
-                <div class="apply-form">
-                    <form>
-                      <div class="input-group" style="margin-top: 10px;">
-                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="您的尊称Name">
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                        </span>
-                      </div>
-                      <div class="input-group" style="margin-top: 10px; margin-bottom: 10px;">
-                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="您的电话Phone">
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
-                        </span>
-                      </div>
-                      <button type="button" class="btn btn-default" style="width: 49%;">提交申请</button>
-                      <button type="button" class="btn btn-warning" style="width: 49%;">清空重填</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+			<p>
+				${article.content}
+			</p>
+			<div class="row">
+				<c:if test="${preArticle != null }">
+					上一篇：<a href="${contextPath}/front/yuesao/moarticle/${preArticle.articleId}">${preArticle.title}</a>
+				</c:if>
+				<c:if test="${afterArticle != null }">
+					<br/>
+					下一篇：<a href="${contextPath}/front/yuesao/moarticle/${afterArticle.articleId}">${afterArticle.title}</a>
+				</c:if>
+		    </div>
+		</div>
+		
         <div class="row contact-info" >
 			<p>Copyright 2018 我的店面 版权所有</p>
 			<p>技术支持:山东创服信息技术有限公司</p>

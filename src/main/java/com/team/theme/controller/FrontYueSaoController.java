@@ -1,41 +1,26 @@
 package com.team.theme.controller;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.team.cms.pojo.CmsAccessLog;
 import com.team.cms.pojo.CmsArticle;
 import com.team.cms.pojo.CmsBanner;
 import com.team.cms.pojo.CmsChannel;
-import com.team.cms.pojo.CmsFriendlyLink;
 import com.team.cms.pojo.CmsWebsite;
-import com.team.cms.service.CmsAccessLogService;
 import com.team.cms.service.CmsArticleService;
 import com.team.cms.service.CmsBannerService;
 import com.team.cms.service.CmsChannelService;
-import com.team.cms.service.CmsFriendlyLinkService;
 import com.team.cms.service.CmsWebsiteService;
-import com.team.common.pojo.EUDataGridModel;
-import com.team.common.pojo.EUDataGridResult;
-import com.team.common.util.BeanUtil;
 import com.team.common.util.HttpClientUtil;
-import com.team.common.util.ImageUtil;
 
 @Controller
 @RequestMapping("/front/yuesao")
@@ -49,6 +34,9 @@ public class FrontYueSaoController {
 	
 	@Autowired
 	private CmsBannerService cmsBannerService;
+	
+	@Autowired
+	private CmsWebsiteService cmsWebsiteService;
 	
 	@RequestMapping(value = "/mohome",method = RequestMethod.GET)
     public String mohome(HttpServletRequest request,Model model) throws Exception{
@@ -93,21 +81,75 @@ public class FrontYueSaoController {
     	List<CmsArticle> caseList = cmsArticleService.selectByCmsArticle(caseArticle,"top_number desc,createtime desc");
     	model.addAttribute("caseList", caseList);
     	
+    	//常见问题 93026633143113
+    	CmsArticle questArticle = new CmsArticle();
+    	questArticle.setChannelId("93026633143113");
+    	questArticle.setStatus("on");
+    	questArticle.setRecommend(1);
+    	List<CmsArticle> questList = cmsArticleService.selectByCmsArticle(questArticle,"top_number desc,createtime desc");
+    	model.addAttribute("questList", questList);
+    	
     	return "front/yuesao/mohome";
     }
 	
 	@RequestMapping(value = "/mochannel/{id}",method = RequestMethod.GET)
     public String mochannel(HttpServletRequest request, @PathVariable String id, Model model) throws Exception{
 		
+		CmsChannel channel = cmsChannelService.selectByPrimaryKey(id);
+		List<CmsArticle> artList = new ArrayList<CmsArticle>();
+		if ( "list".equals(channel.getChannelType()) ) {
+			
+			CmsArticle cmsArticle = new CmsArticle();
+        	cmsArticle.setChannelId(channel.getChannelId());
+        	cmsArticle.setStatus("on");
+        	artList = cmsArticleService.selectByCmsArticle(cmsArticle, "createtime desc");
+		}
+		model.addAttribute("artList", artList);
+		model.addAttribute("channel", channel);
 		
+		String serverName = HttpClientUtil.getMobileServerName(request);
+		CmsWebsite _temp = new CmsWebsite();
+        _temp.setDomainName(serverName);
+        CmsWebsite website = cmsWebsiteService.selectByCmsWebsite(_temp);
+        model.addAttribute("website", website);
         
+        //顶部栏目导航
+  		CmsChannel cmsChannel = new CmsChannel();
+  		cmsChannel.setPid("0");
+  		cmsChannel.setIstop("on");
+  		cmsChannel.setDomainName(serverName);
+  		List<CmsChannel> channelList = cmsChannelService.selectByCmsChannel(cmsChannel,"channel_sort");
+  		model.addAttribute("channelList", channelList);
+      		
 		return "front/yuesao/mochannel";
     }
 	
 	@RequestMapping(value = "/moarticle/{id}",method = RequestMethod.GET)
     public String moarticle(HttpServletRequest request, @PathVariable String id, Model model) throws Exception{
+
+		String serverName = HttpClientUtil.getMobileServerName(request);
 		
-		
+		//顶部栏目导航
+		CmsChannel cmsChannel = new CmsChannel();
+		cmsChannel.setPid("0");
+		cmsChannel.setIstop("on");
+		cmsChannel.setDomainName(serverName);
+		List<CmsChannel> channelList = cmsChannelService.selectByCmsChannel(cmsChannel,"channel_sort");
+		model.addAttribute("channelList", channelList);
+				
+		CmsArticle article = cmsArticleService.selectByPrimaryKey(id);
+    	model.addAttribute("article", article);
+    	
+    	CmsArticle preArticle = cmsArticleService.getPreArticle(id,article.getDomainName());
+    	model.addAttribute("preArticle", preArticle);
+    	
+    	CmsArticle afterArticle = cmsArticleService.getAfterArticle(id,article.getDomainName());
+    	model.addAttribute("afterArticle", afterArticle);
+    	
+		CmsWebsite _temp = new CmsWebsite();
+        _temp.setDomainName(serverName);
+        CmsWebsite website = cmsWebsiteService.selectByCmsWebsite(_temp);
+        model.addAttribute("website", website);
         
 		return "front/yuesao/moarticle";
     }
