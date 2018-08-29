@@ -501,10 +501,6 @@
 			<p>Copyright 2018 我的店面 版权所有</p>
 			<p>技术支持:山东创服信息技术有限公司</p>
         </div>
-        
-    	<div style="height: 200px;">
-
-    	</div>
     </div>
     
     <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>

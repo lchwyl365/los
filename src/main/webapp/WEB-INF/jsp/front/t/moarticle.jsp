@@ -274,11 +274,11 @@
 			</p>
 			<div class="row">
 				<c:if test="${preArticle != null }">
-					上一篇：<a href="${contextPath}/front/t/moarticle/${preArticle.articleId}">${preArticle.title}</a>
+					上一篇：<a href="${contextPath}/front/yuesao/moarticle/${preArticle.articleId}">${preArticle.title}</a>
 				</c:if>
 				<c:if test="${afterArticle != null }">
 					<br/>
-					下一篇：<a href="${contextPath}/front/t/moarticle/${afterArticle.articleId}">${afterArticle.title}</a>
+					下一篇：<a href="${contextPath}/front/yuesao/moarticle/${afterArticle.articleId}">${afterArticle.title}</a>
 				</c:if>
 		    </div>
 		</div>
