@@ -1,9 +1,11 @@
 package com.team.cms.controller;
 
+import java.io.File;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
@@ -62,9 +64,12 @@ public class CmsArticleController {
 		
 		String combo92145544385112_json = sysComboBoxService.selectComboid("92145544385112");
 		model.addAttribute("combo92145544385112_json", combo92145544385112_json);
-		
-		model.addAttribute("channelId", channelId);
 		String serverName = HttpClientUtil.getServerName(request);
+		if("www.0631yuesao.com".equals(serverName) && StringUtils.isEmpty(channelId)) {
+			channelId = "92128268024132";
+		}
+		model.addAttribute("channelId", channelId);
+		
 		model.addAttribute("serverName", serverName);
 		
     	return "article/list";
@@ -97,7 +102,11 @@ public class CmsArticleController {
         cmsArticle.setDomainName(user.getDomainName());
     	String thumbnail = getThumbnail(cmsArticle.getContent());
     	cmsArticle.setThumbnail(thumbnail);
-		ResponseResult result = cmsArticleService.insert(cmsArticle,true);
+    	
+    	ServletContext application = request.getSession().getServletContext();
+    	String dir = application.getRealPath("/") + "upload"+ File.separator+"qrcode"+File.separator+"yuesao"+File.separator;
+    	
+		ResponseResult result = cmsArticleService.insert(cmsArticle,true,dir);
 		return result;
 	}
 	

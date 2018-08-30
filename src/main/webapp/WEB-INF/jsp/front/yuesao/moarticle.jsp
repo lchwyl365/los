@@ -301,7 +301,7 @@
             <div style="height:80px;">
 				<div style="height:46px;overflow: hidden;" >
 					<img src="${contextPath}/resources/images/yuesao/tel.jpg" style="height:40px;float:left;margin-left:-5px;" />
-					<span style="float:right;line-height:46px;font-size:14px;color:#fff;margin-right:3px;">400-888-8888</span>
+					<span style="float:right;line-height:46px;font-size:14px;color:#fff;margin-right:3px;">${website.telphone}</span>
 				</div>
                 <div class="subtitle">联系我们</div>
             </div>
@@ -319,7 +319,6 @@
 			</c:forEach>
             </ul>
         </div>
-        
         <div class="row news-item">
 			<h2>${article.title}</h2>
 			<div class="row news-time">
@@ -349,9 +348,6 @@
 			<p>技术支持:山东创服信息技术有限公司</p>
         </div>
         
-    	<div style="height: 200px;">
-
-    	</div>
     </div>
     
     <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>

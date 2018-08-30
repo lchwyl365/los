@@ -32,7 +32,7 @@ public class InitData implements ApplicationListener<ContextRefreshedEvent> {
 	private MysqlDataServiceImpl mysqlDataServiceImpl;
 	
     public void onApplicationEvent(final ContextRefreshedEvent event) {
-    	
+    	logger.info("InitDate");
     	if(event.getApplicationContext().getParent() == null){
     		if(INITDATA_AUTO){
     			logger.info("Initialize DB2SysTable data");

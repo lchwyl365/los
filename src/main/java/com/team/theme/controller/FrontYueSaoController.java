@@ -89,6 +89,11 @@ public class FrontYueSaoController {
     	List<CmsArticle> questList = cmsArticleService.selectByCmsArticle(questArticle,"top_number desc,createtime desc");
     	model.addAttribute("questList", questList);
     	
+    	CmsWebsite _temp = new CmsWebsite();
+        _temp.setDomainName(serverName);
+        CmsWebsite website = cmsWebsiteService.selectByCmsWebsite(_temp);
+        model.addAttribute("website", website);
+    	
     	return "front/yuesao/mohome";
     }
 	

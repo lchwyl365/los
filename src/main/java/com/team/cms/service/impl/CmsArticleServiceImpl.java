@@ -1,26 +1,30 @@
 package com.team.cms.service.impl;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.File;
 import java.util.Date;
+import java.util.Hashtable;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.DigestUtils;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.team.common.pojo.EUDataGridModel;
-import com.team.common.pojo.EUDataGridResult;
-import com.team.common.util.ExceptionUtil;
-import com.team.common.pojo.ResponseResult;
-import com.team.common.util.PrimaryKeyFactory;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.common.BitMatrix;
 import com.team.cms.mapper.CmsArticleMapper;
 import com.team.cms.pojo.CmsArticle;
 import com.team.cms.pojo.CmsArticleExample;
 import com.team.cms.pojo.CmsArticleExample.Criteria;
 import com.team.cms.service.CmsArticleService;
+import com.team.common.pojo.EUDataGridModel;
+import com.team.common.pojo.EUDataGridResult;
+import com.team.common.pojo.ResponseResult;
+import com.team.common.util.PrimaryKeyFactory;
+import com.team.common.util.QRCodeUtil;
 
 
 
@@ -110,15 +114,24 @@ public class CmsArticleServiceImpl implements CmsArticleService {
 	}
 
 	@Override
-	public ResponseResult insert(CmsArticle cmsArticle,Boolean isDefault) {
+	public ResponseResult insert(CmsArticle cmsArticle,Boolean isDefault,String dir) {
 		try {
 			if(isDefault){
-			//补全pojo内容
+				//补全pojo内容
 			  	if(StringUtils.isEmpty(cmsArticle.getArticleId())){
 					cmsArticle.setArticleId(PrimaryKeyFactory.generatePK(""));
 				}
 				cmsArticle.setCreatetime(new Date());
 				cmsArticle.setReadCount(1);
+			}
+			// 员工分类
+			if(StringUtils.isNotEmpty(cmsArticle.getEmptype())) {
+				//生成二维码
+				String icon = cmsArticle.getArticleId() + ".png";
+				//String text = "http://"+cmsArticle.getDomainName()+"/front/yuesao/moarticle/"+cmsArticle.getArticleId();
+				
+				String text = "http://zry.yunshangzhijian.com.cn/front/yuesao/moarticle/"+cmsArticle.getArticleId();
+				QRCodeUtil.encode(text,null, dir,true,cmsArticle.getTitle());
 			}
 			cmsArticleMapper.insert(cmsArticle);
 			return ResponseResult.ok();

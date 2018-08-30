@@ -18,7 +18,7 @@ public interface CmsArticleService {
 	
 	public CmsArticle selectByPrimaryKey(String articleId);
 
-	public ResponseResult insert(CmsArticle cmsArticle,Boolean isDefault);
+	public ResponseResult insert(CmsArticle cmsArticle,Boolean isDefault,String dir);
 
 	public ResponseResult delete(List<String> articleIds);
 

@@ -21,12 +21,14 @@
 			fitColumns: true, //自动调整各列，用了这个属性，下面各列的宽度值就只是一个比例。
 			striped: true, //奇偶行颜色不同
 			collapsible:false,//可折叠
-			url:"${contextPath}/cms/article/queryList?channelId=${channelId}", //数据来源
+			url:"${contextPath}/cms/article/queryList", //数据来源
 			sortName: 'createtime', //排序的列
 			sortOrder: 'desc', //倒序
 			remoteSort: true, //服务器端排序
 			idField:'articleId', //主键字段
-			queryParams:{}, //查询条件
+			queryParams:{
+				channelId:'${channelId}'
+			}, //查询条件
 			pagination:true, //显示分页
 			rownumbers:true, //显示行号
 			columns:[[
@@ -77,6 +79,9 @@
 				},
 				{field:'top_number',title:'置顶序号',width:20,sortable:'F',
 						formatter:function(value,row,index){return row.topNumber;}
+				},
+				{field:'qrcode',title:'二维码',width:20,sortable:'F',
+					formatter:function(value,row,index){return '<p><a target="_blank" href="${contextPath}/upload/qrcode/yuesao/'+row.title+'.jpg" ><img src="${contextPath}/upload/qrcode/yuesao/'+row.title+'.jpg" height="80" /></a></p>';}
 				},
 				{field:'recommend',title:'首页推荐',width:15,sortable:'F',
 					formatter:function(value,row,index){

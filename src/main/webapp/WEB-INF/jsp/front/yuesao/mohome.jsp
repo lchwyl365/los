@@ -297,7 +297,7 @@
             <div style="height:80px;">
 				<div style="height:46px;overflow: hidden;" >
 					<img src="${contextPath}/resources/images/yuesao/tel.jpg" style="height:40px;float:left;margin-left:-5px;" />
-					<span style="float:right;line-height:46px;font-size:14px;color:#fff;margin-right:3px;">400-888-8888</span>
+					<span style="float:right;line-height:46px;font-size:14px;color:#fff;margin-right:3px;">${website.telphone}</span>
 				</div>
                 <div class="subtitle">联系我们</div>
             </div>
@@ -480,13 +480,13 @@
                 <div class="apply-form">
                     <form>
                       <div class="input-group" style="margin-top: 10px;">
-                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="您的尊称Name">
+                        <input type="text" class="form-control" id="username" placeholder="您的尊称Name">
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                         </span>
                       </div>
                       <div class="input-group" style="margin-top: 10px; margin-bottom: 10px;">
-                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="您的电话Phone">
+                        <input type="text" class="form-control" id="telphone" placeholder="您的电话Phone">
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
                         </span>
@@ -512,6 +512,36 @@
     	/* if(IsPC()){
     		window.location.href = "http://www.rctianhong.com";
     	} */
+    	$(".btn-default").bind('click',function(){
+    		
+    		var username = $.trim($('#username').val());
+    		var telphone = $.trim($('#telphone').val());
+    		if(!username || username == ''){
+    			alert('请录入用户名');
+    			return false;
+    		}
+    		if(!telphone || telphone == ''){
+    			alert('请录入电话');
+    			return false;
+    		}
+    		$.post("${contextPath}/cms/apply/add",{
+    			name		: username,
+    			telphone 	: telphone
+    		}, function(data){
+    			if(data.status == 200){
+    				alert('新增成功!');
+    			}else{
+    				alert('添加错误',data.msg,'error');
+    			}
+    		});
+    		
+    	});
+    	
+    	$(".btn-warning").bind('click',function(){
+    		$('#username').val('');
+    		$('#telphone').val('');
+    	});
+    	
     });
     function IsPC() {
 	   var userAgentInfo = navigator.userAgent;

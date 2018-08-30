@@ -30,7 +30,7 @@ public class MysqlTablesServiceImpl implements MysqlTablesService {
 		MysqlTablesExample tablesExample = new MysqlTablesExample();
     	Criteria criteria = tablesExample.createCriteria();
     	criteria.andTableSchemaEqualTo(schema);
-    	criteria.andTableTypeEqualTo(type);
+    	//criteria.andTableTypeEqualTo(type);
     	List<Tables> list = mysqlTablesMapper.selectByExample(tablesExample);
     	for (Tables tables : list) {
     		List<KeyColumnUsage> keycolumns = mysqlKeyColumnService.selectByTabConst(tables.getTableSchema(), tables.getTableName());
