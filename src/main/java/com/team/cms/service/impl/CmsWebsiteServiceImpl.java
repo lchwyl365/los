@@ -136,6 +136,8 @@ public class CmsWebsiteServiceImpl implements CmsWebsiteService {
 				temp.setMainProduct(cmsWebsite.getMainProduct());
 				temp.setKeywords(cmsWebsite.getKeywords());
 				temp.setDescription(cmsWebsite.getDescription());
+				temp.setName(cmsWebsite.getName());
+				temp.setCopyright(cmsWebsite.getCopyright());
 				cmsWebsiteMapper.insertSelective(temp);
 			} else {
 				temp.setAddress(cmsWebsite.getAddress());
@@ -144,6 +146,8 @@ public class CmsWebsiteServiceImpl implements CmsWebsiteService {
 				temp.setMainProduct(cmsWebsite.getMainProduct());
 				temp.setKeywords(cmsWebsite.getKeywords());
 				temp.setDescription(cmsWebsite.getDescription());
+				temp.setName(cmsWebsite.getName());
+				temp.setCopyright(cmsWebsite.getCopyright());
 				cmsWebsiteMapper.updateByPrimaryKeySelective(temp);
 			}
 			return ResponseResult.ok();

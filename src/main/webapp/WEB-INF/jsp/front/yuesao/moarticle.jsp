@@ -283,7 +283,7 @@
   <body>
     <div id="page-wrapper">
         <div class="row banner-title">
-            	我的店面
+            	${website.name}
         </div>
         <div class="row" style="background-color: #FFF;">
           <div class="col-xs-4" style="background-color: #E64CA4;width:30%;padding: 0px;">
@@ -344,7 +344,7 @@
 		</div>
 		
         <div class="row contact-info" >
-			<p>Copyright 2018 我的店面 版权所有</p>
+			<p>${website.copyright}</p>
 			<p>技术支持:山东创服信息技术有限公司</p>
         </div>
         

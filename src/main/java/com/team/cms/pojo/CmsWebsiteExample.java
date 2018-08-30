@@ -719,6 +719,146 @@ public class CmsWebsiteExample {
             addCriterion("description not between", value1, value2, "description");
             return (Criteria) this;
         }
+
+        public Criteria andNameIsNull() {
+            addCriterion("name is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameIsNotNull() {
+            addCriterion("name is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameEqualTo(String value) {
+            addCriterion("name =", value, "name");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameNotEqualTo(String value) {
+            addCriterion("name <>", value, "name");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameGreaterThan(String value) {
+            addCriterion("name >", value, "name");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameGreaterThanOrEqualTo(String value) {
+            addCriterion("name >=", value, "name");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameLessThan(String value) {
+            addCriterion("name <", value, "name");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameLessThanOrEqualTo(String value) {
+            addCriterion("name <=", value, "name");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameLike(String value) {
+            addCriterion("name like", value, "name");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameNotLike(String value) {
+            addCriterion("name not like", value, "name");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameIn(List<String> values) {
+            addCriterion("name in", values, "name");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameNotIn(List<String> values) {
+            addCriterion("name not in", values, "name");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameBetween(String value1, String value2) {
+            addCriterion("name between", value1, value2, "name");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameNotBetween(String value1, String value2) {
+            addCriterion("name not between", value1, value2, "name");
+            return (Criteria) this;
+        }
+
+        public Criteria andCopyrightIsNull() {
+            addCriterion("copyright is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCopyrightIsNotNull() {
+            addCriterion("copyright is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCopyrightEqualTo(String value) {
+            addCriterion("copyright =", value, "copyright");
+            return (Criteria) this;
+        }
+
+        public Criteria andCopyrightNotEqualTo(String value) {
+            addCriterion("copyright <>", value, "copyright");
+            return (Criteria) this;
+        }
+
+        public Criteria andCopyrightGreaterThan(String value) {
+            addCriterion("copyright >", value, "copyright");
+            return (Criteria) this;
+        }
+
+        public Criteria andCopyrightGreaterThanOrEqualTo(String value) {
+            addCriterion("copyright >=", value, "copyright");
+            return (Criteria) this;
+        }
+
+        public Criteria andCopyrightLessThan(String value) {
+            addCriterion("copyright <", value, "copyright");
+            return (Criteria) this;
+        }
+
+        public Criteria andCopyrightLessThanOrEqualTo(String value) {
+            addCriterion("copyright <=", value, "copyright");
+            return (Criteria) this;
+        }
+
+        public Criteria andCopyrightLike(String value) {
+            addCriterion("copyright like", value, "copyright");
+            return (Criteria) this;
+        }
+
+        public Criteria andCopyrightNotLike(String value) {
+            addCriterion("copyright not like", value, "copyright");
+            return (Criteria) this;
+        }
+
+        public Criteria andCopyrightIn(List<String> values) {
+            addCriterion("copyright in", values, "copyright");
+            return (Criteria) this;
+        }
+
+        public Criteria andCopyrightNotIn(List<String> values) {
+            addCriterion("copyright not in", values, "copyright");
+            return (Criteria) this;
+        }
+
+        public Criteria andCopyrightBetween(String value1, String value2) {
+            addCriterion("copyright between", value1, value2, "copyright");
+            return (Criteria) this;
+        }
+
+        public Criteria andCopyrightNotBetween(String value1, String value2) {
+            addCriterion("copyright not between", value1, value2, "copyright");
+            return (Criteria) this;
+        }
     }
 
     /**

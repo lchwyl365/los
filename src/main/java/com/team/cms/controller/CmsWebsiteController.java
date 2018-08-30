@@ -114,6 +114,14 @@ public class CmsWebsiteController {
 		if(StringUtils.isNotEmpty(description)){
 			cmsWebsite.setDescription(String.valueOf(description));
 		}
+		String name = request.getParameter("name");
+		if(StringUtils.isNotEmpty(name)){
+			cmsWebsite.setName(name);
+		}
+		String copyright = request.getParameter("copyright");
+		if(StringUtils.isNotEmpty(copyright)){
+			cmsWebsite.setCopyright(copyright);
+		}
 		return cmsWebsiteService.update(cmsWebsite);
     }
 	@RequestMapping(value = "/queryList",method = RequestMethod.POST)

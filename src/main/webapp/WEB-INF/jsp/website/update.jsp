@@ -26,6 +26,14 @@
 			<form id="contentEditForm" method="post" action="${contextPath}/cms/website/update" >
 				<input type="hidden" name="domainName" value="${website.domainName}" />
 				<table class="easyui-panel form-table">
+					<tr>
+						<td class="form-table-td-left">
+							<label for="address">网站名称:</label>
+						</td>
+						<td class="form-table-td-right">
+								<input class="easyui-textbox" type="text" name="name" data-options="required:false,validType:['length[0,255]']" style="width:500px;height:28px;"/>
+						</td>
+				    </tr>
 				   <tr>
 						<td class="form-table-td-left">
 							<label for="address">公司地址:</label>
@@ -64,6 +72,14 @@
 						</td>
 						<td class="form-table-td-right">
 								<input class="easyui-textbox" type="text" name="keywords" data-options="required:false,validType:['length[0,500]']" style="width:500px;height:28px;"/>
+						</td>
+				    </tr>
+				    <tr>
+						<td class="form-table-td-left">
+							<label for="keywords">版权信息:</label>
+						</td>
+						<td class="form-table-td-right">
+								<input class="easyui-textbox" type="text" name="copyright" data-options="required:false,validType:['length[0,500]']" style="width:500px;height:28px;"/>
 						</td>
 				    </tr>
 				   <tr>

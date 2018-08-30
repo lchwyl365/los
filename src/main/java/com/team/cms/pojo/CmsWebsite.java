@@ -42,6 +42,16 @@ public class CmsWebsite {
     private String description;
 
     /**
+     * 
+     */
+    private String name;
+
+    /**
+     * 
+     */
+    private String copyright;
+
+    /**
      * 编号
      * @return id 编号
      */
@@ -167,5 +177,37 @@ public class CmsWebsite {
      */
     public void setDescription(String description) {
         this.description = description == null ? null : description.trim();
+    }
+
+    /**
+     * 
+     * @return name 
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * 
+     * @param name 
+     */
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
+    }
+
+    /**
+     * 
+     * @return copyright 
+     */
+    public String getCopyright() {
+        return copyright;
+    }
+
+    /**
+     * 
+     * @param copyright 
+     */
+    public void setCopyright(String copyright) {
+        this.copyright = copyright == null ? null : copyright.trim();
     }
 }
