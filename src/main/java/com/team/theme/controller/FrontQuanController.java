@@ -86,7 +86,7 @@ public class FrontQuanController {
     }
 	
 	@RequestMapping(value = "/channel/{id}",method = RequestMethod.GET)
-    public String channel(HttpServletRequest request,@PathVariable String id,@RequestParam(value="pagerNumber",required=false) Integer pagerNumber,Model model) throws Exception{
+    public String channel(HttpServletRequest request,@PathVariable String id,@RequestParam(value="pageNumber",required=false) Integer pageNumber,Model model) throws Exception{
 		String serverName = HttpClientUtil.getServerName(request);
 		//顶部栏目导航
 		CmsChannel cmsChannel = new CmsChannel();
@@ -105,12 +105,12 @@ public class FrontQuanController {
         	cmsArticle.setChannelId(channel.getChannelId());
         	cmsArticle.setStatus("on");
         	EUDataGridModel dgm = new EUDataGridModel();
-        	int page = pagerNumber == null ? 0 : pagerNumber;
+        	int page = pageNumber == null ? 0 : pageNumber;
         	dgm.setPage(page);
         	dgm.setRows(10);
         	EUDataGridResult result = cmsArticleService.selectList(dgm, cmsArticle);
         	model.addAttribute("dataGridResult", result);
-        	model.addAttribute("pagerNumber", pagerNumber);
+        	model.addAttribute("pagerNumber", pageNumber);
     	}
     	return "front/q/channel";
     }

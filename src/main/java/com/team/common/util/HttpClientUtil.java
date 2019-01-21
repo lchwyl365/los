@@ -27,10 +27,10 @@ public class HttpClientUtil {
 		String serverName = request.getServerName();
 		
 		if("localhost".equals(serverName)){
-			return "www.0631yuesao.com";
+			//return "www.0631yuesao.com";
 			//return "thyd.0531yx.cn";
 			//return "www.rctianhong.com";
-			//return "www.jinan-kendo.com";
+			return "www.jinan-kendo.com";
 			//return "www.runyigroup.com.cn";
 		}else if( "nbor.vxg158.10000net.cn".equals(serverName) 
 			   || "qj.autojcode.com".equals(serverName) ){
