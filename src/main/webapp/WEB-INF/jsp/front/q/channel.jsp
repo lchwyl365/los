@@ -63,7 +63,7 @@ var _hmt = _hmt || [];
 			</div>
 		</div>
 		<!--content-->
-		<div class="content" style="min-height:300px;">
+		<div class="content" style="min-height:500px;">
 			   <c:if test="${channel.channelType == 'cover'}">
 				    <div class="left_tab" style="width:960px;float:none;background:#FDFBF5">
 					    <div class="hd">
