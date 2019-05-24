@@ -367,7 +367,7 @@ $(document).ready(function(){
 		pauseOnAction: false
 	});
 	if(!IsPC()){
-		window.location.href = "http://thyd.0531yx.cn";
+		window.location.href = "http://m.rctianhong.com";
 	}
 });
 function IsPC() {

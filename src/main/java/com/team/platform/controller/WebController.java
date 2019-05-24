@@ -22,7 +22,7 @@ public class WebController {
 			return "redirect:/front/r/index";
 		}else if("www.rctianhong.com".equals(serverName)){
 			return "redirect:/front/t/index";
-		} else if("thyd.0531yx.cn".equals(serverName)){
+		} else if("m.rctianhong.com".equals(serverName)){
 			return "redirect:/front/t/mohome";
 		} else if("www.jinan-kendo.com".equals(serverName)){
 			return "redirect:/front/q/index";
