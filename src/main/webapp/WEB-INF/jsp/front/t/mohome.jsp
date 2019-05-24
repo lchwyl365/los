@@ -465,12 +465,12 @@
     $(function(){
     	$('.carousel').carousel();
     	
-    	if(IsPC()){
+    	/* if(IsPC()){
     		var domain = document.domain;
     		if(domain == 'm.rctianhong.com'){
     			window.location.href = "http://www.rctianhong.com";
     		}
-    	}
+    	} */
     	
     });
     function IsPC() {
