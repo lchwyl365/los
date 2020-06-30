@@ -114,7 +114,7 @@ var contentUpdatePage  = {
 		$.get(url,function(data){
 			if(data.status == 200){
 				$("#contentEditForm").form("load",data.data);
-						KindEditor.html('#content', data.data.content);
+				KindEditor.html('#content', data.data.content);
 			}
 		});
 	},
