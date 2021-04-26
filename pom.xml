@@ -25,7 +25,7 @@
 		<jsp-api.version>2.1</jsp-api.version>
 		<joda-time.version>2.5</joda-time.version>
 		<commons-lang3.version>3.3.2</commons-lang3.version>
-		<commons-io.version>2.4</commons-io.version>
+		<commons-io.version>2.7</commons-io.version>
 		<commons-net.version>3.3</commons-net.version>
 		<commons-codec.version>1.10</commons-codec.version>
 		<pagehelper.version>5.0.0</pagehelper.version>
